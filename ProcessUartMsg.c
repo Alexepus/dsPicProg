@@ -12,7 +12,7 @@ void ProcessUartMsg(void)
 	static BYTE Cmd;
 	while (1) 
 	{
-		OS_Wait_Sem(&UartRcMsgSem);
+		tn_sem_wait(&UartRcMsgSem, TN_WAIT_INFINITE);
 		if(ExtractRcMessage() == 0)
 			continue;
 		Cmd=RcBuf.Data[0];
@@ -101,7 +101,7 @@ void ProcessUartMsg(void)
 		}
 		case CMD_LOAD_TCOUPLE_TABLE: //Загрузка таблицы термопары
 		{
-			memmove_opt(((BYTE*)TableV)+RcBuf.Data[1]*16, RcBuf.Data+2, 16);
+			memmove(((BYTE*)TableV)+RcBuf.Data[1]*16, RcBuf.Data+2, 16);
 
 			if(RcBuf.Data[1]==3)
 			{
@@ -332,7 +332,7 @@ void ProcessUartMsg(void)
 		case CMD_RESET: //Сброс контроллера
 		{
 			if((RcBuf.Length==2) && (RcBuf.Data[1]==RESET_MAGIC_NUM))//0x55 - "контрольное число"
-				asm("RESET");
+                __asm__("RESET");
 			else
 				SendErrorCommandFormat();
 			break;		
@@ -387,7 +387,7 @@ void ReportRcProtocolError(void)
 void ReportStartUp(void)
 {
 	TxBuf.Data[0]=MESSAGE_RESET;
-	if(RI==1 && TO==1 && PD==1 && POR==0 && BOR==0)
+/*	if(RI==1 && TO==1 && PD==1 && POR==0 && BOR==0)
 		TxBuf.Data[1]=1; //Power On *OK
 	else if( (RI==0) && (POR==1) && (STKFUL)==0 && (STKUNF)==0)
 		TxBuf.Data[1]=3; //Software Reset *OK
@@ -399,15 +399,15 @@ void ReportStartUp(void)
 		TxBuf.Data[1]=2; //MCLR Reset *OK
 	else if( (RI==1) && (TO==1) && (PD==1) && (POR==1) && (BOR==0))
 		TxBuf.Data[1]=6; //Brown-out Reset *OK -после восстановления питания до нормы
-	else
+	else*/
 		TxBuf.Data[1]=7; //Unknown Reset
 	
 	TxBuf.Data[2]=ANSWER_OK;
 	TxBuf.Length=3;
 	UartStartTx();
-	RI=1;
-	POR=1;
-	BOR=1;
-	STKFUL=0; STKUNF=0;
+	//RI=1;
+	//POR=1;
+	//BOR=1;
+	//STKFUL=0; STKUNF=0;
 }
 

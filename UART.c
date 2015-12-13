@@ -4,12 +4,11 @@ FIFO RcFifo;
 extern FIFO TxFifo;
 MessageBuffer RcBuf;
 MessageBuffer TxBuf;
-extern OST_SEMAPHORE UartRcMsgSem;
+extern TN_SEM UartRcMsgSem;
 
 //________________________________________________________________________________
 //Обработчик приема байта
-#pragma interrupt_level 0
-void UartRcInt(void)
+void __attribute__((interrupt, no_auto_psv)) _U1RXInterrupt(void)
 {
 	BYTE DataByte, NewIndex;
 	NewIndex = (RcFifo.NIn+1)&0b01111111;
@@ -18,23 +17,23 @@ void UartRcInt(void)
 		ReportFifoRxOverflow();
 		return;
 	}
-	DataByte = RCREG;
+	DataByte = U1RXREG;
 	RcFifo.Buffer[RcFifo.NIn]=DataByte;
 	RcFifo.NIn = NewIndex;
 	if(DataByte == UART_STOP)
-		OS_Post_CSemI(&UartRcMsgSem,255);	
+		tn_sem_isignal(&UartRcMsgSem);	
 }
 
 //________________________________________________________________________________
 //Обработчик окончания передачи байта (TXREG->Transmit Shift Reg.)
-void UartTxInt(void)
+void __attribute__((interrupt, no_auto_psv)) _U1TXInterrupt(void)
 {
 	if(TxFifo.NOut == TxFifo.NIn) //Буфер пуст
 	{	
-		TXIE = 0;
+		IEC0bits.U1TXIE = 0;
 		return;
 	}
-	TXREG = TxFifo.Buffer[TxFifo.NOut];
+	U1TXREG = TxFifo.Buffer[TxFifo.NOut];
 	TxFifo.NOut = (TxFifo.NOut+1)&0b01111111;
 
 }
@@ -47,7 +46,7 @@ void UartStartTx(void)
 {
 	BYTE i=0;
 	BYTE DataByte, NewIndex;
-	static bit WasTxShift=0;
+	static bool WasTxShift=0;
 	NewIndex = (TxFifo.NIn+1)&0b01111111;
 	if(NewIndex == TxFifo.NOut) //Буфер заполнен, писать в него нельзя
 		return;
@@ -84,19 +83,19 @@ void UartStartTx(void)
 	TxFifo.Buffer[TxFifo.NIn] = UART_STOP;
 	TxFifo.NIn = NewIndex;
 
-	if(TXIE) //Не закончена предыдущая передача
+	if(IEC0bits.U1TXIE) //Не закончена предыдущая передача
 		return;
-	//Здесь TXIE==0, а значит, что прерывание само в буфер отправки ничего
+	//Здесь U1TXIE==0, а значит, что прерывание само в буфер отправки ничего
 	//не запишет 
 	//Передача первого байта первого ожидающего сообщения,
 	//если буфер отправки пуст (а последний байт еще может быть
 	//в процессе отправки)
-	if(TXIF)
+	if(IFS0bits.U1TXIF)
 	{
-		TXREG = UART_START;	
+		U1TXREG = UART_START;	
 		TxFifo.NOut = (TxFifo.NOut+1)&0b01111111;
 	}
-	TXIE=1;
+	IEC0bits.U1TXIE=1;
 }
 
 //________________________________________________________________________________
@@ -105,7 +104,7 @@ void UartStartTx(void)
 BYTE ExtractRcMessage()
 {
 	BYTE DataByte;
-	static bit WasRxShift = 0;
+	static bool WasRxShift = 0;
 	DataByte=RcFifo.Buffer[RcFifo.NOut];
 	RcFifo.NOut = (RcFifo.NOut + 1) & 0b01111111;
 	if(DataByte!=UART_START)

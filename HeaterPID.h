@@ -1,4 +1,7 @@
-void Pid(void);
+#include <stdbool.h>
+//Task 1. PID-регулятор нагревателя
+void task_HeaterPid_body(void *par);
+
 INT16Q4 CalcTByV(INT16Q4 Voltage);
 void FillTableT(void);
 void FillTableInvDV(void);
@@ -47,7 +50,7 @@ extern INT16Q4 FFTableTemp[4];
 extern INT16Q4 FFTableOut[4];
 extern INT16Q4 FFOut;
 extern BYTE TableDT;
-extern bit TableVLoaded,TdTLoaded; 
+extern bool TableVLoaded,TdTLoaded; 
 extern INT16Q4 TempHistFifo[16];
 extern BYTE TempHistFifoIndex;
 extern BYTE DifShift;
@@ -55,6 +58,6 @@ extern BYTE IDec;
 extern INT16Q4 TEnd;
 extern INT32Q20 DeltaT, TAccumulator;
 extern long VoutAcc;
-extern bit ManualHeaterControl;
-extern bit FlagWait, FlagMainOff,FlagRefTempAchived;
+extern bool ManualHeaterControl;
+extern bool FlagWait, FlagMainOff,FlagRefTempAchived;
 

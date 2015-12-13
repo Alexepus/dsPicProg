@@ -44,6 +44,6 @@ void ReportFifoRxOverflow(void);
 void ReportRcProtocolError(void);
 void ReportStartUp(void);
 
-extern OST_SEMAPHORE UartRcMsgSem;
+extern TN_SEM UartRcMsgSem;
 extern FIFO TxFifo;
 extern FIFO RcFifo;

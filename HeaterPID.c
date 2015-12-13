@@ -13,13 +13,13 @@ INT16Q4 FFTableTemp[4];
 INT16Q4 FFTableOut[4];
 INT16Q16 AdcTcTomVCoef=Q16(0.01);
 BYTE DifShift=5;
-bit TableVLoaded=0,TdTLoaded=0; 
+bool TableVLoaded=0,TdTLoaded=0; 
 BYTE TableDT=0x2A;
 INT16Q4 TEnd;
 INT32Q20 DeltaT, TAccumulator;
 long VoutAcc;
-bit FlagWait, FlagMainOff, FlagRefTempAchived;
-bit ManualHeaterControl=0;
+bool FlagWait, FlagMainOff, FlagRefTempAchived;
+bool ManualHeaterControl=0;
 #define MulIShift4( A,  B) ((INT16Q4)((A*B)>>4))
 long MulVarA, MulVarB;
 
@@ -33,16 +33,15 @@ BYTE AdcAverageCnt;
 UINT DacData0Presave;
 
 //________________________________________________________________________________
-//Task 1. PID-регулятор
-void Pid(void)
+//Task 1. PID-регулятор нагревателя
+void task_HeaterPid_body(void *par)
 {	
-	static INT16Q4 Temp1, Temp2;
+	static INT16Q4 Temp1;
 	while (1) 
 	{
-		OS_Task_Stop();
+		tn_task_sleep(500);
 		Temp1=TMR1-24997;
 		TMR1=Temp1;
-		TMR1L=Temp1;
 		
 #ifndef SIMULATION
 		ReadADC8x14_0_3();
@@ -124,7 +123,7 @@ void Pid(void)
 					}
 				}
 			}
-			OS_Cooperate();
+			//OS_Cooperate();
 	
 			//*** Temp1=AdcTcTomVCoef*ADC8x14Data[0]
 			MulIShift8(ADC8x14DataAveraged[0], AdcTcTomVCoef, Temp1);
@@ -200,7 +199,7 @@ void Pid(void)
 //масштабироваться в соответствии с коэффициентом ОУ до данной величины
 INT16Q4 CalcTByV(INT16Q8 Voltage)
 {
-	INT16Q4 Tmp,Tmp1;
+	INT16Q4 Tmp;
 	if(Voltage>TableV[15])
 	{
 		if(Voltage>TableV[23])

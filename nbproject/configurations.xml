@@ -10,6 +10,11 @@
       <itemPath>ProcessUartMsg.h</itemPath>
       <itemPath>UART.h</itemPath>
       <itemPath>p33FJ64MC804.h</itemPath>
+      <itemPath>ADC8x14.h</itemPath>
+      <itemPath>DAC.h</itemPath>
+      <itemPath>Spi.h</itemPath>
+      <itemPath>HardwareInit.h</itemPath>
+      <itemPath>Math.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -23,6 +28,12 @@
       <itemPath>PID.c</itemPath>
       <itemPath>ProcessUartMsg.c</itemPath>
       <itemPath>UART.c</itemPath>
+      <itemPath>ADC8x14.c</itemPath>
+      <itemPath>DAC.c</itemPath>
+      <itemPath>Spi.c</itemPath>
+      <itemPath>HardwareInit.c</itemPath>
+      <itemPath>Math.c</itemPath>
+      <itemPath>TNeo/src/tn_app_check.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -32,6 +43,7 @@
   </logicalFolder>
   <sourceRootList>
     <Elem>.</Elem>
+    <Elem>c:/Temp/tneo-v1.07/lib_project/pic24_dspic/tneo_pic24_dspic.X</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -49,6 +61,23 @@
       <compileType>
         <linkerTool>
           <linkerLibItems>
+            <linkerLibProjectItem>
+              <makeArtifact PL="TNeo/lib_project/pic24_dspic/tneo_pic24_dspic.X"
+                            CT="3"
+                            CN="no_eds"
+                            AC="true"
+                            BL="true"
+                            WD="TNeo/lib_project/pic24_dspic/tneo_pic24_dspic.X"
+                            BC="${MAKE}  -f Makefile CONF=no_eds"
+                            DBC="${MAKE}  -f Makefile CONF=no_eds TYPE_IMAGE=DEBUG_RUN"
+                            CC="rm -rf &quot;build/no_eds&quot; &quot;dist/no_eds&quot;"
+                            OP="dist/no_eds/production/tneo_pic24_dspic.X.a"
+                            DOP="dist/no_eds/debug/tneo_pic24_dspic.X.a"
+                            FL="dist/no_eds/production/tneo_pic24_dspic.X.a"
+                            PD="dist/no_eds/production/tneo_pic24_dspic.X.a"
+                            DD="dist/no_eds/debug/tneo_pic24_dspic.X.a">
+              </makeArtifact>
+            </linkerLibProjectItem>
           </linkerLibItems>
         </linkerTool>
         <archiverTool>

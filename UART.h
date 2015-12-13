@@ -1,3 +1,4 @@
+#include <stdbool.h>
 #define UART_START 		0xAA
 #define UART_STOP 		0xAB
 #define UART_SHIFT 		0xAC
