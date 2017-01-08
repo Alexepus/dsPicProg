@@ -28,13 +28,12 @@ typedef union
 	} AsStruct;
 } ULONG_UNION;
 
-#define SPI_WAIT_COUNT 8
-//#define SPI_WAIT() {
-#define ADC_CS PORTCbits.RC1 
-#define ADC_Busy PORTBbits.RB0 
-#define ADC_Conv PORTCbits.RC0
-#define DAC_LD PORTAbits.RA4
-#define DAC_CS PORTCbits.RC2
+// Разрешение соединения выбранного аналогового входа с АЦП
+#define AnalogInputEnable LATBbits.LATB10
+// Разрешение соединения ЦАП с выбранным аналоговым выходом
+#define AnalogOutputEnable LATBbits.LATB9
+// Выбор чипа ЦАП для передачи данных (активный уровень - низкий)
+#define CS_DAC LATBbits.LATB13
 
 #include "UART.h"
 #include "p33FJ64MC804.h"
@@ -42,12 +41,9 @@ typedef union
 #include "HardwareInit.h"
 #include "Math.h"
 #include "Spi.h"
+#include "AddressBus.h"
 #include "DAC.h"
 #include "ADC8x14.h"
 #include "ProcessUartMsg.h"
 #include "HeaterPID.h"
 #include "PowerLimiter.h"
-
-void ConfigDevice(void);
-void ProcessUartMsg(void);
-//void memmove_opt(void * pDest, const void * pSrc, register unsigned char n);

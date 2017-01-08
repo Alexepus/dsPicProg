@@ -7,23 +7,6 @@
 //-- instruction that causes debugger to halt
 #define PIC24_SOFTWARE_BREAK()  {__asm__ volatile(".pword 0xDA4000"); __asm__ volatile ("nop");}
 
-//-- system frequency
-#define SYS_FREQ           32000000UL
-
-//-- peripheral bus frequency
-#define PB_FREQ            (SYS_FREQ / 2)
-
-//-- kernel ticks (system timer) frequency
-#define SYS_TMR_FREQ       1000
-
-//-- system timer prescaler
-#define SYS_TMR_PRESCALER_VALUE     64
-#define SYS_TMR_PRESCALER_REGVALUE  2
-
-//-- system timer period (auto-calculated)
-#define SYS_TMR_PERIOD              \
-   (PB_FREQ / SYS_TMR_PRESCALER_VALUE / SYS_TMR_FREQ)
-
 //-- idle task stack size, in words
 #define IDLE_TASK_STACK_SIZE          (TN_MIN_STACK_SIZE + 32)
 
@@ -31,12 +14,13 @@
 #define INTERRUPT_STACK_SIZE          (TN_MIN_STACK_SIZE + 64)
 
 //-- stack sizes of user tasks
+#define TASK_UART1MSG_STK_SIZE     (TN_MIN_STACK_SIZE + 96)
 #define TASK_HEATERPID_STK_SIZE    (TN_MIN_STACK_SIZE + 96)
-#define TASK_GASPID_STK_SIZE    (TN_MIN_STACK_SIZE + 96)
+#define TASK_GASPID_STK_SIZE       (TN_MIN_STACK_SIZE + 96)
 
 //-- user task priorities
-#define TASK_A_PRIORITY    7
-#define TASK_B_PRIORITY    6
+#define TASK_PRIORITY_4    4
+
 
 /*******************************************************************************
  *    DATA
@@ -53,14 +37,15 @@ TN_SEM UartRcMsgSem;
 TN_STACK_ARR_DEF(idle_task_stack, IDLE_TASK_STACK_SIZE);
 TN_STACK_ARR_DEF(interrupt_stack, INTERRUPT_STACK_SIZE);
 
+TN_STACK_ARR_DEF(task_Uart1Msg_stack, TASK_UART1MSG_STK_SIZE);
 TN_STACK_ARR_DEF(task_HeaterPid_stack, TASK_HEATERPID_STK_SIZE);
 TN_STACK_ARR_DEF(task_GasPid_stack, TASK_GASPID_STK_SIZE);
 
 //-- task structures
 
 struct TN_Task task_HeaterPid = {};
+struct TN_Task task_Uart1Msg = {};
 struct TN_Task task_GasPid = {};
-
 
 /*******************************************************************************
  *    ISRs
@@ -89,29 +74,40 @@ void idle_task_callback (void)
 {
 }
 
-//-- create first application task(s)
+//-- Инициализация ОС. Создание задач
 void InitOs(void)
 {
-   //-- task A performs complete application initialization,
-   //   it's the first created application task
-   tn_task_create(
-         &task_HeaterPid,           //-- task structure
-         task_HeaterPid_body,       //-- task body function
-         TASK_A_PRIORITY,           //-- task priority
-         task_HeaterPid_stack,              //-- task stack
-         TASK_HEATERPID_STK_SIZE,   //-- task stack size (in words)
-         TN_NULL,                   //-- task function parameter
-         TN_TASK_CREATE_OPT_START   //-- creation option
-         );
+    //Инициализация семафора принятых сообщений UART1
+    tn_sem_create(&UartRcMsgSem, 0, 255);
+
+    tn_task_create(
+        &task_HeaterPid,           //-- task structure
+        task_HeaterPid_body,       //-- task body function
+        TASK_PRIORITY_4,           //-- task priority
+        task_HeaterPid_stack,              //-- task stack
+        TASK_HEATERPID_STK_SIZE,   //-- task stack size (in words)
+        TN_NULL,                   //-- task function parameter
+        TN_TASK_CREATE_OPT_START   //-- creation option
+        );
+   
+    tn_task_create(
+        &task_Uart1Msg,           //-- task structure
+        ProcessUart1Msg,       //-- task body function
+        TASK_PRIORITY_4,           //-- task priority
+        task_Uart1Msg_stack,              //-- task stack
+        TASK_HEATERPID_STK_SIZE,   //-- task stack size (in words)
+        TN_NULL,                   //-- task function parameter
+        TN_TASK_CREATE_OPT_START   //-- creation option
+        );   
 }
 
-int main(void)
+int main (void) 
 {
    //-- unconditionally disable system interrupts
    tn_arch_int_dis();
 
    //-- init hardware
-   hw_init();
+   HardwareInit();
 
    //-- call to tn_sys_start() never returns
    tn_sys_start(

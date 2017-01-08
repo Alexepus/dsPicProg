@@ -37,12 +37,13 @@
 #define VAL_CONTINUE	1
 #define VAL_MAIN_OFF	2
 
-
 #define SendErrorCommandFormat() {TxBuf.Data[0]=ANSWER_ERROR_COMMAND_FORMAT;\
 			TxBuf.Length=1; UartStartTx();}
 void ReportFifoRxOverflow(void);
 void ReportRcProtocolError(void);
 void ReportStartUp(void);
+void ProcessUart1Msg(void *par);
+UINT ExtractRcMessage(void);
 
 extern TN_SEM UartRcMsgSem;
 extern FIFO TxFifo;

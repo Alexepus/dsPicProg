@@ -6,14 +6,13 @@
 void UartRcInt(void);
 void UartTxInt(void);
 void UartStartTx(void);
-BYTE ExtractRcMessage(void);
 void WindRcFifo(void);
 
 #define BUFFER_LENGTH 20
 typedef struct
 {
 	BYTE Data[BUFFER_LENGTH];
-	BYTE Length;
+	UINT Length;
 } MessageBuffer;
 
 #define FIFO_DEPTH 128

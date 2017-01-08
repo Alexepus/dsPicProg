@@ -6,8 +6,8 @@ FIFO TxFifo;
 extern MessageBuffer RcBuf;
 extern MessageBuffer TxBuf;
 
-//Task 0. Обработчик сообщений UART
-void ProcessUartMsg(void)
+//Task 0. Обработчик сообщений UART1
+void ProcessUart1Msg(void *par) //(параметр не используется)
 {
 	static BYTE Cmd;
 	while (1) 
@@ -332,7 +332,9 @@ void ProcessUartMsg(void)
 		case CMD_RESET: //Сброс контроллера
 		{
 			if((RcBuf.Length==2) && (RcBuf.Data[1]==RESET_MAGIC_NUM))//0x55 - "контрольное число"
+            {
                 __asm__("RESET");
+            }
 			else
 				SendErrorCommandFormat();
 			break;		

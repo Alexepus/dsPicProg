@@ -5,23 +5,32 @@ extern FIFO TxFifo;
 MessageBuffer RcBuf;
 MessageBuffer TxBuf;
 extern TN_SEM UartRcMsgSem;
-
+enum TN_RCode RCode;
 //________________________________________________________________________________
 //ќбработчик приема байта
 void __attribute__((interrupt, no_auto_psv)) _U1RXInterrupt(void)
 {
-	BYTE DataByte, NewIndex;
-	NewIndex = (RcFifo.NIn+1)&0b01111111;
-	if(NewIndex == RcFifo.NOut) //Ѕуфер заполнен, писать в него нельз€
-	{
-		ReportFifoRxOverflow();
-		return;
-	}
-	DataByte = U1RXREG;
-	RcFifo.Buffer[RcFifo.NIn]=DataByte;
-	RcFifo.NIn = NewIndex;
-	if(DataByte == UART_STOP)
-		tn_sem_isignal(&UartRcMsgSem);	
+    IFS0bits.U1RXIF = 0;
+    while(U1STAbits.URXDA)
+    {
+        BYTE DataByte, NewIndex;
+        NewIndex = (RcFifo.NIn+1)&0b01111111;
+        if(NewIndex == RcFifo.NOut) //Ѕуфер заполнен, писать в него нельз€
+        {
+            ReportFifoRxOverflow();
+            return;
+        }
+        DataByte = U1RXREG;
+        RcFifo.Buffer[RcFifo.NIn]=DataByte;
+        RcFifo.NIn = NewIndex;
+        if(DataByte == UART_STOP)
+            RCode = tn_sem_isignal(&UartRcMsgSem);	
+        if(U1STAbits.OERR) // Receive Buffer Overrun Error
+        {
+            U1STAbits.OERR = 0;
+            ReportFifoRxOverflow();
+        }
+    }    
 }
 
 //________________________________________________________________________________
@@ -35,7 +44,6 @@ void __attribute__((interrupt, no_auto_psv)) _U1TXInterrupt(void)
 	}
 	U1TXREG = TxFifo.Buffer[TxFifo.NOut];
 	TxFifo.NOut = (TxFifo.NOut+1)&0b01111111;
-
 }
 
 //________________________________________________________________________________
@@ -101,7 +109,7 @@ void UartStartTx(void)
 //________________________________________________________________________________
 //»звлекает из RcFifo сообщени€, раскодиру€ их и провер€€ на валидность.
 //–езультат помещает в RcBuf
-BYTE ExtractRcMessage()
+UINT ExtractRcMessage()
 {
 	BYTE DataByte;
 	static bool WasRxShift = 0;

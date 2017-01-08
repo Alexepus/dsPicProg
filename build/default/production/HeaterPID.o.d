@@ -35,8 +35,9 @@ TNeo/src/core/tn_timer.h  \
 HardwareInit.h  \
 Math.h  \
 Spi.h  \
-DAC.h  \
- ADC8x14.h  \
+AddressBus.h  \
+ DAC.h  \
+ADC8x14.h  \
 ProcessUartMsg.h  \
 HeaterPID.h  \
 PowerLimiter.h 

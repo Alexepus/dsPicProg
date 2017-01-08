@@ -7,7 +7,7 @@
 /**
  * Hardware init: called from main() with interrupts disabled
  */
-void hw_init(void);
+void HardwareInit(void);
 
 
 #endif	/* HARDWAREINIT_H */

@@ -1,0 +1,2 @@
+"c:\Program Files (x86)\Microchip\xc16\v1.30\bin\xc16-objdump.exe" -omf=coff -S d:\Projects\Programming\CatalysisTFS\Catalysis\dsPicProg\dist/default/production/dsPicProg.production.cof > d:\Projects\Programming\CatalysisTFS\Catalysis\dsPicProg\dist/default/production/dsPicProg.production.lst
+start notepad d:\Projects\Programming\CatalysisTFS\Catalysis\dsPicProg\dist/default/production/dsPicProg.production.lst

@@ -50,7 +50,7 @@
         <targetPluginBoard></targetPluginBoard>
         <platformTool>ICD3PlatformTool</platformTool>
         <languageToolchain>XC16</languageToolchain>
-        <languageToolchainVersion>1.25</languageToolchainVersion>
+        <languageToolchainVersion>1.30</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
       <compileType>
@@ -198,35 +198,26 @@
       <ICD3PlatformTool>
         <property key="ADC 1" value="true"/>
         <property key="AutoSelectMemRanges" value="auto"/>
-        <property key="CLOCK CONTROL" value="true"/>
-        <property key="COMPARATOR" value="true"/>
         <property key="CRC" value="true"/>
+        <property key="DAC 1" value="true"/>
+        <property key="DUAL COMPARATOR" value="true"/>
+        <property key="ECAN 1" value="true"/>
         <property key="Freeze All Other Peripherals" value="true"/>
         <property key="I2C1" value="true"/>
-        <property key="I2C2" value="true"/>
-        <property key="I2C3" value="true"/>
         <property key="INPUT CAPTURE 1" value="true"/>
         <property key="INPUT CAPTURE 2" value="true"/>
-        <property key="INPUT CAPTURE 3" value="true"/>
-        <property key="INPUT CAPTURE 4" value="true"/>
-        <property key="INPUT CAPTURE 5" value="true"/>
-        <property key="INPUT CAPTURE 6" value="true"/>
         <property key="INPUT CAPTURE 7" value="true"/>
         <property key="INPUT CAPTURE 8" value="true"/>
-        <property key="INPUT CAPTURE 9" value="true"/>
         <property key="OUTPUT COMPARE 1" value="true"/>
         <property key="OUTPUT COMPARE 2" value="true"/>
         <property key="OUTPUT COMPARE 3" value="true"/>
-        <property key="OUTPUT COMPARE 4" value="true"/>
-        <property key="OUTPUT COMPARE 5" value="true"/>
-        <property key="OUTPUT COMPARE 6" value="true"/>
-        <property key="OUTPUT COMPARE 7" value="true"/>
         <property key="OUTPUT COMPARE 8" value="true"/>
-        <property key="OUTPUT COMPARE 9" value="true"/>
         <property key="PARALLEL MASTER/SLAVE PORT" value="true"/>
+        <property key="PWM 1" value="true"/>
+        <property key="PWM 2" value="true"/>
+        <property key="REAL TIME CLOCK AND CALENDAR" value="true"/>
         <property key="SPI 1" value="true"/>
         <property key="SPI 2" value="true"/>
-        <property key="SPI 3" value="true"/>
         <property key="SecureSegment.SegmentProgramming" value="FullChipProgramming"/>
         <property key="TIMER1" value="true"/>
         <property key="TIMER2" value="true"/>
@@ -238,9 +229,6 @@
         <property key="ToolFirmwareOption.UseLatestFirmware" value="true"/>
         <property key="UART 1" value="true"/>
         <property key="UART 2" value="true"/>
-        <property key="UART 3" value="true"/>
-        <property key="UART 4" value="true"/>
-        <property key="UCNFG1" value="true"/>
         <property key="debugoptions.useswbreakpoints" value="false"/>
         <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
@@ -284,7 +272,7 @@
         <targetPluginBoard></targetPluginBoard>
         <platformTool>ICD3PlatformTool</platformTool>
         <languageToolchain>XC16</languageToolchain>
-        <languageToolchainVersion>1.25</languageToolchainVersion>
+        <languageToolchainVersion>1.30</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
       <compileType>
