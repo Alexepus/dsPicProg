@@ -20,12 +20,12 @@ void Limiter(void)
 {
 	ULONG_UNION Tmp;
 
-	if(ADC8x14DataAveraged[1] > MaxHeaterI)
+	if(ADCDataAveraged[1] > MaxHeaterI)
 	{ // Превышение ограничения по току
 		MaxHeaterIGuard = 1;
 	}
 
-	if( (DacData[0] > DacData0Max) && (ADC8x14DataAveraged[1] > (MaxHeaterISoft >> 1)) )
+	if( (DacData[0] > DacData0Max) && (ADCDataAveraged[1] > (MaxHeaterISoft >> 1)) )
 	{ // Превышение по мягкому ограничения тока
 		MaxHeaterISoftCount = 100;
 		DacData[0] = DacData0Max;
@@ -39,8 +39,8 @@ void Limiter(void)
 	Tmp.AsStruct.MInt = DacData[0];
 	Tmp.AsStruct.HByte = 0;
 	
-	if(ADC8x14DataAveraged[1] != 0)
-		KHeaterIToRef = Tmp.AsUlong/(ULONG)ADC8x14DataAveraged[1]; //KHeaterIToRef = DacData[0]/ADC8x14DataAveraged[1]
+	if(ADCDataAveraged[1] != 0)
+		KHeaterIToRef = Tmp.AsUlong/(ULONG)ADCDataAveraged[1]; //KHeaterIToRef = DacData[0]/ADC8x14DataAveraged[1]
 	else
 		KHeaterIToRef = 0xffffffff;
 	
@@ -49,12 +49,12 @@ void Limiter(void)
 	KHeaterIToRef_Medium = Tmp.AsStruct.MInt; // x/256
 	MulIShift8(MaxHeaterISoft, KHeaterIToRef_Medium, DacData0Max); //DacData0Max = MaxHeaterISoft*KHeaterIToRef_Medium
 
-	if(ADC8x14DataAveraged[2] > MaxHeaterU)
+	if(ADCDataAveraged[2] > MaxHeaterU)
 	{ // Превышение ограничения по напряжению
 		MaxHeaterUGuard = 1;
 	}
 
-	MulIShift16(ADC8x14DataAveraged[1], ADC8x14DataAveraged[2], HeaterP);
+	MulIShift16(ADCDataAveraged[1], ADCDataAveraged[2], HeaterP);
 	if(HeaterP > MaxHeaterP)
 	{ // Превышение ограничения по мощности
 		MaxHeaterPGuard = 1;

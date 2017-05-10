@@ -73,15 +73,14 @@ _MaxHeaterPGuard:
 	.global	_Limiter	; export
 	.type	_Limiter,@function
 _Limiter:
-.LFB5:
+.LFB0:
 	.file 1 "PowerLimiter.c"
 	.loc 1 20 0
 	.set ___PA___,1
 	lnk	#6
 .LCFI0:
 	.loc 1 23 0
-	mov	#_ADC8x14DataAveraged,w0
-	mov	[w0+2],w1
+	mov	_ADCDataAveraged+2,w1
 	mov	_MaxHeaterI,w0
 	sub	w1,w0,[w15]
 	.set ___BP___,0
@@ -97,8 +96,7 @@ _Limiter:
 	sub	w1,w0,[w15]
 	.set ___BP___,0
 	bra	leu,.L3
-	mov	#_ADC8x14DataAveraged,w0
-	mov	[w0+2],w1
+	mov	_ADCDataAveraged+2,w1
 	mov	_MaxHeaterISoft,w0
 	lsr	w0,w0
 	sub	w1,w0,[w15]
@@ -129,15 +127,13 @@ _Limiter:
 	clr.b	w0
 	mov.b	w0,[w14]
 	.loc 1 42 0
-	mov	#_ADC8x14DataAveraged,w0
-	mov	[w0+2],w0
+	mov	_ADCDataAveraged+2,w0
 	cp0	w0
 	.set ___BP___,0
 	bra	z,.L5
 	.loc 1 43 0
 	mov.d	[w14],w4
-	mov	#_ADC8x14DataAveraged,w0
-	mov	[w0+2],w0
+	mov	_ADCDataAveraged+2,w0
 	clr	w1
 	mov.d	w0,w2
 	mov.d	w4,w0
@@ -216,8 +212,7 @@ _Limiter:
 	mov.b	[w1],w1
 	mov.b	w1,[w0]
 	.loc 1 52 0
-	mov	#_ADC8x14DataAveraged,w0
-	mov	[w0+4],w1
+	mov	_ADCDataAveraged+4,w1
 	mov	_MaxHeaterU,w0
 	sub	w1,w0,[w15]
 	.set ___BP___,0
@@ -227,13 +222,11 @@ _Limiter:
 	mov.b	WREG,_MaxHeaterUGuard
 .L7:
 	.loc 1 57 0
-	mov	#_ADC8x14DataAveraged,w0
-	mov	[w0+2],w0
+	mov	_ADCDataAveraged+2,w0
 	clr	w1
 	mov	w0,_MulVarA
 	mov	w1,_MulVarA+2
-	mov	#_ADC8x14DataAveraged,w0
-	mov	[w0+4],w0
+	mov	_ADCDataAveraged+4,w0
 	mul.uu	w0,#1,w2
 	mov	_MulVarA,w0
 	mov	_MulVarA+2,w1
@@ -286,7 +279,7 @@ _Limiter:
 	ulnk	
 	return	
 	.set ___PA___,0
-.LFE5:
+.LFE0:
 	.size	_Limiter, .-_Limiter
 	.section	.debug_frame,info
 .Lframe0:
@@ -310,10 +303,10 @@ _Limiter:
 	.4byte	.LEFDE0-.LASFDE0
 .LASFDE0:
 	.4byte	.Lframe0
-	.4byte	.LFB5
-	.4byte	.LFE5-.LFB5
+	.4byte	.LFB0
+	.4byte	.LFE0-.LFB0
 	.byte	0x4
-	.4byte	.LCFI0-.LFB5
+	.4byte	.LCFI0-.LFB0
 	.byte	0x13
 	.sleb128 -3
 	.byte	0xd
@@ -327,10 +320,10 @@ _Limiter:
 	.file 2 "Main.h"
 	.file 3 "DAC.h"
 	.file 4 "HeaterPID.h"
-	.file 5 "ADC8x14.h"
+	.file 5 "ADC.h"
 	.file 6 "PowerLimiter.h"
 	.section	.debug_info,info
-	.4byte	0x40e
+	.4byte	0x406
 	.2byte	0x2
 	.4byte	.Ldebug_abbrev0
 	.byte	0x4
@@ -453,21 +446,17 @@ _Limiter:
 	.byte	0x2
 	.byte	0x1d
 	.4byte	0x14c
-	.uleb128 0x3
-	.byte	0x1
-	.byte	0x6
-	.asciz	"char"
 	.uleb128 0xa
 	.byte	0x1
 	.asciz	"Limiter"
 	.byte	0x1
 	.byte	0x13
 	.byte	0x1
-	.4byte	.LFB5
-	.4byte	.LFE5
+	.4byte	.LFB0
+	.4byte	.LFE0
 	.byte	0x1
 	.byte	0x5e
-	.4byte	0x1f5
+	.4byte	0x1ed
 	.uleb128 0xb
 	.asciz	"Tmp"
 	.byte	0x1
@@ -479,7 +468,7 @@ _Limiter:
 	.byte	0x0
 	.uleb128 0x8
 	.4byte	0x101
-	.4byte	0x205
+	.4byte	0x1fd
 	.uleb128 0x9
 	.4byte	0xb2
 	.byte	0xf
@@ -488,21 +477,21 @@ _Limiter:
 	.asciz	"DacData"
 	.byte	0x3
 	.byte	0x1
-	.4byte	0x1f5
+	.4byte	0x1ed
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0x8
 	.4byte	0xa6
-	.4byte	0x226
+	.4byte	0x21e
 	.uleb128 0x9
 	.4byte	0xb2
-	.byte	0x3
+	.byte	0x7
 	.byte	0x0
 	.uleb128 0xd
 	.4byte	.LASF0
 	.byte	0x5
-	.byte	0x37
-	.4byte	0x216
+	.byte	0x6
+	.4byte	0x20e
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xc
@@ -607,14 +596,14 @@ _Limiter:
 	.asciz	"DacData"
 	.byte	0x3
 	.byte	0x1
-	.4byte	0x1f5
+	.4byte	0x1ed
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xd
 	.4byte	.LASF0
 	.byte	0x5
-	.byte	0x37
-	.4byte	0x216
+	.byte	0x6
+	.4byte	0x20e
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xc
@@ -967,39 +956,39 @@ _Limiter:
 	.4byte	0xf5
 	.2byte	0x2
 	.4byte	.Ldebug_info0
-	.4byte	0x412
-	.4byte	0x1cb
+	.4byte	0x40a
+	.4byte	0x1c3
 	.asciz	"Limiter"
-	.4byte	0x335
+	.4byte	0x32d
 	.asciz	"MaxHeaterI"
-	.4byte	0x347
+	.4byte	0x33f
 	.asciz	"MaxHeaterU"
-	.4byte	0x359
+	.4byte	0x351
 	.asciz	"MaxHeaterP"
-	.4byte	0x36b
+	.4byte	0x363
 	.asciz	"MaxHeaterISoft"
-	.4byte	0x37d
+	.4byte	0x375
 	.asciz	"DacData0Max"
-	.4byte	0x38f
+	.4byte	0x387
 	.asciz	"MaxHeaterIGuard"
-	.4byte	0x3a1
+	.4byte	0x399
 	.asciz	"MaxHeaterUGuard"
-	.4byte	0x3b3
+	.4byte	0x3ab
 	.asciz	"MaxHeaterPGuard"
-	.4byte	0x3c5
+	.4byte	0x3bd
 	.asciz	"MaxHeaterISoftCount"
-	.4byte	0x3d7
+	.4byte	0x3cf
 	.asciz	"HeaterP"
-	.4byte	0x3ed
+	.4byte	0x3e5
 	.asciz	"KHeaterIToRef"
-	.4byte	0x3ff
+	.4byte	0x3f7
 	.asciz	"KHeaterIToRef_Medium"
 	.4byte	0x0
 	.section	.debug_pubtypes,info
 	.4byte	0x3a
 	.2byte	0x2
 	.4byte	.Ldebug_info0
-	.4byte	0x412
+	.4byte	0x40a
 	.4byte	0xa6
 	.asciz	"UINT"
 	.4byte	0xc2
@@ -1022,8 +1011,6 @@ _Limiter:
 	.section	.debug_str,info
 .LASF9:
 	.asciz	"MaxHeaterISoftCount"
-.LASF0:
-	.asciz	"ADC8x14DataAveraged"
 .LASF8:
 	.asciz	"MaxHeaterPGuard"
 .LASF4:
@@ -1032,6 +1019,8 @@ _Limiter:
 	.asciz	"KHeaterIToRef"
 .LASF1:
 	.asciz	"MaxHeaterI"
+.LASF0:
+	.asciz	"ADCDataAveraged"
 .LASF11:
 	.asciz	"KHeaterIToRef_Medium"
 .LASF3:

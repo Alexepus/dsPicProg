@@ -260,218 +260,166 @@ _DacData0Presave:	.space	2
 	.global	_task_HeaterPid_body	; export
 	.type	_task_HeaterPid_body,@function
 _task_HeaterPid_body:
-.LFB5:
+.LFB0:
 	.file 1 "HeaterPID.c"
 	.loc 1 38 0
 	.set ___PA___,1
-	lnk	#2
+	lnk	#0
 .LCFI0:
-	mov	w0,[w14]
-.L24:
-	.loc 1 42 0
-	mov	#500,w0
-	mov	#0,w1
-	rcall	_tn_task_sleep
-	.loc 1 43 0
-	mov	_TMR1,w1
-	mov	#-24997,w0
-	add	w1,w0,w0
-	mov	w0,_Temp1.7887
 	.loc 1 44 0
-	mov	_Temp1.7887,w0
-	mov	w0,_TMR1
-	.loc 1 47 0
-	rcall	_ReadADC8x14_0_3
-	.loc 1 49 0
 	mov.b	_AdcAverageCnt,WREG
 	inc.b	w0,w0
 	mov.b	WREG,_AdcAverageCnt
-	.loc 1 50 0
+	.loc 1 45 0
 	mov.b	_AdcAverageCnt,WREG
 	ze	w0,w0
 	and	w0,#2,w0
 	cp0	w0
 	.set ___BP___,0
 	bra	nz,.L2
-	.loc 1 52 0
+	.loc 1 47 0
 	mov.b	_AdcAverageCnt,WREG
 	ze	w0,w0
 	and	w0,#1,w0
 	cp0	w0
 	.set ___BP___,0
 	bra	nz,.L3
-	.loc 1 54 0
-	mov	_ADC8x14Data,w1
-	mov	#_ADC8x14DataTemp0,w0
-	mov	w1,[w0]
-	.loc 1 55 0
-	mov	_ADC8x14Data+2,w1
-	mov	#_ADC8x14DataTemp0,w0
-	mov	w1,[w0+2]
-	.loc 1 56 0
-	mov	_ADC8x14Data+4,w1
-	mov	#_ADC8x14DataTemp0,w0
-	mov	w1,[w0+4]
-	.loc 1 57 0
-	mov	_ADC8x14Data+6,w1
-	mov	#_ADC8x14DataTemp0,w0
-	mov	w1,[w0+6]
-	.loc 1 58 0
-	bra	.L4
+	.loc 1 49 0
+	mov	_ADCData,w0
+	mov	w0,_ADCDataTemp0
+	.loc 1 50 0
+	mov	_ADCData+2,w0
+	mov	w0,_ADCDataTemp0+2
+	.loc 1 51 0
+	mov	_ADCData+4,w0
+	mov	w0,_ADCDataTemp0+4
+	.loc 1 52 0
+	mov	_ADCData+6,w0
+	mov	w0,_ADCDataTemp0+6
+	.loc 1 53 0
+	bra	.L1
 .L3:
-	.loc 1 62 0
-	mov	#_ADC8x14DataTemp0,w0
-	mov	[w0],w1
-	mov	_ADC8x14Data,w0
-	add	w1,w0,w1
-	mov	#_ADC8x14DataTemp0,w0
-	mov	w1,[w0]
-	.loc 1 63 0
-	mov	#_ADC8x14DataTemp0,w0
-	mov	[w0+2],w1
-	mov	_ADC8x14Data+2,w0
-	add	w1,w0,w1
-	mov	#_ADC8x14DataTemp0,w0
-	mov	w1,[w0+2]
-	.loc 1 64 0
-	mov	#_ADC8x14DataTemp0,w0
-	mov	[w0+4],w1
-	mov	_ADC8x14Data+4,w0
-	add	w1,w0,w1
-	mov	#_ADC8x14DataTemp0,w0
-	mov	w1,[w0+4]
-	.loc 1 65 0
-	mov	#_ADC8x14DataTemp0,w0
-	mov	[w0+6],w1
-	mov	_ADC8x14Data+6,w0
-	add	w1,w0,w1
-	mov	#_ADC8x14DataTemp0,w0
-	mov	w1,[w0+6]
+	.loc 1 57 0
+	mov	_ADCDataTemp0,w1
+	mov	_ADCData,w0
+	add	w1,w0,w0
+	mov	w0,_ADCDataTemp0
+	.loc 1 58 0
+	mov	_ADCDataTemp0+2,w1
+	mov	_ADCData+2,w0
+	add	w1,w0,w0
+	mov	w0,_ADCDataTemp0+2
+	.loc 1 59 0
+	mov	_ADCDataTemp0+4,w1
+	mov	_ADCData+4,w0
+	add	w1,w0,w0
+	mov	w0,_ADCDataTemp0+4
+	.loc 1 60 0
+	mov	_ADCDataTemp0+6,w1
+	mov	_ADCData+6,w0
+	add	w1,w0,w0
+	mov	w0,_ADCDataTemp0+6
 	bra	.L5
 .L2:
-	.loc 1 70 0
+	.loc 1 65 0
 	mov.b	_AdcAverageCnt,WREG
 	ze	w0,w0
 	and	w0,#1,w0
 	cp0	w0
 	.set ___BP___,0
 	bra	nz,.L6
-	.loc 1 72 0
-	mov	_ADC8x14Data,w1
-	mov	#_ADC8x14DataTemp1,w0
-	mov	w1,[w0]
-	.loc 1 73 0
-	mov	_ADC8x14Data+2,w1
-	mov	#_ADC8x14DataTemp1,w0
-	mov	w1,[w0+2]
-	.loc 1 74 0
-	mov	_ADC8x14Data+4,w1
-	mov	#_ADC8x14DataTemp1,w0
-	mov	w1,[w0+4]
-	.loc 1 75 0
-	mov	_ADC8x14Data+6,w1
-	mov	#_ADC8x14DataTemp1,w0
-	mov	w1,[w0+6]
-	.loc 1 76 0
-	bra	.L4
+	.loc 1 67 0
+	mov	_ADCData,w0
+	mov	w0,_ADCDataTemp1
+	.loc 1 68 0
+	mov	_ADCData+2,w0
+	mov	w0,_ADCDataTemp1+2
+	.loc 1 69 0
+	mov	_ADCData+4,w0
+	mov	w0,_ADCDataTemp1+4
+	.loc 1 70 0
+	mov	_ADCData+6,w0
+	mov	w0,_ADCDataTemp1+6
+	.loc 1 71 0
+	bra	.L1
 .L6:
-	.loc 1 80 0
-	mov	#_ADC8x14DataTemp1,w0
-	mov	[w0],w1
-	mov	_ADC8x14Data,w0
-	add	w1,w0,w1
-	mov	#_ADC8x14DataTemp1,w0
-	mov	w1,[w0]
-	.loc 1 81 0
-	mov	#_ADC8x14DataTemp1,w0
-	mov	[w0+2],w1
-	mov	_ADC8x14Data+2,w0
-	add	w1,w0,w1
-	mov	#_ADC8x14DataTemp1,w0
-	mov	w1,[w0+2]
-	.loc 1 82 0
-	mov	#_ADC8x14DataTemp1,w0
-	mov	[w0+4],w1
-	mov	_ADC8x14Data+4,w0
-	add	w1,w0,w1
-	mov	#_ADC8x14DataTemp1,w0
-	mov	w1,[w0+4]
-	.loc 1 83 0
-	mov	#_ADC8x14DataTemp1,w0
-	mov	[w0+6],w1
-	mov	_ADC8x14Data+6,w0
-	add	w1,w0,w1
-	mov	#_ADC8x14DataTemp1,w0
-	mov	w1,[w0+6]
+	.loc 1 75 0
+	mov	_ADCDataTemp1,w1
+	mov	_ADCData,w0
+	add	w1,w0,w0
+	mov	w0,_ADCDataTemp1
+	.loc 1 76 0
+	mov	_ADCDataTemp1+2,w1
+	mov	_ADCData+2,w0
+	add	w1,w0,w0
+	mov	w0,_ADCDataTemp1+2
+	.loc 1 77 0
+	mov	_ADCDataTemp1+4,w1
+	mov	_ADCData+4,w0
+	add	w1,w0,w0
+	mov	w0,_ADCDataTemp1+4
+	.loc 1 78 0
+	mov	_ADCDataTemp1+6,w1
+	mov	_ADCData+6,w0
+	add	w1,w0,w0
+	mov	w0,_ADCDataTemp1+6
 .L5:
+	.loc 1 81 0
+	mov	_ADCDataTemp0,w1
+	mov	_ADCDataTemp1,w0
+	add	w1,w0,w0
+	lsr	w0,#2,w0
+	mov	w0,_ADCDataAveraged
+	.loc 1 82 0
+	mov	_ADCDataTemp0+2,w1
+	mov	_ADCDataTemp1+2,w0
+	add	w1,w0,w0
+	lsr	w0,#2,w0
+	mov	w0,_ADCDataAveraged+2
+	.loc 1 83 0
+	mov	_ADCDataTemp0+4,w1
+	mov	_ADCDataTemp1+4,w0
+	add	w1,w0,w0
+	lsr	w0,#2,w0
+	mov	w0,_ADCDataAveraged+4
+	.loc 1 84 0
+	mov	_ADCDataTemp0+6,w1
+	mov	_ADCDataTemp1+6,w0
+	add	w1,w0,w0
+	lsr	w0,#2,w0
+	mov	w0,_ADCDataAveraged+6
 	.loc 1 86 0
-	mov	#_ADC8x14DataTemp0,w0
-	mov	[w0],w1
-	mov	#_ADC8x14DataTemp1,w0
-	mov	[w0],w0
-	add	w1,w0,w0
-	lsr	w0,#2,w1
-	mov	#_ADC8x14DataAveraged,w0
-	mov	w1,[w0]
-	.loc 1 87 0
-	mov	#_ADC8x14DataTemp0,w0
-	mov	[w0+2],w1
-	mov	#_ADC8x14DataTemp1,w0
-	mov	[w0+2],w0
-	add	w1,w0,w0
-	lsr	w0,#2,w1
-	mov	#_ADC8x14DataAveraged,w0
-	mov	w1,[w0+2]
-	.loc 1 88 0
-	mov	#_ADC8x14DataTemp0,w0
-	mov	[w0+4],w1
-	mov	#_ADC8x14DataTemp1,w0
-	mov	[w0+4],w0
-	add	w1,w0,w0
-	lsr	w0,#2,w1
-	mov	#_ADC8x14DataAveraged,w0
-	mov	w1,[w0+4]
-	.loc 1 89 0
-	mov	#_ADC8x14DataTemp0,w0
-	mov	[w0+6],w1
-	mov	#_ADC8x14DataTemp1,w0
-	mov	[w0+6],w0
-	add	w1,w0,w0
-	lsr	w0,#2,w1
-	mov	#_ADC8x14DataAveraged,w0
-	mov	w1,[w0+6]
-	.loc 1 91 0
 	mov.b	_FlagMainOff,WREG
 	btg.b	w0,#0
 	cp0.b	w0
 	.set ___BP___,0
 	bra	z,.L7
-	.loc 1 93 0
+	.loc 1 88 0
 	mov.b	_FlagWait,WREG
 	btg.b	w0,#0
 	cp0.b	w0
 	.set ___BP___,0
 	bra	z,.L8
-	.loc 1 96 0
+	.loc 1 91 0
 	mov	_TRef,w1
 	mov	_TEnd,w0
 	sub	w1,w0,[w15]
 	.set ___BP___,0
 	bra	nz,.L9
-	.loc 1 98 0
+	.loc 1 93 0
 	mov.b	#1,w0
 	mov.b	WREG,_FlagRefTempAchived
 	bra	.L10
 .L9:
-	.loc 1 102 0
+	.loc 1 97 0
 	clr.b	_FlagRefTempAchived
-	.loc 1 103 0
+	.loc 1 98 0
 	mov	_TRef,w1
 	mov	_TEnd,w0
 	sub	w1,w0,[w15]
 	.set ___BP___,0
 	bra	ge,.L11
-	.loc 1 106 0
+	.loc 1 101 0
 	mov	_TAccumulator,w2
 	mov	_TAccumulator+2,w3
 	mov	_DeltaT,w0
@@ -480,28 +428,28 @@ _task_HeaterPid_body:
 	addc	w1,w3,w1
 	mov	w0,_TAccumulator
 	mov	w1,_TAccumulator+2
-	.loc 1 107 0
+	.loc 1 102 0
 	mov	#_TAccumulator,w0
 	inc2	w0,w0
 	mov	[w0],w0
 	mov	w0,_TRef
-	.loc 1 108 0
+	.loc 1 103 0
 	mov	_TRef,w1
 	mov	_TEnd,w0
 	sub	w1,w0,[w15]
 	.set ___BP___,0
 	bra	le,.L10
-	.loc 1 110 0
+	.loc 1 105 0
 	mov	_TEnd,w0
 	mov	w0,_TRef
-	.loc 1 111 0
+	.loc 1 106 0
 	mov	#_TAccumulator,w0
 	inc2	w0,w0
 	mov	_TEnd,w1
 	mov	w1,[w0]
 	bra	.L10
 .L11:
-	.loc 1 117 0
+	.loc 1 112 0
 	mov	_TAccumulator,w2
 	mov	_TAccumulator+2,w3
 	mov	_DeltaT,w0
@@ -510,29 +458,28 @@ _task_HeaterPid_body:
 	subb	w3,w1,w1
 	mov	w0,_TAccumulator
 	mov	w1,_TAccumulator+2
-	.loc 1 118 0
+	.loc 1 113 0
 	mov	#_TAccumulator,w0
 	inc2	w0,w0
 	mov	[w0],w0
 	mov	w0,_TRef
-	.loc 1 119 0
+	.loc 1 114 0
 	mov	_TRef,w1
 	mov	_TEnd,w0
 	sub	w1,w0,[w15]
 	.set ___BP___,0
 	bra	ge,.L10
-	.loc 1 121 0
+	.loc 1 116 0
 	mov	_TEnd,w0
 	mov	w0,_TRef
-	.loc 1 122 0
+	.loc 1 117 0
 	mov	#_TAccumulator,w0
 	inc2	w0,w0
 	mov	_TEnd,w1
 	mov	w1,[w0]
 .L10:
-	.loc 1 129 0
-	mov	#_ADC8x14DataAveraged,w0
-	mov	[w0],w0
+	.loc 1 123 0
+	mov	_ADCDataAveraged,w0
 	clr	w1
 	mov	w0,_MulVarA
 	mov	w1,_MulVarA+2
@@ -550,42 +497,42 @@ _task_HeaterPid_body:
 	mov	w4,w1
 	mov	w0,_MulVarB
 	mov	w1,_MulVarB+2
-	mov	#_Temp1.7887,w0
+	mov	#_Temp1.7422,w0
 	mov	#_MulVarB,w1
 	inc	w1,w1
 	mov.b	[w1],w1
 	mov.b	w1,[w0]
-	mov	#_Temp1.7887,w0
+	mov	#_Temp1.7422,w0
 	inc	w0,w0
 	mov	#_MulVarB,w1
 	inc2	w1,w1
 	mov.b	[w1],w1
 	mov.b	w1,[w0]
-	.loc 1 130 0
-	mov	_Temp1.7887,w0
+	.loc 1 124 0
+	mov	_Temp1.7422,w0
 	rcall	_CalcTByV
 	mov	w0,_TMeas
-	.loc 1 131 0
+	.loc 1 125 0
 	mov	_TRef,w1
 	mov	_TMeas,w0
 	sub	w1,w0,w0
 	mov	w0,_Vp
-	.loc 1 133 0
+	.loc 1 127 0
 	mov.b	_TempHistFifoDecimCnt,WREG
 	inc.b	w0,w0
 	and.b	w0,#3,w0
 	mov.b	WREG,_TempHistFifoDecimCnt
-	.loc 1 134 0
+	.loc 1 128 0
 	mov.b	_TempHistFifoDecimCnt,WREG
 	cp0.b	w0
 	.set ___BP___,0
 	bra	nz,.L12
-	.loc 1 136 0
+	.loc 1 130 0
 	mov.b	_TempHistFifoIndex,WREG
 	inc.b	w0,w0
 	and.b	w0,#15,w0
 	mov.b	WREG,_TempHistFifoIndex
-	.loc 1 137 0
+	.loc 1 131 0
 	mov	_TempHistFifoDecim,w1
 	mov.b	_TempHistFifoIndex,WREG
 	ze	w0,w2
@@ -599,7 +546,7 @@ _task_HeaterPid_body:
 	mov	[w0],w0
 	sub	w1,w0,w0
 	mov	w0,_Vd
-	.loc 1 138 0
+	.loc 1 132 0
 	mov.b	_TempHistFifoIndex,WREG
 	ze	w0,w0
 	mov	_TempHistFifoDecim,w1
@@ -607,18 +554,18 @@ _task_HeaterPid_body:
 	mov	#_TempHistFifo,w0
 	add	w2,w0,w0
 	mov	w1,[w0]
-	.loc 1 139 0
+	.loc 1 133 0
 	mov	_Vp,w0
 	mov	w0,_TempHistFifoDecim
 	bra	.L13
 .L12:
-	.loc 1 143 0
+	.loc 1 137 0
 	mov	_TempHistFifoDecim,w1
 	mov	_Vp,w0
 	add	w1,w0,w0
 	mov	w0,_TempHistFifoDecim
 .L13:
-	.loc 1 146 0
+	.loc 1 140 0
 	mov	_Vi,w0
 	asr	w0,#15,w1
 	mov	w0,_MulVarA
@@ -638,23 +585,23 @@ _task_HeaterPid_body:
 	mov	w4,w1
 	mov	w0,_MulVarB
 	mov	w1,_MulVarB+2
-	mov	#_Temp1.7887,w0
+	mov	#_Temp1.7422,w0
 	mov	#_MulVarB,w1
 	inc	w1,w1
 	mov.b	[w1],w1
 	mov.b	w1,[w0]
-	mov	#_Temp1.7887,w0
+	mov	#_Temp1.7422,w0
 	inc	w0,w0
 	mov	#_MulVarB,w1
 	inc2	w1,w1
 	mov.b	[w1],w1
 	mov.b	w1,[w0]
-	.loc 1 147 0
+	.loc 1 141 0
 	mov	_Vp,w1
-	mov	_Temp1.7887,w0
+	mov	_Temp1.7422,w0
 	add	w1,w0,w0
 	mov	w0,_Vi
-	.loc 1 148 0
+	.loc 1 142 0
 	mov	_Vp,w1
 	mov	_ViOff,w0
 	sub	w1,w0,[w15]
@@ -667,32 +614,32 @@ _task_HeaterPid_body:
 	.set ___BP___,0
 	bra	le,.L15
 .L14:
-	.loc 1 149 0
+	.loc 1 143 0
 	clr	_Vi
 .L15:
-	.loc 1 150 0
+	.loc 1 144 0
 	mov	_Vi,w1
 	mov	_ViMax,w0
 	sub	w1,w0,[w15]
 	.set ___BP___,0
 	bra	le,.L16
-	.loc 1 151 0
+	.loc 1 145 0
 	mov	_ViMax,w0
 	mov	w0,_Vi
 .L16:
-	.loc 1 152 0
+	.loc 1 146 0
 	mov	_ViMax,w0
 	neg	w0,w1
 	mov	_Vi,w0
 	sub	w1,w0,[w15]
 	.set ___BP___,0
 	bra	le,.L17
-	.loc 1 153 0
+	.loc 1 147 0
 	mov	_ViMax,w0
 	neg	w0,w0
 	mov	w0,_Vi
 .L17:
-	.loc 1 156 0
+	.loc 1 150 0
 	mov	_Kp,w0
 	asr	w0,#15,w1
 	mov	w0,_MulVarA
@@ -715,7 +662,7 @@ _task_HeaterPid_body:
 	asr	w1,#8,w1
 	mov	w0,_VoutAcc
 	mov	w1,_VoutAcc+2
-	.loc 1 157 0
+	.loc 1 151 0
 	mov	_Ki,w0
 	asr	w0,#15,w1
 	mov	w0,_MulVarA
@@ -738,7 +685,7 @@ _task_HeaterPid_body:
 	asr	w1,#8,w1
 	mov	w0,_MulVarB
 	mov	w1,_MulVarB+2
-	.loc 1 158 0
+	.loc 1 152 0
 	mov	_VoutAcc,w2
 	mov	_VoutAcc+2,w3
 	mov	_MulVarB,w0
@@ -747,7 +694,7 @@ _task_HeaterPid_body:
 	addc	w1,w3,w1
 	mov	w0,_VoutAcc
 	mov	w1,_VoutAcc+2
-	.loc 1 159 0
+	.loc 1 153 0
 	mov	_Kd,w0
 	asr	w0,#15,w1
 	mov	w0,_MulVarA
@@ -770,7 +717,7 @@ _task_HeaterPid_body:
 	asr	w1,#8,w1
 	mov	w0,_MulVarB
 	mov	w1,_MulVarB+2
-	.loc 1 160 0
+	.loc 1 154 0
 	mov	_VoutAcc,w2
 	mov	_VoutAcc+2,w3
 	mov	_MulVarB,w0
@@ -779,7 +726,7 @@ _task_HeaterPid_body:
 	addc	w1,w3,w1
 	mov	w0,_VoutAcc
 	mov	w1,_VoutAcc+2
-	.loc 1 161 0
+	.loc 1 155 0
 	mov	_VoutAcc,w2
 	mov	_VoutAcc+2,w3
 	mov	#32767,w0
@@ -788,14 +735,14 @@ _task_HeaterPid_body:
 	subb	w3,w1,[w15]
 	.set ___BP___,0
 	bra	le,.L18
-	.loc 1 162 0
+	.loc 1 156 0
 	mov	#32767,w0
 	mov	#0,w1
 	mov	w0,_VoutAcc
 	mov	w1,_VoutAcc+2
 	bra	.L19
 .L18:
-	.loc 1 163 0
+	.loc 1 157 0
 	mov	_VoutAcc,w2
 	mov	_VoutAcc+2,w3
 	mov	#32768,w0
@@ -804,22 +751,22 @@ _task_HeaterPid_body:
 	subb	w3,w1,[w15]
 	.set ___BP___,0
 	bra	ge,.L19
-	.loc 1 164 0
+	.loc 1 158 0
 	mov	#32768,w0
 	mov	#65535,w1
 	mov	w0,_VoutAcc
 	mov	w1,_VoutAcc+2
 .L19:
-	.loc 1 165 0
+	.loc 1 159 0
 	mov	_VoutAcc,w0
 	mov	_VoutAcc+2,w1
 	mov	w0,w0
 	mov	w0,_PidOut
-	.loc 1 167 0
+	.loc 1 161 0
 	mov	_TRef,w0
 	rcall	_CalcFF
 	mov	w0,_Vff
-	.loc 1 169 0
+	.loc 1 163 0
 	mov	_Kff,w0
 	asr	w0,#15,w1
 	mov	w0,_MulVarA
@@ -842,7 +789,7 @@ _task_HeaterPid_body:
 	asr	w1,#8,w1
 	mov	w0,_MulVarB
 	mov	w1,_MulVarB+2
-	.loc 1 170 0
+	.loc 1 164 0
 	mov	_VoutAcc,w2
 	mov	_VoutAcc+2,w3
 	mov	_MulVarB,w0
@@ -851,7 +798,7 @@ _task_HeaterPid_body:
 	addc	w1,w3,w1
 	mov	w0,_VoutAcc
 	mov	w1,_VoutAcc+2
-	.loc 1 171 0
+	.loc 1 165 0
 	mov	_VoutAcc,w2
 	mov	_VoutAcc+2,w3
 	mov	#32767,w0
@@ -860,14 +807,14 @@ _task_HeaterPid_body:
 	subb	w3,w1,[w15]
 	.set ___BP___,0
 	bra	le,.L20
-	.loc 1 172 0
+	.loc 1 166 0
 	mov	#32767,w0
 	mov	#0,w1
 	mov	w0,_VoutAcc
 	mov	w1,_VoutAcc+2
 	bra	.L21
 .L20:
-	.loc 1 173 0
+	.loc 1 167 0
 	mov	_VoutAcc,w2
 	mov	_VoutAcc+2,w3
 	mov	#32768,w0
@@ -876,136 +823,132 @@ _task_HeaterPid_body:
 	subb	w3,w1,[w15]
 	.set ___BP___,0
 	bra	ge,.L21
-	.loc 1 174 0
+	.loc 1 168 0
 	mov	#32768,w0
 	mov	#65535,w1
 	mov	w0,_VoutAcc
 	mov	w1,_VoutAcc+2
 .L21:
-	.loc 1 175 0
+	.loc 1 169 0
 	mov	_VoutAcc,w0
 	mov	_VoutAcc+2,w1
 	mov	w0,w0
 	mov	w0,_Vout
-	.loc 1 176 0
+	.loc 1 170 0
 	mov	_Vout,w0
 	mov	w0,_DacVal
-	.loc 1 177 0
+	.loc 1 171 0
 	mov	_DacVal,w1
 	mov	#16383,w0
 	sub	w1,w0,[w15]
 	.set ___BP___,0
 	bra	le,.L22
-	.loc 1 178 0
+	.loc 1 172 0
 	mov	#16383,w0
 	mov	w0,_DacVal
 .L22:
-	.loc 1 179 0
+	.loc 1 173 0
 	mov	_DacVal,w0
 	cp0	w0
 	.set ___BP___,0
 	bra	ge,.L23
-	.loc 1 180 0
+	.loc 1 174 0
 	clr	_DacVal
 .L23:
-	.loc 1 181 0
+	.loc 1 175 0
 	mov.b	_ManualHeaterControl,WREG
 	btg.b	w0,#0
 	cp0.b	w0
 	.set ___BP___,0
 	bra	z,.L8
-	.loc 1 182 0
+	.loc 1 176 0
 	mov	_DacVal,w0
 	mov	w0,_DacData
 	bra	.L8
 .L7:
-	.loc 1 186 0
+	.loc 1 180 0
 	mov.b	_ManualHeaterControl,WREG
 	btg.b	w0,#0
 	cp0.b	w0
 	.set ___BP___,0
 	bra	z,.L8
-	.loc 1 187 0
+	.loc 1 181 0
 	clr	w0
 	mov	w0,_DacData
 .L8:
-	.loc 1 189 0
+	.loc 1 183 0
 	mov	_DacData,w0
 	mov	w0,_DacData0Presave
-	.loc 1 190 0
+	.loc 1 184 0
 	rcall	_Limiter
-	.loc 1 192 0
-	mov	_DacData,w0
-	mov	w0,w1
-	clr.b	w0
-	rcall	_LoadDac
-	.loc 1 194 0
+	.loc 1 188 0
 	mov	_DacData0Presave,w0
 	mov	w0,_DacData
-	.loc 1 195 0
-	bra	.L24
-.L4:
-	bra	.L24
-.LFE5:
+.L1:
+	.loc 1 189 0
+	ulnk	
+	return	
+	.set ___PA___,0
+.LFE0:
 	.size	_task_HeaterPid_body, .-_task_HeaterPid_body
 	.align	2
 	.global	_CalcTByV	; export
 	.type	_CalcTByV,@function
 _CalcTByV:
-.LFB6:
-	.loc 1 201 0
+.LFB1:
+	.loc 1 194 0
 	.set ___PA___,1
 	lnk	#6
 .LCFI1:
 	mov	w0,[w14+2]
-	.loc 1 203 0
+	.loc 1 196 0
 	mov	_TableV+30,w1
 	mov	[w14+2],w0
 	sub	w1,w0,[w15]
 	.set ___BP___,0
-	bra	ge,.L26
-	.loc 1 205 0
+	bra	ge,.L25
+	.loc 1 198 0
 	mov	_TableV+46,w1
 	mov	[w14+2],w0
 	sub	w1,w0,[w15]
 	.set ___BP___,0
-	bra	ge,.L27
-	.loc 1 206 0
+	bra	ge,.L26
+	.loc 1 199 0
 	mov.b	#24,w0
 	mov.b	WREG,_i
-	.loc 1 217 0
-	bra	.L30
-.L27:
-	.loc 1 208 0
+	.loc 1 210 0
+	bra	.L29
+.L26:
+	.loc 1 201 0
 	mov.b	#16,w0
 	mov.b	WREG,_i
-	.loc 1 217 0
-	bra	.L30
-.L26:
-	.loc 1 212 0
+	.loc 1 210 0
+	bra	.L29
+.L25:
+	.loc 1 205 0
 	mov	_TableV+14,w1
 	mov	[w14+2],w0
 	sub	w1,w0,[w15]
 	.set ___BP___,0
-	bra	ge,.L29
-	.loc 1 213 0
+	bra	ge,.L28
+	.loc 1 206 0
 	mov.b	#8,w0
 	mov.b	WREG,_i
-	.loc 1 217 0
-	bra	.L30
-.L29:
-	.loc 1 215 0
+	.loc 1 210 0
+	bra	.L29
+.L28:
+	.loc 1 208 0
 	mov.b	#1,w0
 	mov.b	WREG,_i
-	.loc 1 217 0
-	bra	.L30
-.L32:
-	.loc 1 218 0
+	.loc 1 210 0
+	bra	.L29
+.L31:
+	.loc 1 211 0
 	mov.b	_i,WREG
 	inc.b	w0,w0
 	mov.b	WREG,_i
-.L30:
-	.loc 1 217 0
+.L29:
+	.loc 1 210 0
 	mov.b	_i,WREG
 	ze	w0,w0
 	add	w0,w0,w1
@@ -1015,17 +958,17 @@ _CalcTByV:
 	mov	[w14+2],w0
 	sub	w1,w0,[w15]
 	.set ___BP___,0
-	bra	ge,.L31
+	bra	ge,.L30
 	mov.b	_i,WREG
 	sub.b	w0,#31,[w15]
 	.set ___BP___,0
-	bra	leu,.L32
-.L31:
-	.loc 1 219 0
+	bra	leu,.L31
+.L30:
+	.loc 1 212 0
 	mov.b	_i,WREG
 	dec.b	w0,w0
 	mov.b	WREG,_i
-	.loc 1 221 0
+	.loc 1 214 0
 	mov.b	_i,WREG
 	ze	w0,w0
 	add	w0,w0,w1
@@ -1037,7 +980,7 @@ _CalcTByV:
 	asr	w0,#15,w1
 	mov	w0,_MulVarA
 	mov	w1,_MulVarA+2
-	.loc 1 223 0
+	.loc 1 216 0
 	mov.b	_i,WREG
 	ze	w0,w0
 	add	w0,w0,w1
@@ -1053,7 +996,7 @@ _CalcTByV:
 	asr	w0,#15,w1
 	mov	w0,_MulVarB
 	mov	w1,_MulVarB+2
-	.loc 1 224 0
+	.loc 1 217 0
 	mov.b	_i,WREG
 	ze	w0,w0
 	add	w0,w0,w1
@@ -1099,12 +1042,12 @@ _CalcTByV:
 	inc2	w1,w1
 	mov.b	[w1],w1
 	mov.b	w1,[w0]
-	.loc 1 226 0
+	.loc 1 219 0
 	mov	[w14],w0
 	asr	w0,#15,w1
 	mov	w0,_MulVarA
 	mov	w1,_MulVarA+2
-	.loc 1 227 0
+	.loc 1 220 0
 	mov.b	_TableDT,WREG
 	ze	w0,w1
 	mov	[w14],w0
@@ -1113,7 +1056,7 @@ _CalcTByV:
 	asr	w0,#15,w1
 	mov	w0,_MulVarB
 	mov	w1,_MulVarB+2
-	.loc 1 229 0
+	.loc 1 222 0
 	mov.b	_i,WREG
 	ze	w0,w0
 	add	w0,w0,w1
@@ -1128,28 +1071,28 @@ _CalcTByV:
 	div.sw	w2,w3
 	mov	[w14+4],w1
 	add	w1,w0,w0
-	.loc 1 230 0
+	.loc 1 223 0
 	ulnk	
 	return	
 	.set ___PA___,0
-.LFE6:
+.LFE1:
 	.size	_CalcTByV, .-_CalcTByV
 	.align	2
 	.global	_FillTableT	; export
 	.type	_FillTableT,@function
 _FillTableT:
-.LFB7:
-	.loc 1 261 0
+.LFB2:
+	.loc 1 254 0
 	.set ___PA___,1
 	lnk	#0
 .LCFI2:
-	.loc 1 262 0
+	.loc 1 255 0
 	mov.b	_TableDT,WREG
 	ze	w0,w0
 	clr	w1
 	mov	w0,_MulVarA
 	mov	w1,_MulVarA+2
-	.loc 1 263 0
+	.loc 1 256 0
 	mov	_MulVarA,w2
 	mov	_MulVarA+2,w3
 	sl	w3,#4,w0
@@ -1158,12 +1101,12 @@ _FillTableT:
 	sl	w2,#4,w0
 	mov	w0,_MulVarA
 	mov	w1,_MulVarA+2
-	.loc 1 264 0
+	.loc 1 257 0
 	mov.b	#1,w0
 	mov.b	WREG,_i
-	bra	.L34
-.L35:
-	.loc 1 267 0
+	bra	.L33
+.L34:
+	.loc 1 260 0
 	mov.b	_i,WREG
 	ze	w0,w2
 	mov	_TableT,w0
@@ -1181,37 +1124,37 @@ _FillTableT:
 	mov	#_TableT,w0
 	add	w2,w0,w0
 	mov	w1,[w0]
-	.loc 1 264 0
+	.loc 1 257 0
 	mov.b	_i,WREG
 	inc.b	w0,w0
 	mov.b	WREG,_i
-.L34:
+.L33:
 	mov.b	_i,WREG
 	sub.b	w0,#31,[w15]
 	.set ___BP___,0
-	bra	leu,.L35
-	.loc 1 269 0
+	bra	leu,.L34
+	.loc 1 262 0
 	ulnk	
 	return	
 	.set ___PA___,0
-.LFE7:
+.LFE2:
 	.size	_FillTableT, .-_FillTableT
 	.align	2
 	.global	_FillTableInvDV	; export
 	.type	_FillTableInvDV,@function
 _FillTableInvDV:
-.LFB8:
-	.loc 1 273 0
+.LFB3:
+	.loc 1 266 0
 	.set ___PA___,1
 	lnk	#0
 .LCFI3:
 	mov	w8,[w15++]
 .LCFI4:
-	.loc 1 274 0
+	.loc 1 267 0
 	clr.b	_i
-	bra	.L37
-.L38:
-	.loc 1 275 0
+	bra	.L36
+.L37:
+	.loc 1 268 0
 	mov.b	_i,WREG
 	ze	w0,w8
 	mov.b	_i,WREG
@@ -1238,59 +1181,59 @@ _FillTableInvDV:
 	mov	#_TableInvDV,w0
 	add	w2,w0,w0
 	mov	w1,[w0]
-	.loc 1 274 0
+	.loc 1 267 0
 	mov.b	_i,WREG
 	inc.b	w0,w0
 	mov.b	WREG,_i
-.L37:
+.L36:
 	mov.b	_i,WREG
 	sub.b	w0,#30,[w15]
 	.set ___BP___,0
-	bra	leu,.L38
-	.loc 1 276 0
+	bra	leu,.L37
+	.loc 1 269 0
 	mov	_TableInvDV+60,w0
 	mov	w0,_TableInvDV+62
-	.loc 1 277 0
+	.loc 1 270 0
 	mov	[--w15],w8
 	ulnk	
 	return	
 	.set ___PA___,0
-.LFE8:
+.LFE3:
 	.size	_FillTableInvDV, .-_FillTableInvDV
 	.align	2
 	.global	_CalcFF	; export
 	.type	_CalcFF,@function
 _CalcFF:
-.LFB9:
-	.loc 1 280 0
+.LFB4:
+	.loc 1 273 0
 	.set ___PA___,1
 	lnk	#2
 .LCFI5:
 	mov	w0,[w14]
-	.loc 1 281 0
+	.loc 1 274 0
 	mov	#_FFTableTemp,w0
 	mov	[w0+4],w0
 	sub	w0,[w14],[w15]
 	.set ___BP___,0
-	bra	le,.L40
-	.loc 1 283 0
+	bra	le,.L39
+	.loc 1 276 0
 	mov	#_FFTableTemp,w0
 	mov	[w0],w0
 	sub	w0,[w14],[w15]
 	.set ___BP___,0
-	bra	le,.L41
-	.loc 1 284 0
+	bra	le,.L40
+	.loc 1 277 0
 	mov	#_FFTableOut,w0
 	mov	[w0],w0
-	bra	.L42
-.L41:
-	.loc 1 285 0
+	bra	.L41
+.L40:
+	.loc 1 278 0
 	mov	#_FFTableTemp,w0
 	mov	[w0+2],w0
 	sub	w0,[w14],[w15]
 	.set ___BP___,0
-	bra	le,.L43
-	.loc 1 286 0
+	bra	le,.L42
+	.loc 1 279 0
 	mov	#_FFTableOut,w0
 	mov	[w0+2],w3
 	mov	#_FFTableOut,w0
@@ -1305,9 +1248,9 @@ _CalcFF:
 	mov	w0,w1
 	mov	[w14],w0
 	rcall	_linterp
-	bra	.L42
-.L43:
-	.loc 1 287 0
+	bra	.L41
+.L42:
+	.loc 1 280 0
 	mov	#_FFTableOut,w0
 	mov	[w0+4],w3
 	mov	#_FFTableOut,w0
@@ -1322,15 +1265,15 @@ _CalcFF:
 	mov	w0,w1
 	mov	[w14],w0
 	rcall	_linterp
-	bra	.L42
-.L40:
-	.loc 1 291 0
+	bra	.L41
+.L39:
+	.loc 1 284 0
 	mov	#_FFTableTemp,w0
 	mov	[w0+6],w0
 	sub	w0,[w14],[w15]
 	.set ___BP___,0
-	bra	le,.L44
-	.loc 1 292 0
+	bra	le,.L43
+	.loc 1 285 0
 	mov	#_FFTableOut,w0
 	mov	[w0+6],w3
 	mov	#_FFTableOut,w0
@@ -1345,23 +1288,23 @@ _CalcFF:
 	mov	w0,w1
 	mov	[w14],w0
 	rcall	_linterp
-	bra	.L42
-.L44:
-	.loc 1 293 0
+	bra	.L41
+.L43:
+	.loc 1 286 0
 	mov	#_FFTableOut,w0
 	mov	[w0+6],w0
-.L42:
-	.loc 1 295 0
+.L41:
+	.loc 1 288 0
 	ulnk	
 	return	
 	.set ___PA___,0
-.LFE9:
+.LFE4:
 	.size	_CalcFF, .-_CalcFF
 	.section	.nbss,bss,near
 	.align	2
-	.type	_Temp1.7887,@object
-	.size	_Temp1.7887, 2
-_Temp1.7887:
+	.type	_Temp1.7422,@object
+	.size	_Temp1.7422, 2
+_Temp1.7422:
 	.skip	2
 	.section	.debug_frame,info
 .Lframe0:
@@ -1385,10 +1328,10 @@ _Temp1.7887:
 	.4byte	.LEFDE0-.LASFDE0
 .LASFDE0:
 	.4byte	.Lframe0
-	.4byte	.LFB5
-	.4byte	.LFE5-.LFB5
+	.4byte	.LFB0
+	.4byte	.LFE0-.LFB0
 	.byte	0x4
-	.4byte	.LCFI0-.LFB5
+	.4byte	.LCFI0-.LFB0
 	.byte	0x13
 	.sleb128 -3
 	.byte	0xd
@@ -1401,10 +1344,10 @@ _Temp1.7887:
 	.4byte	.LEFDE2-.LASFDE2
 .LASFDE2:
 	.4byte	.Lframe0
-	.4byte	.LFB6
-	.4byte	.LFE6-.LFB6
+	.4byte	.LFB1
+	.4byte	.LFE1-.LFB1
 	.byte	0x4
-	.4byte	.LCFI1-.LFB6
+	.4byte	.LCFI1-.LFB1
 	.byte	0x13
 	.sleb128 -3
 	.byte	0xd
@@ -1417,10 +1360,10 @@ _Temp1.7887:
 	.4byte	.LEFDE4-.LASFDE4
 .LASFDE4:
 	.4byte	.Lframe0
-	.4byte	.LFB7
-	.4byte	.LFE7-.LFB7
+	.4byte	.LFB2
+	.4byte	.LFE2-.LFB2
 	.byte	0x4
-	.4byte	.LCFI2-.LFB7
+	.4byte	.LCFI2-.LFB2
 	.byte	0x13
 	.sleb128 -3
 	.byte	0xd
@@ -1433,10 +1376,10 @@ _Temp1.7887:
 	.4byte	.LEFDE6-.LASFDE6
 .LASFDE6:
 	.4byte	.Lframe0
-	.4byte	.LFB8
-	.4byte	.LFE8-.LFB8
+	.4byte	.LFB3
+	.4byte	.LFE3-.LFB3
 	.byte	0x4
-	.4byte	.LCFI3-.LFB8
+	.4byte	.LCFI3-.LFB3
 	.byte	0x13
 	.sleb128 -3
 	.byte	0xd
@@ -1453,10 +1396,10 @@ _Temp1.7887:
 	.4byte	.LEFDE8-.LASFDE8
 .LASFDE8:
 	.4byte	.Lframe0
-	.4byte	.LFB9
-	.4byte	.LFE9-.LFB9
+	.4byte	.LFB4
+	.4byte	.LFE4-.LFB4
 	.byte	0x4
-	.4byte	.LCFI5-.LFB9
+	.4byte	.LCFI5-.LFB4
 	.byte	0x13
 	.sleb128 -3
 	.byte	0xd
@@ -1468,12 +1411,11 @@ _Temp1.7887:
 	.section	.text,code
 .Letext0:
 	.file 2 "Main.h"
-	.file 3 "p33FJ64MC804.h"
-	.file 4 "DAC.h"
-	.file 5 "ADC8x14.h"
-	.file 6 "HeaterPID.h"
+	.file 3 "DAC.h"
+	.file 4 "ADC.h"
+	.file 5 "HeaterPID.h"
 	.section	.debug_info,info
-	.4byte	0x8fd
+	.4byte	0x8b8
 	.2byte	0x2
 	.4byte	.Ldebug_abbrev0
 	.byte	0x4
@@ -1537,536 +1479,498 @@ _Temp1.7887:
 	.byte	0x5
 	.asciz	"long int"
 	.uleb128 0x4
-	.byte	0x2
-	.uleb128 0x3
-	.byte	0x1
-	.byte	0x6
-	.asciz	"char"
-	.uleb128 0x5
 	.byte	0x1
 	.asciz	"task_HeaterPid_body"
 	.byte	0x1
 	.byte	0x25
-	.byte	0x1
-	.4byte	.LFB5
-	.4byte	.LFE5
+	.4byte	.LFB0
+	.4byte	.LFE0
 	.byte	0x1
 	.byte	0x5e
-	.4byte	0x195
-	.uleb128 0x6
-	.asciz	"par"
-	.byte	0x1
-	.byte	0x25
-	.4byte	0x142
-	.byte	0x2
-	.byte	0x7e
-	.sleb128 0
-	.uleb128 0x7
+	.4byte	0x17c
+	.uleb128 0x5
 	.asciz	"Temp1"
 	.byte	0x1
 	.byte	0x27
 	.4byte	0xf1
 	.byte	0x5
 	.byte	0x3
-	.4byte	_Temp1.7887
+	.4byte	_Temp1.7422
 	.byte	0x0
-	.uleb128 0x8
+	.uleb128 0x6
 	.byte	0x1
 	.asciz	"CalcTByV"
 	.byte	0x1
-	.byte	0xc8
+	.byte	0xc1
 	.byte	0x1
 	.4byte	0xf1
-	.4byte	.LFB6
-	.4byte	.LFE6
+	.4byte	.LFB1
+	.4byte	.LFE1
 	.byte	0x1
 	.byte	0x5e
-	.4byte	0x1d6
-	.uleb128 0x6
+	.4byte	0x1bd
+	.uleb128 0x7
 	.asciz	"Voltage"
 	.byte	0x1
-	.byte	0xc8
+	.byte	0xc1
 	.4byte	0x107
 	.byte	0x2
 	.byte	0x7e
 	.sleb128 2
-	.uleb128 0x7
+	.uleb128 0x5
 	.asciz	"Tmp"
 	.byte	0x1
-	.byte	0xca
+	.byte	0xc3
 	.4byte	0xf1
 	.byte	0x2
 	.byte	0x7e
 	.sleb128 0
 	.byte	0x0
-	.uleb128 0x9
+	.uleb128 0x8
 	.byte	0x1
 	.asciz	"FillTableT"
 	.byte	0x1
-	.2byte	0x104
+	.byte	0xfd
 	.byte	0x1
-	.4byte	.LFB7
-	.4byte	.LFE7
+	.4byte	.LFB2
+	.4byte	.LFE2
 	.byte	0x1
 	.byte	0x5e
 	.uleb128 0x9
 	.byte	0x1
 	.asciz	"FillTableInvDV"
 	.byte	0x1
-	.2byte	0x110
+	.2byte	0x109
 	.byte	0x1
-	.4byte	.LFB8
-	.4byte	.LFE8
+	.4byte	.LFB3
+	.4byte	.LFE3
 	.byte	0x1
 	.byte	0x5e
 	.uleb128 0xa
 	.byte	0x1
 	.asciz	"CalcFF"
 	.byte	0x1
-	.2byte	0x117
+	.2byte	0x110
 	.byte	0x1
 	.4byte	0xf1
-	.4byte	.LFB9
-	.4byte	.LFE9
+	.4byte	.LFB4
+	.4byte	.LFE4
 	.byte	0x1
 	.byte	0x5e
-	.4byte	0x240
+	.4byte	0x226
 	.uleb128 0xb
 	.asciz	"TRef"
 	.byte	0x1
-	.2byte	0x117
+	.2byte	0x110
 	.4byte	0xf1
 	.byte	0x2
 	.byte	0x7e
 	.sleb128 0
 	.byte	0x0
 	.uleb128 0xc
-	.asciz	"TMR1"
-	.byte	0x3
-	.2byte	0x43e
-	.4byte	0x24f
-	.byte	0x1
-	.byte	0x1
-	.uleb128 0xd
-	.4byte	0xaf
-	.uleb128 0xe
 	.4byte	0x100
-	.4byte	0x264
-	.uleb128 0xf
+	.4byte	0x236
+	.uleb128 0xd
 	.4byte	0xaf
 	.byte	0xf
 	.byte	0x0
-	.uleb128 0x10
-	.asciz	"DacData"
-	.byte	0x4
-	.byte	0x1
-	.4byte	0x254
-	.byte	0x1
-	.byte	0x1
 	.uleb128 0xe
+	.asciz	"DacData"
+	.byte	0x3
+	.byte	0x1
+	.4byte	0x226
+	.byte	0x1
+	.byte	0x1
+	.uleb128 0xc
 	.4byte	0xa3
-	.4byte	0x285
-	.uleb128 0xf
+	.4byte	0x257
+	.uleb128 0xd
 	.4byte	0xaf
 	.byte	0x7
 	.byte	0x0
-	.uleb128 0x11
+	.uleb128 0xe
+	.asciz	"ADCData"
+	.byte	0x4
+	.byte	0x3
+	.4byte	0x247
+	.byte	0x1
+	.byte	0x1
+	.uleb128 0xf
 	.4byte	.LASF0
+	.byte	0x4
+	.byte	0x4
+	.4byte	0x247
+	.byte	0x1
+	.byte	0x1
+	.uleb128 0xf
+	.4byte	.LASF1
+	.byte	0x4
 	.byte	0x5
-	.byte	0x34
-	.4byte	0x275
+	.4byte	0x247
+	.byte	0x1
+	.byte	0x1
+	.uleb128 0xf
+	.4byte	.LASF2
+	.byte	0x4
+	.byte	0x6
+	.4byte	0x247
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xe
-	.4byte	0xa3
-	.4byte	0x2a2
-	.uleb128 0xf
-	.4byte	0xaf
-	.byte	0x3
-	.byte	0x0
-	.uleb128 0x11
-	.4byte	.LASF1
-	.byte	0x5
-	.byte	0x35
-	.4byte	0x292
-	.byte	0x1
-	.byte	0x1
-	.uleb128 0x11
-	.4byte	.LASF2
-	.byte	0x5
-	.byte	0x36
-	.4byte	0x292
-	.byte	0x1
-	.byte	0x1
-	.uleb128 0x11
-	.4byte	.LASF3
-	.byte	0x5
-	.byte	0x37
-	.4byte	0x292
-	.byte	0x1
-	.byte	0x1
-	.uleb128 0x10
 	.asciz	"MulVarA"
-	.byte	0x6
+	.byte	0x5
 	.byte	0x28
 	.4byte	0x136
 	.byte	0x1
 	.byte	0x1
-	.uleb128 0x10
+	.uleb128 0xe
 	.asciz	"MulVarB"
-	.byte	0x6
+	.byte	0x5
 	.byte	0x28
 	.4byte	0x136
 	.byte	0x1
 	.byte	0x1
-	.uleb128 0x10
+	.uleb128 0xe
 	.asciz	"Kp"
-	.byte	0x6
+	.byte	0x5
 	.byte	0x29
 	.4byte	0x107
 	.byte	0x1
 	.byte	0x1
-	.uleb128 0x10
+	.uleb128 0xe
 	.asciz	"Ki"
-	.byte	0x6
+	.byte	0x5
 	.byte	0x29
 	.4byte	0x107
 	.byte	0x1
 	.byte	0x1
-	.uleb128 0x10
+	.uleb128 0xe
 	.asciz	"Kd"
-	.byte	0x6
+	.byte	0x5
 	.byte	0x29
 	.4byte	0x107
 	.byte	0x1
 	.byte	0x1
-	.uleb128 0x10
+	.uleb128 0xe
 	.asciz	"Kff"
-	.byte	0x6
+	.byte	0x5
 	.byte	0x29
 	.4byte	0x107
 	.byte	0x1
 	.byte	0x1
-	.uleb128 0x10
+	.uleb128 0xe
 	.asciz	"Vp"
-	.byte	0x6
+	.byte	0x5
 	.byte	0x2a
 	.4byte	0xf1
 	.byte	0x1
 	.byte	0x1
-	.uleb128 0x10
+	.uleb128 0xe
 	.asciz	"Vi"
-	.byte	0x6
+	.byte	0x5
 	.byte	0x2a
 	.4byte	0xf1
 	.byte	0x1
 	.byte	0x1
-	.uleb128 0x10
+	.uleb128 0xe
 	.asciz	"Vd"
-	.byte	0x6
+	.byte	0x5
 	.byte	0x2a
 	.4byte	0xf1
 	.byte	0x1
 	.byte	0x1
-	.uleb128 0x10
+	.uleb128 0xe
 	.asciz	"Vff"
-	.byte	0x6
+	.byte	0x5
 	.byte	0x2a
 	.4byte	0xf1
 	.byte	0x1
 	.byte	0x1
-	.uleb128 0x10
+	.uleb128 0xe
 	.asciz	"Vout"
-	.byte	0x6
+	.byte	0x5
 	.byte	0x2a
 	.4byte	0xf1
 	.byte	0x1
 	.byte	0x1
-	.uleb128 0x10
+	.uleb128 0xe
 	.asciz	"ViMax"
-	.byte	0x6
+	.byte	0x5
 	.byte	0x2b
 	.4byte	0xf1
 	.byte	0x1
 	.byte	0x1
-	.uleb128 0x10
+	.uleb128 0xe
 	.asciz	"ViOff"
-	.byte	0x6
+	.byte	0x5
 	.byte	0x2b
 	.4byte	0xf1
 	.byte	0x1
 	.byte	0x1
-	.uleb128 0x10
+	.uleb128 0xe
 	.asciz	"TRef"
-	.byte	0x6
+	.byte	0x5
 	.byte	0x2c
 	.4byte	0xf1
 	.byte	0x1
 	.byte	0x1
-	.uleb128 0x10
+	.uleb128 0xe
 	.asciz	"TMeas"
-	.byte	0x6
+	.byte	0x5
 	.byte	0x2c
 	.4byte	0xf1
 	.byte	0x1
 	.byte	0x1
-	.uleb128 0x10
+	.uleb128 0xe
 	.asciz	"PidOut"
-	.byte	0x6
+	.byte	0x5
 	.byte	0x2d
 	.4byte	0xf1
 	.byte	0x1
 	.byte	0x1
-	.uleb128 0xe
+	.uleb128 0xc
 	.4byte	0x107
-	.4byte	0x3b6
-	.uleb128 0xf
+	.4byte	0x37c
+	.uleb128 0xd
 	.4byte	0xaf
 	.byte	0x1f
 	.byte	0x0
-	.uleb128 0x10
+	.uleb128 0xe
 	.asciz	"TableV"
-	.byte	0x6
+	.byte	0x5
 	.byte	0x2e
-	.4byte	0x3a6
+	.4byte	0x36c
 	.byte	0x1
 	.byte	0x1
-	.uleb128 0xe
+	.uleb128 0xc
 	.4byte	0xf1
-	.4byte	0x3d6
-	.uleb128 0xf
+	.4byte	0x39c
+	.uleb128 0xd
 	.4byte	0xaf
 	.byte	0x1f
 	.byte	0x0
-	.uleb128 0x10
-	.asciz	"TableT"
-	.byte	0x6
-	.byte	0x2f
-	.4byte	0x3c6
-	.byte	0x1
-	.byte	0x1
-	.uleb128 0x11
-	.4byte	.LASF4
-	.byte	0x6
-	.byte	0x30
-	.4byte	0x3a6
-	.byte	0x1
-	.byte	0x1
 	.uleb128 0xe
-	.4byte	0xf1
-	.4byte	0x403
+	.asciz	"TableT"
+	.byte	0x5
+	.byte	0x2f
+	.4byte	0x38c
+	.byte	0x1
+	.byte	0x1
 	.uleb128 0xf
+	.4byte	.LASF3
+	.byte	0x5
+	.byte	0x30
+	.4byte	0x36c
+	.byte	0x1
+	.byte	0x1
+	.uleb128 0xc
+	.4byte	0xf1
+	.4byte	0x3c9
+	.uleb128 0xd
 	.4byte	0xaf
 	.byte	0x3
 	.byte	0x0
-	.uleb128 0x11
-	.4byte	.LASF5
-	.byte	0x6
+	.uleb128 0xf
+	.4byte	.LASF4
+	.byte	0x5
 	.byte	0x31
-	.4byte	0x3f3
+	.4byte	0x3b9
 	.byte	0x1
 	.byte	0x1
-	.uleb128 0x11
-	.4byte	.LASF6
-	.byte	0x6
+	.uleb128 0xf
+	.4byte	.LASF5
+	.byte	0x5
 	.byte	0x32
-	.4byte	0x3f3
+	.4byte	0x3b9
 	.byte	0x1
 	.byte	0x1
-	.uleb128 0x10
+	.uleb128 0xe
 	.asciz	"TableDT"
-	.byte	0x6
+	.byte	0x5
 	.byte	0x34
 	.4byte	0xbf
 	.byte	0x1
 	.byte	0x1
-	.uleb128 0xe
+	.uleb128 0xc
 	.4byte	0xf1
-	.4byte	0x43e
-	.uleb128 0xf
+	.4byte	0x404
+	.uleb128 0xd
 	.4byte	0xaf
 	.byte	0xf
 	.byte	0x0
-	.uleb128 0x11
-	.4byte	.LASF7
-	.byte	0x6
+	.uleb128 0xf
+	.4byte	.LASF6
+	.byte	0x5
 	.byte	0x36
-	.4byte	0x42e
+	.4byte	0x3f4
 	.byte	0x1
 	.byte	0x1
-	.uleb128 0x11
-	.4byte	.LASF8
-	.byte	0x6
+	.uleb128 0xf
+	.4byte	.LASF7
+	.byte	0x5
 	.byte	0x37
 	.4byte	0xbf
 	.byte	0x1
 	.byte	0x1
-	.uleb128 0x11
-	.4byte	.LASF9
-	.byte	0x6
+	.uleb128 0xf
+	.4byte	.LASF8
+	.byte	0x5
 	.byte	0x38
 	.4byte	0xbf
 	.byte	0x1
 	.byte	0x1
-	.uleb128 0x10
+	.uleb128 0xe
 	.asciz	"IDec"
-	.byte	0x6
+	.byte	0x5
 	.byte	0x39
 	.4byte	0xbf
 	.byte	0x1
 	.byte	0x1
-	.uleb128 0x10
+	.uleb128 0xe
 	.asciz	"TEnd"
-	.byte	0x6
+	.byte	0x5
 	.byte	0x3a
 	.4byte	0xf1
 	.byte	0x1
 	.byte	0x1
-	.uleb128 0x10
+	.uleb128 0xe
 	.asciz	"DeltaT"
-	.byte	0x6
+	.byte	0x5
 	.byte	0x3b
 	.4byte	0x126
 	.byte	0x1
 	.byte	0x1
-	.uleb128 0x11
-	.4byte	.LASF10
-	.byte	0x6
+	.uleb128 0xf
+	.4byte	.LASF9
+	.byte	0x5
 	.byte	0x3b
 	.4byte	0x126
 	.byte	0x1
 	.byte	0x1
-	.uleb128 0x10
+	.uleb128 0xe
 	.asciz	"VoutAcc"
-	.byte	0x6
+	.byte	0x5
 	.byte	0x3c
 	.4byte	0x136
 	.byte	0x1
 	.byte	0x1
-	.uleb128 0x11
-	.4byte	.LASF11
-	.byte	0x6
+	.uleb128 0xf
+	.4byte	.LASF10
+	.byte	0x5
 	.byte	0x3d
-	.4byte	0x4bc
+	.4byte	0x482
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0x3
 	.byte	0x1
 	.byte	0x2
 	.asciz	"_Bool"
-	.uleb128 0x11
+	.uleb128 0xf
+	.4byte	.LASF11
+	.byte	0x5
+	.byte	0x3e
+	.4byte	0x482
+	.byte	0x1
+	.byte	0x1
+	.uleb128 0xf
 	.4byte	.LASF12
-	.byte	0x6
+	.byte	0x5
 	.byte	0x3e
-	.4byte	0x4bc
+	.4byte	0x482
 	.byte	0x1
 	.byte	0x1
-	.uleb128 0x11
+	.uleb128 0xf
 	.4byte	.LASF13
-	.byte	0x6
+	.byte	0x5
 	.byte	0x3e
-	.4byte	0x4bc
+	.4byte	0x482
 	.byte	0x1
 	.byte	0x1
-	.uleb128 0x11
+	.uleb128 0xf
 	.4byte	.LASF14
-	.byte	0x6
-	.byte	0x3e
-	.4byte	0x4bc
-	.byte	0x1
-	.byte	0x1
-	.uleb128 0x11
-	.4byte	.LASF15
 	.byte	0x1
 	.byte	0xe
 	.4byte	0x116
 	.byte	0x1
 	.byte	0x1
-	.uleb128 0x11
-	.4byte	.LASF16
+	.uleb128 0xf
+	.4byte	.LASF15
 	.byte	0x1
 	.byte	0x1b
 	.4byte	0xbf
 	.byte	0x1
 	.byte	0x1
-	.uleb128 0x11
-	.4byte	.LASF17
+	.uleb128 0xf
+	.4byte	.LASF16
 	.byte	0x1
 	.byte	0x1c
 	.4byte	0xf1
 	.byte	0x1
 	.byte	0x1
-	.uleb128 0x10
+	.uleb128 0xe
 	.asciz	"i"
 	.byte	0x1
 	.byte	0x1e
 	.4byte	0xbf
 	.byte	0x1
 	.byte	0x1
-	.uleb128 0x10
+	.uleb128 0xe
 	.asciz	"DacVal"
 	.byte	0x1
 	.byte	0x1f
 	.4byte	0x100
 	.byte	0x1
 	.byte	0x1
-	.uleb128 0x11
-	.4byte	.LASF18
+	.uleb128 0xf
+	.4byte	.LASF17
 	.byte	0x1
 	.byte	0x20
 	.4byte	0xbf
 	.byte	0x1
 	.byte	0x1
-	.uleb128 0x11
-	.4byte	.LASF19
+	.uleb128 0xf
+	.4byte	.LASF18
 	.byte	0x1
 	.byte	0x21
 	.4byte	0xa3
 	.byte	0x1
 	.byte	0x1
-	.uleb128 0xc
-	.asciz	"TMR1"
+	.uleb128 0xe
+	.asciz	"DacData"
 	.byte	0x3
-	.2byte	0x43e
-	.4byte	0x24f
+	.byte	0x1
+	.4byte	0x226
+	.byte	0x1
+	.byte	0x1
+	.uleb128 0xe
+	.asciz	"ADCData"
+	.byte	0x4
+	.byte	0x3
+	.4byte	0x247
+	.byte	0x1
+	.byte	0x1
+	.uleb128 0xf
+	.4byte	.LASF0
+	.byte	0x4
+	.byte	0x4
+	.4byte	0x247
+	.byte	0x1
+	.byte	0x1
+	.uleb128 0xf
+	.4byte	.LASF1
+	.byte	0x4
+	.byte	0x5
+	.4byte	0x247
+	.byte	0x1
+	.byte	0x1
+	.uleb128 0xf
+	.4byte	.LASF2
+	.byte	0x4
+	.byte	0x6
+	.4byte	0x247
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0x10
-	.asciz	"DacData"
-	.byte	0x4
-	.byte	0x1
-	.4byte	0x254
-	.byte	0x1
-	.byte	0x1
-	.uleb128 0x11
-	.4byte	.LASF0
-	.byte	0x5
-	.byte	0x34
-	.4byte	0x275
-	.byte	0x1
-	.byte	0x1
-	.uleb128 0x11
-	.4byte	.LASF1
-	.byte	0x5
-	.byte	0x35
-	.4byte	0x292
-	.byte	0x1
-	.byte	0x1
-	.uleb128 0x11
-	.4byte	.LASF2
-	.byte	0x5
-	.byte	0x36
-	.4byte	0x292
-	.byte	0x1
-	.byte	0x1
-	.uleb128 0x11
-	.4byte	.LASF3
-	.byte	0x5
-	.byte	0x37
-	.4byte	0x292
-	.byte	0x1
-	.byte	0x1
-	.uleb128 0x12
 	.asciz	"MulVarA"
 	.byte	0x1
 	.byte	0x18
@@ -2075,7 +1979,7 @@ _Temp1.7887:
 	.byte	0x5
 	.byte	0x3
 	.4byte	_MulVarA
-	.uleb128 0x12
+	.uleb128 0x10
 	.asciz	"MulVarB"
 	.byte	0x1
 	.byte	0x18
@@ -2084,7 +1988,7 @@ _Temp1.7887:
 	.byte	0x5
 	.byte	0x3
 	.4byte	_MulVarB
-	.uleb128 0x12
+	.uleb128 0x10
 	.asciz	"Kp"
 	.byte	0x1
 	.byte	0x2
@@ -2093,7 +1997,7 @@ _Temp1.7887:
 	.byte	0x5
 	.byte	0x3
 	.4byte	_Kp
-	.uleb128 0x12
+	.uleb128 0x10
 	.asciz	"Ki"
 	.byte	0x1
 	.byte	0x2
@@ -2102,7 +2006,7 @@ _Temp1.7887:
 	.byte	0x5
 	.byte	0x3
 	.4byte	_Ki
-	.uleb128 0x12
+	.uleb128 0x10
 	.asciz	"Kd"
 	.byte	0x1
 	.byte	0x2
@@ -2111,7 +2015,7 @@ _Temp1.7887:
 	.byte	0x5
 	.byte	0x3
 	.4byte	_Kd
-	.uleb128 0x12
+	.uleb128 0x10
 	.asciz	"Kff"
 	.byte	0x1
 	.byte	0x2
@@ -2120,7 +2024,7 @@ _Temp1.7887:
 	.byte	0x5
 	.byte	0x3
 	.4byte	_Kff
-	.uleb128 0x12
+	.uleb128 0x10
 	.asciz	"Vp"
 	.byte	0x1
 	.byte	0x3
@@ -2129,7 +2033,7 @@ _Temp1.7887:
 	.byte	0x5
 	.byte	0x3
 	.4byte	_Vp
-	.uleb128 0x12
+	.uleb128 0x10
 	.asciz	"Vi"
 	.byte	0x1
 	.byte	0x3
@@ -2138,7 +2042,7 @@ _Temp1.7887:
 	.byte	0x5
 	.byte	0x3
 	.4byte	_Vi
-	.uleb128 0x12
+	.uleb128 0x10
 	.asciz	"Vd"
 	.byte	0x1
 	.byte	0x3
@@ -2147,7 +2051,7 @@ _Temp1.7887:
 	.byte	0x5
 	.byte	0x3
 	.4byte	_Vd
-	.uleb128 0x12
+	.uleb128 0x10
 	.asciz	"Vff"
 	.byte	0x1
 	.byte	0x3
@@ -2156,7 +2060,7 @@ _Temp1.7887:
 	.byte	0x5
 	.byte	0x3
 	.4byte	_Vff
-	.uleb128 0x12
+	.uleb128 0x10
 	.asciz	"Vout"
 	.byte	0x1
 	.byte	0x3
@@ -2165,7 +2069,7 @@ _Temp1.7887:
 	.byte	0x5
 	.byte	0x3
 	.4byte	_Vout
-	.uleb128 0x12
+	.uleb128 0x10
 	.asciz	"ViMax"
 	.byte	0x1
 	.byte	0x4
@@ -2174,7 +2078,7 @@ _Temp1.7887:
 	.byte	0x5
 	.byte	0x3
 	.4byte	_ViMax
-	.uleb128 0x12
+	.uleb128 0x10
 	.asciz	"ViMin"
 	.byte	0x1
 	.byte	0x4
@@ -2183,7 +2087,7 @@ _Temp1.7887:
 	.byte	0x5
 	.byte	0x3
 	.4byte	_ViMin
-	.uleb128 0x12
+	.uleb128 0x10
 	.asciz	"ViOff"
 	.byte	0x1
 	.byte	0x4
@@ -2192,7 +2096,7 @@ _Temp1.7887:
 	.byte	0x5
 	.byte	0x3
 	.4byte	_ViOff
-	.uleb128 0x12
+	.uleb128 0x10
 	.asciz	"TRef"
 	.byte	0x1
 	.byte	0x6
@@ -2201,7 +2105,7 @@ _Temp1.7887:
 	.byte	0x5
 	.byte	0x3
 	.4byte	_TRef
-	.uleb128 0x12
+	.uleb128 0x10
 	.asciz	"TMeas"
 	.byte	0x1
 	.byte	0x6
@@ -2210,7 +2114,7 @@ _Temp1.7887:
 	.byte	0x5
 	.byte	0x3
 	.4byte	_TMeas
-	.uleb128 0x12
+	.uleb128 0x10
 	.asciz	"PidOut"
 	.byte	0x1
 	.byte	0x7
@@ -2219,52 +2123,52 @@ _Temp1.7887:
 	.byte	0x5
 	.byte	0x3
 	.4byte	_PidOut
-	.uleb128 0x12
+	.uleb128 0x10
 	.asciz	"TableV"
 	.byte	0x1
 	.byte	0x9
-	.4byte	0x3a6
+	.4byte	0x36c
 	.byte	0x1
 	.byte	0x5
 	.byte	0x3
 	.4byte	_TableV
-	.uleb128 0x12
+	.uleb128 0x10
 	.asciz	"TableT"
 	.byte	0x1
 	.byte	0xa
-	.4byte	0x3c6
+	.4byte	0x38c
 	.byte	0x1
 	.byte	0x5
 	.byte	0x3
 	.4byte	_TableT
-	.uleb128 0x13
-	.4byte	.LASF4
+	.uleb128 0x11
+	.4byte	.LASF3
 	.byte	0x1
 	.byte	0xb
-	.4byte	0x3a6
+	.4byte	0x36c
 	.byte	0x1
 	.byte	0x5
 	.byte	0x3
 	.4byte	_TableInvDV
-	.uleb128 0x13
-	.4byte	.LASF5
+	.uleb128 0x11
+	.4byte	.LASF4
 	.byte	0x1
 	.byte	0xc
-	.4byte	0x3f3
+	.4byte	0x3b9
 	.byte	0x1
 	.byte	0x5
 	.byte	0x3
 	.4byte	_FFTableTemp
-	.uleb128 0x13
-	.4byte	.LASF6
+	.uleb128 0x11
+	.4byte	.LASF5
 	.byte	0x1
 	.byte	0xd
-	.4byte	0x3f3
+	.4byte	0x3b9
 	.byte	0x1
 	.byte	0x5
 	.byte	0x3
 	.4byte	_FFTableOut
-	.uleb128 0x12
+	.uleb128 0x10
 	.asciz	"TableDT"
 	.byte	0x1
 	.byte	0x11
@@ -2273,35 +2177,35 @@ _Temp1.7887:
 	.byte	0x5
 	.byte	0x3
 	.4byte	_TableDT
-	.uleb128 0x12
+	.uleb128 0x10
 	.asciz	"TableVLoaded"
 	.byte	0x1
 	.byte	0x10
-	.4byte	0x4bc
+	.4byte	0x482
 	.byte	0x1
 	.byte	0x5
 	.byte	0x3
 	.4byte	_TableVLoaded
-	.uleb128 0x12
+	.uleb128 0x10
 	.asciz	"TdTLoaded"
 	.byte	0x1
 	.byte	0x10
-	.4byte	0x4bc
+	.4byte	0x482
 	.byte	0x1
 	.byte	0x5
 	.byte	0x3
 	.4byte	_TdTLoaded
-	.uleb128 0x13
-	.4byte	.LASF7
+	.uleb128 0x11
+	.4byte	.LASF6
 	.byte	0x1
 	.byte	0x1a
-	.4byte	0x42e
+	.4byte	0x3f4
 	.byte	0x1
 	.byte	0x5
 	.byte	0x3
 	.4byte	_TempHistFifo
-	.uleb128 0x13
-	.4byte	.LASF8
+	.uleb128 0x11
+	.4byte	.LASF7
 	.byte	0x1
 	.byte	0x1b
 	.4byte	0xbf
@@ -2309,8 +2213,8 @@ _Temp1.7887:
 	.byte	0x5
 	.byte	0x3
 	.4byte	_TempHistFifoIndex
-	.uleb128 0x13
-	.4byte	.LASF9
+	.uleb128 0x11
+	.4byte	.LASF8
 	.byte	0x1
 	.byte	0xf
 	.4byte	0xbf
@@ -2318,7 +2222,7 @@ _Temp1.7887:
 	.byte	0x5
 	.byte	0x3
 	.4byte	_DifShift
-	.uleb128 0x12
+	.uleb128 0x10
 	.asciz	"IDec"
 	.byte	0x1
 	.byte	0x5
@@ -2327,7 +2231,7 @@ _Temp1.7887:
 	.byte	0x5
 	.byte	0x3
 	.4byte	_IDec
-	.uleb128 0x12
+	.uleb128 0x10
 	.asciz	"TEnd"
 	.byte	0x1
 	.byte	0x12
@@ -2336,7 +2240,7 @@ _Temp1.7887:
 	.byte	0x5
 	.byte	0x3
 	.4byte	_TEnd
-	.uleb128 0x12
+	.uleb128 0x10
 	.asciz	"DeltaT"
 	.byte	0x1
 	.byte	0x13
@@ -2345,8 +2249,8 @@ _Temp1.7887:
 	.byte	0x5
 	.byte	0x3
 	.4byte	_DeltaT
-	.uleb128 0x13
-	.4byte	.LASF10
+	.uleb128 0x11
+	.4byte	.LASF9
 	.byte	0x1
 	.byte	0x13
 	.4byte	0x126
@@ -2354,7 +2258,7 @@ _Temp1.7887:
 	.byte	0x5
 	.byte	0x3
 	.4byte	_TAccumulator
-	.uleb128 0x12
+	.uleb128 0x10
 	.asciz	"VoutAcc"
 	.byte	0x1
 	.byte	0x14
@@ -2363,44 +2267,44 @@ _Temp1.7887:
 	.byte	0x5
 	.byte	0x3
 	.4byte	_VoutAcc
-	.uleb128 0x13
-	.4byte	.LASF11
+	.uleb128 0x11
+	.4byte	.LASF10
 	.byte	0x1
 	.byte	0x16
-	.4byte	0x4bc
+	.4byte	0x482
 	.byte	0x1
 	.byte	0x5
 	.byte	0x3
 	.4byte	_ManualHeaterControl
-	.uleb128 0x13
-	.4byte	.LASF12
+	.uleb128 0x11
+	.4byte	.LASF11
 	.byte	0x1
 	.byte	0x15
-	.4byte	0x4bc
+	.4byte	0x482
 	.byte	0x1
 	.byte	0x5
 	.byte	0x3
 	.4byte	_FlagWait
-	.uleb128 0x13
-	.4byte	.LASF13
+	.uleb128 0x11
+	.4byte	.LASF12
 	.byte	0x1
 	.byte	0x15
-	.4byte	0x4bc
+	.4byte	0x482
 	.byte	0x1
 	.byte	0x5
 	.byte	0x3
 	.4byte	_FlagMainOff
-	.uleb128 0x13
-	.4byte	.LASF14
+	.uleb128 0x11
+	.4byte	.LASF13
 	.byte	0x1
 	.byte	0x15
-	.4byte	0x4bc
+	.4byte	0x482
 	.byte	0x1
 	.byte	0x5
 	.byte	0x3
 	.4byte	_FlagRefTempAchived
-	.uleb128 0x13
-	.4byte	.LASF15
+	.uleb128 0x11
+	.4byte	.LASF14
 	.byte	0x1
 	.byte	0xe
 	.4byte	0x116
@@ -2408,8 +2312,8 @@ _Temp1.7887:
 	.byte	0x5
 	.byte	0x3
 	.4byte	_AdcTcTomVCoef
-	.uleb128 0x13
-	.4byte	.LASF16
+	.uleb128 0x11
+	.4byte	.LASF15
 	.byte	0x1
 	.byte	0x1b
 	.4byte	0xbf
@@ -2417,8 +2321,8 @@ _Temp1.7887:
 	.byte	0x5
 	.byte	0x3
 	.4byte	_TempHistFifoDecimCnt
-	.uleb128 0x13
-	.4byte	.LASF17
+	.uleb128 0x11
+	.4byte	.LASF16
 	.byte	0x1
 	.byte	0x1c
 	.4byte	0xf1
@@ -2426,11 +2330,11 @@ _Temp1.7887:
 	.byte	0x5
 	.byte	0x3
 	.4byte	_TempHistFifoDecim
-	.uleb128 0x12
+	.uleb128 0x10
 	.asciz	"A"
 	.byte	0x1
 	.byte	0x1d
-	.4byte	0x8ad
+	.4byte	0x868
 	.byte	0x1
 	.byte	0x5
 	.byte	0x3
@@ -2439,7 +2343,7 @@ _Temp1.7887:
 	.byte	0x4
 	.byte	0x4
 	.asciz	"double"
-	.uleb128 0x12
+	.uleb128 0x10
 	.asciz	"i"
 	.byte	0x1
 	.byte	0x1e
@@ -2448,7 +2352,7 @@ _Temp1.7887:
 	.byte	0x5
 	.byte	0x3
 	.4byte	_i
-	.uleb128 0x12
+	.uleb128 0x10
 	.asciz	"DacVal"
 	.byte	0x1
 	.byte	0x1f
@@ -2457,8 +2361,8 @@ _Temp1.7887:
 	.byte	0x5
 	.byte	0x3
 	.4byte	_DacVal
-	.uleb128 0x13
-	.4byte	.LASF18
+	.uleb128 0x11
+	.4byte	.LASF17
 	.byte	0x1
 	.byte	0x20
 	.4byte	0xbf
@@ -2466,8 +2370,8 @@ _Temp1.7887:
 	.byte	0x5
 	.byte	0x3
 	.4byte	_AdcAverageCnt
-	.uleb128 0x13
-	.4byte	.LASF19
+	.uleb128 0x11
+	.4byte	.LASF18
 	.byte	0x1
 	.byte	0x21
 	.4byte	0xa3
@@ -2521,13 +2425,6 @@ _Temp1.7887:
 	.byte	0x0
 	.byte	0x0
 	.uleb128 0x4
-	.uleb128 0xf
-	.byte	0x0
-	.uleb128 0xb
-	.uleb128 0xb
-	.byte	0x0
-	.byte	0x0
-	.uleb128 0x5
 	.uleb128 0x2e
 	.byte	0x1
 	.uleb128 0x3f
@@ -2538,8 +2435,6 @@ _Temp1.7887:
 	.uleb128 0xb
 	.uleb128 0x3b
 	.uleb128 0xb
-	.uleb128 0x27
-	.uleb128 0xc
 	.uleb128 0x11
 	.uleb128 0x1
 	.uleb128 0x12
@@ -2550,22 +2445,7 @@ _Temp1.7887:
 	.uleb128 0x13
 	.byte	0x0
 	.byte	0x0
-	.uleb128 0x6
 	.uleb128 0x5
-	.byte	0x0
-	.uleb128 0x3
-	.uleb128 0x8
-	.uleb128 0x3a
-	.uleb128 0xb
-	.uleb128 0x3b
-	.uleb128 0xb
-	.uleb128 0x49
-	.uleb128 0x13
-	.uleb128 0x2
-	.uleb128 0xa
-	.byte	0x0
-	.byte	0x0
-	.uleb128 0x7
 	.uleb128 0x34
 	.byte	0x0
 	.uleb128 0x3
@@ -2580,7 +2460,7 @@ _Temp1.7887:
 	.uleb128 0xa
 	.byte	0x0
 	.byte	0x0
-	.uleb128 0x8
+	.uleb128 0x6
 	.uleb128 0x2e
 	.byte	0x1
 	.uleb128 0x3f
@@ -2603,6 +2483,42 @@ _Temp1.7887:
 	.uleb128 0xa
 	.uleb128 0x1
 	.uleb128 0x13
+	.byte	0x0
+	.byte	0x0
+	.uleb128 0x7
+	.uleb128 0x5
+	.byte	0x0
+	.uleb128 0x3
+	.uleb128 0x8
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
+	.uleb128 0xb
+	.uleb128 0x49
+	.uleb128 0x13
+	.uleb128 0x2
+	.uleb128 0xa
+	.byte	0x0
+	.byte	0x0
+	.uleb128 0x8
+	.uleb128 0x2e
+	.byte	0x0
+	.uleb128 0x3f
+	.uleb128 0xc
+	.uleb128 0x3
+	.uleb128 0x8
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
+	.uleb128 0xb
+	.uleb128 0x27
+	.uleb128 0xc
+	.uleb128 0x11
+	.uleb128 0x1
+	.uleb128 0x12
+	.uleb128 0x1
+	.uleb128 0x40
+	.uleb128 0xa
 	.byte	0x0
 	.byte	0x0
 	.uleb128 0x9
@@ -2667,30 +2583,6 @@ _Temp1.7887:
 	.byte	0x0
 	.byte	0x0
 	.uleb128 0xc
-	.uleb128 0x34
-	.byte	0x0
-	.uleb128 0x3
-	.uleb128 0x8
-	.uleb128 0x3a
-	.uleb128 0xb
-	.uleb128 0x3b
-	.uleb128 0x5
-	.uleb128 0x49
-	.uleb128 0x13
-	.uleb128 0x3f
-	.uleb128 0xc
-	.uleb128 0x3c
-	.uleb128 0xc
-	.byte	0x0
-	.byte	0x0
-	.uleb128 0xd
-	.uleb128 0x35
-	.byte	0x0
-	.uleb128 0x49
-	.uleb128 0x13
-	.byte	0x0
-	.byte	0x0
-	.uleb128 0xe
 	.uleb128 0x1
 	.byte	0x1
 	.uleb128 0x49
@@ -2699,7 +2591,7 @@ _Temp1.7887:
 	.uleb128 0x13
 	.byte	0x0
 	.byte	0x0
-	.uleb128 0xf
+	.uleb128 0xd
 	.uleb128 0x21
 	.byte	0x0
 	.uleb128 0x49
@@ -2708,7 +2600,7 @@ _Temp1.7887:
 	.uleb128 0xb
 	.byte	0x0
 	.byte	0x0
-	.uleb128 0x10
+	.uleb128 0xe
 	.uleb128 0x34
 	.byte	0x0
 	.uleb128 0x3
@@ -2725,7 +2617,7 @@ _Temp1.7887:
 	.uleb128 0xc
 	.byte	0x0
 	.byte	0x0
-	.uleb128 0x11
+	.uleb128 0xf
 	.uleb128 0x34
 	.byte	0x0
 	.uleb128 0x3
@@ -2742,7 +2634,7 @@ _Temp1.7887:
 	.uleb128 0xc
 	.byte	0x0
 	.byte	0x0
-	.uleb128 0x12
+	.uleb128 0x10
 	.uleb128 0x34
 	.byte	0x0
 	.uleb128 0x3
@@ -2759,7 +2651,7 @@ _Temp1.7887:
 	.uleb128 0xa
 	.byte	0x0
 	.byte	0x0
-	.uleb128 0x13
+	.uleb128 0x11
 	.uleb128 0x34
 	.byte	0x0
 	.uleb128 0x3
@@ -2781,113 +2673,113 @@ _Temp1.7887:
 	.4byte	0x29e
 	.2byte	0x2
 	.4byte	.Ldebug_info0
-	.4byte	0x901
-	.4byte	0x14c
+	.4byte	0x8bc
+	.4byte	0x142
 	.asciz	"task_HeaterPid_body"
-	.4byte	0x195
+	.4byte	0x17c
 	.asciz	"CalcTByV"
-	.4byte	0x1d6
+	.4byte	0x1bd
 	.asciz	"FillTableT"
-	.4byte	0x1f1
+	.4byte	0x1d7
 	.asciz	"FillTableInvDV"
-	.4byte	0x210
+	.4byte	0x1f6
 	.asciz	"CalcFF"
-	.4byte	0x59c
+	.4byte	0x557
 	.asciz	"MulVarA"
-	.4byte	0x5b2
+	.4byte	0x56d
 	.asciz	"MulVarB"
-	.4byte	0x5c8
+	.4byte	0x583
 	.asciz	"Kp"
-	.4byte	0x5d9
+	.4byte	0x594
 	.asciz	"Ki"
-	.4byte	0x5ea
+	.4byte	0x5a5
 	.asciz	"Kd"
-	.4byte	0x5fb
+	.4byte	0x5b6
 	.asciz	"Kff"
-	.4byte	0x60d
+	.4byte	0x5c8
 	.asciz	"Vp"
-	.4byte	0x61e
+	.4byte	0x5d9
 	.asciz	"Vi"
-	.4byte	0x62f
+	.4byte	0x5ea
 	.asciz	"Vd"
-	.4byte	0x640
+	.4byte	0x5fb
 	.asciz	"Vff"
-	.4byte	0x652
+	.4byte	0x60d
 	.asciz	"Vout"
-	.4byte	0x665
+	.4byte	0x620
 	.asciz	"ViMax"
-	.4byte	0x679
+	.4byte	0x634
 	.asciz	"ViMin"
-	.4byte	0x68d
+	.4byte	0x648
 	.asciz	"ViOff"
-	.4byte	0x6a1
+	.4byte	0x65c
 	.asciz	"TRef"
-	.4byte	0x6b4
+	.4byte	0x66f
 	.asciz	"TMeas"
-	.4byte	0x6c8
+	.4byte	0x683
 	.asciz	"PidOut"
-	.4byte	0x6dd
+	.4byte	0x698
 	.asciz	"TableV"
-	.4byte	0x6f2
+	.4byte	0x6ad
 	.asciz	"TableT"
-	.4byte	0x707
+	.4byte	0x6c2
 	.asciz	"TableInvDV"
-	.4byte	0x719
+	.4byte	0x6d4
 	.asciz	"FFTableTemp"
-	.4byte	0x72b
+	.4byte	0x6e6
 	.asciz	"FFTableOut"
-	.4byte	0x73d
+	.4byte	0x6f8
 	.asciz	"TableDT"
-	.4byte	0x753
+	.4byte	0x70e
 	.asciz	"TableVLoaded"
-	.4byte	0x76e
+	.4byte	0x729
 	.asciz	"TdTLoaded"
-	.4byte	0x786
+	.4byte	0x741
 	.asciz	"TempHistFifo"
-	.4byte	0x798
+	.4byte	0x753
 	.asciz	"TempHistFifoIndex"
-	.4byte	0x7aa
+	.4byte	0x765
 	.asciz	"DifShift"
-	.4byte	0x7bc
+	.4byte	0x777
 	.asciz	"IDec"
-	.4byte	0x7cf
+	.4byte	0x78a
 	.asciz	"TEnd"
-	.4byte	0x7e2
+	.4byte	0x79d
 	.asciz	"DeltaT"
-	.4byte	0x7f7
+	.4byte	0x7b2
 	.asciz	"TAccumulator"
-	.4byte	0x809
+	.4byte	0x7c4
 	.asciz	"VoutAcc"
-	.4byte	0x81f
+	.4byte	0x7da
 	.asciz	"ManualHeaterControl"
-	.4byte	0x831
+	.4byte	0x7ec
 	.asciz	"FlagWait"
-	.4byte	0x843
+	.4byte	0x7fe
 	.asciz	"FlagMainOff"
-	.4byte	0x855
+	.4byte	0x810
 	.asciz	"FlagRefTempAchived"
-	.4byte	0x867
+	.4byte	0x822
 	.asciz	"AdcTcTomVCoef"
-	.4byte	0x879
+	.4byte	0x834
 	.asciz	"TempHistFifoDecimCnt"
-	.4byte	0x88b
+	.4byte	0x846
 	.asciz	"TempHistFifoDecim"
-	.4byte	0x89d
+	.4byte	0x858
 	.asciz	"A"
-	.4byte	0x8b7
+	.4byte	0x872
 	.asciz	"i"
-	.4byte	0x8c7
+	.4byte	0x882
 	.asciz	"DacVal"
-	.4byte	0x8dc
+	.4byte	0x897
 	.asciz	"AdcAverageCnt"
-	.4byte	0x8ee
+	.4byte	0x8a9
 	.asciz	"DacData0Presave"
 	.4byte	0x0
 	.section	.debug_pubtypes,info
 	.4byte	0x52
 	.2byte	0x2
 	.4byte	.Ldebug_info0
-	.4byte	0x901
+	.4byte	0x8bc
 	.4byte	0xa3
 	.asciz	"UINT"
 	.4byte	0xbf
@@ -2912,46 +2804,44 @@ _Temp1.7887:
 	.4byte	0x0
 	.4byte	0x0
 	.section	.debug_str,info
-.LASF10:
-	.asciz	"TAccumulator"
-.LASF11:
-	.asciz	"ManualHeaterControl"
-.LASF8:
-	.asciz	"TempHistFifoIndex"
-.LASF15:
-	.asciz	"AdcTcTomVCoef"
-.LASF13:
-	.asciz	"FlagMainOff"
-.LASF1:
-	.asciz	"ADC8x14DataTemp0"
-.LASF2:
-	.asciz	"ADC8x14DataTemp1"
-.LASF19:
-	.asciz	"DacData0Presave"
-.LASF6:
-	.asciz	"FFTableOut"
-.LASF18:
-	.asciz	"AdcAverageCnt"
 .LASF9:
-	.asciz	"DifShift"
-.LASF17:
-	.asciz	"TempHistFifoDecim"
+	.asciz	"TAccumulator"
+.LASF10:
+	.asciz	"ManualHeaterControl"
 .LASF7:
-	.asciz	"TempHistFifo"
-.LASF16:
-	.asciz	"TempHistFifoDecimCnt"
-.LASF5:
-	.asciz	"FFTableTemp"
+	.asciz	"TempHistFifoIndex"
 .LASF14:
-	.asciz	"FlagRefTempAchived"
-.LASF4:
-	.asciz	"TableInvDV"
-.LASF0:
-	.asciz	"ADC8x14Data"
+	.asciz	"AdcTcTomVCoef"
 .LASF12:
-	.asciz	"FlagWait"
+	.asciz	"FlagMainOff"
+.LASF18:
+	.asciz	"DacData0Presave"
+.LASF5:
+	.asciz	"FFTableOut"
+.LASF17:
+	.asciz	"AdcAverageCnt"
+.LASF2:
+	.asciz	"ADCDataAveraged"
+.LASF8:
+	.asciz	"DifShift"
+.LASF16:
+	.asciz	"TempHistFifoDecim"
+.LASF6:
+	.asciz	"TempHistFifo"
+.LASF15:
+	.asciz	"TempHistFifoDecimCnt"
+.LASF0:
+	.asciz	"ADCDataTemp0"
+.LASF4:
+	.asciz	"FFTableTemp"
+.LASF1:
+	.asciz	"ADCDataTemp1"
+.LASF13:
+	.asciz	"FlagRefTempAchived"
 .LASF3:
-	.asciz	"ADC8x14DataAveraged"
+	.asciz	"TableInvDV"
+.LASF11:
+	.asciz	"FlagWait"
 	.section	.text,code
 
 

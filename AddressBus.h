@@ -2,7 +2,7 @@
 #define	ADDRESSBUS_H
 
 // Выбор канала ЦАП и АЦП
-void SelectChannel(BYTE channelNumber);
+void SelectChannel(unsigned channelNumber);
 
 #endif	/* ADDRESSBUS_H */
 

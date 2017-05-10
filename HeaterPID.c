@@ -34,59 +34,54 @@ UINT DacData0Presave;
 
 //________________________________________________________________________________
 //Task 1. PID-регулятор нагревателя
-void task_HeaterPid_body(void *par)
+void task_HeaterPid_body()
 {	
 	static INT16Q4 Temp1;
-	while (1) 
-	{
-		tn_task_sleep(500);
-		Temp1=TMR1-24997;
-		TMR1=Temp1;
 		
 #ifndef SIMULATION
-		ReadADC8x14_0_3();
+		//ReadADC();
 #endif
 		++AdcAverageCnt;
 		if(!(AdcAverageCnt&2))
 		{
 			if(!(AdcAverageCnt&1))
 			{
-				ADC8x14DataTemp0[0]=ADC8x14Data[0];
-				ADC8x14DataTemp0[1]=ADC8x14Data[1];
-				ADC8x14DataTemp0[2]=ADC8x14Data[2];
-				ADC8x14DataTemp0[3]=ADC8x14Data[3];
-				continue;
+				ADCDataTemp0[0]=ADCData[0];
+				ADCDataTemp0[1]=ADCData[1];
+				ADCDataTemp0[2]=ADCData[2];
+				ADCDataTemp0[3]=ADCData[3];
+				return;
 			}
 			else
 			{
-				ADC8x14DataTemp0[0]+=ADC8x14Data[0];
-				ADC8x14DataTemp0[1]+=ADC8x14Data[1];
-				ADC8x14DataTemp0[2]+=ADC8x14Data[2];
-				ADC8x14DataTemp0[3]+=ADC8x14Data[3];
+				ADCDataTemp0[0]+=ADCData[0];
+				ADCDataTemp0[1]+=ADCData[1];
+				ADCDataTemp0[2]+=ADCData[2];
+				ADCDataTemp0[3]+=ADCData[3];
 			}
 		}
 		else
 		{
 			if(!(AdcAverageCnt&1))
 			{
-				ADC8x14DataTemp1[0]=ADC8x14Data[0];
-				ADC8x14DataTemp1[1]=ADC8x14Data[1];
-				ADC8x14DataTemp1[2]=ADC8x14Data[2];
-				ADC8x14DataTemp1[3]=ADC8x14Data[3];
-				continue;
+				ADCDataTemp1[0]=ADCData[0];
+				ADCDataTemp1[1]=ADCData[1];
+				ADCDataTemp1[2]=ADCData[2];
+				ADCDataTemp1[3]=ADCData[3];
+				return;
 			}
 			else
 			{
-				ADC8x14DataTemp1[0]+=ADC8x14Data[0];
-				ADC8x14DataTemp1[1]+=ADC8x14Data[1];
-				ADC8x14DataTemp1[2]+=ADC8x14Data[2];
-				ADC8x14DataTemp1[3]+=ADC8x14Data[3];
+				ADCDataTemp1[0]+=ADCData[0];
+				ADCDataTemp1[1]+=ADCData[1];
+				ADCDataTemp1[2]+=ADCData[2];
+				ADCDataTemp1[3]+=ADCData[3];
 			}
 		}
-		ADC8x14DataAveraged[0]=(ADC8x14DataTemp0[0]+ADC8x14DataTemp1[0])>>2;
-		ADC8x14DataAveraged[1]=(ADC8x14DataTemp0[1]+ADC8x14DataTemp1[1])>>2;
-		ADC8x14DataAveraged[2]=(ADC8x14DataTemp0[2]+ADC8x14DataTemp1[2])>>2;
-		ADC8x14DataAveraged[3]=(ADC8x14DataTemp0[3]+ADC8x14DataTemp1[3])>>2;
+		ADCDataAveraged[0]=(ADCDataTemp0[0]+ADCDataTemp1[0])>>2;
+		ADCDataAveraged[1]=(ADCDataTemp0[1]+ADCDataTemp1[1])>>2;
+		ADCDataAveraged[2]=(ADCDataTemp0[2]+ADCDataTemp1[2])>>2;
+		ADCDataAveraged[3]=(ADCDataTemp0[3]+ADCDataTemp1[3])>>2;
 		
 		if(!FlagMainOff)
 		{
@@ -123,10 +118,9 @@ void task_HeaterPid_body(void *par)
 					}
 				}
 			}
-			//OS_Cooperate();
 	
 			//*** Temp1=AdcTcTomVCoef*ADC8x14Data[0]
-			MulIShift8(ADC8x14DataAveraged[0], AdcTcTomVCoef, Temp1);
+			MulIShift8(ADCDataAveraged[0], AdcTcTomVCoef, Temp1);
 			TMeas=CalcTByV(Temp1);
 			Vp=TRef-TMeas;
 			
@@ -189,10 +183,9 @@ void task_HeaterPid_body(void *par)
 		DacData0Presave = DacData[0];
 		Limiter();
 #ifndef SIMULATION
-		LoadDac(0, DacData[0]);
+		//LoadDac(0, DacData[0]);
 #endif
 		DacData[0] = DacData0Presave;
-	}
 }
 
 //Входное напряжение - табличное напряжение термопары в мВ. Напряжение с АЦП должно 

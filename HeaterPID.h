@@ -1,6 +1,6 @@
 #include <stdbool.h>
 //Task 1. PID-регулятор нагревателя
-void task_HeaterPid_body(void *par);
+void task_HeaterPid_body();
 
 INT16Q4 CalcTByV(INT16Q4 Voltage);
 void FillTableT(void);

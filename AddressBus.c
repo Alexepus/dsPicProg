@@ -12,7 +12,7 @@ typedef struct {
 } LATCBITS2;
 
 // Выбор канала ЦАП и АЦП
-void SelectChannel(BYTE channelNumber)
+void SelectChannel(unsigned channelNumber)
 {
 
     AnalogInputEnable = 0;

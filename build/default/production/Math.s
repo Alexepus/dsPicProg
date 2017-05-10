@@ -12,7 +12,7 @@
 	.global	_linterp	; export
 	.type	_linterp,@function
 _linterp:
-.LFB5:
+.LFB0:
 	.file 1 "Math.c"
 	.loc 1 9 0
 	.set ___PA___,1
@@ -74,7 +74,7 @@ _linterp:
 	ulnk	
 	return	
 	.set ___PA___,0
-.LFE5:
+.LFE0:
 	.size	_linterp, .-_linterp
 	.section	.debug_frame,info
 .Lframe0:
@@ -98,10 +98,10 @@ _linterp:
 	.4byte	.LEFDE0-.LASFDE0
 .LASFDE0:
 	.4byte	.Lframe0
-	.4byte	.LFB5
-	.4byte	.LFE5-.LFB5
+	.4byte	.LFB0
+	.4byte	.LFE0-.LFB0
 	.byte	0x4
-	.4byte	.LCFI0-.LFB5
+	.4byte	.LCFI0-.LFB0
 	.byte	0x13
 	.sleb128 -3
 	.byte	0xd
@@ -114,7 +114,7 @@ _linterp:
 .Letext0:
 	.file 2 "Main.h"
 	.section	.debug_info,info
-	.4byte	0x183
+	.4byte	0x17b
 	.2byte	0x2
 	.4byte	.Ldebug_abbrev0
 	.byte	0x4
@@ -152,10 +152,6 @@ _linterp:
 	.byte	0x4
 	.byte	0x5
 	.asciz	"long int"
-	.uleb128 0x2
-	.byte	0x1
-	.byte	0x6
-	.asciz	"char"
 	.uleb128 0x4
 	.byte	0x1
 	.asciz	"linterp"
@@ -163,8 +159,8 @@ _linterp:
 	.byte	0x8
 	.byte	0x1
 	.4byte	0xe0
-	.4byte	.LFB5
-	.4byte	.LFE5
+	.4byte	.LFB0
+	.4byte	.LFE0
 	.byte	0x1
 	.byte	0x5e
 	.uleb128 0x5
@@ -327,15 +323,15 @@ _linterp:
 	.4byte	0x1a
 	.2byte	0x2
 	.4byte	.Ldebug_info0
-	.4byte	0x187
-	.4byte	0xfb
+	.4byte	0x17f
+	.4byte	0xf3
 	.asciz	"linterp"
 	.4byte	0x0
 	.section	.debug_pubtypes,info
 	.4byte	0x17
 	.2byte	0x2
 	.4byte	.Ldebug_info0
-	.4byte	0x187
+	.4byte	0x17f
 	.4byte	0xae
 	.asciz	"BYTE"
 	.4byte	0x0

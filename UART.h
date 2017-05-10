@@ -24,4 +24,5 @@ typedef struct
 	//Длина буфера: NIn-NOut
 } FIFO;
 
-extern bool FifoRxOverflow;
+//extern bool FifoRxOverflow;
+extern volatile bool IsUartRcMsg;

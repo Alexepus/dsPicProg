@@ -42,9 +42,8 @@
 void ReportFifoRxOverflow(void);
 void ReportRcProtocolError(void);
 void ReportStartUp(void);
-void ProcessUart1Msg(void *par);
+void ProcessUart1Msg(void);
 UINT ExtractRcMessage(void);
 
-extern TN_SEM UartRcMsgSem;
 extern FIFO TxFifo;
 extern FIFO RcFifo;

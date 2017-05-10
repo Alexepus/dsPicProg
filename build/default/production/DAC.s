@@ -14,68 +14,41 @@
 _DacData:	.space	32
 	.section	.text,code
 	.align	2
-	.global	_LoadDac	; export
-	.type	_LoadDac,@function
-_LoadDac:
-.LFB5:
+	.global	_DacWrite	; export
+	.type	_DacWrite,@function
+_DacWrite:
+.LFB0:
 	.file 1 "DAC.c"
 	.loc 1 6 0
 	.set ___PA___,1
-	lnk	#6
+	lnk	#4
 .LCFI0:
-	mov.b	w0,[w14+2]
-	mov	w1,[w14+4]
+	mov	w0,[w14+2]
 	.loc 1 8 0
 	rcall	_SpiWaitTransmitEnd
+	.loc 1 9 0
+	bclr.b	_LATBbits+1,#5
 	.loc 1 10 0
-	mov.b	[w14+2],w0
-	rcall	_SpiSend
-	.loc 1 11 0
-	add	w14,#4,w0
+	inc2	w14,w0
 	inc	w0,w0
-	mov.b	[w0],w1
-	mov.b	#-64,w0
-	ior.b	w1,w0,[w14]
-	.loc 1 12 0
+	mov.b	[w0],[w14]
+	.loc 1 11 0
 	mov.b	[w14],w0
 	rcall	_SpiSend
-	.loc 1 13 0
-	add	w14,#4,w0
+	.loc 1 12 0
+	inc2	w14,w0
 	mov.b	[w0],w0
 	rcall	_SpiSend
+	.loc 1 13 0
+	rcall	_SpiWaitTransmitEnd
 	.loc 1 14 0
-	rcall	_SpiWaitTransmitEnd
-	.loc 1 16 0
+	bset.b	_LATBbits+1,#5
+	.loc 1 15 0
 	ulnk	
 	return	
 	.set ___PA___,0
-.LFE5:
-	.size	_LoadDac, .-_LoadDac
-	.align	2
-	.global	_ConfigDac	; export
-	.type	_ConfigDac,@function
-_ConfigDac:
-.LFB6:
-	.loc 1 19 0
-	.set ___PA___,1
-	lnk	#0
-.LCFI1:
-	.loc 1 20 0
-	rcall	_SpiWaitTransmitEnd
-	.loc 1 22 0
-	mov.b	#29,w0
-	rcall	_SpiSend
-	.loc 1 24 0
-	clr.b	w0
-	rcall	_SpiSend
-	.loc 1 25 0
-	rcall	_SpiWaitTransmitEnd
-	.loc 1 27 0
-	ulnk	
-	return	
-	.set ___PA___,0
-.LFE6:
-	.size	_ConfigDac, .-_ConfigDac
+.LFE0:
+	.size	_DacWrite, .-_DacWrite
 	.section	.debug_frame,info
 .Lframe0:
 	.4byte	.LECIE0-.LSCIE0
@@ -98,10 +71,10 @@ _ConfigDac:
 	.4byte	.LEFDE0-.LASFDE0
 .LASFDE0:
 	.4byte	.Lframe0
-	.4byte	.LFB5
-	.4byte	.LFE5-.LFB5
+	.4byte	.LFB0
+	.4byte	.LFE0-.LFB0
 	.byte	0x4
-	.4byte	.LCFI0-.LFB5
+	.4byte	.LCFI0-.LFB0
 	.byte	0x13
 	.sleb128 -3
 	.byte	0xd
@@ -110,27 +83,12 @@ _ConfigDac:
 	.uleb128 0x2
 	.align	4
 .LEFDE0:
-.LSFDE2:
-	.4byte	.LEFDE2-.LASFDE2
-.LASFDE2:
-	.4byte	.Lframe0
-	.4byte	.LFB6
-	.4byte	.LFE6-.LFB6
-	.byte	0x4
-	.4byte	.LCFI1-.LFB6
-	.byte	0x13
-	.sleb128 -3
-	.byte	0xd
-	.uleb128 0xe
-	.byte	0x8e
-	.uleb128 0x2
-	.align	4
-.LEFDE2:
 	.section	.text,code
 .Letext0:
 	.file 2 "Main.h"
+	.file 3 "p33FJ64MC804.h"
 	.section	.debug_info,info
-	.4byte	0x18d
+	.4byte	0x2e9
 	.2byte	0x2
 	.4byte	.Ldebug_abbrev0
 	.byte	0x4
@@ -173,38 +131,214 @@ _ConfigDac:
 	.byte	0x4
 	.byte	0x5
 	.asciz	"long int"
-	.uleb128 0x3
+	.uleb128 0x4
+	.asciz	"tagLATBBITS"
+	.byte	0x2
+	.byte	0x3
+	.2byte	0xa06
+	.4byte	0x25a
+	.uleb128 0x5
+	.asciz	"LATB0"
+	.byte	0x3
+	.2byte	0xa07
+	.4byte	0xa9
+	.byte	0x2
+	.byte	0x1
+	.byte	0xf
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.uleb128 0x5
+	.asciz	"LATB1"
+	.byte	0x3
+	.2byte	0xa08
+	.4byte	0xa9
+	.byte	0x2
+	.byte	0x1
+	.byte	0xe
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.uleb128 0x5
+	.asciz	"LATB2"
+	.byte	0x3
+	.2byte	0xa09
+	.4byte	0xa9
+	.byte	0x2
+	.byte	0x1
+	.byte	0xd
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.uleb128 0x5
+	.asciz	"LATB3"
+	.byte	0x3
+	.2byte	0xa0a
+	.4byte	0xa9
+	.byte	0x2
+	.byte	0x1
+	.byte	0xc
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.uleb128 0x5
+	.asciz	"LATB4"
+	.byte	0x3
+	.2byte	0xa0b
+	.4byte	0xa9
+	.byte	0x2
+	.byte	0x1
+	.byte	0xb
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.uleb128 0x5
+	.asciz	"LATB5"
+	.byte	0x3
+	.2byte	0xa0c
+	.4byte	0xa9
+	.byte	0x2
+	.byte	0x1
+	.byte	0xa
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.uleb128 0x5
+	.asciz	"LATB6"
+	.byte	0x3
+	.2byte	0xa0d
+	.4byte	0xa9
+	.byte	0x2
+	.byte	0x1
+	.byte	0x9
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.uleb128 0x5
+	.asciz	"LATB7"
+	.byte	0x3
+	.2byte	0xa0e
+	.4byte	0xa9
+	.byte	0x2
+	.byte	0x1
+	.byte	0x8
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.uleb128 0x5
+	.asciz	"LATB8"
+	.byte	0x3
+	.2byte	0xa0f
+	.4byte	0xa9
+	.byte	0x2
+	.byte	0x1
+	.byte	0x7
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.uleb128 0x5
+	.asciz	"LATB9"
+	.byte	0x3
+	.2byte	0xa10
+	.4byte	0xa9
+	.byte	0x2
 	.byte	0x1
 	.byte	0x6
-	.asciz	"char"
-	.uleb128 0x4
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.uleb128 0x5
+	.asciz	"LATB10"
+	.byte	0x3
+	.2byte	0xa11
+	.4byte	0xa9
+	.byte	0x2
 	.byte	0x1
-	.asciz	"LoadDac"
+	.byte	0x5
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.uleb128 0x5
+	.asciz	"LATB11"
+	.byte	0x3
+	.2byte	0xa12
+	.4byte	0xa9
+	.byte	0x2
+	.byte	0x1
+	.byte	0x4
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.uleb128 0x5
+	.asciz	"LATB12"
+	.byte	0x3
+	.2byte	0xa13
+	.4byte	0xa9
+	.byte	0x2
+	.byte	0x1
+	.byte	0x3
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.uleb128 0x5
+	.asciz	"LATB13"
+	.byte	0x3
+	.2byte	0xa14
+	.4byte	0xa9
+	.byte	0x2
+	.byte	0x1
+	.byte	0x2
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.uleb128 0x5
+	.asciz	"LATB14"
+	.byte	0x3
+	.2byte	0xa15
+	.4byte	0xa9
+	.byte	0x2
+	.byte	0x1
+	.byte	0x1
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.uleb128 0x5
+	.asciz	"LATB15"
+	.byte	0x3
+	.2byte	0xa16
+	.4byte	0xa9
+	.byte	0x2
+	.byte	0x1
+	.byte	0x10
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.byte	0x0
+	.uleb128 0x6
+	.asciz	"LATBBITS"
+	.byte	0x3
+	.2byte	0xa17
+	.4byte	0xfe
+	.uleb128 0x7
+	.byte	0x1
+	.asciz	"DacWrite"
 	.byte	0x1
 	.byte	0x5
 	.byte	0x1
-	.4byte	.LFB5
-	.4byte	.LFE5
+	.4byte	.LFB0
+	.4byte	.LFE0
 	.byte	0x1
 	.byte	0x5e
-	.4byte	0x151
-	.uleb128 0x5
-	.asciz	"Channel"
-	.byte	0x1
-	.byte	0x5
-	.4byte	0xb9
-	.byte	0x2
-	.byte	0x7e
-	.sleb128 2
-	.uleb128 0x5
-	.asciz	"Val"
+	.4byte	0x2a5
+	.uleb128 0x8
+	.asciz	"val"
 	.byte	0x1
 	.byte	0x5
 	.4byte	0x9d
 	.byte	0x2
 	.byte	0x7e
-	.sleb128 4
-	.uleb128 0x6
+	.sleb128 2
+	.uleb128 0x9
 	.asciz	"Byte"
 	.byte	0x1
 	.byte	0x7
@@ -213,28 +347,34 @@ _ConfigDac:
 	.byte	0x7e
 	.sleb128 0
 	.byte	0x0
-	.uleb128 0x7
+	.uleb128 0xa
+	.4byte	.LASF0
+	.byte	0x3
+	.2byte	0xa18
+	.4byte	0x2b3
 	.byte	0x1
-	.asciz	"ConfigDac"
 	.byte	0x1
-	.byte	0x12
+	.uleb128 0xb
+	.4byte	0x25a
+	.uleb128 0xa
+	.4byte	.LASF0
+	.byte	0x3
+	.2byte	0xa18
+	.4byte	0x2b3
 	.byte	0x1
-	.4byte	.LFB6
-	.4byte	.LFE6
 	.byte	0x1
-	.byte	0x5e
-	.uleb128 0x8
+	.uleb128 0xc
 	.4byte	0xeb
-	.4byte	0x17a
-	.uleb128 0x9
+	.4byte	0x2d6
+	.uleb128 0xd
 	.4byte	0xa9
 	.byte	0xf
 	.byte	0x0
-	.uleb128 0xa
+	.uleb128 0xe
 	.asciz	"DacData"
 	.byte	0x1
 	.byte	0x3
-	.4byte	0x16a
+	.4byte	0x2c6
 	.byte	0x1
 	.byte	0x5
 	.byte	0x3
@@ -285,6 +425,55 @@ _ConfigDac:
 	.byte	0x0
 	.byte	0x0
 	.uleb128 0x4
+	.uleb128 0x13
+	.byte	0x1
+	.uleb128 0x3
+	.uleb128 0x8
+	.uleb128 0xb
+	.uleb128 0xb
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
+	.uleb128 0x5
+	.uleb128 0x1
+	.uleb128 0x13
+	.byte	0x0
+	.byte	0x0
+	.uleb128 0x5
+	.uleb128 0xd
+	.byte	0x0
+	.uleb128 0x3
+	.uleb128 0x8
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
+	.uleb128 0x5
+	.uleb128 0x49
+	.uleb128 0x13
+	.uleb128 0xb
+	.uleb128 0xb
+	.uleb128 0xd
+	.uleb128 0xb
+	.uleb128 0xc
+	.uleb128 0xb
+	.uleb128 0x38
+	.uleb128 0xa
+	.byte	0x0
+	.byte	0x0
+	.uleb128 0x6
+	.uleb128 0x16
+	.byte	0x0
+	.uleb128 0x3
+	.uleb128 0x8
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
+	.uleb128 0x5
+	.uleb128 0x49
+	.uleb128 0x13
+	.byte	0x0
+	.byte	0x0
+	.uleb128 0x7
 	.uleb128 0x2e
 	.byte	0x1
 	.uleb128 0x3f
@@ -307,7 +496,7 @@ _ConfigDac:
 	.uleb128 0x13
 	.byte	0x0
 	.byte	0x0
-	.uleb128 0x5
+	.uleb128 0x8
 	.uleb128 0x5
 	.byte	0x0
 	.uleb128 0x3
@@ -322,7 +511,7 @@ _ConfigDac:
 	.uleb128 0xa
 	.byte	0x0
 	.byte	0x0
-	.uleb128 0x6
+	.uleb128 0x9
 	.uleb128 0x34
 	.byte	0x0
 	.uleb128 0x3
@@ -337,28 +526,31 @@ _ConfigDac:
 	.uleb128 0xa
 	.byte	0x0
 	.byte	0x0
-	.uleb128 0x7
-	.uleb128 0x2e
+	.uleb128 0xa
+	.uleb128 0x34
 	.byte	0x0
-	.uleb128 0x3f
-	.uleb128 0xc
 	.uleb128 0x3
-	.uleb128 0x8
+	.uleb128 0xe
 	.uleb128 0x3a
 	.uleb128 0xb
 	.uleb128 0x3b
-	.uleb128 0xb
-	.uleb128 0x27
+	.uleb128 0x5
+	.uleb128 0x49
+	.uleb128 0x13
+	.uleb128 0x3f
 	.uleb128 0xc
-	.uleb128 0x11
-	.uleb128 0x1
-	.uleb128 0x12
-	.uleb128 0x1
-	.uleb128 0x40
-	.uleb128 0xa
+	.uleb128 0x3c
+	.uleb128 0xc
 	.byte	0x0
 	.byte	0x0
-	.uleb128 0x8
+	.uleb128 0xb
+	.uleb128 0x35
+	.byte	0x0
+	.uleb128 0x49
+	.uleb128 0x13
+	.byte	0x0
+	.byte	0x0
+	.uleb128 0xc
 	.uleb128 0x1
 	.byte	0x1
 	.uleb128 0x49
@@ -367,7 +559,7 @@ _ConfigDac:
 	.uleb128 0x13
 	.byte	0x0
 	.byte	0x0
-	.uleb128 0x9
+	.uleb128 0xd
 	.uleb128 0x21
 	.byte	0x0
 	.uleb128 0x49
@@ -376,7 +568,7 @@ _ConfigDac:
 	.uleb128 0xb
 	.byte	0x0
 	.byte	0x0
-	.uleb128 0xa
+	.uleb128 0xe
 	.uleb128 0x34
 	.byte	0x0
 	.uleb128 0x3
@@ -395,26 +587,28 @@ _ConfigDac:
 	.byte	0x0
 	.byte	0x0
 	.section	.debug_pubnames,info
-	.4byte	0x34
+	.4byte	0x27
 	.2byte	0x2
 	.4byte	.Ldebug_info0
-	.4byte	0x191
-	.4byte	0x106
-	.asciz	"LoadDac"
-	.4byte	0x151
-	.asciz	"ConfigDac"
-	.4byte	0x17a
+	.4byte	0x2ed
+	.4byte	0x26b
+	.asciz	"DacWrite"
+	.4byte	0x2d6
 	.asciz	"DacData"
 	.4byte	0x0
 	.section	.debug_pubtypes,info
-	.4byte	0x20
+	.4byte	0x3d
 	.2byte	0x2
 	.4byte	.Ldebug_info0
-	.4byte	0x191
+	.4byte	0x2ed
 	.4byte	0x9d
 	.asciz	"UINT"
 	.4byte	0xb9
 	.asciz	"BYTE"
+	.4byte	0xfe
+	.asciz	"tagLATBBITS"
+	.4byte	0x25a
+	.asciz	"LATBBITS"
 	.4byte	0x0
 	.section	.debug_aranges,info
 	.4byte	0x14
@@ -427,6 +621,8 @@ _ConfigDac:
 	.4byte	0x0
 	.4byte	0x0
 	.section	.debug_str,info
+.LASF0:
+	.asciz	"LATBbits"
 	.section	.text,code
 
 

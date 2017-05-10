@@ -19,15 +19,15 @@ Command:
   build/default/production/PowerLimiter.o \
   build/default/production/ProcessUartMsg.o \
   build/default/production/UART.o \
-  build/default/production/ADC8x14.o \
   build/default/production/DAC.o \
   build/default/production/Spi.o \
   build/default/production/HardwareInit.o \
   build/default/production/Math.o \
-  build/default/production/TNeo/src/tn_app_check.o \
   build/default/production/HeaterPID.o \
   build/default/production/AddressBus.o \
-  TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a \
+  build/default/production/LeakerPid.o \
+  build/default/production/ADC.o \
+  build/default/production/AnalogIo.o \
   --defsym=__MPLAB_BUILD=1 \
   -Tp33FJ64MC804.gld.00 \
   --stack=16 \
@@ -51,28 +51,10 @@ Command:
   --library=lega-c-elf \
   -end-group \
 
-Archive member included because of file (symbol)
-
-TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_arch_pic24.o)
-                              build/default/production/Main.o (_tn_arch_int_dis)
-TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_arch_pic24_c.o)
-                              build/default/production/Main.o (__tn_p24_int_stack_low_addr)
-TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sem.o)
-                              build/default/production/Main.o (_tn_sem_create)
-TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
-                              TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sem.o) (__tn_task_clear_runnable)
-TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sys.o)
-                              TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_arch_pic24.o) (__tn_next_task_to_run)
-TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_list.o)
-                              TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sem.o) (__tn_list_reset)
-TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_timer.o)
-                              TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o) (__tn_timer_create)
-TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_timer_static.o)
-                              TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sys.o) (__tn_timers_init)
-TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_mutex.o)
-                              TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o) (__tn_mutex_unlock_all_by_task)
 
 Optional library libp33FJ64MC804.a not found
+Archive member included because of file (symbol)
+
 c:/program files (x86)/microchip/xc16/v1.30/bin/bin/../../lib\liblega-pic30-elf.a(crt0_standard.o)
                               (__resetPRI)
 c:/program files (x86)/microchip/xc16/v1.30/bin/bin/../../lib\liblega-pic30-elf.a(data_init_standard.o)
@@ -83,12 +65,8 @@ c:/program files (x86)/microchip/xc16/v1.30/bin/bin/../../lib\libm-elf.a(divsi3.
                               build/default/production/HeaterPID.o (___divsi3)
 c:/program files (x86)/microchip/xc16/v1.30/bin/bin/../../lib\libm-elf.a(udivsi3.eo)
                               build/default/production/PowerLimiter.o (___udivsi3)
-c:/program files (x86)/microchip/xc16/v1.30/bin/bin/../../lib\liblega-c-elf.a(memcmp.XX_eo)
-                              TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sys.o) (_memcmp)
 c:/program files (x86)/microchip/xc16/v1.30/bin/bin/../../lib\liblega-c-elf.a(memmove.XX_eo)
                               build/default/production/ProcessUartMsg.o (_memmove)
-c:/program files (x86)/microchip/xc16/v1.30/bin/bin/../../lib\liblega-c-elf.a(memset.XX_eo)
-                              build/default/production/TNeo/src/tn_app_check.o (_memset)
 
 
 Selected CodeGuard Options:
@@ -118,185 +96,18 @@ Program Memory  [Origin = 0x200, Length = 0xaa00]
 
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
-.text                        0x200               0x53a           0x7d7  (2007)
-.const                       0x73a                 0x6             0x9  (9)
-.text                        0x740              0x1442          0x1e63  (7779)
-.text.tn_task_create        0x1b82                0xe0           0x150  (336)
-.dinit                      0x1c62                0xd6           0x141  (321)
-.text._build_cfg_check      0x1d38                0xd0           0x138  (312)
-.text                       0x1e08                0xb6           0x111  (273)
-.text.tn_sys_start          0x1ebe                0xa2            0xf3  (243)
-.text.tn_mutex_lock         0x1f60                0x90            0xd8  (216)
-.text._tn_timers_tick_proceed    0x1ff0                0x8e            0xd5  (213)
-.text.tn_task_terminate     0x207e                0x8a            0xcf  (207)
-.text                       0x2108                0x76            0xb1  (177)
-.text.tn_task_suspend       0x217e                0x66            0x99  (153)
-.text._sem_job_perform      0x21e4                0x64            0x96  (150)
-.text._tn_timer_start       0x2248                0x62            0x93  (147)
-.text.tn_mutex_delete       0x22aa                0x60            0x90  (144)
-.text._tn_arch_stack_init    0x230a                0x5a            0x87  (135)
-.text.tn_task_resume        0x2364                0x5a            0x87  (135)
-.text.tn_mutex_unlock       0x23be                0x5a            0x87  (135)
-.text.tn_task_change_priority    0x2418                0x58            0x84  (132)
-.text._check_deadlock_active    0x2470                0x54            0x7e  (126)
-.text                       0x24c4                0x50            0x78  (120)
-.text._round_robin_manage    0x2514                0x4e            0x75  (117)
-.text._unlink_deadlock_lists    0x2562                0x48            0x6c  (108)
-.text._link_deadlock_lists    0x25aa                0x48            0x6c  (108)
-.text._tn_task_clear_runnable    0x25f2                0x46            0x69  (105)
-.text._task_priority_elevate    0x2638                0x46            0x69  (105)
-.text._mutex_do_unlock      0x267e                0x46            0x69  (105)
-.text                       0x26c4                0x40            0x60  (96)
-.text._tn_task_first_wait_complete    0x2704                0x40            0x60  (96)
-.text.tn_mutex_create       0x2744                0x40            0x60  (96)
-.text.tn_sem_delete         0x2784                0x3e            0x5d  (93)
-.text._tn_cry_deadlock      0x27c2                0x3e            0x5d  (93)
-.text._tn_timer_time_left    0x2800                0x3e            0x5d  (93)
-.text._add_curr_task_to_mutex_wait_queue    0x283e                0x3e            0x5d  (93)
-.text._sem_job_iperform     0x287c                0x3c            0x5a  (90)
-.text._task_job_iperform    0x28b8                0x3c            0x5a  (90)
-.text._task_job_perform     0x28f4                0x3c            0x5a  (90)
-.text._tn_task_set_waiting    0x2930                0x3a            0x57  (87)
-.text.tn_task_sleep         0x296a                0x3a            0x57  (87)
-.text.tn_timer_start        0x29a4                0x3a            0x57  (87)
-.text.tn_timer_set_func     0x29de                0x3a            0x57  (87)
-.text                       0x2a18                0x38            0x54  (84)
-.text.tn_task_delete        0x2a50                0x38            0x54  (84)
-.text._tn_task_clear_waiting    0x2a88                0x36            0x51  (81)
-.text.tn_task_state_get     0x2abe                0x34            0x4e  (78)
-.text._tn_change_running_task_priority    0x2af2                0x34            0x4e  (78)
-.text._check_param_create    0x2b26                0x34            0x4e  (78)
-.text._cry_deadlock_inactive    0x2b5a                0x32            0x4b  (75)
-.text.tn_sem_create         0x2b8c                0x30            0x48  (72)
-.text.tn_task_exit          0x2bbc                0x30            0x48  (72)
-.text.tn_timer_delete       0x2bec                0x30            0x48  (72)
-.text.tn_timer_time_left    0x2c1c                0x30            0x48  (72)
-.text.tn_timer_is_active    0x2c4c                0x30            0x48  (72)
-.text._mutex_do_lock        0x2c7c                0x30            0x48  (72)
-.text._check_param_create    0x2cac                0x2e            0x45  (69)
-.text.tn_sys_tslice_set     0x2cda                0x2e            0x45  (69)
-.text.tn_timer_cancel       0x2d08                0x2e            0x45  (69)
-.text._update_task_priority    0x2d36                0x2e            0x45  (69)
-.text._sem_signal           0x2d64                0x2c            0x42  (66)
-.text._update_holders_priority_recursive    0x2d90                0x2c            0x42  (66)
-.text._tn_timer_cancel      0x2dbc                0x28            0x3c  (60)
-.text                       0x2de4                0x26            0x39  (57)
-.text._tn_task_curr_to_wait_action.clone.1    0x2e0a                0x26            0x39  (57)
-.text._remove_entry_from_ready_queue    0x2e30                0x26            0x39  (57)
-.text._task_delete          0x2e56                0x26            0x39  (57)
-.text._task_wakeup          0x2e7c                0x26            0x39  (57)
-.text._tn_timer_create      0x2ea2                0x26            0x39  (57)
-.text._tn_task_curr_to_wait_action    0x2ec8                0x26            0x39  (57)
-.text._tn_task_activate     0x2eee                0x24            0x36  (54)
-.text._tn_timers_init       0x2f12                0x24            0x36  (54)
-.text._find_max_priority_by_mutex    0x2f36                0x24            0x36  (54)
-.text._tn_mutex_unlock_all_by_task    0x2f5a                0x24            0x36  (54)
-.text._on_task_wait_complete    0x2f7e                0x22            0x33  (51)
-.text._tn_task_set_runnable    0x2fa0                0x22            0x33  (51)
-.text._tn_wait_queue_notify_deleted    0x2fc2                0x22            0x33  (51)
-.text._add_entry_to_ready_queue    0x2fe4                0x20            0x30  (48)
-.text._task_release_wait    0x3004                0x20            0x30  (48)
-.text._tn_task_wait_complete.clone.2    0x3024                0x20            0x30  (48)
-.text.tn_timer_create       0x3044                0x20            0x30  (48)
-.text._tn_task_wait_complete.clone.4    0x3064                0x20            0x30  (48)
-.text._tn_task_wait_complete    0x3084                0x1e            0x2d  (45)
-.text.tn_tick_int_processing    0x30a2                0x1e            0x2d  (45)
-.text.tn_sys_time_get       0x30c0                0x1e            0x2d  (45)
-.text._tn_task_clear_dormant    0x30de                0x1c            0x2a  (42)
-.text._tn_change_task_priority    0x30fa                0x1c            0x2a  (42)
-.text._find_max_blocked_priority    0x3116                0x1c            0x2a  (42)
-.text._tn_arch_sys_start    0x3132                0x1a            0x27  (39)
-.text._find_next_task_to_run    0x314c                0x1a            0x27  (39)
-.text._tn_task_curr_to_wait_action.clone.5    0x3166                0x1a            0x27  (39)
-.text._tn_list_remove_head    0x3180                0x1a            0x27  (39)
-.text._check_param_create.clone.1    0x319a                0x1a            0x27  (39)
-.text._check_param_generic    0x31b4                0x30            0x48  (72)
-.text._tn_is_mutex_locked_by_task    0x31e4                0x18            0x24  (36)
-.text.tn_sys_context_get    0x31fc                0x18            0x24  (36)
-.text._check_param_generic    0x3214                0x30            0x48  (72)
-.text.tn_task_create_wname    0x3244                0x16            0x21  (33)
-.text._tn_list_is_empty     0x325a                0x16            0x21  (33)
-.text._task_terminate       0x3270                0x14            0x1e  (30)
-.text._idle_task_create     0x3284                0x14            0x1e  (30)
-.text._sem_wait             0x3298                0x12            0x1b  (27)
-.text._tn_list_remove_tail    0x32aa                0x12            0x1b  (27)
-.text._tn_need_context_switch    0x32bc                0x10            0x18  (24)
-.text.tn_is_isr_context     0x32cc                0x10            0x18  (24)
-.text.tn_is_task_context    0x32dc                0x10            0x18  (24)
-.text._tn_need_context_switch    0x32ec                0x10            0x18  (24)
-.text.tn_is_task_context    0x32fc                0x10            0x18  (24)
-.text.tn_is_isr_context     0x330c                0x10            0x18  (24)
-.text._tn_task_set_dormant    0x331c                0x10            0x18  (24)
-.text._tn_need_context_switch    0x332c                0x10            0x18  (24)
-.text.tn_is_task_context    0x333c                0x10            0x18  (24)
-.text._tn_timer_set_func    0x334c                0x10            0x18  (24)
-.text._tn_timer_is_active    0x335c                0x10            0x18  (24)
-.text._tn_need_context_switch    0x336c                0x10            0x18  (24)
-.text.tn_is_task_context    0x337c                0x10            0x18  (24)
-.text._tn_mutex_on_task_wait_complete    0x338c                0x10            0x18  (24)
-.text._tn_context_switch_pend_if_needed    0x339c                 0xe            0x15  (21)
-.text._tn_sem_is_valid.clone.0    0x33aa                 0xe            0x15  (21)
-.text._tn_context_switch_pend_if_needed    0x33b8                 0xe            0x15  (21)
-.text._tn_task_is_valid.clone.4    0x33c6                 0xe            0x15  (21)
-.text._tn_context_switch_pend_if_needed    0x33d4                 0xe            0x15  (21)
-.text._tn_sys_state_flags_clear    0x33e2                 0xe            0x15  (21)
-.text._tn_timer_is_valid.clone.0    0x33f0                 0xe            0x15  (21)
-.text._tn_context_switch_pend_if_needed    0x33fe                 0xe            0x15  (21)
-.text._tn_mutex_is_valid.clone.0    0x340c                 0xe            0x15  (21)
-.text                       0x341a                 0xc            0x12  (18)
-.text.tn_arch_sched_restore    0x3426                 0xc            0x12  (18)
-.text._tn_sys_state_flags_set    0x3432                 0xc            0x12  (18)
-.text._tn_list_add_head     0x343e                 0xc            0x12  (18)
-.text._tn_list_add_tail     0x344a                 0xc            0x12  (18)
-.text._tn_list_remove_entry    0x3456                 0xc            0x12  (18)
-.text._tn_list_contains_entry    0x3462                 0xc            0x12  (18)
-.text._tn_mutex_i_on_task_wait_complete    0x346e                 0xc            0x12  (18)
-.text.tn_arch_sched_dis_save    0x347a                 0x8             0xc  (12)
-.text.tn_sem_signal         0x3482                 0x8             0xc  (12)
-.text.tn_sem_wait_polling    0x348a                 0x8             0xc  (12)
-.text._task_wait_timeout    0x3492                 0x8             0xc  (12)
-.text._tn_task_set_suspended    0x349a                 0x8             0xc  (12)
-.text._tn_task_clear_suspended    0x34a2                 0x8             0xc  (12)
-.text.tn_sem_isignal        0x34aa                 0x6             0x9  (9)
-.text.tn_sem_wait           0x34b0                 0x6             0x9  (9)
-.text.tn_sem_iwait_polling    0x34b6                 0x6             0x9  (9)
-.text._init_mutex_queue     0x34bc                 0x6             0x9  (9)
-.text._init_deadlock_list    0x34c2                 0x6             0x9  (9)
-.text._tn_task_is_waiting.clone.1    0x34c8                 0x6             0x9  (9)
-.text._tn_task_is_suspended.clone.2    0x34ce                 0x6             0x9  (9)
-.text._tn_task_is_dormant.clone.3    0x34d4                 0x6             0x9  (9)
-.text.tn_task_wakeup        0x34da                 0x6             0x9  (9)
-.text.tn_task_iwakeup       0x34e0                 0x6             0x9  (9)
-.text.tn_task_activate      0x34e6                 0x6             0x9  (9)
-.text.tn_task_iactivate     0x34ec                 0x6             0x9  (9)
-.text.tn_task_release_wait    0x34f2                 0x6             0x9  (9)
-.text.tn_task_irelease_wait    0x34f8                 0x6             0x9  (9)
-.text._tn_task_exit_nodelete    0x34fe                 0x6             0x9  (9)
-.text._tn_timer_sys_time_get    0x3504                 0x6             0x9  (9)
-.text._idle_task_body       0x350a                 0x6             0x9  (9)
-.text._tn_task_is_suspended.clone.0    0x3510                 0x6             0x9  (9)
-.text.tn_cur_task_body_get    0x3516                 0x6             0x9  (9)
-.text._tn_list_reset        0x351c                 0x6             0x9  (9)
-.text._tn_task_is_waiting.clone.2    0x3522                 0x6             0x9  (9)
-.text._tn_task_is_suspended.clone.3    0x3528                 0x6             0x9  (9)
-.text.tn_mutex_lock_polling    0x352e                 0x6             0x9  (9)
-.text._tn_task_is_runnable.clone.0    0x3534                 0x4             0x6  (6)
-.text._tn_task_stack_end_get    0x3538                 0x4             0x6  (6)
-.text.tn_sys_state_flags_get    0x353c                 0x4             0x6  (6)
-.text.tn_callback_deadlock_set    0x3540                 0x4             0x6  (6)
-.text.tn_callback_stack_overflow_set    0x3544                 0x4             0x6  (6)
-.text.tn_cur_task_get       0x3548                 0x4             0x6  (6)
-.text._tn_task_is_runnable.clone.1    0x354c                 0x4             0x6  (6)
+.text                        0x200               0x3d6           0x5c1  (1473)
+.text                        0x5d6              0x1128          0x19bc  (6588)
+.dinit                      0x16fe                0xb2           0x10b  (267)
+.text                       0x17b0               0x130           0x1c8  (456)
 
-                 Total program memory used (bytes):         0x4cf8  (19704) 30%
+                 Total program memory used (bytes):         0x2250  (8784) 13%
 
 
 Ivt Memory  [Origin = 0x4, Length = 0xfc]
 
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
-.ivt._INT0Interrupt           0x14                 0x2             0x3  (3)
-.ivt._T1Interrupt             0x1a                 0x2             0x3  (3)
 .ivt._U1RXInterrupt           0x2a                 0x2             0x3  (3)
 .ivt._U1TXInterrupt           0x2c                 0x2             0x3  (3)
 
@@ -305,16 +116,16 @@ Data Memory  [Origin = 0x800, Length = 0x4000]
 
 section                    address      alignment gaps    total length  (dec)
 -------                    -------      --------------    -------------------
-.nbss                        0x800                   0            0x68  (104)
-.ndata                       0x868                   0            0x14  (20)
-.nbss                        0x87c                   0            0x12  (18)
-.ndata                       0x88e                   0             0x6  (6)
-.nbss                        0x894                   0             0x6  (6)
-.bss                         0x89a                   0           0x6b2  (1714)
-.data                        0xf4c                   0            0x80  (128)
-.bss                         0xfcc                   0            0xc2  (194)
+.nbss                        0x800                   0            0x4e  (78)
+.ndata                       0x84e                   0            0x14  (20)
+.nbss                        0x862                   0            0x12  (18)
+.ndata                       0x874                   0             0x6  (6)
+.nbss                        0x87a                   0             0x6  (6)
+.bss                         0x880                   0           0x130  (304)
+.data                        0x9b0                   0            0x80  (128)
+.bss                         0xa30                   0            0xc0  (192)
 
-                 Total data memory used (bytes):          0x88e  (2190) 13%
+                 Total data memory used (bytes):          0x2f0  (752) 4%
 
 
 Dynamic Memory Usage
@@ -322,9 +133,9 @@ Dynamic Memory Usage
 region                     address                      maximum length  (dec)
 ------                     -------                      ---------------------
 heap                             0                                   0  (0)
-stack                       0x108e                              0x3772  (14194)
+stack                        0xaf0                              0x3d10  (15632)
 
-                 Maximum dynamic memory (bytes):         0x3772  (14194)
+                 Maximum dynamic memory (bytes):         0x3d10  (15632)
 
 
 External Symbols in Data Memory (by address):
@@ -359,471 +170,197 @@ External Symbols in Data Memory (by address):
                     0x0846                  _DacVal
                     0x0848                  _AdcAverageCnt
                     0x084a                  _DacData0Presave
-                    0x0850                  _ADC8x14DataTemp0
-                    0x0858                  _ADC8x14DataTemp1
-                    0x0860                  _ADC8x14DataAveraged
-                    0x0868                  _Kp
-                    0x086a                  _Ki
-                    0x086c                  _Kd
-                    0x086e                  _Kff
-                    0x0870                  _Vp
-                    0x0872                  _Vi
-                    0x0874                  _Vd
-                    0x0876                  _IDec
-                    0x0878                  _AdcTcTomVCoef
-                    0x087a                  _DifShift
-                    0x087b                  _TableDT
-                    0x087c                  _MaxHeaterISoft
-                    0x087e                  _MaxHeaterI
-                    0x0880                  _MaxHeaterU
-                    0x0882                  _MaxHeaterP
-                    0x0884                  _HeaterP
-                    0x0886                  _KHeaterIToRef
-                    0x088a                  _MaxHeaterISoftCount
-                    0x088b                  _MaxHeaterIGuard
-                    0x088c                  _MaxHeaterUGuard
-                    0x088d                  _MaxHeaterPGuard
-                    0x088e                  _KHeaterIToRef_Medium
-                    0x0892                  _DacData0Max
-                    0x0894                  _RCode
-                    0x089a                  _UartRcMsgSem
-                    0x08a4                  _idle_task_stack
-                    0x0916                  _interrupt_stack
-                    0x09c8                  _task_Uart1Msg_stack
-                    0x0aba                  _task_HeaterPid_stack
-                    0x0bac                  _task_GasPid_stack
-                    0x0c9e                  _task_HeaterPid
-                    0x0ce0                  _task_Uart1Msg
-                    0x0d22                  _task_GasPid
-                    0x0d64                  __tn_cb_idle_hook
-                    0x0d66                  __tn_cb_stack_overflow
-                    0x0d68                  __tn_cb_deadlock
-                    0x0d6a                  __tn_deadlocks_cnt
-                    0x0d6c                  __tn_tasks_ready_list
-                    0x0dac                  __tn_tasks_created_list
-                    0x0db0                  __tn_tasks_created_cnt
-                    0x0db2                  __tn_sys_state
-                    0x0db4                  __tn_curr_run_task
-                    0x0db6                  __tn_next_task_to_run
-                    0x0db8                  __tn_ready_to_run_bmp
-                    0x0dba                  __tn_idle_task
-                    0x0dfc                  __tn_tslice_ticks
-                    0x0e1c                  _RcFifo
-                    0x0e9e                  _RcBuf
-                    0x0eb4                  _TxBuf
-                    0x0eca                  _TxFifo
-                    0x0f4c                  _TableV
-                    0x0f8c                  _TableT
-                    0x0fcc                  _TableInvDV
-                    0x100c                  _TempHistFifo
-                    0x102c                  __tn_timer_list__gen
-                    0x1030                  __tn_timer_list__tick
-                    0x1050                  __tn_sys_time_count
-                    0x1054                  _DacData
-                    0x1074                  _ADC8x14Data
-                    0x108a                  __tn_p24_int_stack_low_addr
-                    0x108c                  __tn_p24_int_splim
+                    0x084e                  _Kp
+                    0x0850                  _Ki
+                    0x0852                  _Kd
+                    0x0854                  _Kff
+                    0x0856                  _Vp
+                    0x0858                  _Vi
+                    0x085a                  _Vd
+                    0x085c                  _IDec
+                    0x085e                  _AdcTcTomVCoef
+                    0x0860                  _DifShift
+                    0x0861                  _TableDT
+                    0x0862                  _MaxHeaterISoft
+                    0x0864                  _MaxHeaterI
+                    0x0866                  _MaxHeaterU
+                    0x0868                  _MaxHeaterP
+                    0x086a                  _HeaterP
+                    0x086c                  _KHeaterIToRef
+                    0x0870                  _MaxHeaterISoftCount
+                    0x0871                  _MaxHeaterIGuard
+                    0x0872                  _MaxHeaterUGuard
+                    0x0873                  _MaxHeaterPGuard
+                    0x0874                  _KHeaterIToRef_Medium
+                    0x0878                  _DacData0Max
+                    0x087a                  _IsUartRcMsg
+                    0x0880                  _RcFifo
+                    0x0902                  _RcBuf
+                    0x0918                  _TxBuf
+                    0x092e                  _TxFifo
+                    0x09b0                  _TableV
+                    0x09f0                  _TableT
+                    0x0a30                  _TableInvDV
+                    0x0a70                  _TempHistFifo
+                    0x0a90                  _ADCData
+                    0x0aa0                  _ADCDataTemp0
+                    0x0ab0                  _ADCDataTemp1
+                    0x0ac0                  _ADCDataAveraged
+                    0x0ad0                  _DacData
 
 External Symbols in Data Memory (by name):
 
                     0x0840                  _A
-                    0x1074                  _ADC8x14Data
-                    0x0860                  _ADC8x14DataAveraged
-                    0x0850                  _ADC8x14DataTemp0
-                    0x0858                  _ADC8x14DataTemp1
+                    0x0a90                  _ADCData
+                    0x0ac0                  _ADCDataAveraged
+                    0x0aa0                  _ADCDataTemp0
+                    0x0ab0                  _ADCDataTemp1
                     0x0848                  _AdcAverageCnt
-                    0x0878                  _AdcTcTomVCoef
-                    0x1054                  _DacData
-                    0x0892                  _DacData0Max
+                    0x085e                  _AdcTcTomVCoef
+                    0x0ad0                  _DacData
+                    0x0878                  _DacData0Max
                     0x084a                  _DacData0Presave
                     0x0846                  _DacVal
                     0x0824                  _DeltaT
-                    0x087a                  _DifShift
+                    0x0860                  _DifShift
                     0x0818                  _FFTableOut
                     0x0810                  _FFTableTemp
                     0x0831                  _FlagMainOff
                     0x0832                  _FlagRefTempAchived
                     0x0830                  _FlagWait
-                    0x0884                  _HeaterP
-                    0x0876                  _IDec
-                    0x0886                  _KHeaterIToRef
-                    0x088e                  _KHeaterIToRef_Medium
-                    0x086c                  _Kd
-                    0x086e                  _Kff
-                    0x086a                  _Ki
-                    0x0868                  _Kp
+                    0x086a                  _HeaterP
+                    0x085c                  _IDec
+                    0x087a                  _IsUartRcMsg
+                    0x086c                  _KHeaterIToRef
+                    0x0874                  _KHeaterIToRef_Medium
+                    0x0852                  _Kd
+                    0x0854                  _Kff
+                    0x0850                  _Ki
+                    0x084e                  _Kp
                     0x0833                  _ManualHeaterControl
-                    0x087e                  _MaxHeaterI
-                    0x088b                  _MaxHeaterIGuard
-                    0x087c                  _MaxHeaterISoft
-                    0x088a                  _MaxHeaterISoftCount
-                    0x0882                  _MaxHeaterP
-                    0x088d                  _MaxHeaterPGuard
-                    0x0880                  _MaxHeaterU
-                    0x088c                  _MaxHeaterUGuard
+                    0x0864                  _MaxHeaterI
+                    0x0871                  _MaxHeaterIGuard
+                    0x0862                  _MaxHeaterISoft
+                    0x0870                  _MaxHeaterISoftCount
+                    0x0868                  _MaxHeaterP
+                    0x0873                  _MaxHeaterPGuard
+                    0x0866                  _MaxHeaterU
+                    0x0872                  _MaxHeaterUGuard
                     0x0834                  _MulVarA
                     0x0838                  _MulVarB
                     0x080e                  _PidOut
-                    0x0894                  _RCode
-                    0x0e9e                  _RcBuf
-                    0x0e1c                  _RcFifo
+                    0x0902                  _RcBuf
+                    0x0880                  _RcFifo
                     0x0828                  _TAccumulator
                     0x0822                  _TEnd
                     0x080c                  _TMeas
                     0x080a                  _TRef
-                    0x087b                  _TableDT
-                    0x0fcc                  _TableInvDV
-                    0x0f8c                  _TableT
-                    0x0f4c                  _TableV
+                    0x0861                  _TableDT
+                    0x0a30                  _TableInvDV
+                    0x09f0                  _TableT
+                    0x09b0                  _TableV
                     0x0820                  _TableVLoaded
                     0x0821                  _TdTLoaded
-                    0x100c                  _TempHistFifo
+                    0x0a70                  _TempHistFifo
                     0x083e                  _TempHistFifoDecim
                     0x083d                  _TempHistFifoDecimCnt
                     0x083c                  _TempHistFifoIndex
-                    0x0eb4                  _TxBuf
-                    0x0eca                  _TxFifo
-                    0x089a                  _UartRcMsgSem
-                    0x0874                  _Vd
+                    0x0918                  _TxBuf
+                    0x092e                  _TxFifo
+                    0x085a                  _Vd
                     0x0800                  _Vff
-                    0x0872                  _Vi
+                    0x0858                  _Vi
                     0x0804                  _ViMax
                     0x0806                  _ViMin
                     0x0808                  _ViOff
                     0x0802                  _Vout
                     0x082c                  _VoutAcc
-                    0x0870                  _Vp
-                    0x0d68                  __tn_cb_deadlock
-                    0x0d64                  __tn_cb_idle_hook
-                    0x0d66                  __tn_cb_stack_overflow
-                    0x0db4                  __tn_curr_run_task
-                    0x0d6a                  __tn_deadlocks_cnt
-                    0x0dba                  __tn_idle_task
-                    0x0db6                  __tn_next_task_to_run
-                    0x108c                  __tn_p24_int_splim
-                    0x108a                  __tn_p24_int_stack_low_addr
-                    0x0db8                  __tn_ready_to_run_bmp
-                    0x0db2                  __tn_sys_state
-                    0x1050                  __tn_sys_time_count
-                    0x0db0                  __tn_tasks_created_cnt
-                    0x0dac                  __tn_tasks_created_list
-                    0x0d6c                  __tn_tasks_ready_list
-                    0x102c                  __tn_timer_list__gen
-                    0x1030                  __tn_timer_list__tick
-                    0x0dfc                  __tn_tslice_ticks
+                    0x0856                  _Vp
                     0x0844                  _i
-                    0x08a4                  _idle_task_stack
-                    0x0916                  _interrupt_stack
-                    0x0d22                  _task_GasPid
-                    0x0bac                  _task_GasPid_stack
-                    0x0c9e                  _task_HeaterPid
-                    0x0aba                  _task_HeaterPid_stack
-                    0x0ce0                  _task_Uart1Msg
-                    0x09c8                  _task_Uart1Msg_stack
 
 External Symbols in Program Memory (by address):
 
                   0x000200                  __resetPRI
                   0x00023c                  __psv_init
-                  0x000252                  __data_init_standard
                   0x000252                  __data_init
-                  0x0002f8                  __T1Interrupt
-                  0x0003b2                  _idle_task_callback
-                  0x0003b8                  _InitOs
-                  0x0003e6                  _main
-                  0x000400                  __U1RXInterrupt
-                  0x00046e                  __U1TXInterrupt
-                  0x0004a4                  _UartStartTx
-                  0x0005b2                  _ExtractRcMessage
-                  0x000670                  _WindRcFifo
-                  0x0006a8                  __DefaultInterrupt
-                  0x0006ae                  ___divsi3
-                  0x0006cc                  ___udivsi3
-                  0x0006ec                  _memcmp
-                  0x000708                  _memmove
-                  0x00072c                  _memset
-                  0x000740                  _ProcessUart1Msg
-                  0x000fb0                  _ReportFifoRxOverflow
-                  0x000fc2                  _ReportFifoTxOverflow
-                  0x000fd4                  _ReportRcProtocolError
-                  0x000fe6                  _ReportStartUp
-                  0x001004                  _task_HeaterPid_body
-                  0x00143c                  _CalcTByV
-                  0x00155a                  _FillTableT
-                  0x0015ae                  _FillTableInvDV
-                  0x001600                  _CalcFF
-                  0x00168c                  _HardwareInit
-                  0x001a32                  _Limiter
-                  0x001b82                  _tn_task_create
-                  0x001e08                  __tn_arch_context_switch_now_nosave
-                  0x001e16                  __tn_arch_context_switch_pend
-                  0x001e1c                  __INT0Interrupt
-                  0x001e76                  _tn_arch_sr_save_int_dis
-                  0x001e84                  _tn_arch_sr_restore
-                  0x001e92                  _tn_arch_int_dis
-                  0x001e96                  _tn_arch_int_en
-                  0x001e9c                  __tn_arch_is_int_disabled
-                  0x001eae                  __tn_arch_inside_isr
-                  0x001eba                  __tn_p24_ffs_asm
-                  0x001ebe                  _tn_sys_start
-                  0x001f60                  _tn_mutex_lock
-                  0x001ff0                  __tn_timers_tick_proceed
-                  0x00207e                  _tn_task_terminate
-                  0x002108                  _you_should_add_file___tn_app_check_c___to_the_project
-                  0x00210e                  _tn_app_build_cfg_get
-                  0x00217e                  _tn_task_suspend
-                  0x002248                  __tn_timer_start
-                  0x0022aa                  _tn_mutex_delete
-                  0x00230a                  __tn_arch_stack_init
-                  0x002364                  _tn_task_resume
-                  0x0023be                  _tn_mutex_unlock
-                  0x002418                  _tn_task_change_priority
-                  0x0024c4                  _linterp
-                  0x0025f2                  __tn_task_clear_runnable
-                  0x0026c4                  _SpiConfig
-                  0x0026ca                  _SpiSend
-                  0x0026e0                  _SpiReceive
-                  0x0026f4                  _SpiWaitTransmitEnd
-                  0x002704                  __tn_task_first_wait_complete
-                  0x002744                  _tn_mutex_create
-                  0x002784                  _tn_sem_delete
-                  0x0027c2                  __tn_cry_deadlock
-                  0x002800                  __tn_timer_time_left
-                  0x002930                  __tn_task_set_waiting
-                  0x00296a                  _tn_task_sleep
-                  0x0029a4                  _tn_timer_start
-                  0x0029de                  _tn_timer_set_func
-                  0x002a18                  _LoadDac
-                  0x002a3e                  _ConfigDac
-                  0x002a50                  _tn_task_delete
-                  0x002a88                  __tn_task_clear_waiting
-                  0x002abe                  _tn_task_state_get
-                  0x002af2                  __tn_change_running_task_priority
-                  0x002b8c                  _tn_sem_create
-                  0x002bbc                  _tn_task_exit
-                  0x002bec                  _tn_timer_delete
-                  0x002c1c                  _tn_timer_time_left
-                  0x002c4c                  _tn_timer_is_active
-                  0x002cda                  _tn_sys_tslice_set
-                  0x002d08                  _tn_timer_cancel
-                  0x002d64                  tn_sem.o:__sem_signal
-                  0x002dbc                  __tn_timer_cancel
-                  0x002de4                  _SelectChannel
-                  0x002e7c                  tn_tasks.o:__task_wakeup
-                  0x002ea2                  __tn_timer_create
-                  0x002eee                  __tn_task_activate
-                  0x002f12                  __tn_timers_init
-                  0x002f5a                  __tn_mutex_unlock_all_by_task
-                  0x002fa0                  __tn_task_set_runnable
-                  0x002fc2                  __tn_wait_queue_notify_deleted
-                  0x003004                  tn_tasks.o:__task_release_wait
-                  0x003044                  _tn_timer_create
-                  0x0030a2                  _tn_tick_int_processing
-                  0x0030c0                  _tn_sys_time_get
-                  0x0030de                  __tn_task_clear_dormant
-                  0x0030fa                  __tn_change_task_priority
-                  0x003132                  __tn_arch_sys_start
-                  0x003180                  __tn_list_remove_head
-                  0x0031e4                  __tn_is_mutex_locked_by_task
-                  0x0031fc                  _tn_sys_context_get
-                  0x003244                  _tn_task_create_wname
-                  0x00325a                  __tn_list_is_empty
-                  0x003298                  tn_sem.o:__sem_wait
-                  0x0032aa                  __tn_list_remove_tail
-                  0x00331c                  __tn_task_set_dormant
-                  0x00334c                  __tn_timer_set_func
-                  0x00335c                  __tn_timer_is_active
-                  0x00338c                  __tn_mutex_on_task_wait_complete
-                  0x0033e2                  __tn_sys_state_flags_clear
-                  0x00341a                  _ReadADC8x14
-                  0x003420                  _ReadADC8x14_0_3
-                  0x003426                  _tn_arch_sched_restore
-                  0x003432                  __tn_sys_state_flags_set
-                  0x00343e                  __tn_list_add_head
-                  0x00344a                  __tn_list_add_tail
-                  0x003456                  __tn_list_remove_entry
-                  0x003462                  __tn_list_contains_entry
-                  0x00346e                  __tn_mutex_i_on_task_wait_complete
-                  0x00347a                  _tn_arch_sched_dis_save
-                  0x003482                  _tn_sem_signal
-                  0x00348a                  _tn_sem_wait_polling
-                  0x003492                  tn_tasks.o:__task_wait_timeout
-                  0x00349a                  __tn_task_set_suspended
-                  0x0034a2                  __tn_task_clear_suspended
-                  0x0034aa                  _tn_sem_isignal
-                  0x0034b0                  _tn_sem_wait
-                  0x0034b6                  _tn_sem_iwait_polling
-                  0x0034da                  _tn_task_wakeup
-                  0x0034e0                  _tn_task_iwakeup
-                  0x0034e6                  _tn_task_activate
-                  0x0034ec                  _tn_task_iactivate
-                  0x0034f2                  _tn_task_release_wait
-                  0x0034f8                  _tn_task_irelease_wait
-                  0x0034fe                  __tn_task_exit_nodelete
-                  0x00350a                  tn_sys.o:__idle_task_body
-                  0x003516                  _tn_cur_task_body_get
-                  0x00351c                  __tn_list_reset
-                  0x00352e                  _tn_mutex_lock_polling
-                  0x003538                  __tn_task_stack_end_get
-                  0x00353c                  _tn_sys_state_flags_get
-                  0x003540                  _tn_callback_deadlock_set
-                  0x003544                  _tn_callback_stack_overflow_set
-                  0x003548                  _tn_cur_task_get
+                  0x000252                  __data_init_standard
+                  0x0002c8                  __U1RXInterrupt
+                  0x000334                  __U1TXInterrupt
+                  0x00036a                  _UartStartTx
+                  0x000478                  _ExtractRcMessage
+                  0x000536                  _WindRcFifo
+                  0x00056e                  __DefaultInterrupt
+                  0x000574                  ___divsi3
+                  0x000592                  ___udivsi3
+                  0x0005b2                  _memmove
+                  0x0005d6                  _ProcessUart1Msg
+                  0x000e34                  _ReportFifoRxOverflow
+                  0x000e46                  _ReportFifoTxOverflow
+                  0x000e58                  _ReportRcProtocolError
+                  0x000e6a                  _ReportStartUp
+                  0x000e88                  _task_HeaterPid_body
+                  0x001258                  _CalcTByV
+                  0x001376                  _FillTableT
+                  0x0013ca                  _FillTableInvDV
+                  0x00141c                  _CalcFF
+                  0x0014a8                  _Limiter
+                  0x0015ea                  _HardwareInit
+                  0x0017b0                  _linterp
+                  0x001800                  _SpiConfig
+                  0x001806                  _SpiSend
+                  0x00181c                  _SpiReceive
+                  0x001830                  _SpiWaitTransmitEnd
+                  0x001840                  _ReadWriteAnalog
+                  0x00186a                  _SelectChannel
+                  0x001892                  _DacWrite
+                  0x0018b2                  _main
+                  0x0018c6                  _ReadADC
+                  0x0018da                  _task_LeakerPid_body
                   0xf80000                  __FBS.sec
                   0xf80002                  __FSS.sec
                   0xf80004                  __FGS.sec
 
 External Symbols in Program Memory (by name):
 
-                  0x001600                  _CalcFF
-                  0x00143c                  _CalcTByV
-                  0x002a3e                  _ConfigDac
-                  0x0005b2                  _ExtractRcMessage
-                  0x0015ae                  _FillTableInvDV
-                  0x00155a                  _FillTableT
-                  0x00168c                  _HardwareInit
-                  0x0003b8                  _InitOs
-                  0x001a32                  _Limiter
-                  0x002a18                  _LoadDac
-                  0x000740                  _ProcessUart1Msg
-                  0x00341a                  _ReadADC8x14
-                  0x003420                  _ReadADC8x14_0_3
-                  0x000fb0                  _ReportFifoRxOverflow
-                  0x000fc2                  _ReportFifoTxOverflow
-                  0x000fd4                  _ReportRcProtocolError
-                  0x000fe6                  _ReportStartUp
-                  0x002de4                  _SelectChannel
-                  0x0026c4                  _SpiConfig
-                  0x0026e0                  _SpiReceive
-                  0x0026ca                  _SpiSend
-                  0x0026f4                  _SpiWaitTransmitEnd
-                  0x0004a4                  _UartStartTx
-                  0x000670                  _WindRcFifo
-                  0x0006a8                  __DefaultInterrupt
+                  0x00141c                  _CalcFF
+                  0x001258                  _CalcTByV
+                  0x001892                  _DacWrite
+                  0x000478                  _ExtractRcMessage
+                  0x0013ca                  _FillTableInvDV
+                  0x001376                  _FillTableT
+                  0x0015ea                  _HardwareInit
+                  0x0014a8                  _Limiter
+                  0x0005d6                  _ProcessUart1Msg
+                  0x0018c6                  _ReadADC
+                  0x001840                  _ReadWriteAnalog
+                  0x000e34                  _ReportFifoRxOverflow
+                  0x000e46                  _ReportFifoTxOverflow
+                  0x000e58                  _ReportRcProtocolError
+                  0x000e6a                  _ReportStartUp
+                  0x00186a                  _SelectChannel
+                  0x001800                  _SpiConfig
+                  0x00181c                  _SpiReceive
+                  0x001806                  _SpiSend
+                  0x001830                  _SpiWaitTransmitEnd
+                  0x00036a                  _UartStartTx
+                  0x000536                  _WindRcFifo
+                  0x00056e                  __DefaultInterrupt
                   0xf80000                  __FBS.sec
                   0xf80004                  __FGS.sec
                   0xf80002                  __FSS.sec
-                  0x001e1c                  __INT0Interrupt
-                  0x0002f8                  __T1Interrupt
-                  0x000400                  __U1RXInterrupt
-                  0x00046e                  __U1TXInterrupt
-                  0x0006ae                  ___divsi3
-                  0x0006cc                  ___udivsi3
+                  0x0002c8                  __U1RXInterrupt
+                  0x000334                  __U1TXInterrupt
+                  0x000574                  ___divsi3
+                  0x000592                  ___udivsi3
                   0x000252                  __data_init
                   0x000252                  __data_init_standard
                   0x00023c                  __psv_init
                   0x000200                  __resetPRI
-                  0x001e08                  __tn_arch_context_switch_now_nosave
-                  0x001e16                  __tn_arch_context_switch_pend
-                  0x001eae                  __tn_arch_inside_isr
-                  0x001e9c                  __tn_arch_is_int_disabled
-                  0x00230a                  __tn_arch_stack_init
-                  0x003132                  __tn_arch_sys_start
-                  0x002af2                  __tn_change_running_task_priority
-                  0x0030fa                  __tn_change_task_priority
-                  0x0027c2                  __tn_cry_deadlock
-                  0x0031e4                  __tn_is_mutex_locked_by_task
-                  0x00343e                  __tn_list_add_head
-                  0x00344a                  __tn_list_add_tail
-                  0x003462                  __tn_list_contains_entry
-                  0x00325a                  __tn_list_is_empty
-                  0x003456                  __tn_list_remove_entry
-                  0x003180                  __tn_list_remove_head
-                  0x0032aa                  __tn_list_remove_tail
-                  0x00351c                  __tn_list_reset
-                  0x00346e                  __tn_mutex_i_on_task_wait_complete
-                  0x00338c                  __tn_mutex_on_task_wait_complete
-                  0x002f5a                  __tn_mutex_unlock_all_by_task
-                  0x001eba                  __tn_p24_ffs_asm
-                  0x0033e2                  __tn_sys_state_flags_clear
-                  0x003432                  __tn_sys_state_flags_set
-                  0x002eee                  __tn_task_activate
-                  0x0030de                  __tn_task_clear_dormant
-                  0x0025f2                  __tn_task_clear_runnable
-                  0x0034a2                  __tn_task_clear_suspended
-                  0x002a88                  __tn_task_clear_waiting
-                  0x0034fe                  __tn_task_exit_nodelete
-                  0x002704                  __tn_task_first_wait_complete
-                  0x00331c                  __tn_task_set_dormant
-                  0x002fa0                  __tn_task_set_runnable
-                  0x00349a                  __tn_task_set_suspended
-                  0x002930                  __tn_task_set_waiting
-                  0x003538                  __tn_task_stack_end_get
-                  0x002dbc                  __tn_timer_cancel
-                  0x002ea2                  __tn_timer_create
-                  0x00335c                  __tn_timer_is_active
-                  0x00334c                  __tn_timer_set_func
-                  0x002248                  __tn_timer_start
-                  0x002800                  __tn_timer_time_left
-                  0x002f12                  __tn_timers_init
-                  0x001ff0                  __tn_timers_tick_proceed
-                  0x002fc2                  __tn_wait_queue_notify_deleted
-                  0x0003b2                  _idle_task_callback
-                  0x0024c4                  _linterp
-                  0x0003e6                  _main
-                  0x0006ec                  _memcmp
-                  0x000708                  _memmove
-                  0x00072c                  _memset
-                  0x001004                  _task_HeaterPid_body
-                  0x00210e                  _tn_app_build_cfg_get
-                  0x001e92                  _tn_arch_int_dis
-                  0x001e96                  _tn_arch_int_en
-                  0x00347a                  _tn_arch_sched_dis_save
-                  0x003426                  _tn_arch_sched_restore
-                  0x001e84                  _tn_arch_sr_restore
-                  0x001e76                  _tn_arch_sr_save_int_dis
-                  0x003540                  _tn_callback_deadlock_set
-                  0x003544                  _tn_callback_stack_overflow_set
-                  0x003516                  _tn_cur_task_body_get
-                  0x003548                  _tn_cur_task_get
-                  0x002744                  _tn_mutex_create
-                  0x0022aa                  _tn_mutex_delete
-                  0x001f60                  _tn_mutex_lock
-                  0x00352e                  _tn_mutex_lock_polling
-                  0x0023be                  _tn_mutex_unlock
-                  0x002b8c                  _tn_sem_create
-                  0x002784                  _tn_sem_delete
-                  0x0034aa                  _tn_sem_isignal
-                  0x0034b6                  _tn_sem_iwait_polling
-                  0x003482                  _tn_sem_signal
-                  0x0034b0                  _tn_sem_wait
-                  0x00348a                  _tn_sem_wait_polling
-                  0x0031fc                  _tn_sys_context_get
-                  0x001ebe                  _tn_sys_start
-                  0x00353c                  _tn_sys_state_flags_get
-                  0x0030c0                  _tn_sys_time_get
-                  0x002cda                  _tn_sys_tslice_set
-                  0x0034e6                  _tn_task_activate
-                  0x002418                  _tn_task_change_priority
-                  0x001b82                  _tn_task_create
-                  0x003244                  _tn_task_create_wname
-                  0x002a50                  _tn_task_delete
-                  0x002bbc                  _tn_task_exit
-                  0x0034ec                  _tn_task_iactivate
-                  0x0034f8                  _tn_task_irelease_wait
-                  0x0034e0                  _tn_task_iwakeup
-                  0x0034f2                  _tn_task_release_wait
-                  0x002364                  _tn_task_resume
-                  0x00296a                  _tn_task_sleep
-                  0x002abe                  _tn_task_state_get
-                  0x00217e                  _tn_task_suspend
-                  0x00207e                  _tn_task_terminate
-                  0x0034da                  _tn_task_wakeup
-                  0x0030a2                  _tn_tick_int_processing
-                  0x002d08                  _tn_timer_cancel
-                  0x003044                  _tn_timer_create
-                  0x002bec                  _tn_timer_delete
-                  0x002c4c                  _tn_timer_is_active
-                  0x0029de                  _tn_timer_set_func
-                  0x0029a4                  _tn_timer_start
-                  0x002c1c                  _tn_timer_time_left
-                  0x002108                  _you_should_add_file___tn_app_check_c___to_the_project
-                  0x002d64                  tn_sem.o:__sem_signal
-                  0x003298                  tn_sem.o:__sem_wait
-                  0x00350a                  tn_sys.o:__idle_task_body
-                  0x003004                  tn_tasks.o:__task_release_wait
-                  0x003492                  tn_tasks.o:__task_wait_timeout
-                  0x002e7c                  tn_tasks.o:__task_wakeup
+                  0x0017b0                  _linterp
+                  0x0018b2                  _main
+                  0x0005b2                  _memmove
+                  0x000e88                  _task_HeaterPid_body
+                  0x0018da                  _task_LeakerPid_body
 
 Memory Configuration
 
@@ -854,15 +391,15 @@ LOAD build/default/production/Main.o
 LOAD build/default/production/PowerLimiter.o
 LOAD build/default/production/ProcessUartMsg.o
 LOAD build/default/production/UART.o
-LOAD build/default/production/ADC8x14.o
 LOAD build/default/production/DAC.o
 LOAD build/default/production/Spi.o
 LOAD build/default/production/HardwareInit.o
 LOAD build/default/production/Math.o
-LOAD build/default/production/TNeo/src/tn_app_check.o
 LOAD build/default/production/HeaterPID.o
 LOAD build/default/production/AddressBus.o
-LOAD TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a
+LOAD build/default/production/LeakerPid.o
+LOAD build/default/production/ADC.o
+LOAD build/default/production/AnalogIo.o
                     0x0001                  __MPLAB_BUILD = 0x1
 LOAD p33FJ64MC804
 LOAD c:/program files (x86)/microchip/xc16/v1.30/bin/bin/../../lib\libfx-elf.a
@@ -895,7 +432,7 @@ LOAD c:/program files (x86)/microchip/xc16/v1.30/bin/bin/../../lib\libfx-elf.a
                   0x000002          0x2 SHORT 0x0 ((ABSOLUTE (__reset) >> 0x10) & 0x7f)
                   0x000003          0x2 SHORT 0x0
 
-.text             0x000200        0x53a
+.text             0x000200        0x3d6
  *(.init)
  .init            0x000200         0x4c c:/program files (x86)/microchip/xc16/v1.30/bin/bin/../../lib\liblega-pic30-elf.a(crt0_standard.o)
                   0x000200                  __resetPRI
@@ -907,37 +444,28 @@ LOAD c:/program files (x86)/microchip/xc16/v1.30/bin/bin/../../lib\libfx-elf.a
  *(.user_init)
  *(.handle)
  *(.isr*)
- .isr.text        0x0002f8        0x108 build/default/production/Main.o
-                  0x0002f8                  __T1Interrupt
-                  0x0003b2                  _idle_task_callback
-                  0x0003b8                  _InitOs
-                  0x0003e6                  _main
- .isr.text        0x000400        0x2a8 build/default/production/UART.o
-                  0x000400                  __U1RXInterrupt
-                  0x00046e                  __U1TXInterrupt
-                  0x0004a4                  _UartStartTx
-                  0x0005b2                  _ExtractRcMessage
-                  0x000670                  _WindRcFifo
- .isr             0x0006a8          0x4 default_isr
-                  0x0006a8                  __DefaultInterrupt
+ .isr.text        0x0002c8        0x2a6 build/default/production/UART.o
+                  0x0002c8                  __U1RXInterrupt
+                  0x000334                  __U1TXInterrupt
+                  0x00036a                  _UartStartTx
+                  0x000478                  _ExtractRcMessage
+                  0x000536                  _WindRcFifo
+ .isr             0x00056e          0x4 default_isr
+                  0x00056e                  __DefaultInterrupt
  *(.libc)
  *(.libm)
  *(.libdsp)
  *(.lib*)
  .libpic30_crt_start_mode
-                  0x0006ac          0x2 c:/program files (x86)/microchip/xc16/v1.30/bin/bin/../../lib\liblega-pic30-elf.a(crt_start_mode_normal.Leo)
-                  0x0006ac                  __crt_start_mode
-                  0x0006ac                  __crt_start_mode_normal
- .libm.divsi3     0x0006ae         0x1e c:/program files (x86)/microchip/xc16/v1.30/bin/bin/../../lib\libm-elf.a(divsi3.eo)
-                  0x0006ae                  ___divsi3
- .libm.udivsi3    0x0006cc         0x20 c:/program files (x86)/microchip/xc16/v1.30/bin/bin/../../lib\libm-elf.a(udivsi3.eo)
-                  0x0006cc                  ___udivsi3
- .libc.memcmp     0x0006ec         0x1c c:/program files (x86)/microchip/xc16/v1.30/bin/bin/../../lib\liblega-c-elf.a(memcmp.XX_eo)
-                  0x0006ec                  _memcmp
- .libc.memmove    0x000708         0x24 c:/program files (x86)/microchip/xc16/v1.30/bin/bin/../../lib\liblega-c-elf.a(memmove.XX_eo)
-                  0x000708                  _memmove
- .libc.memset     0x00072c          0xe c:/program files (x86)/microchip/xc16/v1.30/bin/bin/../../lib\liblega-c-elf.a(memset.XX_eo)
-                  0x00072c                  _memset
+                  0x000572          0x2 c:/program files (x86)/microchip/xc16/v1.30/bin/bin/../../lib\liblega-pic30-elf.a(crt_start_mode_normal.Leo)
+                  0x000572                  __crt_start_mode
+                  0x000572                  __crt_start_mode_normal
+ .libm.divsi3     0x000574         0x1e c:/program files (x86)/microchip/xc16/v1.30/bin/bin/../../lib\libm-elf.a(divsi3.eo)
+                  0x000574                  ___divsi3
+ .libm.udivsi3    0x000592         0x20 c:/program files (x86)/microchip/xc16/v1.30/bin/bin/../../lib\libm-elf.a(udivsi3.eo)
+                  0x000592                  ___udivsi3
+ .libc.memmove    0x0005b2         0x24 c:/program files (x86)/microchip/xc16/v1.30/bin/bin/../../lib\liblega-c-elf.a(memmove.XX_eo)
+                  0x0005b2                  _memmove
 
 usercode
  *(usercode)
@@ -987,120 +515,84 @@ __FUID3
 .comment
  *(.comment)
 
-.debug_info       0x000000       0xe2a0
+.debug_info       0x000000       0x4e38
  *(.debug_info)
- .debug_info      0x000000        0xd65 build/default/production/Main.o
- .debug_info      0x000d65        0x412 build/default/production/PowerLimiter.o
- .debug_info      0x001177        0xb79 build/default/production/ProcessUartMsg.o
- .debug_info      0x001cf0        0xaf5 build/default/production/UART.o
- .debug_info      0x0027e5        0x1f0 build/default/production/ADC8x14.o
- .debug_info      0x0029d5        0x191 build/default/production/DAC.o
- .debug_info      0x002b66        0x25d build/default/production/Spi.o
- .debug_info      0x002dc3       0x1e2d build/default/production/HardwareInit.o
- .debug_info      0x004bf0        0x187 build/default/production/Math.o
- .debug_info      0x004d77        0x3a7 build/default/production/TNeo/src/tn_app_check.o
- .debug_info      0x00511e        0x901 build/default/production/HeaterPID.o
- .debug_info      0x005a1f        0x33c build/default/production/AddressBus.o
- .debug_info      0x005d5b         0xe4 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_arch_pic24.o)
- .debug_info      0x005e3f       0x1208 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_arch_pic24_c.o)
- .debug_info      0x007047        0xf35 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sem.o)
- .debug_info      0x007f7c       0x1cdf TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
- .debug_info      0x009c5b       0x1572 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sys.o)
- .debug_info      0x00b1cd        0x33f TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_list.o)
- .debug_info      0x00b50c        0xdbf TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_timer.o)
- .debug_info      0x00c2cb        0xb85 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_timer_static.o)
- .debug_info      0x00ce50       0x1450 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_mutex.o)
+ .debug_info      0x000000        0x128 build/default/production/Main.o
+ .debug_info      0x000128        0x40a build/default/production/PowerLimiter.o
+ .debug_info      0x000532        0x9c0 build/default/production/ProcessUartMsg.o
+ .debug_info      0x000ef2        0x8a3 build/default/production/UART.o
+ .debug_info      0x001795        0x2ed build/default/production/DAC.o
+ .debug_info      0x001a82        0x255 build/default/production/Spi.o
+ .debug_info      0x001cd7       0x1cc6 build/default/production/HardwareInit.o
+ .debug_info      0x00399d        0x17f build/default/production/Math.o
+ .debug_info      0x003b1c        0x8bc build/default/production/HeaterPID.o
+ .debug_info      0x0043d8        0x328 build/default/production/AddressBus.o
+ .debug_info      0x004700         0xc7 build/default/production/LeakerPid.o
+ .debug_info      0x0047c7        0x351 build/default/production/ADC.o
+ .debug_info      0x004b18        0x320 build/default/production/AnalogIo.o
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev     0x000000       0x1e55
+.debug_abbrev     0x000000        0xa3d
  *(.debug_abbrev)
- .debug_abbrev    0x000000        0x1d5 build/default/production/Main.o
- .debug_abbrev    0x0001d5         0xde build/default/production/PowerLimiter.o
- .debug_abbrev    0x0002b3        0x14f build/default/production/ProcessUartMsg.o
- .debug_abbrev    0x000402        0x1ad build/default/production/UART.o
- .debug_abbrev    0x0005af         0x73 build/default/production/ADC8x14.o
- .debug_abbrev    0x000622         0x99 build/default/production/DAC.o
- .debug_abbrev    0x0006bb         0xd4 build/default/production/Spi.o
- .debug_abbrev    0x00078f        0x106 build/default/production/HardwareInit.o
- .debug_abbrev    0x000895         0x61 build/default/production/Math.o
- .debug_abbrev    0x0008f6         0xd1 build/default/production/TNeo/src/tn_app_check.o
- .debug_abbrev    0x0009c7        0x12c build/default/production/HeaterPID.o
- .debug_abbrev    0x000af3         0xe6 build/default/production/AddressBus.o
- .debug_abbrev    0x000bd9         0x14 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_arch_pic24.o)
- .debug_abbrev    0x000bed        0x20e TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_arch_pic24_c.o)
- .debug_abbrev    0x000dfb        0x27b TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sem.o)
- .debug_abbrev    0x001076        0x2fd TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
- .debug_abbrev    0x001373        0x334 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sys.o)
- .debug_abbrev    0x0016a7         0xc7 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_list.o)
- .debug_abbrev    0x00176e        0x208 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_timer.o)
- .debug_abbrev    0x001976        0x21c TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_timer_static.o)
- .debug_abbrev    0x001b92        0x2c3 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_mutex.o)
+ .debug_abbrev    0x000000         0x4e build/default/production/Main.o
+ .debug_abbrev    0x00004e         0xde build/default/production/PowerLimiter.o
+ .debug_abbrev    0x00012c        0x103 build/default/production/ProcessUartMsg.o
+ .debug_abbrev    0x00022f        0x18e build/default/production/UART.o
+ .debug_abbrev    0x0003bd         0xcd build/default/production/DAC.o
+ .debug_abbrev    0x00048a         0xd4 build/default/production/Spi.o
+ .debug_abbrev    0x00055e         0xb8 build/default/production/HardwareInit.o
+ .debug_abbrev    0x000616         0x61 build/default/production/Math.o
+ .debug_abbrev    0x000677        0x120 build/default/production/HeaterPID.o
+ .debug_abbrev    0x000797         0xe6 build/default/production/AddressBus.o
+ .debug_abbrev    0x00087d         0x29 build/default/production/LeakerPid.o
+ .debug_abbrev    0x0008a6         0xd9 build/default/production/ADC.o
+ .debug_abbrev    0x00097f         0xbe build/default/production/AnalogIo.o
 
-.debug_line       0x000000       0x22ce
+.debug_line       0x000000        0x734
  *(.debug_line)
- .debug_line      0x000000        0x172 build/default/production/Main.o
- .debug_line      0x000172         0x9c build/default/production/PowerLimiter.o
- .debug_line      0x00020e        0x221 build/default/production/ProcessUartMsg.o
- .debug_line      0x00042f        0x14a build/default/production/UART.o
- .debug_line      0x000579         0x48 build/default/production/ADC8x14.o
- .debug_line      0x0005c1         0x47 build/default/production/DAC.o
- .debug_line      0x000608         0x5a build/default/production/Spi.o
- .debug_line      0x000662         0xca build/default/production/HardwareInit.o
- .debug_line      0x00072c         0x49 build/default/production/Math.o
- .debug_line      0x000775         0x9b build/default/production/TNeo/src/tn_app_check.o
- .debug_line      0x000810        0x12a build/default/production/HeaterPID.o
- .debug_line      0x00093a         0x5b build/default/production/AddressBus.o
- .debug_line      0x000995         0xbe TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_arch_pic24.o)
- .debug_line      0x000a53        0x1f3 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_arch_pic24_c.o)
- .debug_line      0x000c46        0x2ed TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sem.o)
- .debug_line      0x000f33        0x6b4 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
- .debug_line      0x0015e7        0x371 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sys.o)
- .debug_line      0x001958         0xe4 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_list.o)
- .debug_line      0x001a3c        0x256 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_timer.o)
- .debug_line      0x001c92        0x1ae TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_timer_static.o)
- .debug_line      0x001e40        0x48e TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_mutex.o)
+ .debug_line      0x000000         0x42 build/default/production/Main.o
+ .debug_line      0x000042         0x98 build/default/production/PowerLimiter.o
+ .debug_line      0x0000da        0x1a9 build/default/production/ProcessUartMsg.o
+ .debug_line      0x000283         0xe3 build/default/production/UART.o
+ .debug_line      0x000366         0x54 build/default/production/DAC.o
+ .debug_line      0x0003ba         0x5a build/default/production/Spi.o
+ .debug_line      0x000414         0x85 build/default/production/HardwareInit.o
+ .debug_line      0x000499         0x49 build/default/production/Math.o
+ .debug_line      0x0004e2        0x10f build/default/production/HeaterPID.o
+ .debug_line      0x0005f1         0x51 build/default/production/AddressBus.o
+ .debug_line      0x000642         0x37 build/default/production/LeakerPid.o
+ .debug_line      0x000679         0x52 build/default/production/ADC.o
+ .debug_line      0x0006cb         0x69 build/default/production/AnalogIo.o
 
-.debug_frame      0x000000       0x144a
+.debug_frame      0x000000        0x446
  *(.debug_frame)
- .debug_frame     0x000000         0xac build/default/production/Main.o
- .debug_frame     0x0000ac         0x30 build/default/production/PowerLimiter.o
- .debug_frame     0x0000dc         0xa0 build/default/production/ProcessUartMsg.o
- .debug_frame     0x00017c         0xcc build/default/production/UART.o
- .debug_frame     0x000248         0x4c build/default/production/ADC8x14.o
- .debug_frame     0x000294         0x4c build/default/production/DAC.o
- .debug_frame     0x0002e0         0x84 build/default/production/Spi.o
- .debug_frame     0x000364         0x30 build/default/production/HardwareInit.o
- .debug_frame     0x000394         0x30 build/default/production/Math.o
- .debug_frame     0x0003c4         0x4c build/default/production/TNeo/src/tn_app_check.o
- .debug_frame     0x000410         0xa6 build/default/production/HeaterPID.o
- .debug_frame     0x0004b6         0x30 build/default/production/AddressBus.o
- .debug_frame     0x0004e6         0x54 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_arch_pic24_c.o)
- .debug_frame     0x00053a        0x1bc TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sem.o)
- .debug_frame     0x0006f6        0x55c TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
- .debug_frame     0x000c52        0x22a TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sys.o)
- .debug_frame     0x000e7c         0x94 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_list.o)
- .debug_frame     0x000f10        0x182 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_timer.o)
- .debug_frame     0x001092         0xa6 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_timer_static.o)
- .debug_frame     0x001138        0x312 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_mutex.o)
+ .debug_frame     0x000000         0x30 build/default/production/Main.o
+ .debug_frame     0x000030         0x30 build/default/production/PowerLimiter.o
+ .debug_frame     0x000060         0xa0 build/default/production/ProcessUartMsg.o
+ .debug_frame     0x000100         0xcc build/default/production/UART.o
+ .debug_frame     0x0001cc         0x30 build/default/production/DAC.o
+ .debug_frame     0x0001fc         0x84 build/default/production/Spi.o
+ .debug_frame     0x000280         0x30 build/default/production/HardwareInit.o
+ .debug_frame     0x0002b0         0x30 build/default/production/Math.o
+ .debug_frame     0x0002e0         0xa6 build/default/production/HeaterPID.o
+ .debug_frame     0x000386         0x30 build/default/production/AddressBus.o
+ .debug_frame     0x0003b6         0x30 build/default/production/LeakerPid.o
+ .debug_frame     0x0003e6         0x30 build/default/production/ADC.o
+ .debug_frame     0x000416         0x30 build/default/production/AnalogIo.o
 
-.debug_str        0x000000        0xa00
+.debug_str        0x000000        0x41c
  *(.debug_str)
- .debug_str       0x000000         0x86 build/default/production/Main.o
- .debug_str       0x000086         0xb7 build/default/production/PowerLimiter.o
- .debug_str       0x00013d        0x12c build/default/production/ProcessUartMsg.o
- .debug_str       0x000269         0x3b build/default/production/UART.o
- .debug_str       0x0002a4          0xd build/default/production/Spi.o
- .debug_str       0x0002b1         0xb6 build/default/production/HardwareInit.o
- .debug_str       0x000367        0x128 build/default/production/HeaterPID.o
- .debug_str       0x00048f          0x9 build/default/production/AddressBus.o
- .debug_str       0x000498         0xa8 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_arch_pic24_c.o)
- .debug_str       0x000540         0x6b TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sem.o)
- .debug_str       0x0005ab        0x160 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
- .debug_str       0x00070b        0x152 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sys.o)
- .debug_str       0x00085d          0xb TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_list.o)
- .debug_str       0x000868         0x64 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_timer.o)
- .debug_str       0x0008cc         0x83 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_timer_static.o)
- .debug_str       0x00094f         0xb1 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_mutex.o)
+ .debug_str       0x000000          0xc build/default/production/Main.o
+ .debug_str       0x00000c         0xb3 build/default/production/PowerLimiter.o
+ .debug_str       0x0000bf        0x10f build/default/production/ProcessUartMsg.o
+ .debug_str       0x0001ce         0x3a build/default/production/UART.o
+ .debug_str       0x000208          0x9 build/default/production/DAC.o
+ .debug_str       0x000211          0xd build/default/production/Spi.o
+ .debug_str       0x00021e         0xc7 build/default/production/HardwareInit.o
+ .debug_str       0x0002e5        0x110 build/default/production/HeaterPID.o
+ .debug_str       0x0003f5          0x9 build/default/production/AddressBus.o
+ .debug_str       0x0003fe         0x15 build/default/production/ADC.o
+ .debug_str       0x000413          0x9 build/default/production/AnalogIo.o
 
 .debug_loc
  *(.debug_loc)
@@ -1109,53 +601,39 @@ __FUID3
  *(.debug_macinfo)
 
 .debug_pubnames
-                  0x000000       0x11fa
+                  0x000000        0x672
  *(.debug_pubnames)
  .debug_pubnames
-                  0x000000        0x103 build/default/production/Main.o
+                  0x000000         0x1b build/default/production/Main.o
  .debug_pubnames
-                  0x000103         0xf9 build/default/production/PowerLimiter.o
+                  0x00001b         0xf9 build/default/production/PowerLimiter.o
  .debug_pubnames
-                  0x0001fc         0x8f build/default/production/ProcessUartMsg.o
+                  0x000114         0x8f build/default/production/ProcessUartMsg.o
  .debug_pubnames
-                  0x00028b         0x95 build/default/production/UART.o
+                  0x0001a3         0x9b build/default/production/UART.o
  .debug_pubnames
-                  0x000320         0x88 build/default/production/ADC8x14.o
+                  0x00023e         0x2b build/default/production/DAC.o
  .debug_pubnames
-                  0x0003a8         0x38 build/default/production/DAC.o
+                  0x000269         0x52 build/default/production/Spi.o
  .debug_pubnames
-                  0x0003e0         0x52 build/default/production/Spi.o
+                  0x0002bb         0x23 build/default/production/HardwareInit.o
  .debug_pubnames
-                  0x000432         0x23 build/default/production/HardwareInit.o
+                  0x0002de         0x1e build/default/production/Math.o
  .debug_pubnames
-                  0x000455         0x1e build/default/production/Math.o
+                  0x0002fc        0x2a2 build/default/production/HeaterPID.o
  .debug_pubnames
-                  0x000473         0x65 build/default/production/TNeo/src/tn_app_check.o
+                  0x00059e         0x24 build/default/production/AddressBus.o
  .debug_pubnames
-                  0x0004d8        0x2a2 build/default/production/HeaterPID.o
+                  0x0005c2         0x2a build/default/production/LeakerPid.o
  .debug_pubnames
-                  0x00077a         0x24 build/default/production/AddressBus.o
+                  0x0005ec         0x60 build/default/production/ADC.o
  .debug_pubnames
-                  0x00079e         0xab TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_arch_pic24_c.o)
- .debug_pubnames
-                  0x000849         0x9c TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sem.o)
- .debug_pubnames
-                  0x0008e5        0x30d TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
- .debug_pubnames
-                  0x000bf2        0x2a0 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sys.o)
- .debug_pubnames
-                  0x000e92         0xcf TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_list.o)
- .debug_pubnames
-                  0x000f61         0xe9 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_timer.o)
- .debug_pubnames
-                  0x00104a         0xcb TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_timer_static.o)
- .debug_pubnames
-                  0x001115         0xe5 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_mutex.o)
+                  0x00064c         0x26 build/default/production/AnalogIo.o
 
 .debug_ranges
  *(.debug_ranges)
 
-.debug_aranges    0x000000        0x6f8
+.debug_aranges    0x000000        0x138
  *(.debug_aranges)
  .debug_aranges
                   0x000000         0x18 build/default/production/Main.o
@@ -1166,39 +644,23 @@ __FUID3
  .debug_aranges
                   0x000048         0x18 build/default/production/UART.o
  .debug_aranges
-                  0x000060         0x18 build/default/production/ADC8x14.o
+                  0x000060         0x18 build/default/production/DAC.o
  .debug_aranges
-                  0x000078         0x18 build/default/production/DAC.o
+                  0x000078         0x18 build/default/production/Spi.o
  .debug_aranges
-                  0x000090         0x18 build/default/production/Spi.o
+                  0x000090         0x18 build/default/production/HardwareInit.o
  .debug_aranges
-                  0x0000a8         0x18 build/default/production/HardwareInit.o
+                  0x0000a8         0x18 build/default/production/Math.o
  .debug_aranges
-                  0x0000c0         0x18 build/default/production/Math.o
+                  0x0000c0         0x18 build/default/production/HeaterPID.o
  .debug_aranges
-                  0x0000d8         0x18 build/default/production/TNeo/src/tn_app_check.o
+                  0x0000d8         0x18 build/default/production/AddressBus.o
  .debug_aranges
-                  0x0000f0         0x18 build/default/production/HeaterPID.o
+                  0x0000f0         0x18 build/default/production/LeakerPid.o
  .debug_aranges
-                  0x000108         0x18 build/default/production/AddressBus.o
+                  0x000108         0x18 build/default/production/ADC.o
  .debug_aranges
-                  0x000120         0x18 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_arch_pic24.o)
- .debug_aranges
-                  0x000138         0x38 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_arch_pic24_c.o)
- .debug_aranges
-                  0x000170         0xb0 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sem.o)
- .debug_aranges
-                  0x000220        0x1d8 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
- .debug_aranges
-                  0x0003f8         0xd8 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sys.o)
- .debug_aranges
-                  0x0004d0         0x58 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_list.o)
- .debug_aranges
-                  0x000528         0x80 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_timer.o)
- .debug_aranges
-                  0x0005a8         0x40 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_timer_static.o)
- .debug_aranges
-                  0x0005e8        0x110 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_mutex.o)
+                  0x000120         0x18 build/default/production/AnalogIo.o
                     0x0000                  WREG0 = 0x0
                     0x0000                  _WREG0 = 0x0
                     0x0002                  WREG1 = 0x2
@@ -2315,111 +1777,76 @@ OUTPUT(dist/default/production/dsPicProg.production.elf elf32-pic30)
 LOAD FGS
 LOAD FSS
 LOAD FBS
-LOAD jump_table
 LOAD default_isr
 LOAD data_init
 
 .debug_pubtypes
-                  0x0006f8        0xfe6
+                  0x000138        0x545
  .debug_pubtypes
-                  0x0006f8        0x170 build/default/production/Main.o
+                  0x000138         0x12 build/default/production/Main.o
  .debug_pubtypes
-                  0x000868         0x3e build/default/production/PowerLimiter.o
+                  0x00014a         0x3e build/default/production/PowerLimiter.o
  .debug_pubtypes
-                  0x0008a6         0xa6 build/default/production/ProcessUartMsg.o
+                  0x000188         0x64 build/default/production/ProcessUartMsg.o
  .debug_pubtypes
-                  0x00094c         0xd8 build/default/production/UART.o
+                  0x0001ec         0x98 build/default/production/UART.o
  .debug_pubtypes
-                  0x000a24         0x1b build/default/production/ADC8x14.o
+                  0x000284         0x41 build/default/production/DAC.o
  .debug_pubtypes
-                  0x000a3f         0x24 build/default/production/DAC.o
+                  0x0002c5         0x40 build/default/production/Spi.o
  .debug_pubtypes
-                  0x000a63         0x40 build/default/production/Spi.o
+                  0x000305        0x254 build/default/production/HardwareInit.o
  .debug_pubtypes
-                  0x000aa3        0x22f build/default/production/HardwareInit.o
+                  0x000559         0x1b build/default/production/Math.o
  .debug_pubtypes
-                  0x000cd2         0x1b build/default/production/Math.o
+                  0x000574         0x56 build/default/production/HeaterPID.o
  .debug_pubtypes
-                  0x000ced         0x30 build/default/production/TNeo/src/tn_app_check.o
+                  0x0005ca         0x3d build/default/production/AddressBus.o
  .debug_pubtypes
-                  0x000d1d         0x56 build/default/production/HeaterPID.o
+                  0x000607         0x3e build/default/production/ADC.o
  .debug_pubtypes
-                  0x000d73         0x46 build/default/production/AddressBus.o
- .debug_pubtypes
-                  0x000db9        0x17f TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_arch_pic24_c.o)
- .debug_pubtypes
-                  0x000f38        0x121 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sem.o)
- .debug_pubtypes
-                  0x001059        0x181 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
- .debug_pubtypes
-                  0x0011da        0x19c TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sys.o)
- .debug_pubtypes
-                  0x001376         0x22 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_list.o)
- .debug_pubtypes
-                  0x001398        0x107 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_timer.o)
- .debug_pubtypes
-                  0x00149f        0x107 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_timer_static.o)
- .debug_pubtypes
-                  0x0015a6        0x138 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_mutex.o)
+                  0x000645         0x38 build/default/production/AnalogIo.o
 
 __c30_signature
-                  0x0016de         0xa2
+                  0x00067d         0x6c
  __c30_signature
-                  0x0016de          0x6 build/default/production/Main.o
+                  0x00067d          0x6 build/default/production/Main.o
  __c30_signature
-                  0x0016e4          0x6 build/default/production/PowerLimiter.o
+                  0x000683          0x6 build/default/production/PowerLimiter.o
  __c30_signature
-                  0x0016ea          0x6 build/default/production/ProcessUartMsg.o
+                  0x000689          0x6 build/default/production/ProcessUartMsg.o
  __c30_signature
-                  0x0016f0          0x6 build/default/production/UART.o
+                  0x00068f          0x6 build/default/production/UART.o
  __c30_signature
-                  0x0016f6          0x6 build/default/production/ADC8x14.o
+                  0x000695          0x6 build/default/production/DAC.o
  __c30_signature
-                  0x0016fc          0x6 build/default/production/DAC.o
+                  0x00069b          0x6 build/default/production/Spi.o
  __c30_signature
-                  0x001702          0x6 build/default/production/Spi.o
+                  0x0006a1          0x6 build/default/production/HardwareInit.o
  __c30_signature
-                  0x001708          0x6 build/default/production/HardwareInit.o
+                  0x0006a7          0x6 build/default/production/Math.o
  __c30_signature
-                  0x00170e          0x6 build/default/production/Math.o
+                  0x0006ad          0x6 build/default/production/HeaterPID.o
  __c30_signature
-                  0x001714          0x6 build/default/production/TNeo/src/tn_app_check.o
+                  0x0006b3          0x6 build/default/production/AddressBus.o
  __c30_signature
-                  0x00171a          0x6 build/default/production/HeaterPID.o
+                  0x0006b9          0x6 build/default/production/LeakerPid.o
  __c30_signature
-                  0x001720          0x6 build/default/production/AddressBus.o
+                  0x0006bf          0x6 build/default/production/ADC.o
  __c30_signature
-                  0x001726          0x6 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_arch_pic24_c.o)
+                  0x0006c5          0x6 build/default/production/AnalogIo.o
  __c30_signature
-                  0x00172c          0x6 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sem.o)
+                  0x0006cb          0x6 c:/program files (x86)/microchip/xc16/v1.30/bin/bin/../../lib\liblega-pic30-elf.a(crt0_standard.o)
  __c30_signature
-                  0x001732          0x6 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
+                  0x0006d1          0x6 c:/program files (x86)/microchip/xc16/v1.30/bin/bin/../../lib\liblega-pic30-elf.a(data_init_standard.o)
  __c30_signature
-                  0x001738          0x6 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sys.o)
+                  0x0006d7          0x6 c:/program files (x86)/microchip/xc16/v1.30/bin/bin/../../lib\libm-elf.a(divsi3.eo)
  __c30_signature
-                  0x00173e          0x6 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_list.o)
+                  0x0006dd          0x6 c:/program files (x86)/microchip/xc16/v1.30/bin/bin/../../lib\libm-elf.a(udivsi3.eo)
  __c30_signature
-                  0x001744          0x6 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_timer.o)
- __c30_signature
-                  0x00174a          0x6 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_timer_static.o)
- __c30_signature
-                  0x001750          0x6 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_mutex.o)
- __c30_signature
-                  0x001756          0x6 c:/program files (x86)/microchip/xc16/v1.30/bin/bin/../../lib\liblega-pic30-elf.a(crt0_standard.o)
- __c30_signature
-                  0x00175c          0x6 c:/program files (x86)/microchip/xc16/v1.30/bin/bin/../../lib\liblega-pic30-elf.a(data_init_standard.o)
- __c30_signature
-                  0x001762          0x6 c:/program files (x86)/microchip/xc16/v1.30/bin/bin/../../lib\libm-elf.a(divsi3.eo)
- __c30_signature
-                  0x001768          0x6 c:/program files (x86)/microchip/xc16/v1.30/bin/bin/../../lib\libm-elf.a(udivsi3.eo)
- __c30_signature
-                  0x00176e          0x6 c:/program files (x86)/microchip/xc16/v1.30/bin/bin/../../lib\liblega-c-elf.a(memcmp.XX_eo)
- __c30_signature
-                  0x001774          0x6 c:/program files (x86)/microchip/xc16/v1.30/bin/bin/../../lib\liblega-c-elf.a(memmove.XX_eo)
- __c30_signature
-                  0x00177a          0x6 c:/program files (x86)/microchip/xc16/v1.30/bin/bin/../../lib\liblega-c-elf.a(memset.XX_eo)
+                  0x0006e3          0x6 c:/program files (x86)/microchip/xc16/v1.30/bin/bin/../../lib\liblega-c-elf.a(memmove.XX_eo)
 
-.nbss               0x0800         0x68
+.nbss               0x0800         0x4e
  .nbss              0x0800         0x4e build/default/production/HeaterPID.o
                     0x0800                  _Vff
                     0x0802                  _Vout
@@ -2451,106 +1878,68 @@ __c30_signature
                     0x0846                  _DacVal
                     0x0848                  _AdcAverageCnt
                     0x084a                  _DacData0Presave
- .nbss              0x084e         0x1a build/default/production/ADC8x14.o
-                    0x0850                  _ADC8x14DataTemp0
-                    0x0858                  _ADC8x14DataTemp1
-                    0x0860                  _ADC8x14DataAveraged
 
-.ndata              0x0868         0x14
- .ndata             0x0868         0x14 build/default/production/HeaterPID.o
-                    0x0868                  _Kp
-                    0x086a                  _Ki
-                    0x086c                  _Kd
-                    0x086e                  _Kff
-                    0x0870                  _Vp
-                    0x0872                  _Vi
-                    0x0874                  _Vd
-                    0x0876                  _IDec
-                    0x0878                  _AdcTcTomVCoef
-                    0x087a                  _DifShift
-                    0x087b                  _TableDT
+.ndata              0x084e         0x14
+ .ndata             0x084e         0x14 build/default/production/HeaterPID.o
+                    0x084e                  _Kp
+                    0x0850                  _Ki
+                    0x0852                  _Kd
+                    0x0854                  _Kff
+                    0x0856                  _Vp
+                    0x0858                  _Vi
+                    0x085a                  _Vd
+                    0x085c                  _IDec
+                    0x085e                  _AdcTcTomVCoef
+                    0x0860                  _DifShift
+                    0x0861                  _TableDT
 
-.nbss               0x087c         0x12
- .nbss              0x087c         0x12 build/default/production/PowerLimiter.o
-                    0x087c                  _MaxHeaterISoft
-                    0x087e                  _MaxHeaterI
-                    0x0880                  _MaxHeaterU
-                    0x0882                  _MaxHeaterP
-                    0x0884                  _HeaterP
-                    0x0886                  _KHeaterIToRef
-                    0x088a                  _MaxHeaterISoftCount
-                    0x088b                  _MaxHeaterIGuard
-                    0x088c                  _MaxHeaterUGuard
-                    0x088d                  _MaxHeaterPGuard
+.nbss               0x0862         0x12
+ .nbss              0x0862         0x12 build/default/production/PowerLimiter.o
+                    0x0862                  _MaxHeaterISoft
+                    0x0864                  _MaxHeaterI
+                    0x0866                  _MaxHeaterU
+                    0x0868                  _MaxHeaterP
+                    0x086a                  _HeaterP
+                    0x086c                  _KHeaterIToRef
+                    0x0870                  _MaxHeaterISoftCount
+                    0x0871                  _MaxHeaterIGuard
+                    0x0872                  _MaxHeaterUGuard
+                    0x0873                  _MaxHeaterPGuard
 
-.ndata              0x088e          0x6
- .ndata             0x088e          0x6 build/default/production/PowerLimiter.o
-                    0x088e                  _KHeaterIToRef_Medium
-                    0x0892                  _DacData0Max
+.ndata              0x0874          0x6
+ .ndata             0x0874          0x6 build/default/production/PowerLimiter.o
+                    0x0874                  _KHeaterIToRef_Medium
+                    0x0878                  _DacData0Max
 
-.nbss               0x0894          0x6
- .nbss              0x0894          0x4 build/default/production/UART.o
-                    0x0894                  _RCode
- .nbss              0x0898          0x2 build/default/production/ProcessUartMsg.o
+.nbss               0x087a          0x6
+ .nbss              0x087a          0x4 build/default/production/UART.o
+                    0x087a                  _IsUartRcMsg
+ .nbss              0x087e          0x2 build/default/production/ProcessUartMsg.o
 
-.bss                0x089a        0x6b2
- .bss               0x089a        0x4ca build/default/production/Main.o
-                    0x089a                  _UartRcMsgSem
-                    0x08a4                  _idle_task_stack
-                    0x0916                  _interrupt_stack
-                    0x09c8                  _task_Uart1Msg_stack
-                    0x0aba                  _task_HeaterPid_stack
-                    0x0bac                  _task_GasPid_stack
-                    0x0c9e                  _task_HeaterPid
-                    0x0ce0                  _task_Uart1Msg
-                    0x0d22                  _task_GasPid
- .bss               0x0d64         0xb8 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sys.o)
-                    0x0d64                  __tn_cb_idle_hook
-                    0x0d66                  __tn_cb_stack_overflow
-                    0x0d68                  __tn_cb_deadlock
-                    0x0d6a                  __tn_deadlocks_cnt
-                    0x0d6c                  __tn_tasks_ready_list
-                    0x0dac                  __tn_tasks_created_list
-                    0x0db0                  __tn_tasks_created_cnt
-                    0x0db2                  __tn_sys_state
-                    0x0db4                  __tn_curr_run_task
-                    0x0db6                  __tn_next_task_to_run
-                    0x0db8                  __tn_ready_to_run_bmp
-                    0x0dba                  __tn_idle_task
-                    0x0dfc                  __tn_tslice_ticks
- .bss               0x0e1c         0xae build/default/production/UART.o
-                    0x0e1c                  _RcFifo
-                    0x0e9e                  _RcBuf
-                    0x0eb4                  _TxBuf
- .bss               0x0eca         0x82 build/default/production/ProcessUartMsg.o
-                    0x0eca                  _TxFifo
+.bss                0x0880        0x130
+ .bss               0x0880         0xae build/default/production/UART.o
+                    0x0880                  _RcFifo
+                    0x0902                  _RcBuf
+                    0x0918                  _TxBuf
+ .bss               0x092e         0x82 build/default/production/ProcessUartMsg.o
+                    0x092e                  _TxFifo
 
-.data               0x0f4c         0x80
- .data              0x0f4c         0x80 build/default/production/HeaterPID.o
-                    0x0f4c                  _TableV
-                    0x0f8c                  _TableT
+.data               0x09b0         0x80
+ .data              0x09b0         0x80 build/default/production/HeaterPID.o
+                    0x09b0                  _TableV
+                    0x09f0                  _TableT
 
-.bss                0x0fcc         0xc2
- .bss               0x0fcc         0x60 build/default/production/HeaterPID.o
-                    0x0fcc                  _TableInvDV
-                    0x100c                  _TempHistFifo
- .bss               0x102c         0x28 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_timer_static.o)
-                    0x102c                  __tn_timer_list__gen
-                    0x1030                  __tn_timer_list__tick
-                    0x1050                  __tn_sys_time_count
- .bss               0x1054         0x20 build/default/production/DAC.o
-                    0x1054                  _DacData
- .bss               0x1074         0x10 build/default/production/ADC8x14.o
-                    0x1074                  _ADC8x14Data
- .bss               0x1084          0x6 build/default/production/TNeo/src/tn_app_check.o
- .bss               0x108a          0x4 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_arch_pic24_c.o)
-                    0x108a                  __tn_p24_int_stack_low_addr
-                    0x108c                  __tn_p24_int_splim
-
-.ivt._T1Interrupt
-                  0x00001a          0x2
- .ivt._T1Interrupt
-                  0x00001a          0x2 build/default/production/Main.o
+.bss                0x0a30         0xc0
+ .bss               0x0a30         0x60 build/default/production/HeaterPID.o
+                    0x0a30                  _TableInvDV
+                    0x0a70                  _TempHistFifo
+ .bss               0x0a90         0x40 build/default/production/ADC.o
+                    0x0a90                  _ADCData
+                    0x0aa0                  _ADCDataTemp0
+                    0x0ab0                  _ADCDataTemp1
+                    0x0ac0                  _ADCDataAveraged
+ .bss               0x0ad0         0x20 build/default/production/DAC.o
+                    0x0ad0                  _DacData
 
 .ivt._U1RXInterrupt
                   0x00002a          0x2
@@ -2580,961 +1969,44 @@ __c30_signature
 .config_IESO      0xf80006          0x2
  .config_IESO     0xf80006          0x2 build/default/production/HardwareInit.o
 
-.ivt._INT0Interrupt
-                  0x000014          0x2
- .ivt._INT0Interrupt
-                  0x000014          0x2 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_arch_pic24.o)
-
-.const              0x873a          0x6 load address 0x00073a  
- .const             0x873a          0x6 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sys.o)
-
-.text             0x000740       0x1442
- .text            0x000740        0x8c4 build/default/production/ProcessUartMsg.o
-                  0x000740                  _ProcessUart1Msg
-                  0x000fb0                  _ReportFifoRxOverflow
-                  0x000fc2                  _ReportFifoTxOverflow
-                  0x000fd4                  _ReportRcProtocolError
-                  0x000fe6                  _ReportStartUp
- .text            0x001004        0x688 build/default/production/HeaterPID.o
-                  0x001004                  _task_HeaterPid_body
-                  0x00143c                  _CalcTByV
-                  0x00155a                  _FillTableT
-                  0x0015ae                  _FillTableInvDV
-                  0x001600                  _CalcFF
- .text            0x00168c        0x3a6 build/default/production/HardwareInit.o
-                  0x00168c                  _HardwareInit
- .text            0x001a32        0x150 build/default/production/PowerLimiter.o
-                  0x001a32                  _Limiter
-
-.text.tn_task_create
-                  0x001b82         0xe0
- .text.tn_task_create
-                  0x001b82         0xe0 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
-                  0x001b82                  _tn_task_create
-
-.dinit            0x001c62         0xd6
- .dinit           0x001c62         0xd6 data_init
-
-.text._build_cfg_check
-                  0x001d38         0xd0
- .text._build_cfg_check
-                  0x001d38         0xd0 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sys.o)
-
-.text             0x001e08         0xb6
- .text            0x001e08         0xb6 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_arch_pic24.o)
-                  0x001e08                  __tn_arch_context_switch_now_nosave
-                  0x001e16                  __tn_arch_context_switch_pend
-                  0x001e1c                  __INT0Interrupt
-                  0x001e76                  _tn_arch_sr_save_int_dis
-                  0x001e84                  _tn_arch_sr_restore
-                  0x001e92                  _tn_arch_int_dis
-                  0x001e96                  _tn_arch_int_en
-                  0x001e9c                  __tn_arch_is_int_disabled
-                  0x001eae                  __tn_arch_inside_isr
-                  0x001eba                  __tn_p24_ffs_asm
-
-.text.tn_sys_start
-                  0x001ebe         0xa2
- .text.tn_sys_start
-                  0x001ebe         0xa2 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sys.o)
-                  0x001ebe                  _tn_sys_start
-
-.text.tn_mutex_lock
-                  0x001f60         0x90
- .text.tn_mutex_lock
-                  0x001f60         0x90 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_mutex.o)
-                  0x001f60                  _tn_mutex_lock
-
-.text._tn_timers_tick_proceed
-                  0x001ff0         0x8e
- .text._tn_timers_tick_proceed
-                  0x001ff0         0x8e TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_timer_static.o)
-                  0x001ff0                  __tn_timers_tick_proceed
-
-.text.tn_task_terminate
-                  0x00207e         0x8a
- .text.tn_task_terminate
-                  0x00207e         0x8a TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
-                  0x00207e                  _tn_task_terminate
-
-.text             0x002108         0x76
- .text            0x002108         0x76 build/default/production/TNeo/src/tn_app_check.o
-                  0x002108                  _you_should_add_file___tn_app_check_c___to_the_project
-                  0x00210e                  _tn_app_build_cfg_get
-
-.text.tn_task_suspend
-                  0x00217e         0x66
- .text.tn_task_suspend
-                  0x00217e         0x66 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
-                  0x00217e                  _tn_task_suspend
-
-.text._sem_job_perform
-                  0x0021e4         0x64
- .text._sem_job_perform
-                  0x0021e4         0x64 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sem.o)
-
-.text._tn_timer_start
-                  0x002248         0x62
- .text._tn_timer_start
-                  0x002248         0x62 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_timer_static.o)
-                  0x002248                  __tn_timer_start
-
-.text.tn_mutex_delete
-                  0x0022aa         0x60
- .text.tn_mutex_delete
-                  0x0022aa         0x60 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_mutex.o)
-                  0x0022aa                  _tn_mutex_delete
-
-.text._tn_arch_stack_init
-                  0x00230a         0x5a
- .text._tn_arch_stack_init
-                  0x00230a         0x5a TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_arch_pic24_c.o)
-                  0x00230a                  __tn_arch_stack_init
-
-.text.tn_task_resume
-                  0x002364         0x5a
- .text.tn_task_resume
-                  0x002364         0x5a TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
-                  0x002364                  _tn_task_resume
-
-.text.tn_mutex_unlock
-                  0x0023be         0x5a
- .text.tn_mutex_unlock
-                  0x0023be         0x5a TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_mutex.o)
-                  0x0023be                  _tn_mutex_unlock
-
-.text.tn_task_change_priority
-                  0x002418         0x58
- .text.tn_task_change_priority
-                  0x002418         0x58 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
-                  0x002418                  _tn_task_change_priority
-
-.text._check_deadlock_active
-                  0x002470         0x54
- .text._check_deadlock_active
-                  0x002470         0x54 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_mutex.o)
-
-.text             0x0024c4         0x50
- .text            0x0024c4         0x50 build/default/production/Math.o
-                  0x0024c4                  _linterp
-
-.text._round_robin_manage
-                  0x002514         0x4e
- .text._round_robin_manage
-                  0x002514         0x4e TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sys.o)
-
-.text._unlink_deadlock_lists
-                  0x002562         0x48
- .text._unlink_deadlock_lists
-                  0x002562         0x48 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_mutex.o)
-
-.text._link_deadlock_lists
-                  0x0025aa         0x48
- .text._link_deadlock_lists
-                  0x0025aa         0x48 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_mutex.o)
-
-.text._tn_task_clear_runnable
-                  0x0025f2         0x46
- .text._tn_task_clear_runnable
-                  0x0025f2         0x46 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
-                  0x0025f2                  __tn_task_clear_runnable
-
-.text._task_priority_elevate
-                  0x002638         0x46
- .text._task_priority_elevate
-                  0x002638         0x46 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_mutex.o)
-
-.text._mutex_do_unlock
-                  0x00267e         0x46
- .text._mutex_do_unlock
-                  0x00267e         0x46 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_mutex.o)
-
-.text             0x0026c4         0x40
- .text            0x0026c4         0x40 build/default/production/Spi.o
-                  0x0026c4                  _SpiConfig
-                  0x0026ca                  _SpiSend
-                  0x0026e0                  _SpiReceive
-                  0x0026f4                  _SpiWaitTransmitEnd
-
-.text._tn_task_first_wait_complete
-                  0x002704         0x40
- .text._tn_task_first_wait_complete
-                  0x002704         0x40 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
-                  0x002704                  __tn_task_first_wait_complete
-
-.text.tn_mutex_create
-                  0x002744         0x40
- .text.tn_mutex_create
-                  0x002744         0x40 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_mutex.o)
-                  0x002744                  _tn_mutex_create
-
-.text.tn_sem_delete
-                  0x002784         0x3e
- .text.tn_sem_delete
-                  0x002784         0x3e TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sem.o)
-                  0x002784                  _tn_sem_delete
-
-.text._tn_cry_deadlock
-                  0x0027c2         0x3e
- .text._tn_cry_deadlock
-                  0x0027c2         0x3e TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sys.o)
-                  0x0027c2                  __tn_cry_deadlock
-
-.text._tn_timer_time_left
-                  0x002800         0x3e
- .text._tn_timer_time_left
-                  0x002800         0x3e TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_timer_static.o)
-                  0x002800                  __tn_timer_time_left
-
-.text._add_curr_task_to_mutex_wait_queue
-                  0x00283e         0x3e
- .text._add_curr_task_to_mutex_wait_queue
-                  0x00283e         0x3e TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_mutex.o)
-
-.text._sem_job_iperform
-                  0x00287c         0x3c
- .text._sem_job_iperform
-                  0x00287c         0x3c TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sem.o)
-
-.text._task_job_iperform
-                  0x0028b8         0x3c
- .text._task_job_iperform
-                  0x0028b8         0x3c TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
-
-.text._task_job_perform
-                  0x0028f4         0x3c
- .text._task_job_perform
-                  0x0028f4         0x3c TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
-
-.text._tn_task_set_waiting
-                  0x002930         0x3a
- .text._tn_task_set_waiting
-                  0x002930         0x3a TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
-                  0x002930                  __tn_task_set_waiting
-
-.text.tn_task_sleep
-                  0x00296a         0x3a
- .text.tn_task_sleep
-                  0x00296a         0x3a TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
-                  0x00296a                  _tn_task_sleep
-
-.text.tn_timer_start
-                  0x0029a4         0x3a
- .text.tn_timer_start
-                  0x0029a4         0x3a TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_timer.o)
-                  0x0029a4                  _tn_timer_start
-
-.text.tn_timer_set_func
-                  0x0029de         0x3a
- .text.tn_timer_set_func
-                  0x0029de         0x3a TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_timer.o)
-                  0x0029de                  _tn_timer_set_func
-
-.text             0x002a18         0x38
- .text            0x002a18         0x38 build/default/production/DAC.o
-                  0x002a18                  _LoadDac
-                  0x002a3e                  _ConfigDac
-
-.text.tn_task_delete
-                  0x002a50         0x38
- .text.tn_task_delete
-                  0x002a50         0x38 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
-                  0x002a50                  _tn_task_delete
-
-.text._tn_task_clear_waiting
-                  0x002a88         0x36
- .text._tn_task_clear_waiting
-                  0x002a88         0x36 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
-                  0x002a88                  __tn_task_clear_waiting
-
-.text.tn_task_state_get
-                  0x002abe         0x34
- .text.tn_task_state_get
-                  0x002abe         0x34 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
-                  0x002abe                  _tn_task_state_get
-
-.text._tn_change_running_task_priority
-                  0x002af2         0x34
- .text._tn_change_running_task_priority
-                  0x002af2         0x34 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
-                  0x002af2                  __tn_change_running_task_priority
-
-.text._check_param_create
-                  0x002b26         0x34
- .text._check_param_create
-                  0x002b26         0x34 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_mutex.o)
-
-.text._cry_deadlock_inactive
-                  0x002b5a         0x32
- .text._cry_deadlock_inactive
-                  0x002b5a         0x32 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_mutex.o)
-
-.text.tn_sem_create
-                  0x002b8c         0x30
- .text.tn_sem_create
-                  0x002b8c         0x30 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sem.o)
-                  0x002b8c                  _tn_sem_create
-
-.text.tn_task_exit
-                  0x002bbc         0x30
- .text.tn_task_exit
-                  0x002bbc         0x30 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
-                  0x002bbc                  _tn_task_exit
-
-.text.tn_timer_delete
-                  0x002bec         0x30
- .text.tn_timer_delete
-                  0x002bec         0x30 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_timer.o)
-                  0x002bec                  _tn_timer_delete
-
-.text.tn_timer_time_left
-                  0x002c1c         0x30
- .text.tn_timer_time_left
-                  0x002c1c         0x30 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_timer.o)
-                  0x002c1c                  _tn_timer_time_left
-
-.text.tn_timer_is_active
-                  0x002c4c         0x30
- .text.tn_timer_is_active
-                  0x002c4c         0x30 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_timer.o)
-                  0x002c4c                  _tn_timer_is_active
-
-.text._mutex_do_lock
-                  0x002c7c         0x30
- .text._mutex_do_lock
-                  0x002c7c         0x30 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_mutex.o)
-
-.text._check_param_create
-                  0x002cac         0x2e
- .text._check_param_create
-                  0x002cac         0x2e TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sem.o)
-
-.text.tn_sys_tslice_set
-                  0x002cda         0x2e
- .text.tn_sys_tslice_set
-                  0x002cda         0x2e TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sys.o)
-                  0x002cda                  _tn_sys_tslice_set
-
-.text.tn_timer_cancel
-                  0x002d08         0x2e
- .text.tn_timer_cancel
-                  0x002d08         0x2e TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_timer.o)
-                  0x002d08                  _tn_timer_cancel
-
-.text._update_task_priority
-                  0x002d36         0x2e
- .text._update_task_priority
-                  0x002d36         0x2e TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_mutex.o)
-
-.text._sem_signal
-                  0x002d64         0x2c
- .text._sem_signal
-                  0x002d64         0x2c TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sem.o)
-                  0x002d64                  tn_sem.o:__sem_signal
-
-.text._update_holders_priority_recursive
-                  0x002d90         0x2c
- .text._update_holders_priority_recursive
-                  0x002d90         0x2c TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_mutex.o)
-
-.text._tn_timer_cancel
-                  0x002dbc         0x28
- .text._tn_timer_cancel
-                  0x002dbc         0x28 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_timer_static.o)
-                  0x002dbc                  __tn_timer_cancel
-
-.text             0x002de4         0x26
- .text            0x002de4         0x26 build/default/production/AddressBus.o
-                  0x002de4                  _SelectChannel
-
-.text._tn_task_curr_to_wait_action.clone.1
-                  0x002e0a         0x26
- .text._tn_task_curr_to_wait_action.clone.1
-                  0x002e0a         0x26 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sem.o)
-
-.text._remove_entry_from_ready_queue
-                  0x002e30         0x26
- .text._remove_entry_from_ready_queue
-                  0x002e30         0x26 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
-
-.text._task_delete
-                  0x002e56         0x26
- .text._task_delete
-                  0x002e56         0x26 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
-
-.text._task_wakeup
-                  0x002e7c         0x26
- .text._task_wakeup
-                  0x002e7c         0x26 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
-                  0x002e7c                  tn_tasks.o:__task_wakeup
-
-.text._tn_timer_create
-                  0x002ea2         0x26
- .text._tn_timer_create
-                  0x002ea2         0x26 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_timer.o)
-                  0x002ea2                  __tn_timer_create
-
-.text._tn_task_curr_to_wait_action
-                  0x002ec8         0x26
- .text._tn_task_curr_to_wait_action
-                  0x002ec8         0x26 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_mutex.o)
-
-.text._tn_task_activate
-                  0x002eee         0x24
- .text._tn_task_activate
-                  0x002eee         0x24 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
-                  0x002eee                  __tn_task_activate
-
-.text._tn_timers_init
-                  0x002f12         0x24
- .text._tn_timers_init
-                  0x002f12         0x24 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_timer_static.o)
-                  0x002f12                  __tn_timers_init
-
-.text._find_max_priority_by_mutex
-                  0x002f36         0x24
- .text._find_max_priority_by_mutex
-                  0x002f36         0x24 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_mutex.o)
-
-.text._tn_mutex_unlock_all_by_task
-                  0x002f5a         0x24
- .text._tn_mutex_unlock_all_by_task
-                  0x002f5a         0x24 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_mutex.o)
-                  0x002f5a                  __tn_mutex_unlock_all_by_task
-
-.text._on_task_wait_complete
-                  0x002f7e         0x22
- .text._on_task_wait_complete
-                  0x002f7e         0x22 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
-
-.text._tn_task_set_runnable
-                  0x002fa0         0x22
- .text._tn_task_set_runnable
-                  0x002fa0         0x22 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
-                  0x002fa0                  __tn_task_set_runnable
-
-.text._tn_wait_queue_notify_deleted
-                  0x002fc2         0x22
- .text._tn_wait_queue_notify_deleted
-                  0x002fc2         0x22 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sys.o)
-                  0x002fc2                  __tn_wait_queue_notify_deleted
-
-.text._add_entry_to_ready_queue
-                  0x002fe4         0x20
- .text._add_entry_to_ready_queue
-                  0x002fe4         0x20 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
-
-.text._task_release_wait
-                  0x003004         0x20
- .text._task_release_wait
-                  0x003004         0x20 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
-                  0x003004                  tn_tasks.o:__task_release_wait
-
-.text._tn_task_wait_complete.clone.2
-                  0x003024         0x20
- .text._tn_task_wait_complete.clone.2
-                  0x003024         0x20 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sys.o)
-
-.text.tn_timer_create
-                  0x003044         0x20
- .text.tn_timer_create
-                  0x003044         0x20 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_timer.o)
-                  0x003044                  _tn_timer_create
-
-.text._tn_task_wait_complete.clone.4
-                  0x003064         0x20
- .text._tn_task_wait_complete.clone.4
-                  0x003064         0x20 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_mutex.o)
-
-.text._tn_task_wait_complete
-                  0x003084         0x1e
- .text._tn_task_wait_complete
-                  0x003084         0x1e TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
-
-.text.tn_tick_int_processing
-                  0x0030a2         0x1e
- .text.tn_tick_int_processing
-                  0x0030a2         0x1e TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sys.o)
-                  0x0030a2                  _tn_tick_int_processing
-
-.text.tn_sys_time_get
-                  0x0030c0         0x1e
- .text.tn_sys_time_get
-                  0x0030c0         0x1e TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sys.o)
-                  0x0030c0                  _tn_sys_time_get
-
-.text._tn_task_clear_dormant
-                  0x0030de         0x1c
- .text._tn_task_clear_dormant
-                  0x0030de         0x1c TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
-                  0x0030de                  __tn_task_clear_dormant
-
-.text._tn_change_task_priority
-                  0x0030fa         0x1c
- .text._tn_change_task_priority
-                  0x0030fa         0x1c TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
-                  0x0030fa                  __tn_change_task_priority
-
-.text._find_max_blocked_priority
-                  0x003116         0x1c
- .text._find_max_blocked_priority
-                  0x003116         0x1c TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_mutex.o)
-
-.text._tn_arch_sys_start
-                  0x003132         0x1a
- .text._tn_arch_sys_start
-                  0x003132         0x1a TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_arch_pic24_c.o)
-                  0x003132                  __tn_arch_sys_start
-
-.text._find_next_task_to_run
-                  0x00314c         0x1a
- .text._find_next_task_to_run
-                  0x00314c         0x1a TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
-
-.text._tn_task_curr_to_wait_action.clone.5
-                  0x003166         0x1a
- .text._tn_task_curr_to_wait_action.clone.5
-                  0x003166         0x1a TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
-
-.text._tn_list_remove_head
-                  0x003180         0x1a
- .text._tn_list_remove_head
-                  0x003180         0x1a TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_list.o)
-                  0x003180                  __tn_list_remove_head
-
-.text._check_param_create.clone.1
-                  0x00319a         0x1a
- .text._check_param_create.clone.1
-                  0x00319a         0x1a TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_timer.o)
-
-.text._check_param_generic
-                  0x0031b4         0x30
- .text._check_param_generic
-                  0x0031b4         0x18 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sem.o)
- .text._check_param_generic
-                  0x0031cc         0x18 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
-
-.text._tn_is_mutex_locked_by_task
-                  0x0031e4         0x18
- .text._tn_is_mutex_locked_by_task
-                  0x0031e4         0x18 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
-                  0x0031e4                  __tn_is_mutex_locked_by_task
-
-.text.tn_sys_context_get
-                  0x0031fc         0x18
- .text.tn_sys_context_get
-                  0x0031fc         0x18 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sys.o)
-                  0x0031fc                  _tn_sys_context_get
-
-.text._check_param_generic
-                  0x003214         0x30
- .text._check_param_generic
-                  0x003214         0x18 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_timer.o)
- .text._check_param_generic
-                  0x00322c         0x18 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_mutex.o)
-
-.text.tn_task_create_wname
-                  0x003244         0x16
- .text.tn_task_create_wname
-                  0x003244         0x16 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
-                  0x003244                  _tn_task_create_wname
-
-.text._tn_list_is_empty
-                  0x00325a         0x16
- .text._tn_list_is_empty
-                  0x00325a         0x16 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_list.o)
-                  0x00325a                  __tn_list_is_empty
-
-.text._task_terminate
-                  0x003270         0x14
- .text._task_terminate
-                  0x003270         0x14 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
-
-.text._idle_task_create
-                  0x003284         0x14
- .text._idle_task_create
-                  0x003284         0x14 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sys.o)
-
-.text._sem_wait
-                  0x003298         0x12
- .text._sem_wait
-                  0x003298         0x12 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sem.o)
-                  0x003298                  tn_sem.o:__sem_wait
-
-.text._tn_list_remove_tail
-                  0x0032aa         0x12
- .text._tn_list_remove_tail
-                  0x0032aa         0x12 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_list.o)
-                  0x0032aa                  __tn_list_remove_tail
-
-.text._tn_need_context_switch
-                  0x0032bc         0x10
- .text._tn_need_context_switch
-                  0x0032bc         0x10 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sem.o)
-
-.text.tn_is_isr_context
-                  0x0032cc         0x10
- .text.tn_is_isr_context
-                  0x0032cc         0x10 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sem.o)
-
-.text.tn_is_task_context
-                  0x0032dc         0x10
- .text.tn_is_task_context
-                  0x0032dc         0x10 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sem.o)
-
-.text._tn_need_context_switch
-                  0x0032ec         0x10
- .text._tn_need_context_switch
-                  0x0032ec         0x10 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
-
-.text.tn_is_task_context
-                  0x0032fc         0x10
- .text.tn_is_task_context
-                  0x0032fc         0x10 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
-
-.text.tn_is_isr_context
-                  0x00330c         0x10
- .text.tn_is_isr_context
-                  0x00330c         0x10 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
-
-.text._tn_task_set_dormant
-                  0x00331c         0x10
- .text._tn_task_set_dormant
-                  0x00331c         0x10 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
-                  0x00331c                  __tn_task_set_dormant
-
-.text._tn_need_context_switch
-                  0x00332c         0x10
- .text._tn_need_context_switch
-                  0x00332c         0x10 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sys.o)
-
-.text.tn_is_task_context
-                  0x00333c         0x10
- .text.tn_is_task_context
-                  0x00333c         0x10 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sys.o)
-
-.text._tn_timer_set_func
-                  0x00334c         0x10
- .text._tn_timer_set_func
-                  0x00334c         0x10 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_timer.o)
-                  0x00334c                  __tn_timer_set_func
-
-.text._tn_timer_is_active
-                  0x00335c         0x10
- .text._tn_timer_is_active
-                  0x00335c         0x10 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_timer.o)
-                  0x00335c                  __tn_timer_is_active
-
-.text._tn_need_context_switch
-                  0x00336c         0x10
- .text._tn_need_context_switch
-                  0x00336c         0x10 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_mutex.o)
-
-.text.tn_is_task_context
-                  0x00337c         0x10
- .text.tn_is_task_context
-                  0x00337c         0x10 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_mutex.o)
-
-.text._tn_mutex_on_task_wait_complete
-                  0x00338c         0x10
- .text._tn_mutex_on_task_wait_complete
-                  0x00338c         0x10 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_mutex.o)
-                  0x00338c                  __tn_mutex_on_task_wait_complete
-
-.text._tn_context_switch_pend_if_needed
-                  0x00339c          0xe
- .text._tn_context_switch_pend_if_needed
-                  0x00339c          0xe TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sem.o)
-
-.text._tn_sem_is_valid.clone.0
-                  0x0033aa          0xe
- .text._tn_sem_is_valid.clone.0
-                  0x0033aa          0xe TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sem.o)
-
-.text._tn_context_switch_pend_if_needed
-                  0x0033b8          0xe
- .text._tn_context_switch_pend_if_needed
-                  0x0033b8          0xe TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
-
-.text._tn_task_is_valid.clone.4
-                  0x0033c6          0xe
- .text._tn_task_is_valid.clone.4
-                  0x0033c6          0xe TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
-
-.text._tn_context_switch_pend_if_needed
-                  0x0033d4          0xe
- .text._tn_context_switch_pend_if_needed
-                  0x0033d4          0xe TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sys.o)
-
-.text._tn_sys_state_flags_clear
-                  0x0033e2          0xe
- .text._tn_sys_state_flags_clear
-                  0x0033e2          0xe TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sys.o)
-                  0x0033e2                  __tn_sys_state_flags_clear
-
-.text._tn_timer_is_valid.clone.0
-                  0x0033f0          0xe
- .text._tn_timer_is_valid.clone.0
-                  0x0033f0          0xe TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_timer.o)
-
-.text._tn_context_switch_pend_if_needed
-                  0x0033fe          0xe
- .text._tn_context_switch_pend_if_needed
-                  0x0033fe          0xe TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_mutex.o)
-
-.text._tn_mutex_is_valid.clone.0
-                  0x00340c          0xe
- .text._tn_mutex_is_valid.clone.0
-                  0x00340c          0xe TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_mutex.o)
-
-.text             0x00341a          0xc
- .text            0x00341a          0xc build/default/production/ADC8x14.o
-                  0x00341a                  _ReadADC8x14
-                  0x003420                  _ReadADC8x14_0_3
-
-.text.tn_arch_sched_restore
-                  0x003426          0xc
- .text.tn_arch_sched_restore
-                  0x003426          0xc TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_arch_pic24_c.o)
-                  0x003426                  _tn_arch_sched_restore
-
-.text._tn_sys_state_flags_set
-                  0x003432          0xc
- .text._tn_sys_state_flags_set
-                  0x003432          0xc TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sys.o)
-                  0x003432                  __tn_sys_state_flags_set
-
-.text._tn_list_add_head
-                  0x00343e          0xc
- .text._tn_list_add_head
-                  0x00343e          0xc TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_list.o)
-                  0x00343e                  __tn_list_add_head
-
-.text._tn_list_add_tail
-                  0x00344a          0xc
- .text._tn_list_add_tail
-                  0x00344a          0xc TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_list.o)
-                  0x00344a                  __tn_list_add_tail
-
-.text._tn_list_remove_entry
-                  0x003456          0xc
- .text._tn_list_remove_entry
-                  0x003456          0xc TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_list.o)
-                  0x003456                  __tn_list_remove_entry
-
-.text._tn_list_contains_entry
-                  0x003462          0xc
- .text._tn_list_contains_entry
-                  0x003462          0xc TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_list.o)
-                  0x003462                  __tn_list_contains_entry
-
-.text._tn_mutex_i_on_task_wait_complete
-                  0x00346e          0xc
- .text._tn_mutex_i_on_task_wait_complete
-                  0x00346e          0xc TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_mutex.o)
-                  0x00346e                  __tn_mutex_i_on_task_wait_complete
-
-.text.tn_arch_sched_dis_save
-                  0x00347a          0x8
- .text.tn_arch_sched_dis_save
-                  0x00347a          0x8 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_arch_pic24_c.o)
-                  0x00347a                  _tn_arch_sched_dis_save
-
-.text.tn_sem_signal
-                  0x003482          0x8
- .text.tn_sem_signal
-                  0x003482          0x8 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sem.o)
-                  0x003482                  _tn_sem_signal
-
-.text.tn_sem_wait_polling
-                  0x00348a          0x8
- .text.tn_sem_wait_polling
-                  0x00348a          0x8 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sem.o)
-                  0x00348a                  _tn_sem_wait_polling
-
-.text._task_wait_timeout
-                  0x003492          0x8
- .text._task_wait_timeout
-                  0x003492          0x8 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
-                  0x003492                  tn_tasks.o:__task_wait_timeout
-
-.text._tn_task_set_suspended
-                  0x00349a          0x8
- .text._tn_task_set_suspended
-                  0x00349a          0x8 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
-                  0x00349a                  __tn_task_set_suspended
-
-.text._tn_task_clear_suspended
-                  0x0034a2          0x8
- .text._tn_task_clear_suspended
-                  0x0034a2          0x8 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
-                  0x0034a2                  __tn_task_clear_suspended
-
-.text.tn_sem_isignal
-                  0x0034aa          0x6
- .text.tn_sem_isignal
-                  0x0034aa          0x6 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sem.o)
-                  0x0034aa                  _tn_sem_isignal
-
-.text.tn_sem_wait
-                  0x0034b0          0x6
- .text.tn_sem_wait
-                  0x0034b0          0x6 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sem.o)
-                  0x0034b0                  _tn_sem_wait
-
-.text.tn_sem_iwait_polling
-                  0x0034b6          0x6
- .text.tn_sem_iwait_polling
-                  0x0034b6          0x6 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sem.o)
-                  0x0034b6                  _tn_sem_iwait_polling
-
-.text._init_mutex_queue
-                  0x0034bc          0x6
- .text._init_mutex_queue
-                  0x0034bc          0x6 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
-
-.text._init_deadlock_list
-                  0x0034c2          0x6
- .text._init_deadlock_list
-                  0x0034c2          0x6 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
-
-.text._tn_task_is_waiting.clone.1
-                  0x0034c8          0x6
- .text._tn_task_is_waiting.clone.1
-                  0x0034c8          0x6 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
-
-.text._tn_task_is_suspended.clone.2
-                  0x0034ce          0x6
- .text._tn_task_is_suspended.clone.2
-                  0x0034ce          0x6 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
-
-.text._tn_task_is_dormant.clone.3
-                  0x0034d4          0x6
- .text._tn_task_is_dormant.clone.3
-                  0x0034d4          0x6 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
-
-.text.tn_task_wakeup
-                  0x0034da          0x6
- .text.tn_task_wakeup
-                  0x0034da          0x6 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
-                  0x0034da                  _tn_task_wakeup
-
-.text.tn_task_iwakeup
-                  0x0034e0          0x6
- .text.tn_task_iwakeup
-                  0x0034e0          0x6 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
-                  0x0034e0                  _tn_task_iwakeup
-
-.text.tn_task_activate
-                  0x0034e6          0x6
- .text.tn_task_activate
-                  0x0034e6          0x6 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
-                  0x0034e6                  _tn_task_activate
-
-.text.tn_task_iactivate
-                  0x0034ec          0x6
- .text.tn_task_iactivate
-                  0x0034ec          0x6 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
-                  0x0034ec                  _tn_task_iactivate
-
-.text.tn_task_release_wait
-                  0x0034f2          0x6
- .text.tn_task_release_wait
-                  0x0034f2          0x6 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
-                  0x0034f2                  _tn_task_release_wait
-
-.text.tn_task_irelease_wait
-                  0x0034f8          0x6
- .text.tn_task_irelease_wait
-                  0x0034f8          0x6 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
-                  0x0034f8                  _tn_task_irelease_wait
-
-.text._tn_task_exit_nodelete
-                  0x0034fe          0x6
- .text._tn_task_exit_nodelete
-                  0x0034fe          0x6 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
-                  0x0034fe                  __tn_task_exit_nodelete
-
-.text._tn_timer_sys_time_get
-                  0x003504          0x6
- .text._tn_timer_sys_time_get
-                  0x003504          0x6 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sys.o)
-
-.text._idle_task_body
-                  0x00350a          0x6
- .text._idle_task_body
-                  0x00350a          0x6 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sys.o)
-                  0x00350a                  tn_sys.o:__idle_task_body
-
-.text._tn_task_is_suspended.clone.0
-                  0x003510          0x6
- .text._tn_task_is_suspended.clone.0
-                  0x003510          0x6 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sys.o)
-
-.text.tn_cur_task_body_get
-                  0x003516          0x6
- .text.tn_cur_task_body_get
-                  0x003516          0x6 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sys.o)
-                  0x003516                  _tn_cur_task_body_get
-
-.text._tn_list_reset
-                  0x00351c          0x6
- .text._tn_list_reset
-                  0x00351c          0x6 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_list.o)
-                  0x00351c                  __tn_list_reset
-
-.text._tn_task_is_waiting.clone.2
-                  0x003522          0x6
- .text._tn_task_is_waiting.clone.2
-                  0x003522          0x6 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_mutex.o)
-
-.text._tn_task_is_suspended.clone.3
-                  0x003528          0x6
- .text._tn_task_is_suspended.clone.3
-                  0x003528          0x6 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_mutex.o)
-
-.text.tn_mutex_lock_polling
-                  0x00352e          0x6
- .text.tn_mutex_lock_polling
-                  0x00352e          0x6 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_mutex.o)
-                  0x00352e                  _tn_mutex_lock_polling
-
-.text._tn_task_is_runnable.clone.0
-                  0x003534          0x4
- .text._tn_task_is_runnable.clone.0
-                  0x003534          0x4 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
-
-.text._tn_task_stack_end_get
-                  0x003538          0x4
- .text._tn_task_stack_end_get
-                  0x003538          0x4 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_tasks.o)
-                  0x003538                  __tn_task_stack_end_get
-
-.text.tn_sys_state_flags_get
-                  0x00353c          0x4
- .text.tn_sys_state_flags_get
-                  0x00353c          0x4 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sys.o)
-                  0x00353c                  _tn_sys_state_flags_get
-
-.text.tn_callback_deadlock_set
-                  0x003540          0x4
- .text.tn_callback_deadlock_set
-                  0x003540          0x4 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sys.o)
-                  0x003540                  _tn_callback_deadlock_set
-
-.text.tn_callback_stack_overflow_set
-                  0x003544          0x4
- .text.tn_callback_stack_overflow_set
-                  0x003544          0x4 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sys.o)
-                  0x003544                  _tn_callback_stack_overflow_set
-
-.text.tn_cur_task_get
-                  0x003548          0x4
- .text.tn_cur_task_get
-                  0x003548          0x4 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_sys.o)
-                  0x003548                  _tn_cur_task_get
-
-.text._tn_task_is_runnable.clone.1
-                  0x00354c          0x4
- .text._tn_task_is_runnable.clone.1
-                  0x00354c          0x4 TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a(tn_mutex.o)
+.text             0x0005d6       0x1128
+ .text            0x0005d6        0x8b2 build/default/production/ProcessUartMsg.o
+                  0x0005d6                  _ProcessUart1Msg
+                  0x000e34                  _ReportFifoRxOverflow
+                  0x000e46                  _ReportFifoTxOverflow
+                  0x000e58                  _ReportRcProtocolError
+                  0x000e6a                  _ReportStartUp
+ .text            0x000e88        0x620 build/default/production/HeaterPID.o
+                  0x000e88                  _task_HeaterPid_body
+                  0x001258                  _CalcTByV
+                  0x001376                  _FillTableT
+                  0x0013ca                  _FillTableInvDV
+                  0x00141c                  _CalcFF
+ .text            0x0014a8        0x142 build/default/production/PowerLimiter.o
+                  0x0014a8                  _Limiter
+ .text            0x0015ea        0x114 build/default/production/HardwareInit.o
+                  0x0015ea                  _HardwareInit
+
+.dinit            0x0016fe         0xb2
+ .dinit           0x0016fe         0xb2 data_init
+
+.text             0x0017b0        0x130
+ .text            0x0017b0         0x50 build/default/production/Math.o
+                  0x0017b0                  _linterp
+ .text            0x001800         0x40 build/default/production/Spi.o
+                  0x001800                  _SpiConfig
+                  0x001806                  _SpiSend
+                  0x00181c                  _SpiReceive
+                  0x001830                  _SpiWaitTransmitEnd
+ .text            0x001840         0x2a build/default/production/AnalogIo.o
+                  0x001840                  _ReadWriteAnalog
+ .text            0x00186a         0x28 build/default/production/AddressBus.o
+                  0x00186a                  _SelectChannel
+ .text            0x001892         0x20 build/default/production/DAC.o
+                  0x001892                  _DacWrite
+ .text            0x0018b2         0x14 build/default/production/Main.o
+                  0x0018b2                  _main
+ .text            0x0018c6         0x14 build/default/production/ADC.o
+                  0x0018c6                  _ReadADC
+ .text            0x0018da          0x6 build/default/production/LeakerPid.o
+                  0x0018da                  _task_LeakerPid_body

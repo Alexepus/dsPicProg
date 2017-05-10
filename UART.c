@@ -4,8 +4,8 @@ FIFO RcFifo;
 extern FIFO TxFifo;
 MessageBuffer RcBuf;
 MessageBuffer TxBuf;
-extern TN_SEM UartRcMsgSem;
-enum TN_RCode RCode;
+volatile bool IsUartRcMsg;
+
 //________________________________________________________________________________
 //Обработчик приема байта
 void __attribute__((interrupt, no_auto_psv)) _U1RXInterrupt(void)
@@ -24,7 +24,7 @@ void __attribute__((interrupt, no_auto_psv)) _U1RXInterrupt(void)
         RcFifo.Buffer[RcFifo.NIn]=DataByte;
         RcFifo.NIn = NewIndex;
         if(DataByte == UART_STOP)
-            RCode = tn_sem_isignal(&UartRcMsgSem);	
+            IsUartRcMsg = true;	
         if(U1STAbits.OERR) // Receive Buffer Overrun Error
         {
             U1STAbits.OERR = 0;

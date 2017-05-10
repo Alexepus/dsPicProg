@@ -1,4 +1,4 @@
-	.file "D:\\Projects\\Programming\\CatalysisTFS\\Catalysis\\dsPicProg\\TNeo\\src\\tn_app_check.c"
+	.file "D:\\Projects\\Programming\\CatalysisTFS\\Catalysis\\dsPicProg\\ADC.c"
 	.section	.debug_abbrev,info
 .Ldebug_abbrev0:
 	.section	.debug_info,info
@@ -8,98 +8,51 @@
 	.section	.text,code
 .Ltext0:
 	.section	.bss,bss
+	.type	_ADCData,@object
+	.global	_ADCData
 	.align	2
-	.type	__build_cfg,@object
-	.size	__build_cfg, 6
-__build_cfg:
-	.skip	6
+_ADCData:	.space	16
+	.type	_ADCDataTemp0,@object
+	.global	_ADCDataTemp0
+	.align	2
+_ADCDataTemp0:	.space	16
+	.type	_ADCDataTemp1,@object
+	.global	_ADCDataTemp1
+	.align	2
+_ADCDataTemp1:	.space	16
+	.type	_ADCDataAveraged,@object
+	.global	_ADCDataAveraged
+	.align	2
+_ADCDataAveraged:	.space	16
 	.section	.text,code
 	.align	2
-	.global	_you_should_add_file___tn_app_check_c___to_the_project	; export
-	.type	_you_should_add_file___tn_app_check_c___to_the_project,@function
-_you_should_add_file___tn_app_check_c___to_the_project:
-.LFB5:
-	.file 1 "TNeo/src/tn_app_check.c"
-	.loc 1 92 0
+	.global	_ReadADC	; export
+	.type	_ReadADC,@function
+_ReadADC:
+.LFB0:
+	.file 1 "ADC.c"
+	.loc 1 26 0
 	.set ___PA___,1
 	lnk	#0
 .LCFI0:
-	.loc 1 93 0
+	.loc 1 27 0
+	bset.b	_AD1CON1bits,#1
+	.loc 1 28 0
+	nop	
+.L2:
+	mov	_AD1CON1bits,w0
+	and	w0,#1,w0
+	cp0	w0
+	.set ___BP___,0
+	bra	z,.L2
+	.loc 1 29 0
+	mov	_ADC1BUF0,w0
+	.loc 1 30 0
 	ulnk	
 	return	
 	.set ___PA___,0
-.LFE5:
-	.size	_you_should_add_file___tn_app_check_c___to_the_project, .-_you_should_add_file___tn_app_check_c___to_the_project
-	.align	2
-	.global	_tn_app_build_cfg_get	; export
-	.type	_tn_app_build_cfg_get,@function
-_tn_app_build_cfg_get:
-.LFB6:
-	.loc 1 99 0
-	.set ___PA___,1
-	lnk	#0
-.LCFI1:
-	.loc 1 100 0
-	mov	#6,w2
-	clr	w1
-	mov	#__build_cfg,w0
-	rcall	_memset
-	mov	__build_cfg,w1
-	mov	#-128,w0
-	and	w1,w0,w0
-	bset	w0,#4
-	mov	w0,__build_cfg
-	mov	__build_cfg,w0
-	bset	w0,#7
-	mov	w0,__build_cfg
-	mov	__build_cfg,w0
-	bclr	w0,#8
-	mov	w0,__build_cfg
-	mov	__build_cfg,w0
-	bset	w0,#9
-	mov	w0,__build_cfg
-	mov	__build_cfg,w0
-	bset	w0,#10
-	mov	w0,__build_cfg
-	mov	__build_cfg,w0
-	bset	w0,#11
-	mov	w0,__build_cfg
-	mov	#__build_cfg+2,w0
-	mov.b	#7,w1
-	mov.b	w1,[w0]
-	mov	__build_cfg+2,w1
-	mov	#-769,w0
-	and	w1,w0,w0
-	bset	w0,#9
-	mov	w0,__build_cfg+2
-	mov	__build_cfg+2,w0
-	bclr	w0,#10
-	mov	w0,__build_cfg+2
-	mov	__build_cfg+2,w0
-	bclr	w0,#11
-	mov	w0,__build_cfg+2
-	mov	__build_cfg+2,w0
-	bclr	w0,#12
-	mov	w0,__build_cfg+2
-	mov	__build_cfg+2,w0
-	bclr	w0,#13
-	mov	w0,__build_cfg+2
-	mov	__build_cfg+2,w0
-	bclr	w0,#14
-	mov	w0,__build_cfg+2
-	mov	__build_cfg+4,w1
-	mov	#-8,w0
-	and	w1,w0,w0
-	bset	w0,#2
-	mov	w0,__build_cfg+4
-	.loc 1 101 0
-	mov	#__build_cfg,w0
-	.loc 1 102 0
-	ulnk	
-	return	
-	.set ___PA___,0
-.LFE6:
-	.size	_tn_app_build_cfg_get, .-_tn_app_build_cfg_get
+.LFE0:
+	.size	_ReadADC, .-_ReadADC
 	.section	.debug_frame,info
 .Lframe0:
 	.4byte	.LECIE0-.LSCIE0
@@ -122,10 +75,10 @@ _tn_app_build_cfg_get:
 	.4byte	.LEFDE0-.LASFDE0
 .LASFDE0:
 	.4byte	.Lframe0
-	.4byte	.LFB5
-	.4byte	.LFE5-.LFB5
+	.4byte	.LFB0
+	.4byte	.LFE0-.LFB0
 	.byte	0x4
-	.4byte	.LCFI0-.LFB5
+	.4byte	.LCFI0-.LFB0
 	.byte	0x13
 	.sleb128 -3
 	.byte	0xd
@@ -134,66 +87,222 @@ _tn_app_build_cfg_get:
 	.uleb128 0x2
 	.align	4
 .LEFDE0:
-.LSFDE2:
-	.4byte	.LEFDE2-.LASFDE2
-.LASFDE2:
-	.4byte	.Lframe0
-	.4byte	.LFB6
-	.4byte	.LFE6-.LFB6
-	.byte	0x4
-	.4byte	.LCFI1-.LFB6
-	.byte	0x13
-	.sleb128 -3
-	.byte	0xd
-	.uleb128 0xe
-	.byte	0x8e
-	.uleb128 0x2
-	.align	4
-.LEFDE2:
 	.section	.text,code
 .Letext0:
-	.file 2 "TNeo/src/core/tn_sys.h"
-	.file 3 "TNeo/src/core/../arch/pic24_dspic/tn_arch_pic24.h"
+	.file 2 "p33FJ64MC804.h"
+	.file 3 "Main.h"
 	.section	.debug_info,info
-	.4byte	0x3a3
+	.4byte	0x34d
 	.2byte	0x2
 	.4byte	.Ldebug_abbrev0
 	.byte	0x4
 	.uleb128 0x1
 	.asciz	"GNU C 4.5.1 (XC16, Microchip v1.30) (A) Build date: Nov 22 2016"
 	.byte	0x1
-	.asciz	"TNeo/src/tn_app_check.c"
+	.asciz	"ADC.c"
 	.ascii	"D:\\\\Projects\\\\Programming\\\\CatalysisTFS\\\\Catalysis\\\\dsPicP"
 	.asciz	"rog"
 	.4byte	.Ltext0
 	.4byte	.Letext0
 	.4byte	.Ldebug_line0
 	.uleb128 0x2
+	.asciz	"UINT"
+	.byte	0x3
 	.byte	0x4
-	.byte	0x7
-	.asciz	"long unsigned int"
-	.uleb128 0x2
+	.4byte	0xa9
+	.uleb128 0x3
 	.byte	0x2
 	.byte	0x7
 	.asciz	"unsigned int"
 	.uleb128 0x3
-	.asciz	"TN_UWord"
-	.byte	0x3
-	.byte	0xa7
-	.4byte	0xc4
+	.byte	0x1
+	.byte	0x8
+	.asciz	"unsigned char"
+	.uleb128 0x3
+	.byte	0x4
+	.byte	0x7
+	.asciz	"long unsigned int"
+	.uleb128 0x3
+	.byte	0x2
+	.byte	0x5
+	.asciz	"int"
+	.uleb128 0x3
+	.byte	0x4
+	.byte	0x5
+	.asciz	"long int"
 	.uleb128 0x4
 	.byte	0x2
 	.byte	0x2
-	.byte	0xd2
-	.4byte	0x106
+	.2byte	0xa80
+	.4byte	0x1c2
 	.uleb128 0x5
-	.asciz	"p24_sys_ipl"
+	.asciz	"DONE"
 	.byte	0x2
-	.byte	0xd5
-	.4byte	0xc4
+	.2byte	0xa81
+	.4byte	0xa9
+	.byte	0x2
+	.byte	0x1
+	.byte	0xf
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.uleb128 0x5
+	.asciz	"SAMP"
+	.byte	0x2
+	.2byte	0xa82
+	.4byte	0xa9
+	.byte	0x2
+	.byte	0x1
+	.byte	0xe
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.uleb128 0x5
+	.asciz	"ASAM"
+	.byte	0x2
+	.2byte	0xa83
+	.4byte	0xa9
+	.byte	0x2
+	.byte	0x1
+	.byte	0xd
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.uleb128 0x5
+	.asciz	"SIMSAM"
+	.byte	0x2
+	.2byte	0xa84
+	.4byte	0xa9
+	.byte	0x2
+	.byte	0x1
+	.byte	0xc
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.uleb128 0x5
+	.asciz	"SSRC"
+	.byte	0x2
+	.2byte	0xa86
+	.4byte	0xa9
 	.byte	0x2
 	.byte	0x3
-	.byte	0xd
+	.byte	0x8
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.uleb128 0x5
+	.asciz	"FORM"
+	.byte	0x2
+	.2byte	0xa87
+	.4byte	0xa9
+	.byte	0x2
+	.byte	0x2
+	.byte	0x6
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.uleb128 0x5
+	.asciz	"AD12B"
+	.byte	0x2
+	.2byte	0xa88
+	.4byte	0xa9
+	.byte	0x2
+	.byte	0x1
+	.byte	0x5
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.uleb128 0x5
+	.asciz	"ADDMABM"
+	.byte	0x2
+	.2byte	0xa8a
+	.4byte	0xa9
+	.byte	0x2
+	.byte	0x1
+	.byte	0x3
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.uleb128 0x5
+	.asciz	"ADSIDL"
+	.byte	0x2
+	.2byte	0xa8b
+	.4byte	0xa9
+	.byte	0x2
+	.byte	0x1
+	.byte	0x2
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.uleb128 0x5
+	.asciz	"ADON"
+	.byte	0x2
+	.2byte	0xa8d
+	.4byte	0xa9
+	.byte	0x2
+	.byte	0x1
+	.byte	0x10
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.byte	0x0
+	.uleb128 0x4
+	.byte	0x2
+	.byte	0x2
+	.2byte	0xa8f
+	.4byte	0x230
+	.uleb128 0x5
+	.asciz	"SSRC0"
+	.byte	0x2
+	.2byte	0xa91
+	.4byte	0xa9
+	.byte	0x2
+	.byte	0x1
+	.byte	0xa
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.uleb128 0x5
+	.asciz	"SSRC1"
+	.byte	0x2
+	.2byte	0xa92
+	.4byte	0xa9
+	.byte	0x2
+	.byte	0x1
+	.byte	0x9
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.uleb128 0x5
+	.asciz	"SSRC2"
+	.byte	0x2
+	.2byte	0xa93
+	.4byte	0xa9
+	.byte	0x2
+	.byte	0x1
+	.byte	0x8
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.uleb128 0x5
+	.asciz	"FORM0"
+	.byte	0x2
+	.2byte	0xa94
+	.4byte	0xa9
+	.byte	0x2
+	.byte	0x1
+	.byte	0x7
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.uleb128 0x5
+	.asciz	"FORM1"
+	.byte	0x2
+	.2byte	0xa95
+	.4byte	0xa9
+	.byte	0x2
+	.byte	0x1
+	.byte	0x6
 	.byte	0x2
 	.byte	0x23
 	.uleb128 0x0
@@ -201,235 +310,116 @@ _tn_app_build_cfg_get:
 	.uleb128 0x6
 	.byte	0x2
 	.byte	0x2
-	.byte	0xca
-	.4byte	0x127
+	.2byte	0xa7f
+	.4byte	0x244
 	.uleb128 0x7
-	.asciz	"dummy"
-	.byte	0x2
-	.byte	0xcf
-	.4byte	0xd4
+	.4byte	0xf2
 	.uleb128 0x7
-	.asciz	"p24"
-	.byte	0x2
-	.byte	0xd6
-	.4byte	0xe4
+	.4byte	0x1c2
 	.byte	0x0
 	.uleb128 0x8
-	.asciz	"_TN_BuildCfg"
-	.byte	0x6
-	.byte	0x2
-	.byte	0x9e
-	.4byte	0x2ba
-	.uleb128 0x5
-	.asciz	"priorities_cnt"
-	.byte	0x2
-	.byte	0xa1
-	.4byte	0xc4
-	.byte	0x2
-	.byte	0x7
-	.byte	0x9
-	.byte	0x2
-	.byte	0x23
-	.uleb128 0x0
-	.uleb128 0x5
-	.asciz	"check_param"
-	.byte	0x2
-	.byte	0xa4
-	.4byte	0xc4
-	.byte	0x2
-	.byte	0x1
-	.byte	0x8
-	.byte	0x2
-	.byte	0x23
-	.uleb128 0x0
-	.uleb128 0x5
-	.asciz	"debug"
-	.byte	0x2
-	.byte	0xa7
-	.4byte	0xc4
-	.byte	0x2
-	.byte	0x1
-	.byte	0x7
-	.byte	0x2
-	.byte	0x23
-	.uleb128 0x0
-	.uleb128 0x5
-	.asciz	"use_mutexes"
-	.byte	0x2
-	.byte	0xac
-	.4byte	0xc4
-	.byte	0x2
-	.byte	0x1
-	.byte	0x6
-	.byte	0x2
-	.byte	0x23
-	.uleb128 0x0
-	.uleb128 0x5
-	.asciz	"mutex_rec"
-	.byte	0x2
-	.byte	0xaf
-	.4byte	0xc4
-	.byte	0x2
-	.byte	0x1
-	.byte	0x5
-	.byte	0x2
-	.byte	0x23
-	.uleb128 0x0
-	.uleb128 0x5
-	.asciz	"mutex_deadlock_detect"
-	.byte	0x2
-	.byte	0xb2
-	.4byte	0xc4
-	.byte	0x2
-	.byte	0x1
-	.byte	0x4
-	.byte	0x2
-	.byte	0x23
-	.uleb128 0x0
-	.uleb128 0x5
-	.asciz	"tick_lists_cnt_minus_one"
-	.byte	0x2
-	.byte	0xb5
-	.4byte	0xc4
-	.byte	0x2
-	.byte	0x8
-	.byte	0x8
-	.byte	0x2
-	.byte	0x23
-	.uleb128 0x2
-	.uleb128 0x5
-	.asciz	"api_make_alig_arg"
-	.byte	0x2
-	.byte	0xb8
-	.4byte	0xc4
+	.asciz	"tagAD1CON1BITS"
 	.byte	0x2
 	.byte	0x2
-	.byte	0x6
-	.byte	0x2
-	.byte	0x23
-	.uleb128 0x2
-	.uleb128 0x5
-	.asciz	"profiler"
-	.byte	0x2
-	.byte	0xbb
-	.4byte	0xc4
-	.byte	0x2
-	.byte	0x1
-	.byte	0x5
-	.byte	0x2
-	.byte	0x23
-	.uleb128 0x2
-	.uleb128 0x5
-	.asciz	"profiler_wait_time"
-	.byte	0x2
-	.byte	0xbe
-	.4byte	0xc4
-	.byte	0x2
-	.byte	0x1
-	.byte	0x4
-	.byte	0x2
-	.byte	0x23
-	.uleb128 0x2
-	.uleb128 0x5
-	.asciz	"stack_overflow_check"
-	.byte	0x2
-	.byte	0xc1
-	.4byte	0xc4
-	.byte	0x2
-	.byte	0x1
-	.byte	0x3
-	.byte	0x2
-	.byte	0x23
-	.uleb128 0x2
-	.uleb128 0x5
-	.asciz	"dynamic_tick"
-	.byte	0x2
-	.byte	0xc4
-	.4byte	0xc4
-	.byte	0x2
-	.byte	0x1
-	.byte	0x2
-	.byte	0x2
-	.byte	0x23
-	.uleb128 0x2
-	.uleb128 0x5
-	.asciz	"old_events_api"
-	.byte	0x2
-	.byte	0xc7
-	.4byte	0xc4
-	.byte	0x2
-	.byte	0x1
-	.byte	0x1
-	.byte	0x2
-	.byte	0x23
-	.uleb128 0x2
+	.2byte	0xa7e
+	.4byte	0x265
 	.uleb128 0x9
-	.asciz	"arch"
-	.byte	0x2
-	.byte	0xd7
-	.4byte	0x106
+	.4byte	0x230
 	.byte	0x2
 	.byte	0x23
-	.uleb128 0x4
+	.uleb128 0x0
 	.byte	0x0
-	.uleb128 0x2
-	.byte	0x2
-	.byte	0x5
-	.asciz	"int"
-	.uleb128 0x2
-	.byte	0x1
-	.byte	0x6
-	.asciz	"char"
-	.uleb128 0x2
-	.byte	0x8
-	.byte	0x5
-	.asciz	"long long int"
-	.uleb128 0x2
-	.byte	0x8
-	.byte	0x7
-	.asciz	"long long unsigned int"
-	.uleb128 0x2
-	.byte	0x2
-	.byte	0x7
-	.asciz	"short unsigned int"
-	.uleb128 0x2
-	.byte	0x4
-	.byte	0x5
-	.asciz	"long int"
 	.uleb128 0xa
-	.byte	0x1
-	.asciz	"you_should_add_file___tn_app_check_c___to_the_project"
-	.byte	0x1
-	.byte	0x5b
-	.byte	0x1
-	.4byte	.LFB5
-	.4byte	.LFE5
-	.byte	0x1
-	.byte	0x5e
+	.asciz	"AD1CON1BITS"
+	.byte	0x2
+	.2byte	0xa98
+	.4byte	0x244
 	.uleb128 0xb
 	.byte	0x1
-	.asciz	"tn_app_build_cfg_get"
+	.asciz	"ReadADC"
 	.byte	0x1
-	.byte	0x62
+	.byte	0x19
 	.byte	0x1
-	.4byte	0x383
-	.4byte	.LFB6
-	.4byte	.LFE6
+	.4byte	0x9d
+	.4byte	.LFB0
+	.4byte	.LFE0
 	.byte	0x1
 	.byte	0x5e
 	.uleb128 0xc
+	.4byte	.LASF0
 	.byte	0x2
-	.4byte	0x389
-	.uleb128 0xd
-	.4byte	0x127
-	.uleb128 0xe
-	.asciz	"_build_cfg"
+	.2byte	0xa79
+	.4byte	0x2a2
 	.byte	0x1
-	.byte	0x45
-	.4byte	0x127
+	.byte	0x1
+	.uleb128 0xd
+	.4byte	0xa9
+	.uleb128 0xc
+	.4byte	.LASF1
+	.byte	0x2
+	.2byte	0xa99
+	.4byte	0x2b5
+	.byte	0x1
+	.byte	0x1
+	.uleb128 0xd
+	.4byte	0x265
+	.uleb128 0xc
+	.4byte	.LASF0
+	.byte	0x2
+	.2byte	0xa79
+	.4byte	0x2a2
+	.byte	0x1
+	.byte	0x1
+	.uleb128 0xc
+	.4byte	.LASF1
+	.byte	0x2
+	.2byte	0xa99
+	.4byte	0x2b5
+	.byte	0x1
+	.byte	0x1
+	.uleb128 0xe
+	.4byte	0x9d
+	.4byte	0x2e6
+	.uleb128 0xf
+	.4byte	0xa9
+	.byte	0x7
+	.byte	0x0
+	.uleb128 0x10
+	.asciz	"ADCData"
+	.byte	0x1
+	.byte	0x2
+	.4byte	0x2d6
+	.byte	0x1
 	.byte	0x5
 	.byte	0x3
-	.4byte	__build_cfg
+	.4byte	_ADCData
+	.uleb128 0x10
+	.asciz	"ADCDataTemp0"
+	.byte	0x1
+	.byte	0x3
+	.4byte	0x2d6
+	.byte	0x1
+	.byte	0x5
+	.byte	0x3
+	.4byte	_ADCDataTemp0
+	.uleb128 0x10
+	.asciz	"ADCDataTemp1"
+	.byte	0x1
+	.byte	0x4
+	.4byte	0x2d6
+	.byte	0x1
+	.byte	0x5
+	.byte	0x3
+	.4byte	_ADCDataTemp1
+	.uleb128 0x10
+	.asciz	"ADCDataAveraged"
+	.byte	0x1
+	.byte	0x5
+	.4byte	0x2d6
+	.byte	0x1
+	.byte	0x5
+	.byte	0x3
+	.4byte	_ADCDataAveraged
 	.byte	0x0
 	.section	.debug_abbrev,info
 	.uleb128 0x1
@@ -452,17 +442,6 @@ _tn_app_build_cfg_get:
 	.byte	0x0
 	.byte	0x0
 	.uleb128 0x2
-	.uleb128 0x24
-	.byte	0x0
-	.uleb128 0xb
-	.uleb128 0xb
-	.uleb128 0x3e
-	.uleb128 0xb
-	.uleb128 0x3
-	.uleb128 0x8
-	.byte	0x0
-	.byte	0x0
-	.uleb128 0x3
 	.uleb128 0x16
 	.byte	0x0
 	.uleb128 0x3
@@ -475,6 +454,17 @@ _tn_app_build_cfg_get:
 	.uleb128 0x13
 	.byte	0x0
 	.byte	0x0
+	.uleb128 0x3
+	.uleb128 0x24
+	.byte	0x0
+	.uleb128 0xb
+	.uleb128 0xb
+	.uleb128 0x3e
+	.uleb128 0xb
+	.uleb128 0x3
+	.uleb128 0x8
+	.byte	0x0
+	.byte	0x0
 	.uleb128 0x4
 	.uleb128 0x13
 	.byte	0x1
@@ -483,7 +473,7 @@ _tn_app_build_cfg_get:
 	.uleb128 0x3a
 	.uleb128 0xb
 	.uleb128 0x3b
-	.uleb128 0xb
+	.uleb128 0x5
 	.uleb128 0x1
 	.uleb128 0x13
 	.byte	0x0
@@ -496,7 +486,7 @@ _tn_app_build_cfg_get:
 	.uleb128 0x3a
 	.uleb128 0xb
 	.uleb128 0x3b
-	.uleb128 0xb
+	.uleb128 0x5
 	.uleb128 0x49
 	.uleb128 0x13
 	.uleb128 0xb
@@ -517,7 +507,7 @@ _tn_app_build_cfg_get:
 	.uleb128 0x3a
 	.uleb128 0xb
 	.uleb128 0x3b
-	.uleb128 0xb
+	.uleb128 0x5
 	.uleb128 0x1
 	.uleb128 0x13
 	.byte	0x0
@@ -525,12 +515,6 @@ _tn_app_build_cfg_get:
 	.uleb128 0x7
 	.uleb128 0xd
 	.byte	0x0
-	.uleb128 0x3
-	.uleb128 0x8
-	.uleb128 0x3a
-	.uleb128 0xb
-	.uleb128 0x3b
-	.uleb128 0xb
 	.uleb128 0x49
 	.uleb128 0x13
 	.byte	0x0
@@ -545,7 +529,7 @@ _tn_app_build_cfg_get:
 	.uleb128 0x3a
 	.uleb128 0xb
 	.uleb128 0x3b
-	.uleb128 0xb
+	.uleb128 0x5
 	.uleb128 0x1
 	.uleb128 0x13
 	.byte	0x0
@@ -553,12 +537,6 @@ _tn_app_build_cfg_get:
 	.uleb128 0x9
 	.uleb128 0xd
 	.byte	0x0
-	.uleb128 0x3
-	.uleb128 0x8
-	.uleb128 0x3a
-	.uleb128 0xb
-	.uleb128 0x3b
-	.uleb128 0xb
 	.uleb128 0x49
 	.uleb128 0x13
 	.uleb128 0x38
@@ -566,24 +544,16 @@ _tn_app_build_cfg_get:
 	.byte	0x0
 	.byte	0x0
 	.uleb128 0xa
-	.uleb128 0x2e
+	.uleb128 0x16
 	.byte	0x0
-	.uleb128 0x3f
-	.uleb128 0xc
 	.uleb128 0x3
 	.uleb128 0x8
 	.uleb128 0x3a
 	.uleb128 0xb
 	.uleb128 0x3b
-	.uleb128 0xb
-	.uleb128 0x27
-	.uleb128 0xc
-	.uleb128 0x11
-	.uleb128 0x1
-	.uleb128 0x12
-	.uleb128 0x1
-	.uleb128 0x40
-	.uleb128 0xa
+	.uleb128 0x5
+	.uleb128 0x49
+	.uleb128 0x13
 	.byte	0x0
 	.byte	0x0
 	.uleb128 0xb
@@ -610,22 +580,48 @@ _tn_app_build_cfg_get:
 	.byte	0x0
 	.byte	0x0
 	.uleb128 0xc
-	.uleb128 0xf
+	.uleb128 0x34
 	.byte	0x0
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x3a
 	.uleb128 0xb
-	.uleb128 0xb
+	.uleb128 0x3b
+	.uleb128 0x5
 	.uleb128 0x49
 	.uleb128 0x13
+	.uleb128 0x3f
+	.uleb128 0xc
+	.uleb128 0x3c
+	.uleb128 0xc
 	.byte	0x0
 	.byte	0x0
 	.uleb128 0xd
-	.uleb128 0x26
+	.uleb128 0x35
 	.byte	0x0
 	.uleb128 0x49
 	.uleb128 0x13
 	.byte	0x0
 	.byte	0x0
 	.uleb128 0xe
+	.uleb128 0x1
+	.byte	0x1
+	.uleb128 0x49
+	.uleb128 0x13
+	.uleb128 0x1
+	.uleb128 0x13
+	.byte	0x0
+	.byte	0x0
+	.uleb128 0xf
+	.uleb128 0x21
+	.byte	0x0
+	.uleb128 0x49
+	.uleb128 0x13
+	.uleb128 0x2f
+	.uleb128 0xb
+	.byte	0x0
+	.byte	0x0
+	.uleb128 0x10
 	.uleb128 0x34
 	.byte	0x0
 	.uleb128 0x3
@@ -636,30 +632,40 @@ _tn_app_build_cfg_get:
 	.uleb128 0xb
 	.uleb128 0x49
 	.uleb128 0x13
+	.uleb128 0x3f
+	.uleb128 0xc
 	.uleb128 0x2
 	.uleb128 0xa
 	.byte	0x0
 	.byte	0x0
 	.byte	0x0
 	.section	.debug_pubnames,info
-	.4byte	0x61
+	.4byte	0x5c
 	.2byte	0x2
 	.4byte	.Ldebug_info0
-	.4byte	0x3a7
-	.4byte	0x316
-	.asciz	"you_should_add_file___tn_app_check_c___to_the_project"
-	.4byte	0x35b
-	.asciz	"tn_app_build_cfg_get"
+	.4byte	0x351
+	.4byte	0x279
+	.asciz	"ReadADC"
+	.4byte	0x2e6
+	.asciz	"ADCData"
+	.4byte	0x2fc
+	.asciz	"ADCDataTemp0"
+	.4byte	0x317
+	.asciz	"ADCDataTemp1"
+	.4byte	0x332
+	.asciz	"ADCDataAveraged"
 	.4byte	0x0
 	.section	.debug_pubtypes,info
-	.4byte	0x2c
+	.4byte	0x3a
 	.2byte	0x2
 	.4byte	.Ldebug_info0
-	.4byte	0x3a7
-	.4byte	0xd4
-	.asciz	"TN_UWord"
-	.4byte	0x127
-	.asciz	"_TN_BuildCfg"
+	.4byte	0x351
+	.4byte	0x9d
+	.asciz	"UINT"
+	.4byte	0x244
+	.asciz	"tagAD1CON1BITS"
+	.4byte	0x265
+	.asciz	"AD1CON1BITS"
 	.4byte	0x0
 	.section	.debug_aranges,info
 	.4byte	0x14
@@ -672,13 +678,17 @@ _tn_app_build_cfg_get:
 	.4byte	0x0
 	.4byte	0x0
 	.section	.debug_str,info
+.LASF1:
+	.asciz	"AD1CON1bits"
+.LASF0:
+	.asciz	"ADC1BUF0"
 	.section	.text,code
 
 
 
 	.section __c30_signature, info, data
 	.word 0x0001
-	.word 0x0001
+	.word 0x0000
 	.word 0x0000
 
 ; MCHP configuration words

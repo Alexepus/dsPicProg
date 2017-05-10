@@ -3,17 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/D:/Projects/Programming/CatalysisTFS/Catalysis/dsPicProg/HeaterPID.c</file>
+            <file>file:/D:/Projects/Programming/CatalysisTFS/Catalysis/dsPicProg/TNeo/src/core/tn_sys.c</file>
+            <file>file:/D:/Projects/Programming/CatalysisTFS/Catalysis/dsPicProg/Main.c</file>
+            <file>file:/D:/Projects/Programming/CatalysisTFS/Catalysis/dsPicProg/ProcessUartMsg.h</file>
             <file>file:/D:/Projects/Programming/CatalysisTFS/Catalysis/dsPicProg/UART.h</file>
             <file>file:/D:/Projects/Programming/CatalysisTFS/Catalysis/dsPicProg/ProcessUartMsg.c</file>
             <file>file:/D:/Projects/Programming/CatalysisTFS/Catalysis/dsPicProg/HeaterPID.h</file>
             <file>file:/D:/Projects/Programming/CatalysisTFS/Catalysis/dsPicProg/Math.c</file>
-            <file>file:/D:/Projects/Programming/CatalysisTFS/Catalysis/dsPicProg/HeaterPID.c</file>
-            <file>file:/D:/Projects/Programming/CatalysisTFS/Catalysis/dsPicProg/disassembly/listing.disasm</file>
             <file>file:/D:/Projects/Programming/CatalysisTFS/Catalysis/dsPicProg/HardwareInit.h</file>
+            <file>file:/D:/Projects/Programming/CatalysisTFS/Catalysis/dsPicProg/disassembly/listing.disasm</file>
+            <file>file:/C:/Program%20Files%20(x86)/Microchip/xc16/v1.30/support/dsPIC33F/h/p33FJ64MC804.h</file>
             <file>file:/D:/Projects/Programming/CatalysisTFS/Catalysis/dsPicProg/UART.c</file>
-            <file>file:/D:/Projects/Programming/CatalysisTFS/Catalysis/dsPicProg/Main.c</file>
-            <file>file:/D:/Projects/Programming/CatalysisTFS/Catalysis/dsPicProg/TNeo/src/core/tn_common.h</file>
-            <file>file:/D:/Projects/Programming/CatalysisTFS/Catalysis/dsPicProg/ProcessUartMsg.h</file>
+            <file>file:/D:/Projects/Programming/CatalysisTFS/Catalysis/dsPicProg/TNeo/src/core/tn_tasks.c</file>
+            <file>file:/D:/Projects/Programming/CatalysisTFS/Catalysis/dsPicProg/TNeo/src/arch/pic24_dspic/tn_arch_pic24.S</file>
             <file>file:/D:/Projects/Programming/CatalysisTFS/Catalysis/dsPicProg/HardwareInit.c</file>
         </group>
     </open-files>

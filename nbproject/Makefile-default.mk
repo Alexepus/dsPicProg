@@ -45,17 +45,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=Main.c PowerLimiter.c ProcessUartMsg.c UART.c ADC8x14.c DAC.c Spi.c HardwareInit.c Math.c TNeo/src/tn_app_check.c HeaterPID.c AddressBus.c
+SOURCEFILES_QUOTED_IF_SPACED=Main.c PowerLimiter.c ProcessUartMsg.c UART.c DAC.c Spi.c HardwareInit.c Math.c HeaterPID.c AddressBus.c LeakerPid.c ADC.c AnalogIo.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/Main.o ${OBJECTDIR}/PowerLimiter.o ${OBJECTDIR}/ProcessUartMsg.o ${OBJECTDIR}/UART.o ${OBJECTDIR}/ADC8x14.o ${OBJECTDIR}/DAC.o ${OBJECTDIR}/Spi.o ${OBJECTDIR}/HardwareInit.o ${OBJECTDIR}/Math.o ${OBJECTDIR}/TNeo/src/tn_app_check.o ${OBJECTDIR}/HeaterPID.o ${OBJECTDIR}/AddressBus.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/Main.o.d ${OBJECTDIR}/PowerLimiter.o.d ${OBJECTDIR}/ProcessUartMsg.o.d ${OBJECTDIR}/UART.o.d ${OBJECTDIR}/ADC8x14.o.d ${OBJECTDIR}/DAC.o.d ${OBJECTDIR}/Spi.o.d ${OBJECTDIR}/HardwareInit.o.d ${OBJECTDIR}/Math.o.d ${OBJECTDIR}/TNeo/src/tn_app_check.o.d ${OBJECTDIR}/HeaterPID.o.d ${OBJECTDIR}/AddressBus.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/Main.o ${OBJECTDIR}/PowerLimiter.o ${OBJECTDIR}/ProcessUartMsg.o ${OBJECTDIR}/UART.o ${OBJECTDIR}/DAC.o ${OBJECTDIR}/Spi.o ${OBJECTDIR}/HardwareInit.o ${OBJECTDIR}/Math.o ${OBJECTDIR}/HeaterPID.o ${OBJECTDIR}/AddressBus.o ${OBJECTDIR}/LeakerPid.o ${OBJECTDIR}/ADC.o ${OBJECTDIR}/AnalogIo.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/Main.o.d ${OBJECTDIR}/PowerLimiter.o.d ${OBJECTDIR}/ProcessUartMsg.o.d ${OBJECTDIR}/UART.o.d ${OBJECTDIR}/DAC.o.d ${OBJECTDIR}/Spi.o.d ${OBJECTDIR}/HardwareInit.o.d ${OBJECTDIR}/Math.o.d ${OBJECTDIR}/HeaterPID.o.d ${OBJECTDIR}/AddressBus.o.d ${OBJECTDIR}/LeakerPid.o.d ${OBJECTDIR}/ADC.o.d ${OBJECTDIR}/AnalogIo.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/Main.o ${OBJECTDIR}/PowerLimiter.o ${OBJECTDIR}/ProcessUartMsg.o ${OBJECTDIR}/UART.o ${OBJECTDIR}/ADC8x14.o ${OBJECTDIR}/DAC.o ${OBJECTDIR}/Spi.o ${OBJECTDIR}/HardwareInit.o ${OBJECTDIR}/Math.o ${OBJECTDIR}/TNeo/src/tn_app_check.o ${OBJECTDIR}/HeaterPID.o ${OBJECTDIR}/AddressBus.o
+OBJECTFILES=${OBJECTDIR}/Main.o ${OBJECTDIR}/PowerLimiter.o ${OBJECTDIR}/ProcessUartMsg.o ${OBJECTDIR}/UART.o ${OBJECTDIR}/DAC.o ${OBJECTDIR}/Spi.o ${OBJECTDIR}/HardwareInit.o ${OBJECTDIR}/Math.o ${OBJECTDIR}/HeaterPID.o ${OBJECTDIR}/AddressBus.o ${OBJECTDIR}/LeakerPid.o ${OBJECTDIR}/ADC.o ${OBJECTDIR}/AnalogIo.o
 
 # Source Files
-SOURCEFILES=Main.c PowerLimiter.c ProcessUartMsg.c UART.c ADC8x14.c DAC.c Spi.c HardwareInit.c Math.c TNeo/src/tn_app_check.c HeaterPID.c AddressBus.c
+SOURCEFILES=Main.c PowerLimiter.c ProcessUartMsg.c UART.c DAC.c Spi.c HardwareInit.c Math.c HeaterPID.c AddressBus.c LeakerPid.c ADC.c AnalogIo.c
 
 
 CFLAGS=
@@ -110,13 +110,6 @@ ${OBJECTDIR}/UART.o: UART.c  nbproject/Makefile-${CND_CONF}.mk
 	${MP_CC} $(MP_EXTRA_CC_PRE)  UART.c  -o ${OBJECTDIR}/UART.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/UART.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1    -omf=elf -save-temps=obj -O0 -msmart-io=1 -Wall -msfr-warn=off
 	@${FIXDEPS} "${OBJECTDIR}/UART.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
-${OBJECTDIR}/ADC8x14.o: ADC8x14.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/ADC8x14.o.d 
-	@${RM} ${OBJECTDIR}/ADC8x14.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  ADC8x14.c  -o ${OBJECTDIR}/ADC8x14.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/ADC8x14.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1    -omf=elf -save-temps=obj -O0 -msmart-io=1 -Wall -msfr-warn=off
-	@${FIXDEPS} "${OBJECTDIR}/ADC8x14.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
-	
 ${OBJECTDIR}/DAC.o: DAC.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/DAC.o.d 
@@ -145,13 +138,6 @@ ${OBJECTDIR}/Math.o: Math.c  nbproject/Makefile-${CND_CONF}.mk
 	${MP_CC} $(MP_EXTRA_CC_PRE)  Math.c  -o ${OBJECTDIR}/Math.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/Math.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1    -omf=elf -save-temps=obj -O0 -msmart-io=1 -Wall -msfr-warn=off
 	@${FIXDEPS} "${OBJECTDIR}/Math.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
-${OBJECTDIR}/TNeo/src/tn_app_check.o: TNeo/src/tn_app_check.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/TNeo/src" 
-	@${RM} ${OBJECTDIR}/TNeo/src/tn_app_check.o.d 
-	@${RM} ${OBJECTDIR}/TNeo/src/tn_app_check.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  TNeo/src/tn_app_check.c  -o ${OBJECTDIR}/TNeo/src/tn_app_check.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/TNeo/src/tn_app_check.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1    -omf=elf -save-temps=obj -O0 -msmart-io=1 -Wall -msfr-warn=off
-	@${FIXDEPS} "${OBJECTDIR}/TNeo/src/tn_app_check.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
-	
 ${OBJECTDIR}/HeaterPID.o: HeaterPID.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/HeaterPID.o.d 
@@ -165,6 +151,27 @@ ${OBJECTDIR}/AddressBus.o: AddressBus.c  nbproject/Makefile-${CND_CONF}.mk
 	@${RM} ${OBJECTDIR}/AddressBus.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  AddressBus.c  -o ${OBJECTDIR}/AddressBus.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/AddressBus.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1    -omf=elf -save-temps=obj -O0 -msmart-io=1 -Wall -msfr-warn=off
 	@${FIXDEPS} "${OBJECTDIR}/AddressBus.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
+${OBJECTDIR}/LeakerPid.o: LeakerPid.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/LeakerPid.o.d 
+	@${RM} ${OBJECTDIR}/LeakerPid.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  LeakerPid.c  -o ${OBJECTDIR}/LeakerPid.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/LeakerPid.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1    -omf=elf -save-temps=obj -O0 -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/LeakerPid.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
+${OBJECTDIR}/ADC.o: ADC.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/ADC.o.d 
+	@${RM} ${OBJECTDIR}/ADC.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ADC.c  -o ${OBJECTDIR}/ADC.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/ADC.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1    -omf=elf -save-temps=obj -O0 -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/ADC.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
+${OBJECTDIR}/AnalogIo.o: AnalogIo.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/AnalogIo.o.d 
+	@${RM} ${OBJECTDIR}/AnalogIo.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  AnalogIo.c  -o ${OBJECTDIR}/AnalogIo.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/AnalogIo.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1    -omf=elf -save-temps=obj -O0 -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/AnalogIo.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 else
 ${OBJECTDIR}/Main.o: Main.c  nbproject/Makefile-${CND_CONF}.mk
@@ -195,13 +202,6 @@ ${OBJECTDIR}/UART.o: UART.c  nbproject/Makefile-${CND_CONF}.mk
 	${MP_CC} $(MP_EXTRA_CC_PRE)  UART.c  -o ${OBJECTDIR}/UART.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/UART.o.d"        -g -omf=elf -save-temps=obj -O0 -msmart-io=1 -Wall -msfr-warn=off
 	@${FIXDEPS} "${OBJECTDIR}/UART.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
-${OBJECTDIR}/ADC8x14.o: ADC8x14.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/ADC8x14.o.d 
-	@${RM} ${OBJECTDIR}/ADC8x14.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  ADC8x14.c  -o ${OBJECTDIR}/ADC8x14.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/ADC8x14.o.d"        -g -omf=elf -save-temps=obj -O0 -msmart-io=1 -Wall -msfr-warn=off
-	@${FIXDEPS} "${OBJECTDIR}/ADC8x14.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
-	
 ${OBJECTDIR}/DAC.o: DAC.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/DAC.o.d 
@@ -230,13 +230,6 @@ ${OBJECTDIR}/Math.o: Math.c  nbproject/Makefile-${CND_CONF}.mk
 	${MP_CC} $(MP_EXTRA_CC_PRE)  Math.c  -o ${OBJECTDIR}/Math.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/Math.o.d"        -g -omf=elf -save-temps=obj -O0 -msmart-io=1 -Wall -msfr-warn=off
 	@${FIXDEPS} "${OBJECTDIR}/Math.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
-${OBJECTDIR}/TNeo/src/tn_app_check.o: TNeo/src/tn_app_check.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/TNeo/src" 
-	@${RM} ${OBJECTDIR}/TNeo/src/tn_app_check.o.d 
-	@${RM} ${OBJECTDIR}/TNeo/src/tn_app_check.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  TNeo/src/tn_app_check.c  -o ${OBJECTDIR}/TNeo/src/tn_app_check.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/TNeo/src/tn_app_check.o.d"        -g -omf=elf -save-temps=obj -O0 -msmart-io=1 -Wall -msfr-warn=off
-	@${FIXDEPS} "${OBJECTDIR}/TNeo/src/tn_app_check.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
-	
 ${OBJECTDIR}/HeaterPID.o: HeaterPID.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/HeaterPID.o.d 
@@ -250,6 +243,27 @@ ${OBJECTDIR}/AddressBus.o: AddressBus.c  nbproject/Makefile-${CND_CONF}.mk
 	@${RM} ${OBJECTDIR}/AddressBus.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  AddressBus.c  -o ${OBJECTDIR}/AddressBus.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/AddressBus.o.d"        -g -omf=elf -save-temps=obj -O0 -msmart-io=1 -Wall -msfr-warn=off
 	@${FIXDEPS} "${OBJECTDIR}/AddressBus.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
+${OBJECTDIR}/LeakerPid.o: LeakerPid.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/LeakerPid.o.d 
+	@${RM} ${OBJECTDIR}/LeakerPid.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  LeakerPid.c  -o ${OBJECTDIR}/LeakerPid.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/LeakerPid.o.d"        -g -omf=elf -save-temps=obj -O0 -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/LeakerPid.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
+${OBJECTDIR}/ADC.o: ADC.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/ADC.o.d 
+	@${RM} ${OBJECTDIR}/ADC.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ADC.c  -o ${OBJECTDIR}/ADC.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/ADC.o.d"        -g -omf=elf -save-temps=obj -O0 -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/ADC.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
+${OBJECTDIR}/AnalogIo.o: AnalogIo.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/AnalogIo.o.d 
+	@${RM} ${OBJECTDIR}/AnalogIo.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  AnalogIo.c  -o ${OBJECTDIR}/AnalogIo.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/AnalogIo.o.d"        -g -omf=elf -save-temps=obj -O0 -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/AnalogIo.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 endif
 
@@ -268,14 +282,14 @@ endif
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: link
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
-dist/${CND_CONF}/${IMAGE_TYPE}/dsPicProg.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: ${OBJECTFILES}  nbproject/Makefile-${CND_CONF}.mk  TNeo/lib_project/pic24_dspic/tneo_pic24_dspic.X/dist/no_eds/debug/tneo_pic24_dspic.X.a  
+dist/${CND_CONF}/${IMAGE_TYPE}/dsPicProg.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: ${OBJECTFILES}  nbproject/Makefile-${CND_CONF}.mk    
 	@${MKDIR} dist/${CND_CONF}/${IMAGE_TYPE} 
-	${MP_CC} $(MP_EXTRA_LD_PRE)  -o dist/${CND_CONF}/${IMAGE_TYPE}/dsPicProg.${IMAGE_TYPE}.${OUTPUT_SUFFIX}  ${OBJECTFILES_QUOTED_IF_SPACED}    TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\debug\tneo_pic24_dspic.X.a  -mcpu=$(MP_PROCESSOR_OPTION)        -D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1  -omf=elf -save-temps=obj  -mreserve=data@0x800:0x81F -mreserve=data@0x820:0x821 -mreserve=data@0x822:0x823 -mreserve=data@0x824:0x825 -mreserve=data@0x826:0x84F   -Wl,,--defsym=__MPLAB_BUILD=1,--defsym=__MPLAB_DEBUG=1,--defsym=__DEBUG=1,--defsym=__MPLAB_DEBUGGER_ICD3=1,$(MP_LINKER_FILE_OPTION),--stack=16,--check-sections,--data-init,--pack-data,--handles,--isr,--no-gc-sections,--fill-upper=0,--stackguard=16,--no-force-link,--smart-io,-Map="${DISTDIR}/${PROJECTNAME}.${IMAGE_TYPE}.map",--report-mem,--memorysummary,dist/${CND_CONF}/${IMAGE_TYPE}/memoryfile.xml$(MP_EXTRA_LD_POST) 
+	${MP_CC} $(MP_EXTRA_LD_PRE)  -o dist/${CND_CONF}/${IMAGE_TYPE}/dsPicProg.${IMAGE_TYPE}.${OUTPUT_SUFFIX}  ${OBJECTFILES_QUOTED_IF_SPACED}      -mcpu=$(MP_PROCESSOR_OPTION)        -D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1  -omf=elf -save-temps=obj  -mreserve=data@0x800:0x81F -mreserve=data@0x820:0x821 -mreserve=data@0x822:0x823 -mreserve=data@0x824:0x825 -mreserve=data@0x826:0x84F   -Wl,,--defsym=__MPLAB_BUILD=1,--defsym=__MPLAB_DEBUG=1,--defsym=__DEBUG=1,--defsym=__MPLAB_DEBUGGER_ICD3=1,$(MP_LINKER_FILE_OPTION),--stack=16,--check-sections,--data-init,--pack-data,--handles,--isr,--no-gc-sections,--fill-upper=0,--stackguard=16,--no-force-link,--smart-io,-Map="${DISTDIR}/${PROJECTNAME}.${IMAGE_TYPE}.map",--report-mem,--memorysummary,dist/${CND_CONF}/${IMAGE_TYPE}/memoryfile.xml$(MP_EXTRA_LD_POST) 
 	
 else
-dist/${CND_CONF}/${IMAGE_TYPE}/dsPicProg.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: ${OBJECTFILES}  nbproject/Makefile-${CND_CONF}.mk  TNeo/lib_project/pic24_dspic/tneo_pic24_dspic.X/dist/no_eds/production/tneo_pic24_dspic.X.a 
+dist/${CND_CONF}/${IMAGE_TYPE}/dsPicProg.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: ${OBJECTFILES}  nbproject/Makefile-${CND_CONF}.mk   
 	@${MKDIR} dist/${CND_CONF}/${IMAGE_TYPE} 
-	${MP_CC} $(MP_EXTRA_LD_PRE)  -o dist/${CND_CONF}/${IMAGE_TYPE}/dsPicProg.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX}  ${OBJECTFILES_QUOTED_IF_SPACED}    TNeo\lib_project\pic24_dspic\tneo_pic24_dspic.X\dist\no_eds\production\tneo_pic24_dspic.X.a  -mcpu=$(MP_PROCESSOR_OPTION)        -omf=elf -save-temps=obj -Wl,,--defsym=__MPLAB_BUILD=1,$(MP_LINKER_FILE_OPTION),--stack=16,--check-sections,--data-init,--pack-data,--handles,--isr,--no-gc-sections,--fill-upper=0,--stackguard=16,--no-force-link,--smart-io,-Map="${DISTDIR}/${PROJECTNAME}.${IMAGE_TYPE}.map",--report-mem,--memorysummary,dist/${CND_CONF}/${IMAGE_TYPE}/memoryfile.xml$(MP_EXTRA_LD_POST) 
+	${MP_CC} $(MP_EXTRA_LD_PRE)  -o dist/${CND_CONF}/${IMAGE_TYPE}/dsPicProg.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX}  ${OBJECTFILES_QUOTED_IF_SPACED}      -mcpu=$(MP_PROCESSOR_OPTION)        -omf=elf -save-temps=obj -Wl,,--defsym=__MPLAB_BUILD=1,$(MP_LINKER_FILE_OPTION),--stack=16,--check-sections,--data-init,--pack-data,--handles,--isr,--no-gc-sections,--fill-upper=0,--stackguard=16,--no-force-link,--smart-io,-Map="${DISTDIR}/${PROJECTNAME}.${IMAGE_TYPE}.map",--report-mem,--memorysummary,dist/${CND_CONF}/${IMAGE_TYPE}/memoryfile.xml$(MP_EXTRA_LD_POST) 
 	${MP_CC_DIR}\\xc16-bin2hex dist/${CND_CONF}/${IMAGE_TYPE}/dsPicProg.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX} -a  -omf=elf  
 	
 endif
@@ -283,12 +297,10 @@ endif
 
 # Subprojects
 .build-subprojects:
-	cd /D TNeo/lib_project/pic24_dspic/tneo_pic24_dspic.X && ${MAKE}  -f Makefile CONF=no_eds
 
 
 # Subprojects
 .clean-subprojects:
-	cd /D TNeo/lib_project/pic24_dspic/tneo_pic24_dspic.X && rm -rf "build/no_eds" "dist/no_eds"
 
 # Clean Targets
 .clean-conf: ${CLEAN_SUBPROJECTS}

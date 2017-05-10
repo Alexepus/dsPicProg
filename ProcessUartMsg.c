@@ -6,15 +6,12 @@ FIFO TxFifo;
 extern MessageBuffer RcBuf;
 extern MessageBuffer TxBuf;
 
-//Task 0. Обработчик сообщений UART1
-void ProcessUart1Msg(void *par) //(параметр не используется)
+// Обработчик сообщений UART1
+void ProcessUart1Msg()
 {
 	static BYTE Cmd;
-	while (1) 
-	{
-		tn_sem_wait(&UartRcMsgSem, TN_WAIT_INFINITE);
 		if(ExtractRcMessage() == 0)
-			continue;
+			return;
 		Cmd=RcBuf.Data[0];
 //#pragma switch direct
 		switch(Cmd)
@@ -24,7 +21,7 @@ void ProcessUart1Msg(void *par) //(параметр не используется)
 		{
 			BYTE *pSrc, *pDest;
 			pDest=TxBuf.Data;
-			pSrc=(BYTE*)ADC8x14Data+(RcBuf.Data[1]<<1);
+			pSrc=(BYTE*)ADCData+(RcBuf.Data[1]<<1);
 			*pDest++=CMD_GET_EXT_ADC;
 			*pDest++=RcBuf.Data[1];
 			*pDest++=*pSrc++;
@@ -40,7 +37,7 @@ void ProcessUart1Msg(void *par) //(параметр не используется)
 			pDest=(BYTE*)(DacData+ *pSrc++);
 			*pDest++=*pSrc++;			
 			*pDest--=*pSrc;
-			LoadDac(RcBuf.Data[1],*(UINT*)pDest);
+			//LoadDac(RcBuf.Data[1],*(UINT*)pDest);
 			TxBuf.Data[0]=CMD_LOAD_DAC;
 			TxBuf.Length=1;
 			UartStartTx();
@@ -48,7 +45,7 @@ void ProcessUart1Msg(void *par) //(параметр не используется)
 		}
 		case CMD_GET_AVERAGED_ADC: //Запрос усредненного значения АЦП
 		{
-			BYTE *pSrc=(BYTE*)ADC8x14DataAveraged+(RcBuf.Data[1]<<1);
+			BYTE *pSrc=(BYTE*)ADCDataAveraged+(RcBuf.Data[1]<<1);
 			TxBuf.Data[0]=CMD_GET_AVERAGED_ADC;
 			TxBuf.Data[1]=RcBuf.Data[1];
 			TxBuf.Data[2]=*pSrc++;
@@ -153,12 +150,12 @@ void ProcessUart1Msg(void *par) //(параметр не используется)
 		{	
 			BYTE *pDest=TxBuf.Data;
 			*pDest++=CMD_GET_ADC_TC_I_U_TREF;
-			*pDest++=*(BYTE*)&ADC8x14DataAveraged[0];
-			*pDest++=*((BYTE*)&ADC8x14DataAveraged[0]+1);
-			*pDest++=*(BYTE*)&ADC8x14DataAveraged[1];
-			*pDest++=*((BYTE*)&ADC8x14DataAveraged[1]+1);
-			*pDest++=*(BYTE*)&ADC8x14DataAveraged[2];
-			*pDest++=*((BYTE*)&ADC8x14DataAveraged[2]+1);
+			*pDest++=*(BYTE*)&ADCDataAveraged[0];
+			*pDest++=*((BYTE*)&ADCDataAveraged[0]+1);
+			*pDest++=*(BYTE*)&ADCDataAveraged[1];
+			*pDest++=*((BYTE*)&ADCDataAveraged[1]+1);
+			*pDest++=*(BYTE*)&ADCDataAveraged[2];
+			*pDest++=*((BYTE*)&ADCDataAveraged[2]+1);
 			*pDest++=*(BYTE*)&TRef;
 			*pDest=*((BYTE*)&TRef+1);
 			TxBuf.Length=9;
@@ -247,8 +244,8 @@ void ProcessUart1Msg(void *par) //(параметр не используется)
 		case CMD_GET_MASS_ADC: //Отправка значения ADC[3]
 		{
 			TxBuf.Data[0]=CMD_GET_MASS_ADC;
-			TxBuf.Data[1]=*((BYTE*)&ADC8x14DataAveraged[3]);
-			TxBuf.Data[2]=*((BYTE*)&ADC8x14DataAveraged[3]+1);
+			TxBuf.Data[1]=*((BYTE*)&ADCDataAveraged[3]);
+			TxBuf.Data[2]=*((BYTE*)&ADCDataAveraged[3]+1);
 			TxBuf.Length=3;
 			UartStartTx();			
 			break;		
@@ -356,8 +353,7 @@ void ProcessUart1Msg(void *par) //(параметр не используется)
 			TxBuf.Length=2;
 			UartStartTx();		
 		}	
-		}	
-	}
+	}	
 }
 
 //________________________________________________________________________________
