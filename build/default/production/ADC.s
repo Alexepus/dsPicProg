@@ -1,4 +1,4 @@
-	.file "D:\\Projects\\Programming\\CatalysisTFS\\Catalysis\\dsPicProg\\ADC.c"
+	.file "C:\\SourceCode\\dsPicProg\\ADC.c"
 	.section	.debug_abbrev,info
 .Ldebug_abbrev0:
 	.section	.debug_info,info
@@ -7,7 +7,7 @@
 .Ldebug_line0:
 	.section	.text,code
 .Ltext0:
-	.section	.bss,bss
+	.section	.nbss,bss,near
 	.type	_ADCData,@object
 	.global	_ADCData
 	.align	2
@@ -30,29 +30,27 @@ _ADCDataAveraged:	.space	16
 	.type	_ReadADC,@function
 _ReadADC:
 .LFB0:
-	.file 1 "ADC.c"
-	.loc 1 26 0
+.LSM0:
 	.set ___PA___,1
 	lnk	#0
-.LCFI0:
-	.loc 1 27 0
+.LSM1:
 	bset.b	_AD1CON1bits,#1
-	.loc 1 28 0
+.LSM2:
 	nop	
 .L2:
-	mov	_AD1CON1bits,w0
-	and	w0,#1,w0
-	cp0	w0
+	mov	_AD1CON1bits,w4
+	and	w4,#1,w4
+	sub	w4,#0,[w15]
 	.set ___BP___,0
 	bra	z,.L2
-	.loc 1 29 0
-	mov	_ADC1BUF0,w0
-	.loc 1 30 0
+.LSM3:
+	mov	_ADC1BUF0,w4
+.LSM4:
+	mov	w4,w0
 	ulnk	
 	return	
 	.set ___PA___,0
 .LFE0:
-	.size	_ReadADC, .-_ReadADC
 	.section	.debug_frame,info
 .Lframe0:
 	.4byte	.LECIE0-.LSCIE0
@@ -77,31 +75,20 @@ _ReadADC:
 	.4byte	.Lframe0
 	.4byte	.LFB0
 	.4byte	.LFE0-.LFB0
-	.byte	0x4
-	.4byte	.LCFI0-.LFB0
-	.byte	0x13
-	.sleb128 -3
-	.byte	0xd
-	.uleb128 0xe
-	.byte	0x8e
-	.uleb128 0x2
 	.align	4
 .LEFDE0:
 	.section	.text,code
 .Letext0:
-	.file 2 "p33FJ64MC804.h"
-	.file 3 "Main.h"
 	.section	.debug_info,info
-	.4byte	0x34d
+	.4byte	0x329
 	.2byte	0x2
 	.4byte	.Ldebug_abbrev0
 	.byte	0x4
 	.uleb128 0x1
-	.asciz	"GNU C 4.5.1 (XC16, Microchip v1.30) (A) Build date: Nov 22 2016"
+	.asciz	"GNU C 4.5.1 (XC16, Microchip v1.22) (A) Build date: Aug 19 2014"
 	.byte	0x1
 	.asciz	"ADC.c"
-	.ascii	"D:\\\\Projects\\\\Programming\\\\CatalysisTFS\\\\Catalysis\\\\dsPicP"
-	.asciz	"rog"
+	.asciz	"C:\\\\SourceCode\\\\dsPicProg"
 	.4byte	.Ltext0
 	.4byte	.Letext0
 	.4byte	.Ldebug_line0
@@ -109,7 +96,7 @@ _ReadADC:
 	.asciz	"UINT"
 	.byte	0x3
 	.byte	0x4
-	.4byte	0xa9
+	.4byte	0x85
 	.uleb128 0x3
 	.byte	0x2
 	.byte	0x7
@@ -134,12 +121,12 @@ _ReadADC:
 	.byte	0x2
 	.byte	0x2
 	.2byte	0xa80
-	.4byte	0x1c2
+	.4byte	0x19e
 	.uleb128 0x5
 	.asciz	"DONE"
 	.byte	0x2
 	.2byte	0xa81
-	.4byte	0xa9
+	.4byte	0x85
 	.byte	0x2
 	.byte	0x1
 	.byte	0xf
@@ -150,7 +137,7 @@ _ReadADC:
 	.asciz	"SAMP"
 	.byte	0x2
 	.2byte	0xa82
-	.4byte	0xa9
+	.4byte	0x85
 	.byte	0x2
 	.byte	0x1
 	.byte	0xe
@@ -161,7 +148,7 @@ _ReadADC:
 	.asciz	"ASAM"
 	.byte	0x2
 	.2byte	0xa83
-	.4byte	0xa9
+	.4byte	0x85
 	.byte	0x2
 	.byte	0x1
 	.byte	0xd
@@ -172,7 +159,7 @@ _ReadADC:
 	.asciz	"SIMSAM"
 	.byte	0x2
 	.2byte	0xa84
-	.4byte	0xa9
+	.4byte	0x85
 	.byte	0x2
 	.byte	0x1
 	.byte	0xc
@@ -183,7 +170,7 @@ _ReadADC:
 	.asciz	"SSRC"
 	.byte	0x2
 	.2byte	0xa86
-	.4byte	0xa9
+	.4byte	0x85
 	.byte	0x2
 	.byte	0x3
 	.byte	0x8
@@ -194,7 +181,7 @@ _ReadADC:
 	.asciz	"FORM"
 	.byte	0x2
 	.2byte	0xa87
-	.4byte	0xa9
+	.4byte	0x85
 	.byte	0x2
 	.byte	0x2
 	.byte	0x6
@@ -205,7 +192,7 @@ _ReadADC:
 	.asciz	"AD12B"
 	.byte	0x2
 	.2byte	0xa88
-	.4byte	0xa9
+	.4byte	0x85
 	.byte	0x2
 	.byte	0x1
 	.byte	0x5
@@ -216,7 +203,7 @@ _ReadADC:
 	.asciz	"ADDMABM"
 	.byte	0x2
 	.2byte	0xa8a
-	.4byte	0xa9
+	.4byte	0x85
 	.byte	0x2
 	.byte	0x1
 	.byte	0x3
@@ -227,7 +214,7 @@ _ReadADC:
 	.asciz	"ADSIDL"
 	.byte	0x2
 	.2byte	0xa8b
-	.4byte	0xa9
+	.4byte	0x85
 	.byte	0x2
 	.byte	0x1
 	.byte	0x2
@@ -238,7 +225,7 @@ _ReadADC:
 	.asciz	"ADON"
 	.byte	0x2
 	.2byte	0xa8d
-	.4byte	0xa9
+	.4byte	0x85
 	.byte	0x2
 	.byte	0x1
 	.byte	0x10
@@ -250,12 +237,12 @@ _ReadADC:
 	.byte	0x2
 	.byte	0x2
 	.2byte	0xa8f
-	.4byte	0x230
+	.4byte	0x20c
 	.uleb128 0x5
 	.asciz	"SSRC0"
 	.byte	0x2
 	.2byte	0xa91
-	.4byte	0xa9
+	.4byte	0x85
 	.byte	0x2
 	.byte	0x1
 	.byte	0xa
@@ -266,7 +253,7 @@ _ReadADC:
 	.asciz	"SSRC1"
 	.byte	0x2
 	.2byte	0xa92
-	.4byte	0xa9
+	.4byte	0x85
 	.byte	0x2
 	.byte	0x1
 	.byte	0x9
@@ -277,7 +264,7 @@ _ReadADC:
 	.asciz	"SSRC2"
 	.byte	0x2
 	.2byte	0xa93
-	.4byte	0xa9
+	.4byte	0x85
 	.byte	0x2
 	.byte	0x1
 	.byte	0x8
@@ -288,7 +275,7 @@ _ReadADC:
 	.asciz	"FORM0"
 	.byte	0x2
 	.2byte	0xa94
-	.4byte	0xa9
+	.4byte	0x85
 	.byte	0x2
 	.byte	0x1
 	.byte	0x7
@@ -299,7 +286,7 @@ _ReadADC:
 	.asciz	"FORM1"
 	.byte	0x2
 	.2byte	0xa95
-	.4byte	0xa9
+	.4byte	0x85
 	.byte	0x2
 	.byte	0x1
 	.byte	0x6
@@ -311,20 +298,20 @@ _ReadADC:
 	.byte	0x2
 	.byte	0x2
 	.2byte	0xa7f
-	.4byte	0x244
+	.4byte	0x220
 	.uleb128 0x7
-	.4byte	0xf2
+	.4byte	0xce
 	.uleb128 0x7
-	.4byte	0x1c2
+	.4byte	0x19e
 	.byte	0x0
 	.uleb128 0x8
 	.asciz	"tagAD1CON1BITS"
 	.byte	0x2
 	.byte	0x2
 	.2byte	0xa7e
-	.4byte	0x265
+	.4byte	0x241
 	.uleb128 0x9
-	.4byte	0x230
+	.4byte	0x20c
 	.byte	0x2
 	.byte	0x23
 	.uleb128 0x0
@@ -333,14 +320,14 @@ _ReadADC:
 	.asciz	"AD1CON1BITS"
 	.byte	0x2
 	.2byte	0xa98
-	.4byte	0x244
+	.4byte	0x220
 	.uleb128 0xb
 	.byte	0x1
 	.asciz	"ReadADC"
 	.byte	0x1
 	.byte	0x19
 	.byte	0x1
-	.4byte	0x9d
+	.4byte	0x79
 	.4byte	.LFB0
 	.4byte	.LFE0
 	.byte	0x1
@@ -349,46 +336,46 @@ _ReadADC:
 	.4byte	.LASF0
 	.byte	0x2
 	.2byte	0xa79
-	.4byte	0x2a2
+	.4byte	0x27e
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xd
-	.4byte	0xa9
+	.4byte	0x85
 	.uleb128 0xc
 	.4byte	.LASF1
 	.byte	0x2
 	.2byte	0xa99
-	.4byte	0x2b5
+	.4byte	0x291
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xd
-	.4byte	0x265
+	.4byte	0x241
 	.uleb128 0xc
 	.4byte	.LASF0
 	.byte	0x2
 	.2byte	0xa79
-	.4byte	0x2a2
+	.4byte	0x27e
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xc
 	.4byte	.LASF1
 	.byte	0x2
 	.2byte	0xa99
-	.4byte	0x2b5
+	.4byte	0x291
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xe
-	.4byte	0x9d
-	.4byte	0x2e6
+	.4byte	0x79
+	.4byte	0x2c2
 	.uleb128 0xf
-	.4byte	0xa9
+	.4byte	0x85
 	.byte	0x7
 	.byte	0x0
 	.uleb128 0x10
 	.asciz	"ADCData"
 	.byte	0x1
 	.byte	0x2
-	.4byte	0x2d6
+	.4byte	0x2b2
 	.byte	0x1
 	.byte	0x5
 	.byte	0x3
@@ -397,7 +384,7 @@ _ReadADC:
 	.asciz	"ADCDataTemp0"
 	.byte	0x1
 	.byte	0x3
-	.4byte	0x2d6
+	.4byte	0x2b2
 	.byte	0x1
 	.byte	0x5
 	.byte	0x3
@@ -406,7 +393,7 @@ _ReadADC:
 	.asciz	"ADCDataTemp1"
 	.byte	0x1
 	.byte	0x4
-	.4byte	0x2d6
+	.4byte	0x2b2
 	.byte	0x1
 	.byte	0x5
 	.byte	0x3
@@ -415,7 +402,7 @@ _ReadADC:
 	.asciz	"ADCDataAveraged"
 	.byte	0x1
 	.byte	0x5
-	.4byte	0x2d6
+	.4byte	0x2b2
 	.byte	0x1
 	.byte	0x5
 	.byte	0x3
@@ -643,28 +630,28 @@ _ReadADC:
 	.4byte	0x5c
 	.2byte	0x2
 	.4byte	.Ldebug_info0
-	.4byte	0x351
-	.4byte	0x279
+	.4byte	0x32d
+	.4byte	0x255
 	.asciz	"ReadADC"
-	.4byte	0x2e6
+	.4byte	0x2c2
 	.asciz	"ADCData"
-	.4byte	0x2fc
+	.4byte	0x2d8
 	.asciz	"ADCDataTemp0"
-	.4byte	0x317
+	.4byte	0x2f3
 	.asciz	"ADCDataTemp1"
-	.4byte	0x332
+	.4byte	0x30e
 	.asciz	"ADCDataAveraged"
 	.4byte	0x0
 	.section	.debug_pubtypes,info
 	.4byte	0x3a
 	.2byte	0x2
 	.4byte	.Ldebug_info0
-	.4byte	0x351
-	.4byte	0x9d
+	.4byte	0x32d
+	.4byte	0x79
 	.asciz	"UINT"
-	.4byte	0x244
+	.4byte	0x220
 	.asciz	"tagAD1CON1BITS"
-	.4byte	0x265
+	.4byte	0x241
 	.asciz	"AD1CON1BITS"
 	.4byte	0x0
 	.section	.debug_aranges,info
@@ -677,14 +664,87 @@ _ReadADC:
 	.2byte	0x0
 	.4byte	0x0
 	.4byte	0x0
+	.section	.debug_line,info
+	.4byte	.LELT0-.LSLT0
+.LSLT0:
+	.2byte	0x2
+	.4byte	.LELTP0-.LASLTP0
+.LASLTP0:
+	.byte	0x1
+	.byte	0x1
+	.byte	0xf6
+	.byte	0xf5
+	.byte	0xa
+	.byte	0x0
+	.byte	0x1
+	.byte	0x1
+	.byte	0x1
+	.byte	0x1
+	.byte	0x0
+	.byte	0x0
+	.byte	0x0
+	.byte	0x1
+	.byte	0x0
+	.asciz	"ADC.c"
+	.uleb128 0x0
+	.uleb128 0x0
+	.uleb128 0x0
+	.asciz	"p33FJ64MC804.h"
+	.uleb128 0x0
+	.uleb128 0x0
+	.uleb128 0x0
+	.asciz	"Main.h"
+	.uleb128 0x0
+	.uleb128 0x0
+	.uleb128 0x0
+	.byte	0x0
+.LELTP0:
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.Letext0
+	.byte	0x0
+	.uleb128 0x1
+	.byte	0x1
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM0
+	.byte	0x2d
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM1
+	.byte	0x15
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM2
+	.byte	0x15
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM3
+	.byte	0x15
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM4
+	.byte	0x15
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LFE0
+	.byte	0x0
+	.uleb128 0x1
+	.byte	0x1
+.LELT0:
 	.section	.debug_str,info
 .LASF1:
 	.asciz	"AD1CON1bits"
 .LASF0:
 	.asciz	"ADC1BUF0"
 	.section	.text,code
-
-
 
 	.section __c30_signature, info, data
 	.word 0x0001

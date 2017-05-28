@@ -1,4 +1,4 @@
-	.file "D:\\Projects\\Programming\\CatalysisTFS\\Catalysis\\dsPicProg\\DAC.c"
+	.file "C:\\SourceCode\\dsPicProg\\DAC.c"
 	.section	.debug_abbrev,info
 .Ldebug_abbrev0:
 	.section	.debug_info,info
@@ -7,7 +7,7 @@
 .Ldebug_line0:
 	.section	.text,code
 .Ltext0:
-	.section	.bss,bss
+	.section	.nbss,bss,near
 	.type	_DacData,@object
 	.global	_DacData
 	.align	2
@@ -18,37 +18,35 @@ _DacData:	.space	32
 	.type	_DacWrite,@function
 _DacWrite:
 .LFB0:
-	.file 1 "DAC.c"
-	.loc 1 6 0
+.LSM0:
 	.set ___PA___,1
 	lnk	#4
-.LCFI0:
 	mov	w0,[w14+2]
-	.loc 1 8 0
+.LSM1:
 	rcall	_SpiWaitTransmitEnd
-	.loc 1 9 0
+.LSM2:
 	bclr.b	_LATBbits+1,#5
-	.loc 1 10 0
-	inc2	w14,w0
-	inc	w0,w0
-	mov.b	[w0],[w14]
-	.loc 1 11 0
+.LSM3:
+	inc2	w14,w4
+	inc	w4,w4
+	mov.b	[w4],[w14]
+.LSM4:
 	mov.b	[w14],w0
 	rcall	_SpiSend
-	.loc 1 12 0
-	inc2	w14,w0
-	mov.b	[w0],w0
+.LSM5:
+	inc2	w14,w4
+	mov.b	[w4],w4
+	mov.b	w4,w0
 	rcall	_SpiSend
-	.loc 1 13 0
+.LSM6:
 	rcall	_SpiWaitTransmitEnd
-	.loc 1 14 0
+.LSM7:
 	bset.b	_LATBbits+1,#5
-	.loc 1 15 0
+.LSM8:
 	ulnk	
 	return	
 	.set ___PA___,0
 .LFE0:
-	.size	_DacWrite, .-_DacWrite
 	.section	.debug_frame,info
 .Lframe0:
 	.4byte	.LECIE0-.LSCIE0
@@ -73,31 +71,20 @@ _DacWrite:
 	.4byte	.Lframe0
 	.4byte	.LFB0
 	.4byte	.LFE0-.LFB0
-	.byte	0x4
-	.4byte	.LCFI0-.LFB0
-	.byte	0x13
-	.sleb128 -3
-	.byte	0xd
-	.uleb128 0xe
-	.byte	0x8e
-	.uleb128 0x2
 	.align	4
 .LEFDE0:
 	.section	.text,code
 .Letext0:
-	.file 2 "Main.h"
-	.file 3 "p33FJ64MC804.h"
 	.section	.debug_info,info
-	.4byte	0x2e9
+	.4byte	0x2c5
 	.2byte	0x2
 	.4byte	.Ldebug_abbrev0
 	.byte	0x4
 	.uleb128 0x1
-	.asciz	"GNU C 4.5.1 (XC16, Microchip v1.30) (A) Build date: Nov 22 2016"
+	.asciz	"GNU C 4.5.1 (XC16, Microchip v1.22) (A) Build date: Aug 19 2014"
 	.byte	0x1
 	.asciz	"DAC.c"
-	.ascii	"D:\\\\Projects\\\\Programming\\\\CatalysisTFS\\\\Catalysis\\\\dsPicP"
-	.asciz	"rog"
+	.asciz	"C:\\\\SourceCode\\\\dsPicProg"
 	.4byte	.Ltext0
 	.4byte	.Letext0
 	.4byte	.Ldebug_line0
@@ -105,7 +92,7 @@ _DacWrite:
 	.asciz	"UINT"
 	.byte	0x2
 	.byte	0x4
-	.4byte	0xa9
+	.4byte	0x85
 	.uleb128 0x3
 	.byte	0x2
 	.byte	0x7
@@ -114,7 +101,7 @@ _DacWrite:
 	.asciz	"BYTE"
 	.byte	0x2
 	.byte	0x5
-	.4byte	0xc5
+	.4byte	0xa1
 	.uleb128 0x3
 	.byte	0x1
 	.byte	0x8
@@ -136,12 +123,12 @@ _DacWrite:
 	.byte	0x2
 	.byte	0x3
 	.2byte	0xa06
-	.4byte	0x25a
+	.4byte	0x236
 	.uleb128 0x5
 	.asciz	"LATB0"
 	.byte	0x3
 	.2byte	0xa07
-	.4byte	0xa9
+	.4byte	0x85
 	.byte	0x2
 	.byte	0x1
 	.byte	0xf
@@ -152,7 +139,7 @@ _DacWrite:
 	.asciz	"LATB1"
 	.byte	0x3
 	.2byte	0xa08
-	.4byte	0xa9
+	.4byte	0x85
 	.byte	0x2
 	.byte	0x1
 	.byte	0xe
@@ -163,7 +150,7 @@ _DacWrite:
 	.asciz	"LATB2"
 	.byte	0x3
 	.2byte	0xa09
-	.4byte	0xa9
+	.4byte	0x85
 	.byte	0x2
 	.byte	0x1
 	.byte	0xd
@@ -174,7 +161,7 @@ _DacWrite:
 	.asciz	"LATB3"
 	.byte	0x3
 	.2byte	0xa0a
-	.4byte	0xa9
+	.4byte	0x85
 	.byte	0x2
 	.byte	0x1
 	.byte	0xc
@@ -185,7 +172,7 @@ _DacWrite:
 	.asciz	"LATB4"
 	.byte	0x3
 	.2byte	0xa0b
-	.4byte	0xa9
+	.4byte	0x85
 	.byte	0x2
 	.byte	0x1
 	.byte	0xb
@@ -196,7 +183,7 @@ _DacWrite:
 	.asciz	"LATB5"
 	.byte	0x3
 	.2byte	0xa0c
-	.4byte	0xa9
+	.4byte	0x85
 	.byte	0x2
 	.byte	0x1
 	.byte	0xa
@@ -207,7 +194,7 @@ _DacWrite:
 	.asciz	"LATB6"
 	.byte	0x3
 	.2byte	0xa0d
-	.4byte	0xa9
+	.4byte	0x85
 	.byte	0x2
 	.byte	0x1
 	.byte	0x9
@@ -218,7 +205,7 @@ _DacWrite:
 	.asciz	"LATB7"
 	.byte	0x3
 	.2byte	0xa0e
-	.4byte	0xa9
+	.4byte	0x85
 	.byte	0x2
 	.byte	0x1
 	.byte	0x8
@@ -229,7 +216,7 @@ _DacWrite:
 	.asciz	"LATB8"
 	.byte	0x3
 	.2byte	0xa0f
-	.4byte	0xa9
+	.4byte	0x85
 	.byte	0x2
 	.byte	0x1
 	.byte	0x7
@@ -240,7 +227,7 @@ _DacWrite:
 	.asciz	"LATB9"
 	.byte	0x3
 	.2byte	0xa10
-	.4byte	0xa9
+	.4byte	0x85
 	.byte	0x2
 	.byte	0x1
 	.byte	0x6
@@ -251,7 +238,7 @@ _DacWrite:
 	.asciz	"LATB10"
 	.byte	0x3
 	.2byte	0xa11
-	.4byte	0xa9
+	.4byte	0x85
 	.byte	0x2
 	.byte	0x1
 	.byte	0x5
@@ -262,7 +249,7 @@ _DacWrite:
 	.asciz	"LATB11"
 	.byte	0x3
 	.2byte	0xa12
-	.4byte	0xa9
+	.4byte	0x85
 	.byte	0x2
 	.byte	0x1
 	.byte	0x4
@@ -273,7 +260,7 @@ _DacWrite:
 	.asciz	"LATB12"
 	.byte	0x3
 	.2byte	0xa13
-	.4byte	0xa9
+	.4byte	0x85
 	.byte	0x2
 	.byte	0x1
 	.byte	0x3
@@ -284,7 +271,7 @@ _DacWrite:
 	.asciz	"LATB13"
 	.byte	0x3
 	.2byte	0xa14
-	.4byte	0xa9
+	.4byte	0x85
 	.byte	0x2
 	.byte	0x1
 	.byte	0x2
@@ -295,7 +282,7 @@ _DacWrite:
 	.asciz	"LATB14"
 	.byte	0x3
 	.2byte	0xa15
-	.4byte	0xa9
+	.4byte	0x85
 	.byte	0x2
 	.byte	0x1
 	.byte	0x1
@@ -306,7 +293,7 @@ _DacWrite:
 	.asciz	"LATB15"
 	.byte	0x3
 	.2byte	0xa16
-	.4byte	0xa9
+	.4byte	0x85
 	.byte	0x2
 	.byte	0x1
 	.byte	0x10
@@ -318,7 +305,7 @@ _DacWrite:
 	.asciz	"LATBBITS"
 	.byte	0x3
 	.2byte	0xa17
-	.4byte	0xfe
+	.4byte	0xda
 	.uleb128 0x7
 	.byte	0x1
 	.asciz	"DacWrite"
@@ -329,12 +316,12 @@ _DacWrite:
 	.4byte	.LFE0
 	.byte	0x1
 	.byte	0x5e
-	.4byte	0x2a5
+	.4byte	0x281
 	.uleb128 0x8
 	.asciz	"val"
 	.byte	0x1
 	.byte	0x5
-	.4byte	0x9d
+	.4byte	0x79
 	.byte	0x2
 	.byte	0x7e
 	.sleb128 2
@@ -342,7 +329,7 @@ _DacWrite:
 	.asciz	"Byte"
 	.byte	0x1
 	.byte	0x7
-	.4byte	0xb9
+	.4byte	0x95
 	.byte	0x2
 	.byte	0x7e
 	.sleb128 0
@@ -351,30 +338,30 @@ _DacWrite:
 	.4byte	.LASF0
 	.byte	0x3
 	.2byte	0xa18
-	.4byte	0x2b3
+	.4byte	0x28f
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xb
-	.4byte	0x25a
+	.4byte	0x236
 	.uleb128 0xa
 	.4byte	.LASF0
 	.byte	0x3
 	.2byte	0xa18
-	.4byte	0x2b3
+	.4byte	0x28f
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xc
-	.4byte	0xeb
-	.4byte	0x2d6
+	.4byte	0xc7
+	.4byte	0x2b2
 	.uleb128 0xd
-	.4byte	0xa9
+	.4byte	0x85
 	.byte	0xf
 	.byte	0x0
 	.uleb128 0xe
 	.asciz	"DacData"
 	.byte	0x1
 	.byte	0x3
-	.4byte	0x2c6
+	.4byte	0x2a2
 	.byte	0x1
 	.byte	0x5
 	.byte	0x3
@@ -590,24 +577,24 @@ _DacWrite:
 	.4byte	0x27
 	.2byte	0x2
 	.4byte	.Ldebug_info0
-	.4byte	0x2ed
-	.4byte	0x26b
+	.4byte	0x2c9
+	.4byte	0x247
 	.asciz	"DacWrite"
-	.4byte	0x2d6
+	.4byte	0x2b2
 	.asciz	"DacData"
 	.4byte	0x0
 	.section	.debug_pubtypes,info
 	.4byte	0x3d
 	.2byte	0x2
 	.4byte	.Ldebug_info0
-	.4byte	0x2ed
-	.4byte	0x9d
+	.4byte	0x2c9
+	.4byte	0x79
 	.asciz	"UINT"
-	.4byte	0xb9
+	.4byte	0x95
 	.asciz	"BYTE"
-	.4byte	0xfe
+	.4byte	0xda
 	.asciz	"tagLATBBITS"
-	.4byte	0x25a
+	.4byte	0x236
 	.asciz	"LATBBITS"
 	.4byte	0x0
 	.section	.debug_aranges,info
@@ -620,12 +607,105 @@ _DacWrite:
 	.2byte	0x0
 	.4byte	0x0
 	.4byte	0x0
+	.section	.debug_line,info
+	.4byte	.LELT0-.LSLT0
+.LSLT0:
+	.2byte	0x2
+	.4byte	.LELTP0-.LASLTP0
+.LASLTP0:
+	.byte	0x1
+	.byte	0x1
+	.byte	0xf6
+	.byte	0xf5
+	.byte	0xa
+	.byte	0x0
+	.byte	0x1
+	.byte	0x1
+	.byte	0x1
+	.byte	0x1
+	.byte	0x0
+	.byte	0x0
+	.byte	0x0
+	.byte	0x1
+	.byte	0x0
+	.asciz	"DAC.c"
+	.uleb128 0x0
+	.uleb128 0x0
+	.uleb128 0x0
+	.asciz	"Main.h"
+	.uleb128 0x0
+	.uleb128 0x0
+	.uleb128 0x0
+	.asciz	"p33FJ64MC804.h"
+	.uleb128 0x0
+	.uleb128 0x0
+	.uleb128 0x0
+	.byte	0x0
+.LELTP0:
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.Letext0
+	.byte	0x0
+	.uleb128 0x1
+	.byte	0x1
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM0
+	.byte	0x19
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM1
+	.byte	0x16
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM2
+	.byte	0x15
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM3
+	.byte	0x15
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM4
+	.byte	0x15
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM5
+	.byte	0x15
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM6
+	.byte	0x15
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM7
+	.byte	0x15
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM8
+	.byte	0x15
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LFE0
+	.byte	0x0
+	.uleb128 0x1
+	.byte	0x1
+.LELT0:
 	.section	.debug_str,info
 .LASF0:
 	.asciz	"LATBbits"
 	.section	.text,code
-
-
 
 	.section __c30_signature, info, data
 	.word 0x0001

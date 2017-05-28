@@ -1,10 +1,10 @@
 # 1 "ProcessUartMsg.c"
-# 1 "D:\\Projects\\Programming\\CatalysisTFS\\Catalysis\\dsPicProg//"
+# 1 "C:\\SourceCode\\dsPicProg//"
 # 1 "<built-in>"
 # 1 "<command-line>"
 # 1 "ProcessUartMsg.c"
 # 1 "Main.h" 1
-# 1 "c:\\program files (x86)\\microchip\\xc16\\v1.30\\bin\\bin\\../..\\include\\lega-c/stdbool.h" 1 3 4
+# 1 "c:\\program files (x86)\\microchip\\xc16\\v1.22\\bin\\bin\\../..\\include/stdbool.h" 1 3 4
 # 2 "Main.h" 2
 
 
@@ -6896,93 +6896,49 @@ UINT ExtractRcMessage(void);
 extern FIFO TxFifo;
 extern FIFO RcFifo;
 # 3 "ProcessUartMsg.c" 2
-# 1 "c:\\program files (x86)\\microchip\\xc16\\v1.30\\bin\\bin\\../..\\include\\lega-c/string.h" 1 3 4
+# 1 "c:\\program files (x86)\\microchip\\xc16\\v1.22\\bin\\bin\\../..\\include/string.h" 1 3 4
+# 11 "c:\\program files (x86)\\microchip\\xc16\\v1.22\\bin\\bin\\../..\\include/string.h" 3 4
+# 1 "c:\\program files (x86)\\microchip\\xc16\\v1.22\\bin\\bin\\../..\\include/stddef.h" 1 3 4
 
 
 
-
-# 1 "c:\\program files (x86)\\microchip\\xc16\\v1.30\\bin\\bin\\../..\\include\\lega-c/yvals.h" 1 3 4
-# 86 "c:\\program files (x86)\\microchip\\xc16\\v1.30\\bin\\bin\\../..\\include\\lega-c/yvals.h" 3 4
-typedef void *va_list;
-# 102 "c:\\program files (x86)\\microchip\\xc16\\v1.30\\bin\\bin\\../..\\include\\lega-c/yvals.h" 3 4
-
-# 135 "c:\\program files (x86)\\microchip\\xc16\\v1.30\\bin\\bin\\../..\\include\\lega-c/yvals.h" 3 4
-typedef long long _Longlong;
-typedef unsigned long long _ULonglong;
-# 149 "c:\\program files (x86)\\microchip\\xc16\\v1.30\\bin\\bin\\../..\\include\\lega-c/yvals.h" 3 4
-typedef short unsigned int _Wchart;
-typedef unsigned int _Wintt;
-# 161 "c:\\program files (x86)\\microchip\\xc16\\v1.30\\bin\\bin\\../..\\include\\lega-c/yvals.h" 3 4
-typedef int _Ptrdifft;
-typedef unsigned int _Sizet;
-
-
-
-int _Setjmp(int *);
-
-
-typedef va_list _Va_list;
+typedef int ptrdiff_t;
+typedef unsigned int size_t;
+typedef short unsigned int wchar_t;
 
 
 
 
 
-void _Atexit(void (*)(void));
 
 
-typedef struct _Mbstatet
- {
- _Wchart _Wchar;
- unsigned short _Byte, _State;
- } _Mbstatet;
-# 191 "c:\\program files (x86)\\microchip\\xc16\\v1.30\\bin\\bin\\../..\\include\\lega-c/yvals.h" 3 4
-typedef struct _Fpost
- {
- long _Off;
- _Mbstatet _Wstate;
- } _Fpost;
-# 212 "c:\\program files (x86)\\microchip\\xc16\\v1.30\\bin\\bin\\../..\\include\\lega-c/yvals.h" 3 4
-
-# 6 "c:\\program files (x86)\\microchip\\xc16\\v1.30\\bin\\bin\\../..\\include\\lega-c/string.h" 2 3 4
+extern int errno;
+# 12 "c:\\program files (x86)\\microchip\\xc16\\v1.22\\bin\\bin\\../..\\include/string.h" 2 3 4
 
 
-# 21 "c:\\program files (x86)\\microchip\\xc16\\v1.30\\bin\\bin\\../..\\include\\lega-c/string.h" 3 4
-typedef _Sizet size_t;
+extern void * memcpy(void *, const void *, size_t);
+extern void * memmove(void *, const void *, size_t);
+extern void * memset(void *, int, size_t);
 
+extern char * strcat(char *, const char *);
+extern char * strcpy(char *, const char *);
+extern char * strncat(char *, const char *, size_t);
+extern char * strncpy(char *, const char *, size_t);
+extern char * strdup(const char *);
+extern char * strtok(char *, const char *);
 
-
-
-int memcmp(const void *, const void *, size_t);
-void * memcpy(void *, const void *, size_t);
-void * memmove(void *, const void *, size_t);
-void * memset(void *, int, size_t);
-char * strcat(char *, const char *);
-int strcmp(const char *, const char *);
-int strcoll(const char *, const char *);
-char * strcpy(char *, const char *);
-size_t strcspn(const char *, const char *);
-char * strerror(int);
-size_t strlen(const char *);
-char * strncat(char *, const char *, size_t);
-int strncmp(const char *, const char *, size_t);
-char * strncpy(char *, const char *, size_t);
-size_t strspn(const char *, const char *);
-char * strtok(char *, const char *);
-size_t strxfrm(char *, const char *, size_t);
-# 53 "c:\\program files (x86)\\microchip\\xc16\\v1.30\\bin\\bin\\../..\\include\\lega-c/string.h" 3 4
-
-# 88 "c:\\program files (x86)\\microchip\\xc16\\v1.30\\bin\\bin\\../..\\include\\lega-c/string.h" 3 4
-
-
-
-void * memchr(const void *, int, size_t);
-char * strchr(const char *, int);
-char * strpbrk(const char *, const char *);
-char * strrchr(const char *, int);
-char * strstr(const char *, const char *);
-
-
-
+extern int memcmp(const void *, const void *, size_t);
+extern int strcmp(const char *, const char *);
+extern int strncmp(const char *, const char *, size_t);
+extern void * memchr(const void *, int, size_t);
+extern size_t strcspn(const char *, const char *);
+extern char * strpbrk(const char *, const char *);
+extern size_t strspn(const char *, const char *);
+extern char * strstr(const char *, const char *);
+extern char * strerror(int);
+extern size_t strlen(const char *);
+extern char * strchr(const char *, int);
+extern char * strrchr(const char *, int);
 # 4 "ProcessUartMsg.c" 2
 
 FIFO TxFifo;

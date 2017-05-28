@@ -1,4 +1,4 @@
-	.file "D:\\Projects\\Programming\\CatalysisTFS\\Catalysis\\dsPicProg\\AddressBus.c"
+	.file "C:\\SourceCode\\dsPicProg\\AddressBus.c"
 	.section	.debug_abbrev,info
 .Ldebug_abbrev0:
 	.section	.debug_info,info
@@ -13,38 +13,35 @@
 	.type	_SelectChannel,@function
 _SelectChannel:
 .LFB0:
-	.file 1 "AddressBus.c"
-	.loc 1 16 0
+.LSM0:
 	.set ___PA___,1
 	lnk	#4
-.LCFI0:
 	mov	w0,[w14+2]
-	.loc 1 18 0
+.LSM1:
 	bclr.b	_LATBbits+1,#2
-	.loc 1 19 0
+.LSM2:
 	bclr.b	_LATBbits+1,#1
-	.loc 1 20 0
-	mov	#_LATC,w0
-	mov	w0,[w14]
-	.loc 1 21 0
-	mov	[w14+2],w0
-	mov.b	w0,w0
-	and.b	w0,#7,w1
-	mov	[w14],w0
-	ze	w1,w1
-	and	w1,#7,w1
-	sl	w1,#3,w1
-	mov	[w0],w3
-	mov	#-57,w2
-	and	w3,w2,w2
-	ior	w1,w2,w1
-	mov	w1,[w0]
-	.loc 1 22 0
+.LSM3:
+	mov	#_LATC,w4
+	mov	w4,[w14]
+.LSM4:
+	mov	[w14+2],w4
+	mov.b	w4,w4
+	and.b	w4,#7,w4
+	mov	[w14],w5
+	ze	w4,w4
+	and	w4,#7,w4
+	sl	w4,#3,w4
+	mov	[w5],w7
+	mov	#-57,w6
+	and	w7,w6,w6
+	ior	w4,w6,w4
+	mov	w4,[w5]
+.LSM5:
 	ulnk	
 	return	
 	.set ___PA___,0
 .LFE0:
-	.size	_SelectChannel, .-_SelectChannel
 	.section	.debug_frame,info
 .Lframe0:
 	.4byte	.LECIE0-.LSCIE0
@@ -69,30 +66,20 @@ _SelectChannel:
 	.4byte	.Lframe0
 	.4byte	.LFB0
 	.4byte	.LFE0-.LFB0
-	.byte	0x4
-	.4byte	.LCFI0-.LFB0
-	.byte	0x13
-	.sleb128 -3
-	.byte	0xd
-	.uleb128 0xe
-	.byte	0x8e
-	.uleb128 0x2
 	.align	4
 .LEFDE0:
 	.section	.text,code
 .Letext0:
-	.file 2 "p33FJ64MC804.h"
 	.section	.debug_info,info
-	.4byte	0x324
+	.4byte	0x300
 	.2byte	0x2
 	.4byte	.Ldebug_abbrev0
 	.byte	0x4
 	.uleb128 0x1
-	.asciz	"GNU C 4.5.1 (XC16, Microchip v1.30) (A) Build date: Nov 22 2016"
+	.asciz	"GNU C 4.5.1 (XC16, Microchip v1.22) (A) Build date: Aug 19 2014"
 	.byte	0x1
 	.asciz	"AddressBus.c"
-	.ascii	"D:\\\\Projects\\\\Programming\\\\CatalysisTFS\\\\Catalysis\\\\dsPicP"
-	.asciz	"rog"
+	.asciz	"C:\\\\SourceCode\\\\dsPicProg"
 	.4byte	.Ltext0
 	.4byte	.Letext0
 	.4byte	.Ldebug_line0
@@ -121,12 +108,12 @@ _SelectChannel:
 	.byte	0x2
 	.byte	0x2
 	.2byte	0xa06
-	.4byte	0x249
+	.4byte	0x225
 	.uleb128 0x4
 	.asciz	"LATB0"
 	.byte	0x2
 	.2byte	0xa07
-	.4byte	0xa4
+	.4byte	0x80
 	.byte	0x2
 	.byte	0x1
 	.byte	0xf
@@ -137,7 +124,7 @@ _SelectChannel:
 	.asciz	"LATB1"
 	.byte	0x2
 	.2byte	0xa08
-	.4byte	0xa4
+	.4byte	0x80
 	.byte	0x2
 	.byte	0x1
 	.byte	0xe
@@ -148,7 +135,7 @@ _SelectChannel:
 	.asciz	"LATB2"
 	.byte	0x2
 	.2byte	0xa09
-	.4byte	0xa4
+	.4byte	0x80
 	.byte	0x2
 	.byte	0x1
 	.byte	0xd
@@ -159,7 +146,7 @@ _SelectChannel:
 	.asciz	"LATB3"
 	.byte	0x2
 	.2byte	0xa0a
-	.4byte	0xa4
+	.4byte	0x80
 	.byte	0x2
 	.byte	0x1
 	.byte	0xc
@@ -170,7 +157,7 @@ _SelectChannel:
 	.asciz	"LATB4"
 	.byte	0x2
 	.2byte	0xa0b
-	.4byte	0xa4
+	.4byte	0x80
 	.byte	0x2
 	.byte	0x1
 	.byte	0xb
@@ -181,7 +168,7 @@ _SelectChannel:
 	.asciz	"LATB5"
 	.byte	0x2
 	.2byte	0xa0c
-	.4byte	0xa4
+	.4byte	0x80
 	.byte	0x2
 	.byte	0x1
 	.byte	0xa
@@ -192,7 +179,7 @@ _SelectChannel:
 	.asciz	"LATB6"
 	.byte	0x2
 	.2byte	0xa0d
-	.4byte	0xa4
+	.4byte	0x80
 	.byte	0x2
 	.byte	0x1
 	.byte	0x9
@@ -203,7 +190,7 @@ _SelectChannel:
 	.asciz	"LATB7"
 	.byte	0x2
 	.2byte	0xa0e
-	.4byte	0xa4
+	.4byte	0x80
 	.byte	0x2
 	.byte	0x1
 	.byte	0x8
@@ -214,7 +201,7 @@ _SelectChannel:
 	.asciz	"LATB8"
 	.byte	0x2
 	.2byte	0xa0f
-	.4byte	0xa4
+	.4byte	0x80
 	.byte	0x2
 	.byte	0x1
 	.byte	0x7
@@ -225,7 +212,7 @@ _SelectChannel:
 	.asciz	"LATB9"
 	.byte	0x2
 	.2byte	0xa10
-	.4byte	0xa4
+	.4byte	0x80
 	.byte	0x2
 	.byte	0x1
 	.byte	0x6
@@ -236,7 +223,7 @@ _SelectChannel:
 	.asciz	"LATB10"
 	.byte	0x2
 	.2byte	0xa11
-	.4byte	0xa4
+	.4byte	0x80
 	.byte	0x2
 	.byte	0x1
 	.byte	0x5
@@ -247,7 +234,7 @@ _SelectChannel:
 	.asciz	"LATB11"
 	.byte	0x2
 	.2byte	0xa12
-	.4byte	0xa4
+	.4byte	0x80
 	.byte	0x2
 	.byte	0x1
 	.byte	0x4
@@ -258,7 +245,7 @@ _SelectChannel:
 	.asciz	"LATB12"
 	.byte	0x2
 	.2byte	0xa13
-	.4byte	0xa4
+	.4byte	0x80
 	.byte	0x2
 	.byte	0x1
 	.byte	0x3
@@ -269,7 +256,7 @@ _SelectChannel:
 	.asciz	"LATB13"
 	.byte	0x2
 	.2byte	0xa14
-	.4byte	0xa4
+	.4byte	0x80
 	.byte	0x2
 	.byte	0x1
 	.byte	0x2
@@ -280,7 +267,7 @@ _SelectChannel:
 	.asciz	"LATB14"
 	.byte	0x2
 	.2byte	0xa15
-	.4byte	0xa4
+	.4byte	0x80
 	.byte	0x2
 	.byte	0x1
 	.byte	0x1
@@ -291,7 +278,7 @@ _SelectChannel:
 	.asciz	"LATB15"
 	.byte	0x2
 	.2byte	0xa16
-	.4byte	0xa4
+	.4byte	0x80
 	.byte	0x2
 	.byte	0x1
 	.byte	0x10
@@ -303,17 +290,17 @@ _SelectChannel:
 	.asciz	"LATBBITS"
 	.byte	0x2
 	.2byte	0xa17
-	.4byte	0xed
+	.4byte	0xc9
 	.uleb128 0x6
 	.byte	0x2
 	.byte	0x1
 	.byte	0x8
-	.4byte	0x27e
+	.4byte	0x25a
 	.uleb128 0x7
 	.asciz	"AnalogAddress"
 	.byte	0x1
 	.byte	0xa
-	.4byte	0xa4
+	.4byte	0x80
 	.byte	0x2
 	.byte	0x3
 	.byte	0xa
@@ -325,7 +312,7 @@ _SelectChannel:
 	.asciz	"LATCBITS2"
 	.byte	0x1
 	.byte	0xc
-	.4byte	0x25a
+	.4byte	0x236
 	.uleb128 0x9
 	.byte	0x1
 	.asciz	"SelectChannel"
@@ -336,12 +323,12 @@ _SelectChannel:
 	.4byte	.LFE0
 	.byte	0x1
 	.byte	0x5e
-	.4byte	0x2dd
+	.4byte	0x2b9
 	.uleb128 0xa
 	.asciz	"channelNumber"
 	.byte	0x1
 	.byte	0xf
-	.4byte	0xa4
+	.4byte	0x80
 	.byte	0x2
 	.byte	0x7e
 	.sleb128 2
@@ -349,44 +336,44 @@ _SelectChannel:
 	.asciz	"LATCbits2"
 	.byte	0x1
 	.byte	0x14
-	.4byte	0x2dd
+	.4byte	0x2b9
 	.byte	0x2
 	.byte	0x7e
 	.sleb128 0
 	.byte	0x0
 	.uleb128 0xc
 	.byte	0x2
-	.4byte	0x27e
+	.4byte	0x25a
 	.uleb128 0xd
 	.4byte	.LASF0
 	.byte	0x2
 	.2byte	0xa18
-	.4byte	0x2f1
+	.4byte	0x2cd
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xe
-	.4byte	0x249
+	.4byte	0x225
 	.uleb128 0xf
 	.asciz	"LATC"
 	.byte	0x2
 	.2byte	0xa51
-	.4byte	0x305
+	.4byte	0x2e1
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xe
-	.4byte	0xa4
+	.4byte	0x80
 	.uleb128 0xd
 	.4byte	.LASF0
 	.byte	0x2
 	.2byte	0xa18
-	.4byte	0x2f1
+	.4byte	0x2cd
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xf
 	.asciz	"LATC"
 	.byte	0x2
 	.2byte	0xa51
-	.4byte	0x305
+	.4byte	0x2e1
 	.byte	0x1
 	.byte	0x1
 	.byte	0x0
@@ -625,20 +612,20 @@ _SelectChannel:
 	.4byte	0x20
 	.2byte	0x2
 	.4byte	.Ldebug_info0
-	.4byte	0x328
-	.4byte	0x28f
+	.4byte	0x304
+	.4byte	0x26b
 	.asciz	"SelectChannel"
 	.4byte	0x0
 	.section	.debug_pubtypes,info
 	.4byte	0x39
 	.2byte	0x2
 	.4byte	.Ldebug_info0
-	.4byte	0x328
-	.4byte	0xed
+	.4byte	0x304
+	.4byte	0xc9
 	.asciz	"tagLATBBITS"
-	.4byte	0x249
+	.4byte	0x225
 	.asciz	"LATBBITS"
-	.4byte	0x27e
+	.4byte	0x25a
 	.asciz	"LATCBITS2"
 	.4byte	0x0
 	.section	.debug_aranges,info
@@ -651,12 +638,86 @@ _SelectChannel:
 	.2byte	0x0
 	.4byte	0x0
 	.4byte	0x0
+	.section	.debug_line,info
+	.4byte	.LELT0-.LSLT0
+.LSLT0:
+	.2byte	0x2
+	.4byte	.LELTP0-.LASLTP0
+.LASLTP0:
+	.byte	0x1
+	.byte	0x1
+	.byte	0xf6
+	.byte	0xf5
+	.byte	0xa
+	.byte	0x0
+	.byte	0x1
+	.byte	0x1
+	.byte	0x1
+	.byte	0x1
+	.byte	0x0
+	.byte	0x0
+	.byte	0x0
+	.byte	0x1
+	.byte	0x0
+	.asciz	"AddressBus.c"
+	.uleb128 0x0
+	.uleb128 0x0
+	.uleb128 0x0
+	.asciz	"p33FJ64MC804.h"
+	.uleb128 0x0
+	.uleb128 0x0
+	.uleb128 0x0
+	.byte	0x0
+.LELTP0:
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.Letext0
+	.byte	0x0
+	.uleb128 0x1
+	.byte	0x1
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM0
+	.byte	0x23
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM1
+	.byte	0x16
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM2
+	.byte	0x15
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM3
+	.byte	0x15
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM4
+	.byte	0x15
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM5
+	.byte	0x15
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LFE0
+	.byte	0x0
+	.uleb128 0x1
+	.byte	0x1
+.LELT0:
 	.section	.debug_str,info
 .LASF0:
 	.asciz	"LATBbits"
 	.section	.text,code
-
-
 
 	.section __c30_signature, info, data
 	.word 0x0001

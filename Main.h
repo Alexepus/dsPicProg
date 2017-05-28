@@ -47,3 +47,5 @@ typedef union
 #include "HeaterPID.h"
 #include "PowerLimiter.h"
 #include "LeakerPID.h"
+#include "AnalogIo.h"
+#include "Timer.h"

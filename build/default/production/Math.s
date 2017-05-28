@@ -1,4 +1,4 @@
-	.file "D:\\Projects\\Programming\\CatalysisTFS\\Catalysis\\dsPicProg\\Math.c"
+	.file "C:\\SourceCode\\dsPicProg\\Math.c"
 	.section	.debug_abbrev,info
 .Ldebug_abbrev0:
 	.section	.debug_info,info
@@ -13,69 +13,67 @@
 	.type	_linterp,@function
 _linterp:
 .LFB0:
-	.file 1 "Math.c"
-	.loc 1 9 0
+.LSM0:
 	.set ___PA___,1
 	lnk	#14
-.LCFI0:
 	mov	w0,[w14+4]
 	mov	w1,[w14+6]
 	mov	w2,[w14+8]
 	mov	w3,[w14+10]
 	mov	w4,[w14+12]
-	.loc 1 12 0
-	clr.b	w0
-	mov.b	w0,[w14]
+.LSM1:
+	clr.b	w4
+	mov.b	w4,[w14]
 	bra	.L2
 .L5:
-	.loc 1 14 0
-	mov	[w14+6],w1
-	mov	[w14+8],w0
-	add	w1,w0,w0
-	asr	w0,w0
-	mov	w0,[w14+2]
-	.loc 1 15 0
-	mov	[w14+4],w1
-	mov	[w14+2],w0
-	sub	w1,w0,[w15]
+.LSM2:
+	mov	[w14+6],w5
+	mov	[w14+8],w4
+	add	w5,w4,w4
+	asr	w4,w4
+	mov	w4,[w14+2]
+.LSM3:
+	mov	[w14+4],w5
+	mov	[w14+2],w4
+	sub	w5,w4,[w15]
 	.set ___BP___,0
 	bra	ge,.L3
-	.loc 1 17 0
-	mov	[w14+2],w1
-	mov	w1,[w14+8]
-	.loc 1 18 0
-	mov	[w14+10],w1
-	mov	[w14+12],w0
-	add	w1,w0,w0
-	asr	w0,w0
-	mov	w0,[w14+12]
+.LSM4:
+	mov	[w14+2],w4
+	mov	w4,[w14+8]
+.LSM5:
+	mov	[w14+10],w5
+	mov	[w14+12],w4
+	add	w5,w4,w4
+	asr	w4,w4
+	mov	w4,[w14+12]
 	bra	.L4
 .L3:
-	.loc 1 22 0
-	mov	[w14+2],w1
-	mov	w1,[w14+6]
-	.loc 1 23 0
-	mov	[w14+10],w1
-	mov	[w14+12],w0
-	add	w1,w0,w0
-	asr	w0,w0
-	mov	w0,[w14+10]
+.LSM6:
+	mov	[w14+2],w4
+	mov	w4,[w14+6]
+.LSM7:
+	mov	[w14+10],w5
+	mov	[w14+12],w4
+	add	w5,w4,w4
+	asr	w4,w4
+	mov	w4,[w14+10]
 .L4:
-	.loc 1 12 0
+.LSM8:
 	inc.b	[w14],[w14]
 .L2:
-	mov.b	[w14],w0
-	sub.b	w0,#8,[w15]
+	mov.b	[w14],w4
+	sub.b	w4,#8,[w15]
 	.set ___BP___,0
 	bra	leu,.L5
-	.loc 1 26 0
-	mov	[w14+10],w0
-	.loc 1 27 0
+.LSM9:
+	mov	[w14+10],w4
+.LSM10:
+	mov	w4,w0
 	ulnk	
 	return	
 	.set ___PA___,0
 .LFE0:
-	.size	_linterp, .-_linterp
 	.section	.debug_frame,info
 .Lframe0:
 	.4byte	.LECIE0-.LSCIE0
@@ -100,30 +98,20 @@ _linterp:
 	.4byte	.Lframe0
 	.4byte	.LFB0
 	.4byte	.LFE0-.LFB0
-	.byte	0x4
-	.4byte	.LCFI0-.LFB0
-	.byte	0x13
-	.sleb128 -3
-	.byte	0xd
-	.uleb128 0xe
-	.byte	0x8e
-	.uleb128 0x2
 	.align	4
 .LEFDE0:
 	.section	.text,code
 .Letext0:
-	.file 2 "Main.h"
 	.section	.debug_info,info
-	.4byte	0x17b
+	.4byte	0x157
 	.2byte	0x2
 	.4byte	.Ldebug_abbrev0
 	.byte	0x4
 	.uleb128 0x1
-	.asciz	"GNU C 4.5.1 (XC16, Microchip v1.30) (A) Build date: Nov 22 2016"
+	.asciz	"GNU C 4.5.1 (XC16, Microchip v1.22) (A) Build date: Aug 19 2014"
 	.byte	0x1
 	.asciz	"Math.c"
-	.ascii	"D:\\\\Projects\\\\Programming\\\\CatalysisTFS\\\\Catalysis\\\\dsPicP"
-	.asciz	"rog"
+	.asciz	"C:\\\\SourceCode\\\\dsPicProg"
 	.4byte	.Ltext0
 	.4byte	.Letext0
 	.4byte	.Ldebug_line0
@@ -135,7 +123,7 @@ _linterp:
 	.asciz	"BYTE"
 	.byte	0x2
 	.byte	0x5
-	.4byte	0xba
+	.4byte	0x96
 	.uleb128 0x2
 	.byte	0x1
 	.byte	0x8
@@ -158,7 +146,7 @@ _linterp:
 	.byte	0x1
 	.byte	0x8
 	.byte	0x1
-	.4byte	0xe0
+	.4byte	0xbc
 	.4byte	.LFB0
 	.4byte	.LFE0
 	.byte	0x1
@@ -167,7 +155,7 @@ _linterp:
 	.asciz	"A"
 	.byte	0x1
 	.byte	0x8
-	.4byte	0xe0
+	.4byte	0xbc
 	.byte	0x2
 	.byte	0x7e
 	.sleb128 4
@@ -175,7 +163,7 @@ _linterp:
 	.asciz	"ALeft"
 	.byte	0x1
 	.byte	0x8
-	.4byte	0xe0
+	.4byte	0xbc
 	.byte	0x2
 	.byte	0x7e
 	.sleb128 6
@@ -183,7 +171,7 @@ _linterp:
 	.asciz	"ARight"
 	.byte	0x1
 	.byte	0x8
-	.4byte	0xe0
+	.4byte	0xbc
 	.byte	0x2
 	.byte	0x7e
 	.sleb128 8
@@ -191,7 +179,7 @@ _linterp:
 	.asciz	"BLeft"
 	.byte	0x1
 	.byte	0x8
-	.4byte	0xe0
+	.4byte	0xbc
 	.byte	0x2
 	.byte	0x7e
 	.sleb128 10
@@ -199,7 +187,7 @@ _linterp:
 	.asciz	"BRight"
 	.byte	0x1
 	.byte	0x8
-	.4byte	0xe0
+	.4byte	0xbc
 	.byte	0x2
 	.byte	0x7e
 	.sleb128 12
@@ -207,7 +195,7 @@ _linterp:
 	.asciz	"Count"
 	.byte	0x1
 	.byte	0xa
-	.4byte	0xae
+	.4byte	0x8a
 	.byte	0x2
 	.byte	0x7e
 	.sleb128 0
@@ -215,7 +203,7 @@ _linterp:
 	.asciz	"NewVal"
 	.byte	0x1
 	.byte	0xb
-	.4byte	0xe0
+	.4byte	0xbc
 	.byte	0x2
 	.byte	0x7e
 	.sleb128 2
@@ -323,16 +311,16 @@ _linterp:
 	.4byte	0x1a
 	.2byte	0x2
 	.4byte	.Ldebug_info0
-	.4byte	0x17f
-	.4byte	0xf3
+	.4byte	0x15b
+	.4byte	0xcf
 	.asciz	"linterp"
 	.4byte	0x0
 	.section	.debug_pubtypes,info
 	.4byte	0x17
 	.2byte	0x2
 	.4byte	.Ldebug_info0
-	.4byte	0x17f
-	.4byte	0xae
+	.4byte	0x15b
+	.4byte	0x8a
 	.asciz	"BYTE"
 	.4byte	0x0
 	.section	.debug_aranges,info
@@ -345,10 +333,111 @@ _linterp:
 	.2byte	0x0
 	.4byte	0x0
 	.4byte	0x0
+	.section	.debug_line,info
+	.4byte	.LELT0-.LSLT0
+.LSLT0:
+	.2byte	0x2
+	.4byte	.LELTP0-.LASLTP0
+.LASLTP0:
+	.byte	0x1
+	.byte	0x1
+	.byte	0xf6
+	.byte	0xf5
+	.byte	0xa
+	.byte	0x0
+	.byte	0x1
+	.byte	0x1
+	.byte	0x1
+	.byte	0x1
+	.byte	0x0
+	.byte	0x0
+	.byte	0x0
+	.byte	0x1
+	.byte	0x0
+	.asciz	"Math.c"
+	.uleb128 0x0
+	.uleb128 0x0
+	.uleb128 0x0
+	.asciz	"Main.h"
+	.uleb128 0x0
+	.uleb128 0x0
+	.uleb128 0x0
+	.byte	0x0
+.LELTP0:
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.Letext0
+	.byte	0x0
+	.uleb128 0x1
+	.byte	0x1
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM0
+	.byte	0x1c
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM1
+	.byte	0x17
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM2
+	.byte	0x16
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM3
+	.byte	0x15
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM4
+	.byte	0x16
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM5
+	.byte	0x15
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM6
+	.byte	0x18
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM7
+	.byte	0x15
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM8
+	.byte	0x3
+	.sleb128 -11
+	.byte	0x1
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM9
+	.byte	0x22
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM10
+	.byte	0x15
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LFE0
+	.byte	0x0
+	.uleb128 0x1
+	.byte	0x1
+.LELT0:
 	.section	.debug_str,info
 	.section	.text,code
-
-
 
 	.section __c30_signature, info, data
 	.word 0x0001

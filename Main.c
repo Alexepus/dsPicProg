@@ -13,6 +13,8 @@ int main (void)
            ProcessUart1Msg();
        }
        
+       ReadWriteAnalogAll();
+       
        //if()
        {
            task_HeaterPid_body();
