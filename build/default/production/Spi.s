@@ -165,7 +165,7 @@ _SpiWaitTransmitEnd:
 	.uleb128 0x3
 	.asciz	"BYTE"
 	.byte	0x3
-	.byte	0x5
+	.byte	0x8
 	.4byte	0x95
 	.uleb128 0x2
 	.byte	0x1

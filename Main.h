@@ -1,3 +1,6 @@
+#ifndef MAIN_H
+#define	MAIN_H
+
 #include <stdbool.h>
 
 //#define SIMULATION
@@ -49,3 +52,5 @@ typedef union
 #include "LeakerPID.h"
 #include "AnalogIo.h"
 #include "Timer.h"
+
+#endif

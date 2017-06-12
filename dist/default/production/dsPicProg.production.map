@@ -34,6 +34,7 @@ Command:
   build/default/production/LeakerPid.o \
   build/default/production/ADC.o \
   build/default/production/AnalogIo.o \
+  build/default/production/Timer.o \
   --defsym=__MPLAB_BUILD=1 \
   -Tp33FJ64MC804.gld.00 \
   --stack=16 \
@@ -76,10 +77,10 @@ section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
 .text                        0x200               0x3cc           0x5b2  (1458)
 .text                        0x5cc              0x12ba          0x1c17  (7191)
-.dinit                      0x1886                0x9a            0xe7  (231)
-.text                       0x1920               0x144           0x1e6  (486)
+.dinit                      0x1886                0xa0            0xf0  (240)
+.text                       0x1926               0x230           0x348  (840)
 
-                     Total program memory used (bytes):         0x2496  (9366) 14%
+                     Total program memory used (bytes):         0x2601  (9729) 14%
 
 
 Data Memory  [Origin = 0x800, Length = 0x4000]
@@ -88,10 +89,10 @@ section                    address      alignment gaps    total length  (dec)
 -------                    -------      --------------    -------------------
 .nbss                        0x800                   0           0x160  (352)
 .ndata                       0x960                   0            0x94  (148)
-.nbss                        0x9f4                   0            0xf6  (246)
-.ndata                       0xaea                   0             0x6  (6)
+.nbss                        0x9f4                   0            0xfe  (254)
+.ndata                       0xaf2                   0             0x6  (6)
 
-                        Total data memory used (bytes):          0x2f0  (752) 4%
+                        Total data memory used (bytes):          0x2f8  (760) 4%
 
 
 Dynamic Memory Usage
@@ -99,9 +100,9 @@ Dynamic Memory Usage
 region                     address                      maximum length  (dec)
 ------                     -------                      ---------------------
 heap                             0                                   0  (0)
-stack                        0xaf0                              0x3d10  (15632)
+stack                        0xaf8                              0x3d08  (15624)
 
-                        Maximum dynamic memory (bytes):         0x3d10  (15632)
+                        Maximum dynamic memory (bytes):         0x3d08  (15624)
 
 
 External Symbols in Data Memory (by address):
@@ -171,8 +172,13 @@ External Symbols in Data Memory (by address):
                     0x0ae7                  _MaxHeaterIGuard
                     0x0ae8                  _MaxHeaterUGuard
                     0x0ae9                  _MaxHeaterPGuard
-                    0x0aea                  _KHeaterIToRef_Medium
-                    0x0aee                  _DacData0Max
+                    0x0aec                  _SchedulledTask0
+                    0x0aed                  _SchedulledTask1
+                    0x0aee                  _SchedulledTask2
+                    0x0aef                  _SchedulledTask3
+                    0x0af0                  _SchedulledTask4
+                    0x0af2                  _KHeaterIToRef_Medium
+                    0x0af6                  _DacData0Max
 
 External Symbols in Data Memory (by name):
 
@@ -184,7 +190,7 @@ External Symbols in Data Memory (by name):
                     0x095a                  _AdcAverageCnt
                     0x09f0                  _AdcTcTomVCoef
                     0x0ab8                  _DacData
-                    0x0aee                  _DacData0Max
+                    0x0af6                  _DacData0Max
                     0x095c                  _DacData0Presave
                     0x0958                  _DacVal
                     0x0916                  _DeltaT
@@ -198,7 +204,7 @@ External Symbols in Data Memory (by name):
                     0x096e                  _IDec
                     0x08ae                  _IsUartRcMsg
                     0x0ae2                  _KHeaterIToRef
-                    0x0aea                  _KHeaterIToRef_Medium
+                    0x0af2                  _KHeaterIToRef_Medium
                     0x0964                  _Kd
                     0x0966                  _Kff
                     0x0962                  _Ki
@@ -217,6 +223,11 @@ External Symbols in Data Memory (by name):
                     0x08c0                  _PidOut
                     0x0882                  _RcBuf
                     0x0800                  _RcFifo
+                    0x0aec                  _SchedulledTask0
+                    0x0aed                  _SchedulledTask1
+                    0x0aee                  _SchedulledTask2
+                    0x0aef                  _SchedulledTask3
+                    0x0af0                  _SchedulledTask4
                     0x091a                  _TAccumulator
                     0x0914                  _TEnd
                     0x08be                  _TMeas
@@ -271,43 +282,51 @@ External Symbols in Program Memory (by address):
                   0x00157a                  _CalcFF
                   0x001608                  _Limiter
                   0x001772                  _HardwareInit
-                  0x001920                  _linterp
-                  0x001972                  _SpiConfig
-                  0x001978                  _SpiSend
-                  0x001990                  _SpiReceive
-                  0x0019a6                  _SpiWaitTransmitEnd
-                  0x0019b6                  _ReadWriteAnalog
-                  0x0019e2                  _SelectChannel
-                  0x001a0a                  _DacWrite
-                  0x001a2c                  _main
-                  0x001a48                  _ReadADC
-                  0x001a5e                  _task_LeakerPid_body
+                  0x001926                  _SleepOps
+                  0x00193e                  __T1Interrupt
+                  0x0019a2                  _ReadWriteAnalog
+                  0x0019ce                  _ReadAnalog
+                  0x0019ee                  _ReadWriteAnalogAll
+                  0x001a08                  _main
+                  0x001a5a                  _linterp
+                  0x001aac                  _SpiConfig
+                  0x001ab2                  _SpiSend
+                  0x001aca                  _SpiReceive
+                  0x001ae0                  _SpiWaitTransmitEnd
+                  0x001af0                  _SelectChannel
+                  0x001b18                  _DacWrite
+                  0x001b3a                  _ReadADC
+                  0x001b50                  _task_LeakerPid_body
 
 External Symbols in Program Memory (by name):
 
                   0x00157a                  _CalcFF
                   0x00135e                  _CalcTByV
-                  0x001a0a                  _DacWrite
+                  0x001b18                  _DacWrite
                   0x000464                  _ExtractRcMessage
                   0x001512                  _FillTableInvDV
                   0x0014ac                  _FillTableT
                   0x001772                  _HardwareInit
                   0x001608                  _Limiter
                   0x0005cc                  _ProcessUart1Msg
-                  0x001a48                  _ReadADC
-                  0x0019b6                  _ReadWriteAnalog
+                  0x001b3a                  _ReadADC
+                  0x0019ce                  _ReadAnalog
+                  0x0019a2                  _ReadWriteAnalog
+                  0x0019ee                  _ReadWriteAnalogAll
                   0x000ed6                  _ReportFifoRxOverflow
                   0x000eea                  _ReportFifoTxOverflow
                   0x000efe                  _ReportRcProtocolError
                   0x000f12                  _ReportStartUp
-                  0x0019e2                  _SelectChannel
-                  0x001972                  _SpiConfig
-                  0x001990                  _SpiReceive
-                  0x001978                  _SpiSend
-                  0x0019a6                  _SpiWaitTransmitEnd
+                  0x001af0                  _SelectChannel
+                  0x001926                  _SleepOps
+                  0x001aac                  _SpiConfig
+                  0x001aca                  _SpiReceive
+                  0x001ab2                  _SpiSend
+                  0x001ae0                  _SpiWaitTransmitEnd
                   0x000344                  _UartStartTx
                   0x000530                  _WindRcFifo
                   0x000568                  __DefaultInterrupt
+                  0x00193e                  __T1Interrupt
                   0x00029a                  __U1RXInterrupt
                   0x00030a                  __U1TXInterrupt
                   0x00056c                  ___divsi3
@@ -316,11 +335,11 @@ External Symbols in Program Memory (by name):
                   0x00023c                  __data_init_standard
                   0x00022c                  __psv_init
                   0x000200                  __resetPRI
-                  0x001920                  _linterp
-                  0x001a2c                  _main
+                  0x001a5a                  _linterp
+                  0x001a08                  _main
                   0x0005aa                  _memmove
                   0x000f36                  _task_HeaterPid_body
-                  0x001a5e                  _task_LeakerPid_body
+                  0x001b50                  _task_LeakerPid_body
 
 Memory Configuration
 
@@ -360,6 +379,7 @@ LOAD build/default/production/AddressBus.o
 LOAD build/default/production/LeakerPid.o
 LOAD build/default/production/ADC.o
 LOAD build/default/production/AnalogIo.o
+LOAD build/default/production/Timer.o
                     0x0001                  __MPLAB_BUILD = 0x1
 LOAD c:/program files (x86)/microchip/xc16/v1.22/bin/bin/../../lib/dsPIC33F\libp33FJ64MC804-elf.a
                     0xf80000                  __FBS = 0xf80000
@@ -464,24 +484,25 @@ __FUID3
 .comment
  *(.comment)
 
-.debug_info       0x000000       0x4c39
+.debug_info       0x000000       0x4ecf
  *(.debug_info)
- .debug_info      0x000000        0x104 build/default/production/Main.o
- .debug_info      0x000104        0x3e6 build/default/production/PowerLimiter.o
- .debug_info      0x0004ea        0x971 build/default/production/ProcessUartMsg.o
- .debug_info      0x000e5b        0x87f build/default/production/UART.o
- .debug_info      0x0016da        0x2c9 build/default/production/DAC.o
- .debug_info      0x0019a3        0x231 build/default/production/Spi.o
- .debug_info      0x001bd4       0x1ca2 build/default/production/HardwareInit.o
- .debug_info      0x003876        0x15b build/default/production/Math.o
- .debug_info      0x0039d1        0x898 build/default/production/HeaterPID.o
- .debug_info      0x004269        0x304 build/default/production/AddressBus.o
- .debug_info      0x00456d         0xa3 build/default/production/LeakerPid.o
- .debug_info      0x004610        0x32d build/default/production/ADC.o
- .debug_info      0x00493d        0x2fc build/default/production/AnalogIo.o
+ .debug_info      0x000000        0x152 build/default/production/Main.o
+ .debug_info      0x000152        0x3e6 build/default/production/PowerLimiter.o
+ .debug_info      0x000538        0x971 build/default/production/ProcessUartMsg.o
+ .debug_info      0x000ea9        0x87f build/default/production/UART.o
+ .debug_info      0x001728        0x2c9 build/default/production/DAC.o
+ .debug_info      0x0019f1        0x231 build/default/production/Spi.o
+ .debug_info      0x001c22       0x1ca2 build/default/production/HardwareInit.o
+ .debug_info      0x0038c4        0x15b build/default/production/Math.o
+ .debug_info      0x003a1f        0x898 build/default/production/HeaterPID.o
+ .debug_info      0x0042b7        0x304 build/default/production/AddressBus.o
+ .debug_info      0x0045bb         0xa3 build/default/production/LeakerPid.o
+ .debug_info      0x00465e        0x32d build/default/production/ADC.o
+ .debug_info      0x00498b        0x35a build/default/production/AnalogIo.o
+ .debug_info      0x004ce5        0x1ea build/default/production/Timer.o
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev     0x000000        0xa3d
+.debug_abbrev     0x000000        0xaeb
  *(.debug_abbrev)
  .debug_abbrev    0x000000         0x4e build/default/production/Main.o
  .debug_abbrev    0x00004e         0xde build/default/production/PowerLimiter.o
@@ -495,25 +516,27 @@ __FUID3
  .debug_abbrev    0x000797         0xe6 build/default/production/AddressBus.o
  .debug_abbrev    0x00087d         0x29 build/default/production/LeakerPid.o
  .debug_abbrev    0x0008a6         0xd9 build/default/production/ADC.o
- .debug_abbrev    0x00097f         0xbe build/default/production/AnalogIo.o
+ .debug_abbrev    0x00097f         0xcd build/default/production/AnalogIo.o
+ .debug_abbrev    0x000a4c         0x9f build/default/production/Timer.o
 
-.debug_line       0x000000       0x195f
+.debug_line       0x000000       0x1aea
  *(.debug_line)
- .debug_line      0x000000         0x82 build/default/production/Main.o
- .debug_line      0x000082        0x13d build/default/production/PowerLimiter.o
- .debug_line      0x0001bf        0x90b build/default/production/ProcessUartMsg.o
- .debug_line      0x000aca        0x3b8 build/default/production/UART.o
- .debug_line      0x000e82         0x9b build/default/production/DAC.o
- .debug_line      0x000f1d         0xd9 build/default/production/Spi.o
- .debug_line      0x000ff6        0x1fa build/default/production/HardwareInit.o
- .debug_line      0x0011f0         0x9c build/default/production/Math.o
- .debug_line      0x00128c        0x4e9 build/default/production/HeaterPID.o
- .debug_line      0x001775         0x80 build/default/production/AddressBus.o
- .debug_line      0x0017f5         0x4d build/default/production/LeakerPid.o
- .debug_line      0x001842         0x7b build/default/production/ADC.o
- .debug_line      0x0018bd         0xa2 build/default/production/AnalogIo.o
+ .debug_line      0x000000         0xc4 build/default/production/Main.o
+ .debug_line      0x0000c4        0x13d build/default/production/PowerLimiter.o
+ .debug_line      0x000201        0x90b build/default/production/ProcessUartMsg.o
+ .debug_line      0x000b0c        0x3b8 build/default/production/UART.o
+ .debug_line      0x000ec4         0x9b build/default/production/DAC.o
+ .debug_line      0x000f5f         0xd9 build/default/production/Spi.o
+ .debug_line      0x001038        0x1fa build/default/production/HardwareInit.o
+ .debug_line      0x001232         0x9c build/default/production/Math.o
+ .debug_line      0x0012ce        0x4e9 build/default/production/HeaterPID.o
+ .debug_line      0x0017b7         0x80 build/default/production/AddressBus.o
+ .debug_line      0x001837         0x4d build/default/production/LeakerPid.o
+ .debug_line      0x001884         0x7b build/default/production/ADC.o
+ .debug_line      0x0018ff        0x10e build/default/production/AnalogIo.o
+ .debug_line      0x001a0d         0xdd build/default/production/Timer.o
 
-.debug_frame      0x000000        0x2c4
+.debug_frame      0x000000        0x318
  *(.debug_frame)
  .debug_frame     0x000000         0x24 build/default/production/Main.o
  .debug_frame     0x000024         0x24 build/default/production/PowerLimiter.o
@@ -527,21 +550,23 @@ __FUID3
  .debug_frame     0x000234         0x24 build/default/production/AddressBus.o
  .debug_frame     0x000258         0x24 build/default/production/LeakerPid.o
  .debug_frame     0x00027c         0x24 build/default/production/ADC.o
- .debug_frame     0x0002a0         0x24 build/default/production/AnalogIo.o
+ .debug_frame     0x0002a0         0x44 build/default/production/AnalogIo.o
+ .debug_frame     0x0002e4         0x34 build/default/production/Timer.o
 
-.debug_str        0x000000        0x41c
+.debug_str        0x000000        0x4a4
  *(.debug_str)
- .debug_str       0x000000          0xc build/default/production/Main.o
- .debug_str       0x00000c         0xb3 build/default/production/PowerLimiter.o
- .debug_str       0x0000bf        0x10f build/default/production/ProcessUartMsg.o
- .debug_str       0x0001ce         0x3a build/default/production/UART.o
- .debug_str       0x000208          0x9 build/default/production/DAC.o
- .debug_str       0x000211          0xd build/default/production/Spi.o
- .debug_str       0x00021e         0xc7 build/default/production/HardwareInit.o
- .debug_str       0x0002e5        0x110 build/default/production/HeaterPID.o
- .debug_str       0x0003f5          0x9 build/default/production/AddressBus.o
- .debug_str       0x0003fe         0x15 build/default/production/ADC.o
- .debug_str       0x000413          0x9 build/default/production/AnalogIo.o
+ .debug_str       0x000000         0x3c build/default/production/Main.o
+ .debug_str       0x00003c         0xb3 build/default/production/PowerLimiter.o
+ .debug_str       0x0000ef        0x10f build/default/production/ProcessUartMsg.o
+ .debug_str       0x0001fe         0x3a build/default/production/UART.o
+ .debug_str       0x000238          0x9 build/default/production/DAC.o
+ .debug_str       0x000241          0xd build/default/production/Spi.o
+ .debug_str       0x00024e         0xc7 build/default/production/HardwareInit.o
+ .debug_str       0x000315        0x110 build/default/production/HeaterPID.o
+ .debug_str       0x000425          0x9 build/default/production/AddressBus.o
+ .debug_str       0x00042e         0x15 build/default/production/ADC.o
+ .debug_str       0x000443         0x11 build/default/production/AnalogIo.o
+ .debug_str       0x000454         0x50 build/default/production/Timer.o
 
 .debug_loc
  *(.debug_loc)
@@ -550,7 +575,7 @@ __FUID3
  *(.debug_macinfo)
 
 .debug_pubnames
-                  0x000000        0x672
+                  0x000000        0x72c
  *(.debug_pubnames)
  .debug_pubnames
                   0x000000         0x1b build/default/production/Main.o
@@ -577,12 +602,14 @@ __FUID3
  .debug_pubnames
                   0x0005ec         0x60 build/default/production/ADC.o
  .debug_pubnames
-                  0x00064c         0x26 build/default/production/AnalogIo.o
+                  0x00064c         0x4c build/default/production/AnalogIo.o
+ .debug_pubnames
+                  0x000698         0x94 build/default/production/Timer.o
 
 .debug_ranges
  *(.debug_ranges)
 
-.debug_aranges    0x000000        0x138
+.debug_aranges    0x000000        0x150
  *(.debug_aranges)
  .debug_aranges
                   0x000000         0x18 build/default/production/Main.o
@@ -610,6 +637,8 @@ __FUID3
                   0x000108         0x18 build/default/production/ADC.o
  .debug_aranges
                   0x000120         0x18 build/default/production/AnalogIo.o
+ .debug_aranges
+                  0x000138         0x18 build/default/production/Timer.o
 
 .ivt              0x000004         0xfc
                   0x000004          0x4 LONG 0x568 DEFINED (__ReservedTrap0)?ABSOLUTE (__ReservedTrap0):ABSOLUTE (__DefaultInterrupt)
@@ -623,7 +652,7 @@ __FUID3
                   0x000014          0x4 LONG 0x568 DEFINED (__INT0Interrupt)?ABSOLUTE (__INT0Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000016          0x4 LONG 0x568 DEFINED (__IC1Interrupt)?ABSOLUTE (__IC1Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000018          0x4 LONG 0x568 DEFINED (__OC1Interrupt)?ABSOLUTE (__OC1Interrupt):ABSOLUTE (__DefaultInterrupt)
-                  0x00001a          0x4 LONG 0x568 DEFINED (__T1Interrupt)?ABSOLUTE (__T1Interrupt):ABSOLUTE (__DefaultInterrupt)
+                  0x00001a          0x4 LONG 0x193e DEFINED (__T1Interrupt)?ABSOLUTE (__T1Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x00001c          0x4 LONG 0x568 DEFINED (__DMA0Interrupt)?ABSOLUTE (__DMA0Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x00001e          0x4 LONG 0x568 DEFINED (__IC2Interrupt)?ABSOLUTE (__IC2Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000020          0x4 LONG 0x568 DEFINED (__OC2Interrupt)?ABSOLUTE (__OC2Interrupt):ABSOLUTE (__DefaultInterrupt)
@@ -751,7 +780,7 @@ __FUID3
                   0x000114          0x4 LONG 0x568 DEFINED (__AltINT0Interrupt)?ABSOLUTE (__AltINT0Interrupt):DEFINED (__INT0Interrupt)?ABSOLUTE (__INT0Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000116          0x4 LONG 0x568 DEFINED (__AltIC1Interrupt)?ABSOLUTE (__AltIC1Interrupt):DEFINED (__IC1Interrupt)?ABSOLUTE (__IC1Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000118          0x4 LONG 0x568 DEFINED (__AltOC1Interrupt)?ABSOLUTE (__AltOC1Interrupt):DEFINED (__OC1Interrupt)?ABSOLUTE (__OC1Interrupt):ABSOLUTE (__DefaultInterrupt)
-                  0x00011a          0x4 LONG 0x568 DEFINED (__AltT1Interrupt)?ABSOLUTE (__AltT1Interrupt):DEFINED (__T1Interrupt)?ABSOLUTE (__T1Interrupt):ABSOLUTE (__DefaultInterrupt)
+                  0x00011a          0x4 LONG 0x193e DEFINED (__AltT1Interrupt)?ABSOLUTE (__AltT1Interrupt):DEFINED (__T1Interrupt)?ABSOLUTE (__T1Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x00011c          0x4 LONG 0x568 DEFINED (__AltDMA0Interrupt)?ABSOLUTE (__AltDMA0Interrupt):DEFINED (__DMA0Interrupt)?ABSOLUTE (__DMA0Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x00011e          0x4 LONG 0x568 DEFINED (__AltIC2Interrupt)?ABSOLUTE (__AltIC2Interrupt):DEFINED (__IC2Interrupt)?ABSOLUTE (__IC2Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000120          0x4 LONG 0x568 DEFINED (__AltOC2Interrupt)?ABSOLUTE (__AltOC2Interrupt):DEFINED (__OC2Interrupt)?ABSOLUTE (__OC2Interrupt):ABSOLUTE (__DefaultInterrupt)
@@ -1984,70 +2013,74 @@ LOAD default_isr
 LOAD data_init
 
 .debug_pubtypes
-                  0x000138        0x545
+                  0x000150        0x560
  .debug_pubtypes
-                  0x000138         0x12 build/default/production/Main.o
+                  0x000150         0x12 build/default/production/Main.o
  .debug_pubtypes
-                  0x00014a         0x3e build/default/production/PowerLimiter.o
+                  0x000162         0x3e build/default/production/PowerLimiter.o
  .debug_pubtypes
-                  0x000188         0x64 build/default/production/ProcessUartMsg.o
+                  0x0001a0         0x64 build/default/production/ProcessUartMsg.o
  .debug_pubtypes
-                  0x0001ec         0x98 build/default/production/UART.o
+                  0x000204         0x98 build/default/production/UART.o
  .debug_pubtypes
-                  0x000284         0x41 build/default/production/DAC.o
+                  0x00029c         0x41 build/default/production/DAC.o
  .debug_pubtypes
-                  0x0002c5         0x40 build/default/production/Spi.o
+                  0x0002dd         0x40 build/default/production/Spi.o
  .debug_pubtypes
-                  0x000305        0x254 build/default/production/HardwareInit.o
+                  0x00031d        0x254 build/default/production/HardwareInit.o
  .debug_pubtypes
-                  0x000559         0x1b build/default/production/Math.o
+                  0x000571         0x1b build/default/production/Math.o
  .debug_pubtypes
-                  0x000574         0x56 build/default/production/HeaterPID.o
+                  0x00058c         0x56 build/default/production/HeaterPID.o
  .debug_pubtypes
-                  0x0005ca         0x3d build/default/production/AddressBus.o
+                  0x0005e2         0x3d build/default/production/AddressBus.o
  .debug_pubtypes
-                  0x000607         0x3e build/default/production/ADC.o
+                  0x00061f         0x3e build/default/production/ADC.o
  .debug_pubtypes
-                  0x000645         0x38 build/default/production/AnalogIo.o
+                  0x00065d         0x38 build/default/production/AnalogIo.o
+ .debug_pubtypes
+                  0x000695         0x1b build/default/production/Timer.o
 
 __c30_signature
-                  0x00067e         0x6c
+                  0x0006b0         0x72
  __c30_signature
-                  0x00067e          0x6 build/default/production/Main.o
+                  0x0006b0          0x6 build/default/production/Main.o
  __c30_signature
-                  0x000684          0x6 build/default/production/PowerLimiter.o
+                  0x0006b6          0x6 build/default/production/PowerLimiter.o
  __c30_signature
-                  0x00068a          0x6 build/default/production/ProcessUartMsg.o
+                  0x0006bc          0x6 build/default/production/ProcessUartMsg.o
  __c30_signature
-                  0x000690          0x6 build/default/production/UART.o
+                  0x0006c2          0x6 build/default/production/UART.o
  __c30_signature
-                  0x000696          0x6 build/default/production/DAC.o
+                  0x0006c8          0x6 build/default/production/DAC.o
  __c30_signature
-                  0x00069c          0x6 build/default/production/Spi.o
+                  0x0006ce          0x6 build/default/production/Spi.o
  __c30_signature
-                  0x0006a2          0x6 build/default/production/HardwareInit.o
+                  0x0006d4          0x6 build/default/production/HardwareInit.o
  __c30_signature
-                  0x0006a8          0x6 build/default/production/Math.o
+                  0x0006da          0x6 build/default/production/Math.o
  __c30_signature
-                  0x0006ae          0x6 build/default/production/HeaterPID.o
+                  0x0006e0          0x6 build/default/production/HeaterPID.o
  __c30_signature
-                  0x0006b4          0x6 build/default/production/AddressBus.o
+                  0x0006e6          0x6 build/default/production/AddressBus.o
  __c30_signature
-                  0x0006ba          0x6 build/default/production/LeakerPid.o
+                  0x0006ec          0x6 build/default/production/LeakerPid.o
  __c30_signature
-                  0x0006c0          0x6 build/default/production/ADC.o
+                  0x0006f2          0x6 build/default/production/ADC.o
  __c30_signature
-                  0x0006c6          0x6 build/default/production/AnalogIo.o
+                  0x0006f8          0x6 build/default/production/AnalogIo.o
  __c30_signature
-                  0x0006cc          0x6 c:/program files (x86)/microchip/xc16/v1.22/bin/bin/../../lib\libpic30-elf.a(crt0_standard.o)
+                  0x0006fe          0x6 build/default/production/Timer.o
  __c30_signature
-                  0x0006d2          0x6 c:/program files (x86)/microchip/xc16/v1.22/bin/bin/../../lib\libpic30-elf.a(data_init_standard.o)
+                  0x000704          0x6 c:/program files (x86)/microchip/xc16/v1.22/bin/bin/../../lib\libpic30-elf.a(crt0_standard.o)
  __c30_signature
-                  0x0006d8          0x6 c:/program files (x86)/microchip/xc16/v1.22/bin/bin/../../lib\libm-elf.a(divsi3.eo)
+                  0x00070a          0x6 c:/program files (x86)/microchip/xc16/v1.22/bin/bin/../../lib\libpic30-elf.a(data_init_standard.o)
  __c30_signature
-                  0x0006de          0x6 c:/program files (x86)/microchip/xc16/v1.22/bin/bin/../../lib\libm-elf.a(udivsi3.eo)
+                  0x000710          0x6 c:/program files (x86)/microchip/xc16/v1.22/bin/bin/../../lib\libm-elf.a(divsi3.eo)
  __c30_signature
-                  0x0006e4          0x6 c:/program files (x86)/microchip/xc16/v1.22/bin/bin/../../lib\libc-elf.a(memmove.eo)
+                  0x000716          0x6 c:/program files (x86)/microchip/xc16/v1.22/bin/bin/../../lib\libm-elf.a(udivsi3.eo)
+ __c30_signature
+                  0x00071c          0x6 c:/program files (x86)/microchip/xc16/v1.22/bin/bin/../../lib\libc-elf.a(memmove.eo)
 
 .nbss               0x0800        0x160
  .nbss              0x0800         0xb2 build/default/production/UART.o
@@ -2105,7 +2138,7 @@ __c30_signature
                     0x09f2                  _DifShift
                     0x09f3                  _TableDT
 
-.nbss               0x09f4         0xf6
+.nbss               0x09f4         0xfe
  .nbss              0x09f4         0x84 build/default/production/ProcessUartMsg.o
                     0x09f4                  _TxFifo
  .nbss              0x0a78         0x40 build/default/production/ADC.o
@@ -2126,11 +2159,17 @@ __c30_signature
                     0x0ae7                  _MaxHeaterIGuard
                     0x0ae8                  _MaxHeaterUGuard
                     0x0ae9                  _MaxHeaterPGuard
+ .nbss              0x0aea          0x8 build/default/production/Timer.o
+                    0x0aec                  _SchedulledTask0
+                    0x0aed                  _SchedulledTask1
+                    0x0aee                  _SchedulledTask2
+                    0x0aef                  _SchedulledTask3
+                    0x0af0                  _SchedulledTask4
 
-.ndata              0x0aea          0x6
- .ndata             0x0aea          0x6 build/default/production/PowerLimiter.o
-                    0x0aea                  _KHeaterIToRef_Medium
-                    0x0aee                  _DacData0Max
+.ndata              0x0af2          0x6
+ .ndata             0x0af2          0x6 build/default/production/PowerLimiter.o
+                    0x0af2                  _KHeaterIToRef_Medium
+                    0x0af6                  _DacData0Max
 
 .config_JTAGEN    0xf8000e          0x2
  .config_JTAGEN
@@ -2177,26 +2216,31 @@ __c30_signature
  .text            0x001772        0x114 build/default/production/HardwareInit.o
                   0x001772                  _HardwareInit
 
-.dinit            0x001886         0x9a
- .dinit           0x001886         0x9a data_init
+.dinit            0x001886         0xa0
+ .dinit           0x001886         0xa0 data_init
 
-.text             0x001920        0x144
- .text            0x001920         0x52 build/default/production/Math.o
-                  0x001920                  _linterp
- .text            0x001972         0x44 build/default/production/Spi.o
-                  0x001972                  _SpiConfig
-                  0x001978                  _SpiSend
-                  0x001990                  _SpiReceive
-                  0x0019a6                  _SpiWaitTransmitEnd
- .text            0x0019b6         0x2c build/default/production/AnalogIo.o
-                  0x0019b6                  _ReadWriteAnalog
- .text            0x0019e2         0x28 build/default/production/AddressBus.o
-                  0x0019e2                  _SelectChannel
- .text            0x001a0a         0x22 build/default/production/DAC.o
-                  0x001a0a                  _DacWrite
- .text            0x001a2c         0x1c build/default/production/Main.o
-                  0x001a2c                  _main
- .text            0x001a48         0x16 build/default/production/ADC.o
-                  0x001a48                  _ReadADC
- .text            0x001a5e          0x6 build/default/production/LeakerPid.o
-                  0x001a5e                  _task_LeakerPid_body
+.text             0x001926        0x230
+ .text            0x001926         0x7c build/default/production/Timer.o
+                  0x001926                  _SleepOps
+                  0x00193e                  __T1Interrupt
+ .text            0x0019a2         0x66 build/default/production/AnalogIo.o
+                  0x0019a2                  _ReadWriteAnalog
+                  0x0019ce                  _ReadAnalog
+                  0x0019ee                  _ReadWriteAnalogAll
+ .text            0x001a08         0x52 build/default/production/Main.o
+                  0x001a08                  _main
+ .text            0x001a5a         0x52 build/default/production/Math.o
+                  0x001a5a                  _linterp
+ .text            0x001aac         0x44 build/default/production/Spi.o
+                  0x001aac                  _SpiConfig
+                  0x001ab2                  _SpiSend
+                  0x001aca                  _SpiReceive
+                  0x001ae0                  _SpiWaitTransmitEnd
+ .text            0x001af0         0x28 build/default/production/AddressBus.o
+                  0x001af0                  _SelectChannel
+ .text            0x001b18         0x22 build/default/production/DAC.o
+                  0x001b18                  _DacWrite
+ .text            0x001b3a         0x16 build/default/production/ADC.o
+                  0x001b3a                  _ReadADC
+ .text            0x001b50          0x6 build/default/production/LeakerPid.o
+                  0x001b50                  _task_LeakerPid_body

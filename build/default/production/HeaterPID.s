@@ -489,19 +489,19 @@ _task_HeaterPid_body:
 	mov	w0,w5
 	mov	w4,_MulVarB
 	mov	w5,_MulVarB+2
-	mov	#_Temp1.7410,w5
+	mov	#_Temp1.7414,w5
 	mov	#_MulVarB,w4
 	inc	w4,w4
 	mov.b	[w4],w4
 	mov.b	w4,[w5]
-	mov	#_Temp1.7410,w4
+	mov	#_Temp1.7414,w4
 	inc	w4,w5
 	mov	#_MulVarB,w4
 	inc2	w4,w4
 	mov.b	[w4],w4
 	mov.b	w4,[w5]
 .LSM44:
-	mov	_Temp1.7410,w4
+	mov	_Temp1.7414,w4
 	mov	w4,w0
 	rcall	_CalcTByV
 	mov	w0,w4
@@ -592,12 +592,12 @@ _task_HeaterPid_body:
 	mov	w0,w5
 	mov	w4,_MulVarB
 	mov	w5,_MulVarB+2
-	mov	#_Temp1.7410,w5
+	mov	#_Temp1.7414,w5
 	mov	#_MulVarB,w4
 	inc	w4,w4
 	mov.b	[w4],w4
 	mov.b	w4,[w5]
-	mov	#_Temp1.7410,w4
+	mov	#_Temp1.7414,w4
 	inc	w4,w5
 	mov	#_MulVarB,w4
 	inc2	w4,w4
@@ -605,7 +605,7 @@ _task_HeaterPid_body:
 	mov.b	w4,[w5]
 .LSM54:
 	mov	_Vp,w5
-	mov	_Temp1.7410,w4
+	mov	_Temp1.7414,w4
 	add	w5,w4,w4
 	mov	w4,_Vi
 .LSM55:
@@ -1358,7 +1358,7 @@ _CalcFF:
 .LFE4:
 	.pushsection	.nbss,bss,near
 	.align	2
-_Temp1.7410:	.space	2
+_Temp1.7414:	.space	2
 	.popsection
 	.section	.debug_frame,info
 .Lframe0:
@@ -1436,7 +1436,7 @@ _Temp1.7410:	.space	2
 	.uleb128 0x2
 	.asciz	"UINT"
 	.byte	0x2
-	.byte	0x4
+	.byte	0x7
 	.4byte	0x8b
 	.uleb128 0x3
 	.byte	0x2
@@ -1445,7 +1445,7 @@ _Temp1.7410:	.space	2
 	.uleb128 0x2
 	.asciz	"BYTE"
 	.byte	0x2
-	.byte	0x5
+	.byte	0x8
 	.4byte	0xa7
 	.uleb128 0x3
 	.byte	0x1
@@ -1458,7 +1458,7 @@ _Temp1.7410:	.space	2
 	.uleb128 0x2
 	.asciz	"INT16Q4"
 	.byte	0x2
-	.byte	0x7
+	.byte	0xa
 	.4byte	0xdc
 	.uleb128 0x3
 	.byte	0x2
@@ -1467,17 +1467,17 @@ _Temp1.7410:	.space	2
 	.uleb128 0x2
 	.asciz	"INT16Q8"
 	.byte	0x2
-	.byte	0x8
+	.byte	0xb
 	.4byte	0xdc
 	.uleb128 0x2
 	.asciz	"INT16Q16"
 	.byte	0x2
-	.byte	0x9
+	.byte	0xc
 	.4byte	0xdc
 	.uleb128 0x2
 	.asciz	"INT32Q20"
 	.byte	0x2
-	.byte	0xa
+	.byte	0xd
 	.4byte	0x112
 	.uleb128 0x3
 	.byte	0x4
@@ -1500,7 +1500,7 @@ _Temp1.7410:	.space	2
 	.4byte	0xcd
 	.byte	0x5
 	.byte	0x3
-	.4byte	_Temp1.7410
+	.4byte	_Temp1.7414
 	.byte	0x0
 	.uleb128 0x6
 	.byte	0x1

@@ -1,4 +1,4 @@
-	.file "C:\\SourceCode\\dsPicProg\\DAC.c"
+	.file "C:\\SourceCode\\dsPicProg\\Timer.c"
 	.section	.debug_abbrev,info
 .Ldebug_abbrev0:
 	.section	.debug_info,info
@@ -7,46 +7,142 @@
 .Ldebug_line0:
 	.section	.text,code
 .Ltext0:
-	.section	.nbss,bss,near
-	.type	_DacData,@object
-	.global	_DacData
+	.pushsection	.nbss,bss,near
 	.align	2
-_DacData:	.space	32
+_SchedullerCount:	.space	2
+	.popsection
+	.global	_SchedulledTask0	; export
+	.section	.nbss,bss,near
+	.type	_SchedulledTask0,@object
+_SchedulledTask0:
+	.skip	1
+	.global	_SchedulledTask1	; export
+	.type	_SchedulledTask1,@object
+_SchedulledTask1:
+	.skip	1
+	.global	_SchedulledTask2	; export
+	.type	_SchedulledTask2,@object
+_SchedulledTask2:
+	.skip	1
+	.global	_SchedulledTask3	; export
+	.type	_SchedulledTask3,@object
+_SchedulledTask3:
+	.skip	1
+	.global	_SchedulledTask4	; export
+	.type	_SchedulledTask4,@object
+_SchedulledTask4:
+	.skip	1
 	.section	.text,code
 	.align	2
-	.global	_DacWrite	; export
-	.type	_DacWrite,@function
-_DacWrite:
+	.global	_SleepOps	; export
+	.type	_SleepOps,@function
+_SleepOps:
 .LFB0:
 .LSM0:
 	.set ___PA___,1
 	lnk	#4
 	mov	w0,[w14+2]
 .LSM1:
-	rcall	_SpiWaitTransmitEnd
+	clr	w4
+	mov	w4,[w14]
+	bra	.L2
+.L3:
+	inc	[w14],[w14]
+.L2:
+	mov	[w14+2],w4
+	mov	[w14],w5
+	sub	w5,w4,[w15]
+	.set ___BP___,0
+	bra	ltu,.L3
 .LSM2:
-	bclr.b	_LATBbits+1,#5
-.LSM3:
-	inc2	w14,w4
-	inc	w4,w4
-	mov.b	[w4],[w14]
-.LSM4:
-	mov.b	[w14],w0
-	rcall	_SpiSend
-.LSM5:
-	inc2	w14,w4
-	mov.b	[w4],w4
-	mov.b	w4,w0
-	rcall	_SpiSend
-.LSM6:
-	rcall	_SpiWaitTransmitEnd
-.LSM7:
-	bset.b	_LATBbits+1,#5
-.LSM8:
 	ulnk	
 	return	
 	.set ___PA___,0
 .LFE0:
+	.align	2
+	.global	__T1Interrupt	; export
+	.type	__T1Interrupt,@function
+__T1Interrupt:
+.LFB1:
+.LSM3:
+	.set ___PA___,1
+	mov	w0,[w15++]
+	mov.d	w4,[w15++]
+	mov.d	w6,[w15++]
+	lnk	#0
+.LSM4:
+	mov	_SchedullerCount,w4
+	mov	#0,w5
+	mov	#3,w6
+	mov	#0,w7
+	sub	w4,w6,[w15]
+	subb	w5,w7,[w15]
+	.set ___BP___,0
+	bra	gtu,.L5
+	bra	w4
+	.align	2
+	.set	___PA___,0
+.L10:
+	bra	.L6
+	bra	.L7
+	bra	.L8
+	bra	.L9
+	.set	___PA___,1
+.L6:
+.LSM5:
+	mov.b	#1,w4
+	exch	w0,w4
+	mov.b	WREG,_SchedulledTask0
+	exch	w0,w4
+.LSM6:
+	bra	.L11
+.L7:
+.LSM7:
+	mov.b	#1,w4
+	exch	w0,w4
+	mov.b	WREG,_SchedulledTask1
+	exch	w0,w4
+.LSM8:
+	bra	.L11
+.L8:
+.LSM9:
+	mov.b	#1,w4
+	exch	w0,w4
+	mov.b	WREG,_SchedulledTask2
+	exch	w0,w4
+.LSM10:
+	bra	.L11
+.L9:
+.LSM11:
+	mov.b	#1,w4
+	exch	w0,w4
+	mov.b	WREG,_SchedulledTask3
+	exch	w0,w4
+.LSM12:
+	bra	.L11
+.L5:
+.LSM13:
+	mov.b	#1,w4
+	mov	w4,w0
+	mov.b	WREG,_SchedulledTask4
+.LSM14:
+	setm	w4
+	mov	w4,_SchedullerCount
+.LSM15:
+	nop	
+.L11:
+.LSM16:
+	mov	_SchedullerCount,w4
+	inc	w4,w4
+	mov	w4,_SchedullerCount
+.LSM17:
+	ulnk	
+	mov.d	[--w15],w6
+	mov.d	[--w15],w4
+	mov	[--w15],w0
+	retfie	
+	.set ___PA___,0
+.LFE1:
 	.section	.debug_frame,info
 .Lframe0:
 	.4byte	.LECIE0-.LSCIE0
@@ -73,17 +169,25 @@ _DacWrite:
 	.4byte	.LFE0-.LFB0
 	.align	4
 .LEFDE0:
+.LSFDE2:
+	.4byte	.LEFDE2-.LASFDE2
+.LASFDE2:
+	.4byte	.Lframe0
+	.4byte	.LFB1
+	.4byte	.LFE1-.LFB1
+	.align	4
+.LEFDE2:
 	.section	.text,code
 .Letext0:
 	.section	.debug_info,info
-	.4byte	0x2c5
+	.4byte	0x1e6
 	.2byte	0x2
 	.4byte	.Ldebug_abbrev0
 	.byte	0x4
 	.uleb128 0x1
 	.asciz	"GNU C 4.5.1 (XC16, Microchip v1.22) (A) Build date: Aug 19 2014"
 	.byte	0x1
-	.asciz	"DAC.c"
+	.asciz	"Timer.c"
 	.asciz	"C:\\\\SourceCode\\\\dsPicProg"
 	.4byte	.Ltext0
 	.4byte	.Letext0
@@ -92,16 +196,11 @@ _DacWrite:
 	.asciz	"UINT"
 	.byte	0x2
 	.byte	0x7
-	.4byte	0x85
+	.4byte	0x87
 	.uleb128 0x3
 	.byte	0x2
 	.byte	0x7
 	.asciz	"unsigned int"
-	.uleb128 0x2
-	.asciz	"BYTE"
-	.byte	0x2
-	.byte	0x8
-	.4byte	0xa1
 	.uleb128 0x3
 	.byte	0x1
 	.byte	0x8
@@ -119,253 +218,137 @@ _DacWrite:
 	.byte	0x5
 	.asciz	"long int"
 	.uleb128 0x4
-	.asciz	"tagLATBBITS"
-	.byte	0x2
-	.byte	0x3
-	.2byte	0xa06
-	.4byte	0x236
-	.uleb128 0x5
-	.asciz	"LATB0"
-	.byte	0x3
-	.2byte	0xa07
-	.4byte	0x85
-	.byte	0x2
 	.byte	0x1
-	.byte	0xf
-	.byte	0x2
-	.byte	0x23
-	.uleb128 0x0
-	.uleb128 0x5
-	.asciz	"LATB1"
-	.byte	0x3
-	.2byte	0xa08
-	.4byte	0x85
-	.byte	0x2
-	.byte	0x1
-	.byte	0xe
-	.byte	0x2
-	.byte	0x23
-	.uleb128 0x0
-	.uleb128 0x5
-	.asciz	"LATB2"
-	.byte	0x3
-	.2byte	0xa09
-	.4byte	0x85
-	.byte	0x2
-	.byte	0x1
-	.byte	0xd
-	.byte	0x2
-	.byte	0x23
-	.uleb128 0x0
-	.uleb128 0x5
-	.asciz	"LATB3"
-	.byte	0x3
-	.2byte	0xa0a
-	.4byte	0x85
-	.byte	0x2
-	.byte	0x1
-	.byte	0xc
-	.byte	0x2
-	.byte	0x23
-	.uleb128 0x0
-	.uleb128 0x5
-	.asciz	"LATB4"
-	.byte	0x3
-	.2byte	0xa0b
-	.4byte	0x85
-	.byte	0x2
-	.byte	0x1
-	.byte	0xb
-	.byte	0x2
-	.byte	0x23
-	.uleb128 0x0
-	.uleb128 0x5
-	.asciz	"LATB5"
-	.byte	0x3
-	.2byte	0xa0c
-	.4byte	0x85
-	.byte	0x2
+	.asciz	"SleepOps"
 	.byte	0x1
 	.byte	0xa
-	.byte	0x2
-	.byte	0x23
-	.uleb128 0x0
-	.uleb128 0x5
-	.asciz	"LATB6"
-	.byte	0x3
-	.2byte	0xa0d
-	.4byte	0x85
-	.byte	0x2
-	.byte	0x1
-	.byte	0x9
-	.byte	0x2
-	.byte	0x23
-	.uleb128 0x0
-	.uleb128 0x5
-	.asciz	"LATB7"
-	.byte	0x3
-	.2byte	0xa0e
-	.4byte	0x85
-	.byte	0x2
-	.byte	0x1
-	.byte	0x8
-	.byte	0x2
-	.byte	0x23
-	.uleb128 0x0
-	.uleb128 0x5
-	.asciz	"LATB8"
-	.byte	0x3
-	.2byte	0xa0f
-	.4byte	0x85
-	.byte	0x2
-	.byte	0x1
-	.byte	0x7
-	.byte	0x2
-	.byte	0x23
-	.uleb128 0x0
-	.uleb128 0x5
-	.asciz	"LATB9"
-	.byte	0x3
-	.2byte	0xa10
-	.4byte	0x85
-	.byte	0x2
-	.byte	0x1
-	.byte	0x6
-	.byte	0x2
-	.byte	0x23
-	.uleb128 0x0
-	.uleb128 0x5
-	.asciz	"LATB10"
-	.byte	0x3
-	.2byte	0xa11
-	.4byte	0x85
-	.byte	0x2
-	.byte	0x1
-	.byte	0x5
-	.byte	0x2
-	.byte	0x23
-	.uleb128 0x0
-	.uleb128 0x5
-	.asciz	"LATB11"
-	.byte	0x3
-	.2byte	0xa12
-	.4byte	0x85
-	.byte	0x2
-	.byte	0x1
-	.byte	0x4
-	.byte	0x2
-	.byte	0x23
-	.uleb128 0x0
-	.uleb128 0x5
-	.asciz	"LATB12"
-	.byte	0x3
-	.2byte	0xa13
-	.4byte	0x85
-	.byte	0x2
-	.byte	0x1
-	.byte	0x3
-	.byte	0x2
-	.byte	0x23
-	.uleb128 0x0
-	.uleb128 0x5
-	.asciz	"LATB13"
-	.byte	0x3
-	.2byte	0xa14
-	.4byte	0x85
-	.byte	0x2
-	.byte	0x1
-	.byte	0x2
-	.byte	0x2
-	.byte	0x23
-	.uleb128 0x0
-	.uleb128 0x5
-	.asciz	"LATB14"
-	.byte	0x3
-	.2byte	0xa15
-	.4byte	0x85
-	.byte	0x2
-	.byte	0x1
-	.byte	0x1
-	.byte	0x2
-	.byte	0x23
-	.uleb128 0x0
-	.uleb128 0x5
-	.asciz	"LATB15"
-	.byte	0x3
-	.2byte	0xa16
-	.4byte	0x85
-	.byte	0x2
-	.byte	0x1
-	.byte	0x10
-	.byte	0x2
-	.byte	0x23
-	.uleb128 0x0
-	.byte	0x0
-	.uleb128 0x6
-	.asciz	"LATBBITS"
-	.byte	0x3
-	.2byte	0xa17
-	.4byte	0xda
-	.uleb128 0x7
-	.byte	0x1
-	.asciz	"DacWrite"
-	.byte	0x1
-	.byte	0x5
 	.byte	0x1
 	.4byte	.LFB0
 	.4byte	.LFE0
 	.byte	0x1
 	.byte	0x5e
-	.4byte	0x281
-	.uleb128 0x8
-	.asciz	"val"
+	.4byte	0x107
+	.uleb128 0x5
+	.asciz	"ops"
 	.byte	0x1
-	.byte	0x5
-	.4byte	0x79
+	.byte	0xa
+	.4byte	0x7b
 	.byte	0x2
 	.byte	0x7e
 	.sleb128 2
-	.uleb128 0x9
-	.asciz	"Byte"
+	.uleb128 0x6
+	.asciz	"i"
 	.byte	0x1
-	.byte	0x7
-	.4byte	0x95
+	.byte	0xc
+	.4byte	0x7b
 	.byte	0x2
 	.byte	0x7e
 	.sleb128 0
 	.byte	0x0
+	.uleb128 0x7
+	.byte	0x1
+	.asciz	"_T1Interrupt"
+	.byte	0x1
+	.byte	0x10
+	.byte	0x1
+	.4byte	.LFB1
+	.4byte	.LFE1
+	.byte	0x1
+	.byte	0x5e
+	.uleb128 0x6
+	.asciz	"SchedullerCount"
+	.byte	0x1
+	.byte	0x3
+	.4byte	0x7b
+	.byte	0x5
+	.byte	0x3
+	.4byte	_SchedullerCount
+	.uleb128 0x8
+	.4byte	.LASF0
+	.byte	0x1
+	.byte	0x4
+	.4byte	0x14d
+	.byte	0x1
+	.byte	0x1
+	.uleb128 0x9
+	.4byte	0x152
+	.uleb128 0x3
+	.byte	0x1
+	.byte	0x2
+	.asciz	"_Bool"
+	.uleb128 0x8
+	.4byte	.LASF1
+	.byte	0x1
+	.byte	0x5
+	.4byte	0x14d
+	.byte	0x1
+	.byte	0x1
+	.uleb128 0x8
+	.4byte	.LASF2
+	.byte	0x1
+	.byte	0x6
+	.4byte	0x14d
+	.byte	0x1
+	.byte	0x1
+	.uleb128 0x8
+	.4byte	.LASF3
+	.byte	0x1
+	.byte	0x7
+	.4byte	0x14d
+	.byte	0x1
+	.byte	0x1
+	.uleb128 0x8
+	.4byte	.LASF4
+	.byte	0x1
+	.byte	0x8
+	.4byte	0x14d
+	.byte	0x1
+	.byte	0x1
 	.uleb128 0xa
 	.4byte	.LASF0
-	.byte	0x3
-	.2byte	0xa18
-	.4byte	0x28f
 	.byte	0x1
-	.byte	0x1
-	.uleb128 0xb
-	.4byte	0x236
-	.uleb128 0xa
-	.4byte	.LASF0
-	.byte	0x3
-	.2byte	0xa18
-	.4byte	0x28f
-	.byte	0x1
-	.byte	0x1
-	.uleb128 0xc
-	.4byte	0xc7
-	.4byte	0x2b2
-	.uleb128 0xd
-	.4byte	0x85
-	.byte	0xf
-	.byte	0x0
-	.uleb128 0xe
-	.asciz	"DacData"
-	.byte	0x1
-	.byte	0x3
-	.4byte	0x2a2
+	.byte	0x4
+	.4byte	0x14d
 	.byte	0x1
 	.byte	0x5
 	.byte	0x3
-	.4byte	_DacData
+	.4byte	_SchedulledTask0
+	.uleb128 0xa
+	.4byte	.LASF1
+	.byte	0x1
+	.byte	0x5
+	.4byte	0x14d
+	.byte	0x1
+	.byte	0x5
+	.byte	0x3
+	.4byte	_SchedulledTask1
+	.uleb128 0xa
+	.4byte	.LASF2
+	.byte	0x1
+	.byte	0x6
+	.4byte	0x14d
+	.byte	0x1
+	.byte	0x5
+	.byte	0x3
+	.4byte	_SchedulledTask2
+	.uleb128 0xa
+	.4byte	.LASF3
+	.byte	0x1
+	.byte	0x7
+	.4byte	0x14d
+	.byte	0x1
+	.byte	0x5
+	.byte	0x3
+	.4byte	_SchedulledTask3
+	.uleb128 0xa
+	.4byte	.LASF4
+	.byte	0x1
+	.byte	0x8
+	.4byte	0x14d
+	.byte	0x1
+	.byte	0x5
+	.byte	0x3
+	.4byte	_SchedulledTask4
 	.byte	0x0
 	.section	.debug_abbrev,info
 	.uleb128 0x1
@@ -412,55 +395,6 @@ _DacWrite:
 	.byte	0x0
 	.byte	0x0
 	.uleb128 0x4
-	.uleb128 0x13
-	.byte	0x1
-	.uleb128 0x3
-	.uleb128 0x8
-	.uleb128 0xb
-	.uleb128 0xb
-	.uleb128 0x3a
-	.uleb128 0xb
-	.uleb128 0x3b
-	.uleb128 0x5
-	.uleb128 0x1
-	.uleb128 0x13
-	.byte	0x0
-	.byte	0x0
-	.uleb128 0x5
-	.uleb128 0xd
-	.byte	0x0
-	.uleb128 0x3
-	.uleb128 0x8
-	.uleb128 0x3a
-	.uleb128 0xb
-	.uleb128 0x3b
-	.uleb128 0x5
-	.uleb128 0x49
-	.uleb128 0x13
-	.uleb128 0xb
-	.uleb128 0xb
-	.uleb128 0xd
-	.uleb128 0xb
-	.uleb128 0xc
-	.uleb128 0xb
-	.uleb128 0x38
-	.uleb128 0xa
-	.byte	0x0
-	.byte	0x0
-	.uleb128 0x6
-	.uleb128 0x16
-	.byte	0x0
-	.uleb128 0x3
-	.uleb128 0x8
-	.uleb128 0x3a
-	.uleb128 0xb
-	.uleb128 0x3b
-	.uleb128 0x5
-	.uleb128 0x49
-	.uleb128 0x13
-	.byte	0x0
-	.byte	0x0
-	.uleb128 0x7
 	.uleb128 0x2e
 	.byte	0x1
 	.uleb128 0x3f
@@ -483,7 +417,7 @@ _DacWrite:
 	.uleb128 0x13
 	.byte	0x0
 	.byte	0x0
-	.uleb128 0x8
+	.uleb128 0x5
 	.uleb128 0x5
 	.byte	0x0
 	.uleb128 0x3
@@ -498,7 +432,7 @@ _DacWrite:
 	.uleb128 0xa
 	.byte	0x0
 	.byte	0x0
-	.uleb128 0x9
+	.uleb128 0x6
 	.uleb128 0x34
 	.byte	0x0
 	.uleb128 0x3
@@ -513,7 +447,28 @@ _DacWrite:
 	.uleb128 0xa
 	.byte	0x0
 	.byte	0x0
+	.uleb128 0x7
+	.uleb128 0x2e
+	.byte	0x0
+	.uleb128 0x3f
+	.uleb128 0xc
+	.uleb128 0x3
+	.uleb128 0x8
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
+	.uleb128 0xb
+	.uleb128 0x27
+	.uleb128 0xc
+	.uleb128 0x11
+	.uleb128 0x1
+	.uleb128 0x12
+	.uleb128 0x1
+	.uleb128 0x40
 	.uleb128 0xa
+	.byte	0x0
+	.byte	0x0
+	.uleb128 0x8
 	.uleb128 0x34
 	.byte	0x0
 	.uleb128 0x3
@@ -521,7 +476,7 @@ _DacWrite:
 	.uleb128 0x3a
 	.uleb128 0xb
 	.uleb128 0x3b
-	.uleb128 0x5
+	.uleb128 0xb
 	.uleb128 0x49
 	.uleb128 0x13
 	.uleb128 0x3f
@@ -530,36 +485,18 @@ _DacWrite:
 	.uleb128 0xc
 	.byte	0x0
 	.byte	0x0
-	.uleb128 0xb
+	.uleb128 0x9
 	.uleb128 0x35
 	.byte	0x0
 	.uleb128 0x49
 	.uleb128 0x13
 	.byte	0x0
 	.byte	0x0
-	.uleb128 0xc
-	.uleb128 0x1
-	.byte	0x1
-	.uleb128 0x49
-	.uleb128 0x13
-	.uleb128 0x1
-	.uleb128 0x13
-	.byte	0x0
-	.byte	0x0
-	.uleb128 0xd
-	.uleb128 0x21
-	.byte	0x0
-	.uleb128 0x49
-	.uleb128 0x13
-	.uleb128 0x2f
-	.uleb128 0xb
-	.byte	0x0
-	.byte	0x0
-	.uleb128 0xe
+	.uleb128 0xa
 	.uleb128 0x34
 	.byte	0x0
 	.uleb128 0x3
-	.uleb128 0x8
+	.uleb128 0xe
 	.uleb128 0x3a
 	.uleb128 0xb
 	.uleb128 0x3b
@@ -574,28 +511,32 @@ _DacWrite:
 	.byte	0x0
 	.byte	0x0
 	.section	.debug_pubnames,info
-	.4byte	0x27
+	.4byte	0x90
 	.2byte	0x2
 	.4byte	.Ldebug_info0
-	.4byte	0x2c9
-	.4byte	0x247
-	.asciz	"DacWrite"
-	.4byte	0x2b2
-	.asciz	"DacData"
+	.4byte	0x1ea
+	.4byte	0xd0
+	.asciz	"SleepOps"
+	.4byte	0x107
+	.asciz	"_T1Interrupt"
+	.4byte	0x18f
+	.asciz	"SchedulledTask0"
+	.4byte	0x1a1
+	.asciz	"SchedulledTask1"
+	.4byte	0x1b3
+	.asciz	"SchedulledTask2"
+	.4byte	0x1c5
+	.asciz	"SchedulledTask3"
+	.4byte	0x1d7
+	.asciz	"SchedulledTask4"
 	.4byte	0x0
 	.section	.debug_pubtypes,info
-	.4byte	0x3d
+	.4byte	0x17
 	.2byte	0x2
 	.4byte	.Ldebug_info0
-	.4byte	0x2c9
-	.4byte	0x79
+	.4byte	0x1ea
+	.4byte	0x7b
 	.asciz	"UINT"
-	.4byte	0x95
-	.asciz	"BYTE"
-	.4byte	0xda
-	.asciz	"tagLATBBITS"
-	.4byte	0x236
-	.asciz	"LATBBITS"
 	.4byte	0x0
 	.section	.debug_aranges,info
 	.4byte	0x14
@@ -628,15 +569,11 @@ _DacWrite:
 	.byte	0x0
 	.byte	0x1
 	.byte	0x0
-	.asciz	"DAC.c"
+	.asciz	"Timer.c"
 	.uleb128 0x0
 	.uleb128 0x0
 	.uleb128 0x0
 	.asciz	"Main.h"
-	.uleb128 0x0
-	.uleb128 0x0
-	.uleb128 0x0
-	.asciz	"p33FJ64MC804.h"
 	.uleb128 0x0
 	.uleb128 0x0
 	.uleb128 0x0
@@ -653,7 +590,7 @@ _DacWrite:
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	.LSM0
-	.byte	0x19
+	.byte	0x1e
 	.byte	0x0
 	.uleb128 0x5
 	.byte	0x2
@@ -667,8 +604,15 @@ _DacWrite:
 	.byte	0x0
 	.uleb128 0x5
 	.byte	0x2
+	.4byte	.LFE0
+	.byte	0x0
+	.uleb128 0x1
+	.byte	0x1
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
 	.4byte	.LSM3
-	.byte	0x15
+	.byte	0x24
 	.byte	0x0
 	.uleb128 0x5
 	.byte	0x2
@@ -678,7 +622,7 @@ _DacWrite:
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	.LSM5
-	.byte	0x15
+	.byte	0x17
 	.byte	0x0
 	.uleb128 0x5
 	.byte	0x2
@@ -688,7 +632,7 @@ _DacWrite:
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	.LSM7
-	.byte	0x15
+	.byte	0x16
 	.byte	0x0
 	.uleb128 0x5
 	.byte	0x2
@@ -697,14 +641,67 @@ _DacWrite:
 	.byte	0x0
 	.uleb128 0x5
 	.byte	0x2
-	.4byte	.LFE0
+	.4byte	.LSM9
+	.byte	0x16
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM10
+	.byte	0x15
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM11
+	.byte	0x16
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM12
+	.byte	0x15
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM13
+	.byte	0x16
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM14
+	.byte	0x15
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM15
+	.byte	0x15
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM16
+	.byte	0x17
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM17
+	.byte	0x15
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LFE1
 	.byte	0x0
 	.uleb128 0x1
 	.byte	0x1
 .LELT0:
 	.section	.debug_str,info
 .LASF0:
-	.asciz	"LATBbits"
+	.asciz	"SchedulledTask0"
+.LASF1:
+	.asciz	"SchedulledTask1"
+.LASF2:
+	.asciz	"SchedulledTask2"
+.LASF3:
+	.asciz	"SchedulledTask3"
+.LASF4:
+	.asciz	"SchedulledTask4"
 	.section	.text,code
 
 	.section __c30_signature, info, data

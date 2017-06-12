@@ -11,6 +11,7 @@
             <file>file:/C:/SourceCode/dsPicProg/Main.h</file>
             <file>file:/C:/SourceCode/dsPicProg/AnalogIo.h</file>
             <file>file:/C:/SourceCode/dsPicProg/Timer.h</file>
+            <file>file:/C:/SourceCode/dsPicProg/DAC.c</file>
             <file>file:/C:/SourceCode/dsPicProg/AnalogIo.c</file>
             <file>file:/C:/SourceCode/dsPicProg/UART.c</file>
         </group>

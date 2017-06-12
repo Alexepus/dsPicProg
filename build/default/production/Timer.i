@@ -1,8 +1,8 @@
-# 1 "ADC.c"
+# 1 "Timer.c"
 # 1 "C:\\SourceCode\\dsPicProg//"
 # 1 "<built-in>"
 # 1 "<command-line>"
-# 1 "ADC.c"
+# 1 "Timer.c"
 # 1 "Main.h" 1
 
 
@@ -6901,15 +6901,42 @@ void ReadWriteAnalogAll(void);
 
 void SleepOps(UINT ops);
 # 55 "Main.h" 2
-# 2 "ADC.c" 2
-UINT ADCData[8];
-UINT ADCDataTemp0[8];
-UINT ADCDataTemp1[8];
-UINT ADCDataAveraged[8];
-# 25 "ADC.c"
-UINT inline ReadADC(void)
+# 2 "Timer.c" 2
+
+static UINT SchedullerCount = 0;
+_Bool volatile SchedulledTask0 = 0;
+_Bool volatile SchedulledTask1 = 0;
+_Bool volatile SchedulledTask2 = 0;
+_Bool volatile SchedulledTask3 = 0;
+_Bool volatile SchedulledTask4 = 0;
+
+void SleepOps(UINT ops)
 {
-    AD1CON1bits.SAMP = 1;
-    while(!AD1CON1bits.DONE);
-    return ADC1BUF0;
+    UINT i;
+    for(i = 0; i < ops; ++i);
+}
+
+void __attribute__((interrupt, no_auto_psv)) _T1Interrupt(void)
+{
+    switch(SchedullerCount)
+    {
+        case 0:
+           SchedulledTask0 = 1;
+           break;
+        case 1:
+           SchedulledTask1 = 1;
+           break;
+        case 2:
+           SchedulledTask2 = 1;
+           break;
+        case 3:
+           SchedulledTask3 = 1;
+           break;
+        default:
+           SchedulledTask4 = 1;
+        SchedullerCount = -1;
+           break;
+    }
+
+    ++SchedullerCount;
 }

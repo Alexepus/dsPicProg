@@ -4,8 +4,11 @@
 # 1 "<command-line>"
 # 1 "Main.c"
 # 1 "main.h" 1
+
+
+
 # 1 "c:\\program files (x86)\\microchip\\xc16\\v1.22\\bin\\bin\\../..\\include/stdbool.h" 1 3 4
-# 2 "main.h" 2
+# 5 "main.h" 2
 
 
 typedef unsigned int UINT;
@@ -34,7 +37,7 @@ typedef union
   BYTE LByte;
  } AsStruct;
 } ULONG_UNION;
-# 38 "main.h"
+# 41 "main.h"
 # 1 "UART.h" 1
 
 
@@ -64,7 +67,7 @@ typedef struct
 
 
 extern volatile _Bool IsUartRcMsg;
-# 39 "main.h" 2
+# 42 "main.h" 2
 # 1 "p33FJ64MC804.h" 1
 # 53 "p33FJ64MC804.h"
 extern volatile unsigned int WREG0 __attribute__((__sfr__,__deprecated__,__unsafe__));
@@ -6777,15 +6780,15 @@ extern __attribute__((space(prog))) unsigned int _FUID1;
 extern __attribute__((space(prog))) unsigned int _FUID2;
 # 23659 "p33FJ64MC804.h"
 extern __attribute__((space(prog))) unsigned int _FUID3;
-# 40 "main.h" 2
+# 43 "main.h" 2
 # 1 "HardwareInit.h" 1
 # 10 "HardwareInit.h"
 void HardwareInit(void);
-# 41 "main.h" 2
+# 44 "main.h" 2
 # 1 "Math.h" 1
 # 12 "Math.h"
 int linterp(int A, int ALeft, int ARight, int BLeft, int BRight);
-# 42 "main.h" 2
+# 45 "main.h" 2
 # 1 "Spi.h" 1
 # 9 "Spi.h"
 void SpiConfig();
@@ -6798,19 +6801,19 @@ BYTE inline SpiReceive();
 
 
 void inline SpiWaitTransmitEnd();
-# 43 "main.h" 2
+# 46 "main.h" 2
 # 1 "AddressBus.h" 1
 
 
 
 
 void SelectChannel(unsigned channelNumber);
-# 44 "main.h" 2
+# 47 "main.h" 2
 # 1 "DAC.h" 1
 extern int DacData[16];
 void DacWrite(UINT val);
 void ConfigDac(void);
-# 45 "main.h" 2
+# 48 "main.h" 2
 # 1 "ADC.h" 1
 
 UINT inline ReadADC(void);
@@ -6818,7 +6821,7 @@ extern UINT ADCData[8];
 extern UINT ADCDataTemp0[8];
 extern UINT ADCDataTemp1[8];
 extern UINT ADCDataAveraged[8];
-# 46 "main.h" 2
+# 49 "main.h" 2
 # 1 "ProcessUartMsg.h" 1
 # 42 "ProcessUartMsg.h"
 void ReportFifoRxOverflow(void);
@@ -6829,7 +6832,7 @@ UINT ExtractRcMessage(void);
 
 extern FIFO TxFifo;
 extern FIFO RcFifo;
-# 47 "main.h" 2
+# 50 "main.h" 2
 # 1 "HeaterPID.h" 1
 
 
@@ -6863,7 +6866,7 @@ extern INT32Q20 DeltaT, TAccumulator;
 extern long VoutAcc;
 extern _Bool ManualHeaterControl;
 extern _Bool FlagWait, FlagMainOff,FlagRefTempAchived;
-# 48 "main.h" 2
+# 51 "main.h" 2
 # 1 "PowerLimiter.h" 1
 extern UINT MaxHeaterI;
 extern UINT MaxHeaterU;
@@ -6877,37 +6880,65 @@ extern BYTE MaxHeaterPGuard;
 extern BYTE MaxHeaterISoftCount;
 
 void Limiter(void);
-# 49 "main.h" 2
+# 52 "main.h" 2
 # 1 "LeakerPID.h" 1
 
 
 
 void task_LeakerPid_body(void);
-# 49 "main.h" 2
+# 53 "main.h" 2
+# 1 "AnalogIo.h" 1
+
+
+
+void ReadWriteAnalogAll(void);
+# 54 "main.h" 2
+# 1 "Timer.h" 1
+
+
+# 1 "Main.h" 1
+# 4 "Timer.h" 2
+
+void SleepOps(UINT ops);
+# 55 "main.h" 2
 # 2 "Main.c" 2
+
+extern _Bool volatile SchedulledTask0;
+extern _Bool volatile SchedulledTask1;
+extern _Bool volatile SchedulledTask2;
+extern _Bool volatile SchedulledTask3;
+extern _Bool volatile SchedulledTask4;
 
 int main (void)
 {
 
-   HardwareInit();
+    HardwareInit();
 
-   while(1)
-   {
-       if(IsUartRcMsg)
-       {
-           IsUartRcMsg = 0;
-           ProcessUart1Msg();
-       }
+    while(1)
+    {
+        if(IsUartRcMsg)
+        {
+            IsUartRcMsg = 0;
+            ProcessUart1Msg();
+        }
 
+        if(SchedulledTask0)
+        {
+            SchedulledTask0 = 0;
+            ReadWriteAnalogAll();
+        }
 
-       {
-           task_HeaterPid_body();
-       }
+        if(SchedulledTask1)
+        {
+            SchedulledTask1 = 0;
+            task_HeaterPid_body();
+        }
 
-
-       {
-           task_LeakerPid_body();
-       }
+        if(SchedulledTask2)
+        {
+            SchedulledTask2 = 0;
+            task_LeakerPid_body();
+        }
    }
 
 

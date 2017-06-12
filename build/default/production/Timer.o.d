@@ -1,5 +1,5 @@
-build/default/production/DAC.o:  \
-DAC.c  \
+build/default/production/Timer.o:  \
+Timer.c  \
 Main.h  \
 UART.h  \
 p33FJ64MC804.h  \

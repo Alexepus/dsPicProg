@@ -45,6 +45,65 @@ _ReadWriteAnalog:
 	return	
 	.set ___PA___,0
 .LFE0:
+	.align	2
+	.global	_ReadAnalog	; export
+	.type	_ReadAnalog,@function
+_ReadAnalog:
+.LFB1:
+.LSM7:
+	.set ___PA___,1
+	lnk	#2
+	mov	w0,[w14]
+.LSM8:
+	mov	[w14],w0
+	rcall	_SelectChannel
+.LSM9:
+	bset.b	_LATBbits+1,#2
+.LSM10:
+	mov	#5,w0
+	rcall	_SleepOps
+.LSM11:
+	rcall	_ReadADC
+	mov	w0,w5
+	mov	[w14],w4
+	add	w4,w4,w6
+	mov	#_ADCData,w4
+	add	w6,w4,w4
+	mov	w5,[w4]
+.LSM12:
+	ulnk	
+	return	
+	.set ___PA___,0
+.LFE1:
+	.align	2
+	.global	_ReadWriteAnalogAll	; export
+	.type	_ReadWriteAnalogAll,@function
+_ReadWriteAnalogAll:
+.LFB2:
+.LSM13:
+	.set ___PA___,1
+	lnk	#2
+.LSM14:
+	clr	w4
+	mov	w4,[w14]
+	bra	.L4
+.L5:
+.LSM15:
+	mov	[w14],w4
+	mov	w4,w0
+	rcall	_ReadWriteAnalog
+.LSM16:
+	inc	[w14],[w14]
+.L4:
+	mov	[w14],w4
+	sub	w4,#7,[w15]
+	.set ___BP___,0
+	bra	le,.L5
+.LSM17:
+	ulnk	
+	return	
+	.set ___PA___,0
+.LFE2:
 	.section	.debug_frame,info
 .Lframe0:
 	.4byte	.LECIE0-.LSCIE0
@@ -71,10 +130,26 @@ _ReadWriteAnalog:
 	.4byte	.LFE0-.LFB0
 	.align	4
 .LEFDE0:
+.LSFDE2:
+	.4byte	.LEFDE2-.LASFDE2
+.LASFDE2:
+	.4byte	.Lframe0
+	.4byte	.LFB1
+	.4byte	.LFE1-.LFB1
+	.align	4
+.LEFDE2:
+.LSFDE4:
+	.4byte	.LEFDE4-.LASFDE4
+.LASFDE4:
+	.4byte	.Lframe0
+	.4byte	.LFB2
+	.4byte	.LFE2-.LFB2
+	.align	4
+.LEFDE4:
 	.section	.text,code
 .Letext0:
 	.section	.debug_info,info
-	.4byte	0x2f8
+	.4byte	0x356
 	.2byte	0x2
 	.4byte	.Ldebug_abbrev0
 	.byte	0x4
@@ -89,7 +164,7 @@ _ReadWriteAnalog:
 	.uleb128 0x2
 	.asciz	"UINT"
 	.byte	0x3
-	.byte	0x4
+	.byte	0x7
 	.4byte	0x8a
 	.uleb128 0x3
 	.byte	0x2
@@ -309,9 +384,9 @@ _ReadWriteAnalog:
 	.4byte	.LFE0
 	.byte	0x1
 	.byte	0x5e
-	.4byte	0x276
+	.4byte	0x272
 	.uleb128 0x8
-	.asciz	"channel"
+	.4byte	.LASF0
 	.byte	0x1
 	.byte	0x3
 	.4byte	0x7e
@@ -319,62 +394,102 @@ _ReadWriteAnalog:
 	.byte	0x7e
 	.sleb128 0
 	.byte	0x0
+	.uleb128 0x7
+	.byte	0x1
+	.asciz	"ReadAnalog"
+	.byte	0x1
+	.byte	0xc
+	.byte	0x1
+	.4byte	.LFB1
+	.4byte	.LFE1
+	.byte	0x1
+	.byte	0x5e
+	.4byte	0x29f
+	.uleb128 0x8
+	.4byte	.LASF0
+	.byte	0x1
+	.byte	0xc
+	.4byte	0x7e
+	.byte	0x2
+	.byte	0x7e
+	.sleb128 0
+	.byte	0x0
+	.uleb128 0x7
+	.byte	0x1
+	.asciz	"ReadWriteAnalogAll"
+	.byte	0x1
+	.byte	0x14
+	.byte	0x1
+	.4byte	.LFB2
+	.4byte	.LFE2
+	.byte	0x1
+	.byte	0x5e
+	.4byte	0x2d4
 	.uleb128 0x9
 	.4byte	.LASF0
+	.byte	0x1
+	.byte	0x16
+	.4byte	0xc0
+	.byte	0x2
+	.byte	0x7e
+	.sleb128 0
+	.byte	0x0
+	.uleb128 0xa
+	.4byte	.LASF1
 	.byte	0x2
 	.2byte	0xa18
-	.4byte	0x284
+	.4byte	0x2e2
 	.byte	0x1
 	.byte	0x1
-	.uleb128 0xa
-	.4byte	0x22f
 	.uleb128 0xb
-	.4byte	0xc0
-	.4byte	0x299
+	.4byte	0x22f
 	.uleb128 0xc
+	.4byte	0xc0
+	.4byte	0x2f7
+	.uleb128 0xd
 	.4byte	0x8a
 	.byte	0xf
 	.byte	0x0
-	.uleb128 0xd
+	.uleb128 0xe
 	.asciz	"DacData"
 	.byte	0x4
 	.byte	0x1
-	.4byte	0x289
+	.4byte	0x2e7
 	.byte	0x1
 	.byte	0x1
-	.uleb128 0xb
-	.4byte	0x7e
-	.4byte	0x2ba
 	.uleb128 0xc
+	.4byte	0x7e
+	.4byte	0x318
+	.uleb128 0xd
 	.4byte	0x8a
 	.byte	0x7
 	.byte	0x0
-	.uleb128 0xd
+	.uleb128 0xe
 	.asciz	"ADCData"
 	.byte	0x5
 	.byte	0x3
-	.4byte	0x2aa
+	.4byte	0x308
 	.byte	0x1
 	.byte	0x1
-	.uleb128 0x9
-	.4byte	.LASF0
+	.uleb128 0xa
+	.4byte	.LASF1
 	.byte	0x2
 	.2byte	0xa18
-	.4byte	0x284
+	.4byte	0x2e2
 	.byte	0x1
 	.byte	0x1
-	.uleb128 0xd
+	.uleb128 0xe
 	.asciz	"DacData"
 	.byte	0x4
 	.byte	0x1
-	.4byte	0x289
+	.4byte	0x2e7
 	.byte	0x1
 	.byte	0x1
-	.uleb128 0xd
+	.uleb128 0xe
 	.asciz	"ADCData"
 	.byte	0x5
 	.byte	0x3
-	.4byte	0x2aa
+	.4byte	0x308
 	.byte	0x1
 	.byte	0x1
 	.byte	0x0
@@ -498,7 +613,7 @@ _ReadWriteAnalog:
 	.uleb128 0x5
 	.byte	0x0
 	.uleb128 0x3
-	.uleb128 0x8
+	.uleb128 0xe
 	.uleb128 0x3a
 	.uleb128 0xb
 	.uleb128 0x3b
@@ -517,6 +632,21 @@ _ReadWriteAnalog:
 	.uleb128 0x3a
 	.uleb128 0xb
 	.uleb128 0x3b
+	.uleb128 0xb
+	.uleb128 0x49
+	.uleb128 0x13
+	.uleb128 0x2
+	.uleb128 0xa
+	.byte	0x0
+	.byte	0x0
+	.uleb128 0xa
+	.uleb128 0x34
+	.byte	0x0
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
 	.uleb128 0x5
 	.uleb128 0x49
 	.uleb128 0x13
@@ -526,14 +656,14 @@ _ReadWriteAnalog:
 	.uleb128 0xc
 	.byte	0x0
 	.byte	0x0
-	.uleb128 0xa
+	.uleb128 0xb
 	.uleb128 0x35
 	.byte	0x0
 	.uleb128 0x49
 	.uleb128 0x13
 	.byte	0x0
 	.byte	0x0
-	.uleb128 0xb
+	.uleb128 0xc
 	.uleb128 0x1
 	.byte	0x1
 	.uleb128 0x49
@@ -542,7 +672,7 @@ _ReadWriteAnalog:
 	.uleb128 0x13
 	.byte	0x0
 	.byte	0x0
-	.uleb128 0xc
+	.uleb128 0xd
 	.uleb128 0x21
 	.byte	0x0
 	.uleb128 0x49
@@ -551,7 +681,7 @@ _ReadWriteAnalog:
 	.uleb128 0xb
 	.byte	0x0
 	.byte	0x0
-	.uleb128 0xd
+	.uleb128 0xe
 	.uleb128 0x34
 	.byte	0x0
 	.uleb128 0x3
@@ -570,18 +700,22 @@ _ReadWriteAnalog:
 	.byte	0x0
 	.byte	0x0
 	.section	.debug_pubnames,info
-	.4byte	0x22
+	.4byte	0x48
 	.2byte	0x2
 	.4byte	.Ldebug_info0
-	.4byte	0x2fc
+	.4byte	0x35a
 	.4byte	0x240
 	.asciz	"ReadWriteAnalog"
+	.4byte	0x272
+	.asciz	"ReadAnalog"
+	.4byte	0x29f
+	.asciz	"ReadWriteAnalogAll"
 	.4byte	0x0
 	.section	.debug_pubtypes,info
 	.4byte	0x34
 	.2byte	0x2
 	.4byte	.Ldebug_info0
-	.4byte	0x2fc
+	.4byte	0x35a
 	.4byte	0x7e
 	.asciz	"UINT"
 	.4byte	0xd3
@@ -691,10 +825,81 @@ _ReadWriteAnalog:
 	.byte	0x0
 	.uleb128 0x1
 	.byte	0x1
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM7
+	.byte	0x20
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM8
+	.byte	0x15
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM9
+	.byte	0x15
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM10
+	.byte	0x15
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM11
+	.byte	0x15
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM12
+	.byte	0x15
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LFE1
+	.byte	0x0
+	.uleb128 0x1
+	.byte	0x1
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM13
+	.byte	0x28
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM14
+	.byte	0x16
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM15
+	.byte	0x16
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM16
+	.byte	0x12
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM17
+	.byte	0x18
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LFE2
+	.byte	0x0
+	.uleb128 0x1
+	.byte	0x1
 .LELT0:
 	.section	.debug_str,info
-.LASF0:
+.LASF1:
 	.asciz	"LATBbits"
+.LASF0:
+	.asciz	"channel"
 	.section	.text,code
 
 	.section __c30_signature, info, data

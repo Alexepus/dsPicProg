@@ -32,10 +32,10 @@ _ProcessUart1Msg:
 	mov	#_RcBuf,w4
 	mov.b	[w4],w4
 	exch	w0,w4
-	mov.b	WREG,_Cmd.7452
+	mov.b	WREG,_Cmd.7456
 	exch	w0,w4
 .LSM3:
-	mov	#_Cmd.7452,w4
+	mov	#_Cmd.7456,w4
 	mov.b	[w4],w4
 	ze	w4,w4
 	sub	w4,#10,[w15]
@@ -1637,7 +1637,7 @@ _ReportStartUp:
 	.set ___PA___,0
 .LFE4:
 	.pushsection	.nbss,bss,near
-_Cmd.7452:	.space	1
+_Cmd.7456:	.space	1
 	.popsection
 	.section	.debug_frame,info
 .Lframe0:
@@ -1715,7 +1715,7 @@ _Cmd.7452:	.space	1
 	.uleb128 0x2
 	.asciz	"UINT"
 	.byte	0x2
-	.byte	0x4
+	.byte	0x7
 	.4byte	0x90
 	.uleb128 0x3
 	.byte	0x2
@@ -1724,7 +1724,7 @@ _Cmd.7452:	.space	1
 	.uleb128 0x2
 	.asciz	"BYTE"
 	.byte	0x2
-	.byte	0x5
+	.byte	0x8
 	.4byte	0xac
 	.uleb128 0x3
 	.byte	0x1
@@ -1737,7 +1737,7 @@ _Cmd.7452:	.space	1
 	.uleb128 0x2
 	.asciz	"INT16Q4"
 	.byte	0x2
-	.byte	0x7
+	.byte	0xa
 	.4byte	0xe1
 	.uleb128 0x3
 	.byte	0x2
@@ -1746,12 +1746,12 @@ _Cmd.7452:	.space	1
 	.uleb128 0x2
 	.asciz	"INT16Q8"
 	.byte	0x2
-	.byte	0x8
+	.byte	0xb
 	.4byte	0xe1
 	.uleb128 0x2
 	.asciz	"INT32Q20"
 	.byte	0x2
-	.byte	0xa
+	.byte	0xd
 	.4byte	0x107
 	.uleb128 0x3
 	.byte	0x4
@@ -1855,7 +1855,7 @@ _Cmd.7452:	.space	1
 	.4byte	0xa0
 	.byte	0x5
 	.byte	0x3
-	.4byte	_Cmd.7452
+	.4byte	_Cmd.7456
 	.uleb128 0xa
 	.4byte	.LBB2
 	.4byte	.LBE2

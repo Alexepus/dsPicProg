@@ -12,4 +12,7 @@ ADC.h  \
 ProcessUartMsg.h  \
  HeaterPID.h  \
 PowerLimiter.h  \
-LeakerPID.h 
+LeakerPID.h  \
+AnalogIo.h  \
+Timer.h  \
+Main.h 

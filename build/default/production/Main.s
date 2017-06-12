@@ -18,27 +18,68 @@ _main:
 	lnk	#0
 .LSM1:
 	rcall	_HardwareInit
-.L3:
+	bra	.L6
+.L7:
 .LSM2:
+	nop	
+.L6:
+.LSM3:
 	mov	#_IsUartRcMsg,w4
 	mov.b	[w4],w4
 	sub.b	w4,#0,[w15]
 	.set ___BP___,0
 	bra	z,.L2
-.LSM3:
+.LSM4:
 	clr.b	w4
 	exch	w0,w4
 	mov.b	WREG,_IsUartRcMsg
 	exch	w0,w4
-.LSM4:
+.LSM5:
 	rcall	_ProcessUart1Msg
 .L2:
-.LSM5:
-	rcall	_task_HeaterPid_body
 .LSM6:
-	rcall	_task_LeakerPid_body
+	mov	#_SchedulledTask0,w4
+	mov.b	[w4],w4
+	sub.b	w4,#0,[w15]
+	.set ___BP___,0
+	bra	z,.L3
 .LSM7:
-	bra	.L3
+	clr.b	w4
+	exch	w0,w4
+	mov.b	WREG,_SchedulledTask0
+	exch	w0,w4
+.LSM8:
+	rcall	_ReadWriteAnalogAll
+.L3:
+.LSM9:
+	mov	#_SchedulledTask1,w4
+	mov.b	[w4],w4
+	sub.b	w4,#0,[w15]
+	.set ___BP___,0
+	bra	z,.L4
+.LSM10:
+	clr.b	w4
+	exch	w0,w4
+	mov.b	WREG,_SchedulledTask1
+	exch	w0,w4
+.LSM11:
+	rcall	_task_HeaterPid_body
+.L4:
+.LSM12:
+	mov	#_SchedulledTask2,w4
+	mov.b	[w4],w4
+	sub.b	w4,#0,[w15]
+	.set ___BP___,0
+	bra	z,.L7
+.LSM13:
+	clr.b	w4
+	exch	w0,w4
+	mov.b	WREG,_SchedulledTask2
+	exch	w0,w4
+.LSM14:
+	rcall	_task_LeakerPid_body
+.LSM15:
+	bra	.L6
 .LFE0:
 	.section	.debug_frame,info
 .Lframe0:
@@ -69,7 +110,7 @@ _main:
 	.section	.text,code
 .Letext0:
 	.section	.debug_info,info
-	.4byte	0x100
+	.4byte	0x14e
 	.2byte	0x2
 	.4byte	.Ldebug_abbrev0
 	.byte	0x4
@@ -105,7 +146,7 @@ _main:
 	.byte	0x1
 	.asciz	"main"
 	.byte	0x1
-	.byte	0x3
+	.byte	0x9
 	.byte	0x1
 	.4byte	0xb0
 	.4byte	.LFB0
@@ -126,9 +167,51 @@ _main:
 	.byte	0x2
 	.asciz	"_Bool"
 	.uleb128 0x4
+	.4byte	.LASF1
+	.byte	0x1
+	.byte	0x3
+	.4byte	0xe8
+	.byte	0x1
+	.byte	0x1
+	.uleb128 0x4
+	.4byte	.LASF2
+	.byte	0x1
+	.byte	0x4
+	.4byte	0xe8
+	.byte	0x1
+	.byte	0x1
+	.uleb128 0x4
+	.4byte	.LASF3
+	.byte	0x1
+	.byte	0x5
+	.4byte	0xe8
+	.byte	0x1
+	.byte	0x1
+	.uleb128 0x4
 	.4byte	.LASF0
 	.byte	0x2
 	.byte	0x1c
+	.4byte	0xe8
+	.byte	0x1
+	.byte	0x1
+	.uleb128 0x4
+	.4byte	.LASF1
+	.byte	0x1
+	.byte	0x3
+	.4byte	0xe8
+	.byte	0x1
+	.byte	0x1
+	.uleb128 0x4
+	.4byte	.LASF2
+	.byte	0x1
+	.byte	0x4
+	.4byte	0xe8
+	.byte	0x1
+	.byte	0x1
+	.uleb128 0x4
+	.4byte	.LASF3
+	.byte	0x1
+	.byte	0x5
 	.4byte	0xe8
 	.byte	0x1
 	.byte	0x1
@@ -216,7 +299,7 @@ _main:
 	.4byte	0x17
 	.2byte	0x2
 	.4byte	.Ldebug_info0
-	.4byte	0x104
+	.4byte	0x152
 	.4byte	0xc3
 	.asciz	"main"
 	.4byte	0x0
@@ -224,7 +307,7 @@ _main:
 	.4byte	0xe
 	.2byte	0x2
 	.4byte	.Ldebug_info0
-	.4byte	0x104
+	.4byte	0x152
 	.4byte	0x0
 	.section	.debug_aranges,info
 	.4byte	0x14
@@ -278,7 +361,7 @@ _main:
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	.LSM0
-	.byte	0x17
+	.byte	0x1d
 	.byte	0x0
 	.uleb128 0x5
 	.byte	0x2
@@ -288,31 +371,73 @@ _main:
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	.LSM2
-	.byte	0x18
+	.byte	0x2f
 	.byte	0x0
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	.LSM3
-	.byte	0x16
+	.byte	0x3
+	.sleb128 -23
+	.byte	0x1
 	.byte	0x0
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	.LSM4
-	.byte	0x15
+	.byte	0x16
 	.byte	0x0
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	.LSM5
-	.byte	0x19
+	.byte	0x15
 	.byte	0x0
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	.LSM6
-	.byte	0x19
+	.byte	0x17
 	.byte	0x0
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	.LSM7
+	.byte	0x16
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM8
+	.byte	0x15
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM9
+	.byte	0x17
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM10
+	.byte	0x16
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM11
+	.byte	0x15
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM12
+	.byte	0x17
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM13
+	.byte	0x16
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM14
+	.byte	0x15
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM15
 	.byte	0x16
 	.byte	0x0
 	.uleb128 0x5
@@ -325,6 +450,12 @@ _main:
 	.section	.debug_str,info
 .LASF0:
 	.asciz	"IsUartRcMsg"
+.LASF2:
+	.asciz	"SchedulledTask1"
+.LASF1:
+	.asciz	"SchedulledTask0"
+.LASF3:
+	.asciz	"SchedulledTask2"
 	.section	.text,code
 
 	.section __c30_signature, info, data

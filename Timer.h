@@ -2,8 +2,7 @@
 #define	TIMER_H
 #include "Main.h"
 
-
-void Sleep(UINT ops);
+void SleepOps(UINT ops);
 
 #endif
 

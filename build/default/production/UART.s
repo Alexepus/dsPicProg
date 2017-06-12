@@ -222,7 +222,7 @@ _UartStartTx:
 	mov.b	[w4],w5
 	mov.b	w5,[w14+2]
 .LSM33:
-	mov	#_WasTxShift.7385,w4
+	mov	#_WasTxShift.7389,w4
 	mov.b	[w4],w4
 	sub.b	w4,#0,[w15]
 	.set ___BP___,0
@@ -241,7 +241,7 @@ _UartStartTx:
 .LSM36:
 	clr.b	w4
 	exch	w0,w4
-	mov.b	WREG,_WasTxShift.7385
+	mov.b	WREG,_WasTxShift.7389
 	exch	w0,w4
 	bra	.L15
 .L14:
@@ -273,7 +273,7 @@ _UartStartTx:
 .LSM39:
 	mov.b	#1,w4
 	exch	w0,w4
-	mov.b	WREG,_WasTxShift.7385
+	mov.b	WREG,_WasTxShift.7389
 	exch	w0,w4
 	bra	.L15
 .L17:
@@ -439,7 +439,7 @@ _ExtractRcMessage:
 .LSM69:
 	mov.b	#1,w4
 	exch	w0,w4
-	mov.b	WREG,_WasRxShift.7391
+	mov.b	WREG,_WasRxShift.7395
 	exch	w0,w4
 .LSM70:
 	bra	.L36
@@ -491,7 +491,7 @@ _ExtractRcMessage:
 	bra	.L28
 .L34:
 .LSM83:
-	mov	#_WasRxShift.7391,w4
+	mov	#_WasRxShift.7395,w4
 	mov.b	[w4],w4
 	btg.b	w4,#0
 	sub.b	w4,#0,[w15]
@@ -519,7 +519,7 @@ _ExtractRcMessage:
 .LSM88:
 	clr.b	w4
 	exch	w0,w4
-	mov.b	WREG,_WasRxShift.7391
+	mov.b	WREG,_WasRxShift.7395
 	exch	w0,w4
 .LSM89:
 	mov	_RcBuf+20,w4
@@ -584,10 +584,10 @@ _WindRcFifo:
 	.set ___PA___,0
 .LFE4:
 	.pushsection	.nbss,bss,near
-_WasRxShift.7391:	.space	1
+_WasRxShift.7395:	.space	1
 	.popsection
 	.pushsection	.nbss,bss,near
-_WasTxShift.7385:	.space	1
+_WasTxShift.7389:	.space	1
 	.popsection
 	.section	.debug_frame,info
 .Lframe0:
@@ -665,7 +665,7 @@ _WasTxShift.7385:	.space	1
 	.uleb128 0x2
 	.asciz	"UINT"
 	.byte	0x2
-	.byte	0x4
+	.byte	0x7
 	.4byte	0x86
 	.uleb128 0x3
 	.byte	0x2
@@ -674,7 +674,7 @@ _WasTxShift.7385:	.space	1
 	.uleb128 0x2
 	.asciz	"BYTE"
 	.byte	0x2
-	.byte	0x5
+	.byte	0x8
 	.4byte	0xa2
 	.uleb128 0x3
 	.byte	0x1
@@ -1421,7 +1421,7 @@ _WasTxShift.7385:	.space	1
 	.4byte	0x69a
 	.byte	0x5
 	.byte	0x3
-	.4byte	_WasTxShift.7385
+	.4byte	_WasTxShift.7389
 	.byte	0x0
 	.uleb128 0x3
 	.byte	0x1
@@ -1454,7 +1454,7 @@ _WasTxShift.7385:	.space	1
 	.4byte	0x69a
 	.byte	0x5
 	.byte	0x3
-	.4byte	_WasRxShift.7391
+	.4byte	_WasRxShift.7395
 	.byte	0x0
 	.uleb128 0xf
 	.byte	0x1
