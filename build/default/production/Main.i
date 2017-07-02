@@ -11,6 +11,80 @@
 # 5 "main.h" 2
 
 
+# 1 "c:\\program files (x86)\\microchip\\xc16\\v1.22\\bin\\bin\\../..\\support\\generic\\h/libpic30.h" 1 3 4
+# 23 "c:\\program files (x86)\\microchip\\xc16\\v1.22\\bin\\bin\\../..\\support\\generic\\h/libpic30.h" 3 4
+extern int __attach_input_file(const char *f);
+void __close_input_file(void);
+# 34 "c:\\program files (x86)\\microchip\\xc16\\v1.22\\bin\\bin\\../..\\support\\generic\\h/libpic30.h" 3 4
+extern int __C30_UART;
+# 44 "c:\\program files (x86)\\microchip\\xc16\\v1.22\\bin\\bin\\../..\\support\\generic\\h/libpic30.h" 3 4
+extern void __delay32(unsigned long cycles);
+# 82 "c:\\program files (x86)\\microchip\\xc16\\v1.22\\bin\\bin\\../..\\support\\generic\\h/libpic30.h" 3 4
+extern __attribute__((space(prog))) int _PROGRAM_END;
+# 95 "c:\\program files (x86)\\microchip\\xc16\\v1.22\\bin\\bin\\../..\\support\\generic\\h/libpic30.h" 3 4
+extern void _dump_heap_info(void);
+# 114 "c:\\program files (x86)\\microchip\\xc16\\v1.22\\bin\\bin\\../..\\support\\generic\\h/libpic30.h" 3 4
+typedef unsigned long _prog_addressT;
+
+extern _prog_addressT _memcpy_helper(_prog_addressT src, void *dst,
+                                     unsigned int len, int flags);
+# 127 "c:\\program files (x86)\\microchip\\xc16\\v1.22\\bin\\bin\\../..\\support\\generic\\h/libpic30.h" 3 4
+extern void _memcpy_df(__pack_upper_byte void *src,void *dst, unsigned int len);
+# 146 "c:\\program files (x86)\\microchip\\xc16\\v1.22\\bin\\bin\\../..\\support\\generic\\h/libpic30.h" 3 4
+_prog_addressT _memcpy_p2d16(void *dest, _prog_addressT src,
+                             unsigned int len);
+# 158 "c:\\program files (x86)\\microchip\\xc16\\v1.22\\bin\\bin\\../..\\support\\generic\\h/libpic30.h" 3 4
+_prog_addressT _memcpy_p2d24(void *dest, _prog_addressT src,
+                             unsigned int len);
+# 171 "c:\\program files (x86)\\microchip\\xc16\\v1.22\\bin\\bin\\../..\\support\\generic\\h/libpic30.h" 3 4
+_prog_addressT _strncpy_p2d16(char *dest, _prog_addressT src,
+                              unsigned int len);
+# 184 "c:\\program files (x86)\\microchip\\xc16\\v1.22\\bin\\bin\\../..\\support\\generic\\h/libpic30.h" 3 4
+_prog_addressT _strncpy_p2d24(char *dest, _prog_addressT src,
+                              unsigned int len);
+
+
+
+
+
+
+
+void _memcpy_packed(char *dest, __pack_upper_byte void *src, unsigned int len);
+# 203 "c:\\program files (x86)\\microchip\\xc16\\v1.22\\bin\\bin\\../..\\support\\generic\\h/libpic30.h" 3 4
+extern void _memcpy_eds(__eds__ void *src, __eds__ void *dst,
+                        int len, int align);
+# 219 "c:\\program files (x86)\\microchip\\xc16\\v1.22\\bin\\bin\\../..\\support\\generic\\h/libpic30.h" 3 4
+extern void _strcpy_eds(__eds__ void *src, __eds__ void *dst);
+
+extern void _strncpy_eds(__eds__ void *src, __eds__ void *dst, int len);
+# 332 "c:\\program files (x86)\\microchip\\xc16\\v1.22\\bin\\bin\\../..\\support\\generic\\h/libpic30.h" 3 4
+extern void _eedata_helper1(_prog_addressT dst, int len);
+extern void _eedata_helper2(void);
+extern void _eedata_helper3(_prog_addressT dst, int dat);
+extern void _eedata_helper4(_prog_addressT dst, int *src);
+extern void _eedata_helper5(_prog_addressT dst, int len);
+extern void _eedata_helper6(void);
+extern void _eedata_helper7(_prog_addressT dst, int dat);
+extern void _flash_helper1 (_prog_addressT dst, int code);
+extern void _flash_helper2 (_prog_addressT dst, int *src, int len);
+extern void _flash_helper3 (_prog_addressT dst, long *src, int len);
+extern void _flash_helper4 (_prog_addressT dst, int dat);
+extern void _flash_helper5 (_prog_addressT dst, long dat);
+extern void _flash_helper6 (int code);
+extern void _flash_helper7(_prog_addressT dst, int len);
+extern void _flash_helper8 (_prog_addressT dst, int *src, int len);
+extern void _flash_helper9 (_prog_addressT dst, long *src, int len);
+extern void _flash_helper10 (_prog_addressT dst, int dat1, int empty, int dat2);
+extern void _flash_helper11 (_prog_addressT dst, long dat1, long dat2);
+# 472 "c:\\program files (x86)\\microchip\\xc16\\v1.22\\bin\\bin\\../..\\support\\generic\\h/libpic30.h" 3 4
+void _erase_flash(_prog_addressT dst);
+# 488 "c:\\program files (x86)\\microchip\\xc16\\v1.22\\bin\\bin\\../..\\support\\generic\\h/libpic30.h" 3 4
+void _write_flash16(_prog_addressT dst, int *src);
+# 504 "c:\\program files (x86)\\microchip\\xc16\\v1.22\\bin\\bin\\../..\\support\\generic\\h/libpic30.h" 3 4
+void _write_flash24(_prog_addressT dst, long *src);
+# 8 "main.h" 2
+
+
 typedef unsigned int UINT;
 typedef unsigned char BYTE;
 typedef unsigned long ULONG;
@@ -37,7 +111,7 @@ typedef union
   BYTE LByte;
  } AsStruct;
 } ULONG_UNION;
-# 41 "main.h"
+# 44 "main.h"
 # 1 "UART.h" 1
 
 
@@ -67,7 +141,7 @@ typedef struct
 
 
 extern volatile _Bool IsUartRcMsg;
-# 42 "main.h" 2
+# 45 "main.h" 2
 # 1 "p33FJ64MC804.h" 1
 # 53 "p33FJ64MC804.h"
 extern volatile unsigned int WREG0 __attribute__((__sfr__,__deprecated__,__unsafe__));
@@ -6780,15 +6854,15 @@ extern __attribute__((space(prog))) unsigned int _FUID1;
 extern __attribute__((space(prog))) unsigned int _FUID2;
 # 23659 "p33FJ64MC804.h"
 extern __attribute__((space(prog))) unsigned int _FUID3;
-# 43 "main.h" 2
+# 46 "main.h" 2
 # 1 "HardwareInit.h" 1
 # 10 "HardwareInit.h"
 void HardwareInit(void);
-# 44 "main.h" 2
+# 47 "main.h" 2
 # 1 "Math.h" 1
 # 12 "Math.h"
 int linterp(int A, int ALeft, int ARight, int BLeft, int BRight);
-# 45 "main.h" 2
+# 48 "main.h" 2
 # 1 "Spi.h" 1
 # 9 "Spi.h"
 void SpiConfig();
@@ -6801,27 +6875,27 @@ BYTE inline SpiReceive();
 
 
 void inline SpiWaitTransmitEnd();
-# 46 "main.h" 2
+# 49 "main.h" 2
 # 1 "AddressBus.h" 1
 
 
 
 
 void SelectChannel(unsigned channelNumber);
-# 47 "main.h" 2
+# 50 "main.h" 2
 # 1 "DAC.h" 1
 extern int DacData[16];
 void DacWrite(UINT val);
 void ConfigDac(void);
-# 48 "main.h" 2
+# 51 "main.h" 2
 # 1 "ADC.h" 1
 
 UINT inline ReadADC(void);
+UINT inline ReadAdc4Times();
 extern UINT ADCData[8];
-extern UINT ADCDataTemp0[8];
-extern UINT ADCDataTemp1[8];
+extern UINT ADCDataTemp[4][8];
 extern UINT ADCDataAveraged[8];
-# 49 "main.h" 2
+# 52 "main.h" 2
 # 1 "ProcessUartMsg.h" 1
 # 42 "ProcessUartMsg.h"
 void ReportFifoRxOverflow(void);
@@ -6832,7 +6906,7 @@ UINT ExtractRcMessage(void);
 
 extern FIFO TxFifo;
 extern FIFO RcFifo;
-# 50 "main.h" 2
+# 53 "main.h" 2
 # 1 "HeaterPID.h" 1
 
 
@@ -6866,7 +6940,7 @@ extern INT32Q20 DeltaT, TAccumulator;
 extern long VoutAcc;
 extern _Bool ManualHeaterControl;
 extern _Bool FlagWait, FlagMainOff,FlagRefTempAchived;
-# 51 "main.h" 2
+# 54 "main.h" 2
 # 1 "PowerLimiter.h" 1
 extern UINT MaxHeaterI;
 extern UINT MaxHeaterU;
@@ -6880,27 +6954,25 @@ extern BYTE MaxHeaterPGuard;
 extern BYTE MaxHeaterISoftCount;
 
 void Limiter(void);
-# 52 "main.h" 2
+# 55 "main.h" 2
 # 1 "LeakerPID.h" 1
 
 
 
 void task_LeakerPid_body(void);
-# 53 "main.h" 2
+# 56 "main.h" 2
 # 1 "AnalogIo.h" 1
 
 
 
 void ReadWriteAnalogAll(void);
-# 54 "main.h" 2
+# 57 "main.h" 2
 # 1 "Timer.h" 1
 
 
 # 1 "Main.h" 1
 # 4 "Timer.h" 2
-
-void SleepOps(UINT ops);
-# 55 "main.h" 2
+# 58 "main.h" 2
 # 2 "Main.c" 2
 
 extern _Bool volatile SchedulledTask0;

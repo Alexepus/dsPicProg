@@ -15,9 +15,7 @@ _SpiConfig:
 .LFB0:
 .LSM0:
 	.set ___PA___,1
-	lnk	#0
 .LSM1:
-	ulnk	
 	return	
 	.set ___PA___,0
 .LFE0:
@@ -28,22 +26,15 @@ _SpiSend:
 .LFB1:
 .LSM2:
 	.set ___PA___,1
-	lnk	#2
-	mov.b	w0,[w14]
+.L5:
 .LSM3:
-	nop	
-.L3:
-	mov	_SPI1STATbits,w4
-	and	w4,#2,w4
-	sub	w4,#0,[w15]
-	.set ___BP___,0
-	bra	nz,.L3
+	btst	_SPI1STATbits,#1
+	.set ___BP___,91
+	bra	nz,.L5
 .LSM4:
-	mov.b	[w14],w5
-	ze	w5,w4
-	mov	w4,_SPI1BUF
+	ze	w0,w0
+	mov	w0,_SPI1BUF
 .LSM5:
-	ulnk	
 	return	
 	.set ___PA___,0
 .LFE1:
@@ -54,21 +45,14 @@ _SpiReceive:
 .LFB2:
 .LSM6:
 	.set ___PA___,1
-	lnk	#0
+.L10:
 .LSM7:
-	nop	
-.L5:
-	mov	_SPI1STATbits,w4
-	and	w4,#1,w4
-	sub	w4,#0,[w15]
-	.set ___BP___,0
-	bra	nz,.L5
+	btst	_SPI1STATbits,#0
+	.set ___BP___,91
+	bra	nz,.L10
 .LSM8:
-	mov	_SPI1BUF,w4
-	mov.b	w4,w4
+	mov	_SPI1BUF,w0
 .LSM9:
-	mov.b	w4,w0
-	ulnk	
 	return	
 	.set ___PA___,0
 .LFE2:
@@ -79,17 +63,12 @@ _SpiWaitTransmitEnd:
 .LFB3:
 .LSM10:
 	.set ___PA___,1
-	lnk	#0
+.L15:
 .LSM11:
-	nop	
-.L7:
-	mov	_SPI1STATbits,w4
-	and	w4,#1,w4
-	sub	w4,#0,[w15]
-	.set ___BP___,0
-	bra	nz,.L7
+	btst	_SPI1STATbits,#0
+	.set ___BP___,91
+	bra	nz,.L15
 .LSM12:
-	ulnk	
 	return	
 	.set ___PA___,0
 .LFE3:
@@ -146,7 +125,7 @@ _SpiWaitTransmitEnd:
 	.section	.text,code
 .Letext0:
 	.section	.debug_info,info
-	.4byte	0x22d
+	.4byte	0x22c
 	.2byte	0x2
 	.4byte	.Ldebug_abbrev0
 	.byte	0x4
@@ -159,22 +138,22 @@ _SpiWaitTransmitEnd:
 	.4byte	.Letext0
 	.4byte	.Ldebug_line0
 	.uleb128 0x2
+	.byte	0x4
+	.byte	0x7
+	.asciz	"long unsigned int"
+	.uleb128 0x2
 	.byte	0x2
 	.byte	0x7
 	.asciz	"unsigned int"
 	.uleb128 0x3
 	.asciz	"BYTE"
 	.byte	0x3
-	.byte	0x8
-	.4byte	0x95
+	.byte	0xb
+	.4byte	0xaa
 	.uleb128 0x2
 	.byte	0x1
 	.byte	0x8
 	.asciz	"unsigned char"
-	.uleb128 0x2
-	.byte	0x4
-	.byte	0x7
-	.asciz	"long unsigned int"
 	.uleb128 0x2
 	.byte	0x2
 	.byte	0x5
@@ -193,7 +172,7 @@ _SpiWaitTransmitEnd:
 	.asciz	"SPIRBF"
 	.byte	0x2
 	.2byte	0x92d
-	.4byte	0x79
+	.4byte	0x8e
 	.byte	0x2
 	.byte	0x1
 	.byte	0xf
@@ -204,7 +183,7 @@ _SpiWaitTransmitEnd:
 	.asciz	"SPITBF"
 	.byte	0x2
 	.2byte	0x92e
-	.4byte	0x79
+	.4byte	0x8e
 	.byte	0x2
 	.byte	0x1
 	.byte	0xe
@@ -215,7 +194,7 @@ _SpiWaitTransmitEnd:
 	.asciz	"SPIROV"
 	.byte	0x2
 	.2byte	0x930
-	.4byte	0x79
+	.4byte	0x8e
 	.byte	0x2
 	.byte	0x1
 	.byte	0x9
@@ -226,7 +205,7 @@ _SpiWaitTransmitEnd:
 	.asciz	"SPISIDL"
 	.byte	0x2
 	.2byte	0x932
-	.4byte	0x79
+	.4byte	0x8e
 	.byte	0x2
 	.byte	0x1
 	.byte	0x2
@@ -237,7 +216,7 @@ _SpiWaitTransmitEnd:
 	.asciz	"SPIEN"
 	.byte	0x2
 	.2byte	0x934
-	.4byte	0x79
+	.4byte	0x8e
 	.byte	0x2
 	.byte	0x1
 	.byte	0x10
@@ -258,7 +237,7 @@ _SpiWaitTransmitEnd:
 	.4byte	.LFB0
 	.4byte	.LFE0
 	.byte	0x1
-	.byte	0x5e
+	.byte	0x5f
 	.uleb128 0x8
 	.byte	0x1
 	.asciz	"SpiSend"
@@ -268,27 +247,26 @@ _SpiWaitTransmitEnd:
 	.4byte	.LFB1
 	.4byte	.LFE1
 	.byte	0x1
-	.byte	0x5e
-	.4byte	0x1a8
+	.byte	0x5f
+	.4byte	0x1a7
 	.uleb128 0x9
 	.asciz	"val"
 	.byte	0x1
 	.byte	0xe
-	.4byte	0x89
-	.byte	0x2
-	.byte	0x7e
-	.sleb128 0
+	.4byte	0x9e
+	.byte	0x1
+	.byte	0x50
 	.byte	0x0
 	.uleb128 0xa
 	.byte	0x1
 	.asciz	"SpiReceive"
 	.byte	0x1
 	.byte	0x15
-	.4byte	0x89
+	.4byte	0x9e
 	.4byte	.LFB2
 	.4byte	.LFE2
 	.byte	0x1
-	.byte	0x5e
+	.byte	0x5f
 	.uleb128 0x7
 	.byte	0x1
 	.asciz	"SpiWaitTransmitEnd"
@@ -297,12 +275,12 @@ _SpiWaitTransmitEnd:
 	.4byte	.LFB3
 	.4byte	.LFE3
 	.byte	0x1
-	.byte	0x5e
+	.byte	0x5f
 	.uleb128 0xb
 	.4byte	.LASF0
 	.byte	0x2
 	.2byte	0x936
-	.4byte	0x1f4
+	.4byte	0x1f3
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xc
@@ -311,23 +289,23 @@ _SpiWaitTransmitEnd:
 	.asciz	"SPI1BUF"
 	.byte	0x2
 	.2byte	0x960
-	.4byte	0x20b
+	.4byte	0x20a
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xc
-	.4byte	0x79
+	.4byte	0x8e
 	.uleb128 0xb
 	.4byte	.LASF0
 	.byte	0x2
 	.2byte	0x936
-	.4byte	0x1f4
+	.4byte	0x1f3
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xd
 	.asciz	"SPI1BUF"
 	.byte	0x2
 	.2byte	0x960
-	.4byte	0x20b
+	.4byte	0x20a
 	.byte	0x1
 	.byte	0x1
 	.byte	0x0
@@ -548,22 +526,22 @@ _SpiWaitTransmitEnd:
 	.4byte	0x4e
 	.2byte	0x2
 	.4byte	.Ldebug_info0
-	.4byte	0x231
+	.4byte	0x230
 	.4byte	0x166
 	.asciz	"SpiConfig"
 	.4byte	0x17e
 	.asciz	"SpiSend"
-	.4byte	0x1a8
+	.4byte	0x1a7
 	.asciz	"SpiReceive"
-	.4byte	0x1c5
+	.4byte	0x1c4
 	.asciz	"SpiWaitTransmitEnd"
 	.4byte	0x0
 	.section	.debug_pubtypes,info
 	.4byte	0x3c
 	.2byte	0x2
 	.4byte	.Ldebug_info0
-	.4byte	0x231
-	.4byte	0x89
+	.4byte	0x230
+	.4byte	0x9e
 	.asciz	"BYTE"
 	.4byte	0xce
 	.asciz	"tagSPI1STATBITS"

@@ -15,71 +15,84 @@ _main:
 .LFB0:
 .LSM0:
 	.set ___PA___,1
-	lnk	#0
 .LSM1:
 	rcall	_HardwareInit
-	bra	.L6
-.L7:
+.L9:
 .LSM2:
-	nop	
-.L6:
-.LSM3:
 	mov	#_IsUartRcMsg,w4
 	mov.b	[w4],w4
 	sub.b	w4,#0,[w15]
-	.set ___BP___,0
-	bra	z,.L2
-.LSM4:
-	clr.b	w4
-	exch	w0,w4
-	mov.b	WREG,_IsUartRcMsg
-	exch	w0,w4
-.LSM5:
-	rcall	_ProcessUart1Msg
+	.set ___BP___,29
+	bra	nz,.L11
 .L2:
-.LSM6:
+.LSM3:
 	mov	#_SchedulledTask0,w4
 	mov.b	[w4],w4
 	sub.b	w4,#0,[w15]
-	.set ___BP___,0
-	bra	z,.L3
-.LSM7:
-	clr.b	w4
-	exch	w0,w4
-	mov.b	WREG,_SchedulledTask0
-	exch	w0,w4
-.LSM8:
-	rcall	_ReadWriteAnalogAll
+	.set ___BP___,29
+	bra	nz,.L12
 .L3:
-.LSM9:
+.LSM4:
 	mov	#_SchedulledTask1,w4
 	mov.b	[w4],w4
 	sub.b	w4,#0,[w15]
-	.set ___BP___,0
-	bra	z,.L4
-.LSM10:
-	clr.b	w4
-	exch	w0,w4
-	mov.b	WREG,_SchedulledTask1
-	exch	w0,w4
-.LSM11:
-	rcall	_task_HeaterPid_body
+	.set ___BP___,29
+	bra	nz,.L13
 .L4:
-.LSM12:
+.LSM5:
 	mov	#_SchedulledTask2,w4
 	mov.b	[w4],w4
 	sub.b	w4,#0,[w15]
-	.set ___BP___,0
-	bra	z,.L7
-.LSM13:
-	clr.b	w4
-	exch	w0,w4
-	mov.b	WREG,_SchedulledTask2
-	exch	w0,w4
-.LSM14:
+	.set ___BP___,91
+	bra	z,.L9
+.L14:
+.LSM6:
+	clr.b	_SchedulledTask2
+.LSM7:
 	rcall	_task_LeakerPid_body
+.LSM8:
+	mov	#_IsUartRcMsg,w4
+	mov.b	[w4],w4
+	sub.b	w4,#0,[w15]
+	.set ___BP___,71
+	bra	z,.L2
+	bra	.L11
+.L13:
+.LSM9:
+	clr.b	_SchedulledTask1
+.LSM10:
+	rcall	_task_HeaterPid_body
+.LSM11:
+	mov	#_SchedulledTask2,w4
+	mov.b	[w4],w4
+	sub.b	w4,#0,[w15]
+	.set ___BP___,91
+	bra	z,.L9
+	bra	.L14
+.L12:
+.LSM12:
+	clr.b	_SchedulledTask0
+.LSM13:
+	rcall	_ReadWriteAnalogAll
+.LSM14:
+	mov	#_SchedulledTask1,w4
+	mov.b	[w4],w4
+	sub.b	w4,#0,[w15]
+	.set ___BP___,71
+	bra	z,.L4
+	bra	.L13
+.L11:
 .LSM15:
-	bra	.L6
+	clr.b	_IsUartRcMsg
+.LSM16:
+	rcall	_ProcessUart1Msg
+.LSM17:
+	mov	#_SchedulledTask0,w4
+	mov.b	[w4],w4
+	sub.b	w4,#0,[w15]
+	.set ___BP___,71
+	bra	z,.L3
+	bra	.L12
 .LFE0:
 	.section	.debug_frame,info
 .Lframe0:
@@ -123,6 +136,10 @@ _main:
 	.4byte	.Letext0
 	.4byte	.Ldebug_line0
 	.uleb128 0x2
+	.byte	0x4
+	.byte	0x7
+	.asciz	"long unsigned int"
+	.uleb128 0x2
 	.byte	0x2
 	.byte	0x7
 	.asciz	"unsigned int"
@@ -130,10 +147,6 @@ _main:
 	.byte	0x1
 	.byte	0x8
 	.asciz	"unsigned char"
-	.uleb128 0x2
-	.byte	0x4
-	.byte	0x7
-	.asciz	"long unsigned int"
 	.uleb128 0x2
 	.byte	0x2
 	.byte	0x5
@@ -152,7 +165,7 @@ _main:
 	.4byte	.LFB0
 	.4byte	.LFE0
 	.byte	0x1
-	.byte	0x5e
+	.byte	0x5f
 	.uleb128 0x4
 	.4byte	.LASF0
 	.byte	0x2
@@ -371,74 +384,84 @@ _main:
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	.LSM2
-	.byte	0x2f
+	.byte	0x18
 	.byte	0x0
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	.LSM3
-	.byte	0x3
-	.sleb128 -23
-	.byte	0x1
+	.byte	0x1a
 	.byte	0x0
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	.LSM4
-	.byte	0x16
+	.byte	0x1a
 	.byte	0x0
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	.LSM5
-	.byte	0x15
+	.byte	0x1a
 	.byte	0x0
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	.LSM6
-	.byte	0x17
+	.byte	0x16
 	.byte	0x0
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	.LSM7
-	.byte	0x16
+	.byte	0x15
 	.byte	0x0
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	.LSM8
-	.byte	0x15
+	.byte	0x3
+	.sleb128 -21
+	.byte	0x1
 	.byte	0x0
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	.LSM9
-	.byte	0x17
+	.byte	0x22
 	.byte	0x0
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	.LSM10
-	.byte	0x16
+	.byte	0x15
 	.byte	0x0
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	.LSM11
-	.byte	0x15
-	.byte	0x0
-	.uleb128 0x5
-	.byte	0x2
-	.4byte	.LSM12
 	.byte	0x17
 	.byte	0x0
 	.uleb128 0x5
 	.byte	0x2
-	.4byte	.LSM13
-	.byte	0x16
+	.4byte	.LSM12
+	.byte	0xa
 	.byte	0x0
 	.uleb128 0x5
 	.byte	0x2
-	.4byte	.LSM14
+	.4byte	.LSM13
 	.byte	0x15
 	.byte	0x0
 	.uleb128 0x5
 	.byte	0x2
+	.4byte	.LSM14
+	.byte	0x17
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
 	.4byte	.LSM15
-	.byte	0x16
+	.byte	0xa
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM16
+	.byte	0x15
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM17
+	.byte	0x17
 	.byte	0x0
 	.uleb128 0x5
 	.byte	0x2

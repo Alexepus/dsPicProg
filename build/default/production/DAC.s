@@ -7,11 +7,6 @@
 .Ldebug_line0:
 	.section	.text,code
 .Ltext0:
-	.section	.nbss,bss,near
-	.type	_DacData,@object
-	.global	_DacData
-	.align	2
-_DacData:	.space	32
 	.section	.text,code
 	.align	2
 	.global	_DacWrite	; export
@@ -20,33 +15,32 @@ _DacWrite:
 .LFB0:
 .LSM0:
 	.set ___PA___,1
-	lnk	#4
-	mov	w0,[w14+2]
+	lnk	#2
+	mov	w0,[w15-2]
 .LSM1:
 	rcall	_SpiWaitTransmitEnd
 .LSM2:
 	bclr.b	_LATBbits+1,#5
 .LSM3:
-	inc2	w14,w4
-	inc	w4,w4
-	mov.b	[w4],[w14]
+	mov.b	[w15-1],w0
+	rcall	_SpiSend
 .LSM4:
-	mov.b	[w14],w0
+	mov.b	[w15-2],w0
 	rcall	_SpiSend
 .LSM5:
-	inc2	w14,w4
-	mov.b	[w4],w4
-	mov.b	w4,w0
-	rcall	_SpiSend
-.LSM6:
 	rcall	_SpiWaitTransmitEnd
-.LSM7:
+.LSM6:
 	bset.b	_LATBbits+1,#5
-.LSM8:
+.LSM7:
 	ulnk	
 	return	
 	.set ___PA___,0
 .LFE0:
+	.section	.nbss,bss,near
+	.type	_DacData,@object
+	.global	_DacData
+	.align	2
+_DacData:	.space	32
 	.section	.debug_frame,info
 .Lframe0:
 	.4byte	.LECIE0-.LSCIE0
@@ -76,7 +70,7 @@ _DacWrite:
 	.section	.text,code
 .Letext0:
 	.section	.debug_info,info
-	.4byte	0x2c5
+	.4byte	0x2c2
 	.2byte	0x2
 	.4byte	.Ldebug_abbrev0
 	.byte	0x4
@@ -89,32 +83,32 @@ _DacWrite:
 	.4byte	.Letext0
 	.4byte	.Ldebug_line0
 	.uleb128 0x2
-	.asciz	"UINT"
-	.byte	0x2
-	.byte	0x7
-	.4byte	0x85
-	.uleb128 0x3
-	.byte	0x2
-	.byte	0x7
-	.asciz	"unsigned int"
-	.uleb128 0x2
-	.asciz	"BYTE"
-	.byte	0x2
-	.byte	0x8
-	.4byte	0xa1
-	.uleb128 0x3
-	.byte	0x1
-	.byte	0x8
-	.asciz	"unsigned char"
-	.uleb128 0x3
 	.byte	0x4
 	.byte	0x7
 	.asciz	"long unsigned int"
 	.uleb128 0x3
+	.asciz	"UINT"
+	.byte	0x2
+	.byte	0xa
+	.4byte	0x9a
+	.uleb128 0x2
+	.byte	0x2
+	.byte	0x7
+	.asciz	"unsigned int"
+	.uleb128 0x3
+	.asciz	"BYTE"
+	.byte	0x2
+	.byte	0xb
+	.4byte	0xb6
+	.uleb128 0x2
+	.byte	0x1
+	.byte	0x8
+	.asciz	"unsigned char"
+	.uleb128 0x2
 	.byte	0x2
 	.byte	0x5
 	.asciz	"int"
-	.uleb128 0x3
+	.uleb128 0x2
 	.byte	0x4
 	.byte	0x5
 	.asciz	"long int"
@@ -128,7 +122,7 @@ _DacWrite:
 	.asciz	"LATB0"
 	.byte	0x3
 	.2byte	0xa07
-	.4byte	0x85
+	.4byte	0x9a
 	.byte	0x2
 	.byte	0x1
 	.byte	0xf
@@ -139,7 +133,7 @@ _DacWrite:
 	.asciz	"LATB1"
 	.byte	0x3
 	.2byte	0xa08
-	.4byte	0x85
+	.4byte	0x9a
 	.byte	0x2
 	.byte	0x1
 	.byte	0xe
@@ -150,7 +144,7 @@ _DacWrite:
 	.asciz	"LATB2"
 	.byte	0x3
 	.2byte	0xa09
-	.4byte	0x85
+	.4byte	0x9a
 	.byte	0x2
 	.byte	0x1
 	.byte	0xd
@@ -161,7 +155,7 @@ _DacWrite:
 	.asciz	"LATB3"
 	.byte	0x3
 	.2byte	0xa0a
-	.4byte	0x85
+	.4byte	0x9a
 	.byte	0x2
 	.byte	0x1
 	.byte	0xc
@@ -172,7 +166,7 @@ _DacWrite:
 	.asciz	"LATB4"
 	.byte	0x3
 	.2byte	0xa0b
-	.4byte	0x85
+	.4byte	0x9a
 	.byte	0x2
 	.byte	0x1
 	.byte	0xb
@@ -183,7 +177,7 @@ _DacWrite:
 	.asciz	"LATB5"
 	.byte	0x3
 	.2byte	0xa0c
-	.4byte	0x85
+	.4byte	0x9a
 	.byte	0x2
 	.byte	0x1
 	.byte	0xa
@@ -194,7 +188,7 @@ _DacWrite:
 	.asciz	"LATB6"
 	.byte	0x3
 	.2byte	0xa0d
-	.4byte	0x85
+	.4byte	0x9a
 	.byte	0x2
 	.byte	0x1
 	.byte	0x9
@@ -205,7 +199,7 @@ _DacWrite:
 	.asciz	"LATB7"
 	.byte	0x3
 	.2byte	0xa0e
-	.4byte	0x85
+	.4byte	0x9a
 	.byte	0x2
 	.byte	0x1
 	.byte	0x8
@@ -216,7 +210,7 @@ _DacWrite:
 	.asciz	"LATB8"
 	.byte	0x3
 	.2byte	0xa0f
-	.4byte	0x85
+	.4byte	0x9a
 	.byte	0x2
 	.byte	0x1
 	.byte	0x7
@@ -227,7 +221,7 @@ _DacWrite:
 	.asciz	"LATB9"
 	.byte	0x3
 	.2byte	0xa10
-	.4byte	0x85
+	.4byte	0x9a
 	.byte	0x2
 	.byte	0x1
 	.byte	0x6
@@ -238,7 +232,7 @@ _DacWrite:
 	.asciz	"LATB10"
 	.byte	0x3
 	.2byte	0xa11
-	.4byte	0x85
+	.4byte	0x9a
 	.byte	0x2
 	.byte	0x1
 	.byte	0x5
@@ -249,7 +243,7 @@ _DacWrite:
 	.asciz	"LATB11"
 	.byte	0x3
 	.2byte	0xa12
-	.4byte	0x85
+	.4byte	0x9a
 	.byte	0x2
 	.byte	0x1
 	.byte	0x4
@@ -260,7 +254,7 @@ _DacWrite:
 	.asciz	"LATB12"
 	.byte	0x3
 	.2byte	0xa13
-	.4byte	0x85
+	.4byte	0x9a
 	.byte	0x2
 	.byte	0x1
 	.byte	0x3
@@ -271,7 +265,7 @@ _DacWrite:
 	.asciz	"LATB13"
 	.byte	0x3
 	.2byte	0xa14
-	.4byte	0x85
+	.4byte	0x9a
 	.byte	0x2
 	.byte	0x1
 	.byte	0x2
@@ -282,7 +276,7 @@ _DacWrite:
 	.asciz	"LATB14"
 	.byte	0x3
 	.2byte	0xa15
-	.4byte	0x85
+	.4byte	0x9a
 	.byte	0x2
 	.byte	0x1
 	.byte	0x1
@@ -293,7 +287,7 @@ _DacWrite:
 	.asciz	"LATB15"
 	.byte	0x3
 	.2byte	0xa16
-	.4byte	0x85
+	.4byte	0x9a
 	.byte	0x2
 	.byte	0x1
 	.byte	0x10
@@ -315,30 +309,27 @@ _DacWrite:
 	.4byte	.LFB0
 	.4byte	.LFE0
 	.byte	0x1
-	.byte	0x5e
-	.4byte	0x281
+	.byte	0x5f
+	.4byte	0x27e
 	.uleb128 0x8
 	.asciz	"val"
 	.byte	0x1
 	.byte	0x5
-	.4byte	0x79
+	.4byte	0x8e
 	.byte	0x2
-	.byte	0x7e
-	.sleb128 2
+	.byte	0x91
+	.sleb128 -2
 	.uleb128 0x9
 	.asciz	"Byte"
 	.byte	0x1
 	.byte	0x7
-	.4byte	0x95
-	.byte	0x2
-	.byte	0x7e
-	.sleb128 0
+	.4byte	0xaa
 	.byte	0x0
 	.uleb128 0xa
 	.4byte	.LASF0
 	.byte	0x3
 	.2byte	0xa18
-	.4byte	0x28f
+	.4byte	0x28c
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xb
@@ -347,21 +338,21 @@ _DacWrite:
 	.4byte	.LASF0
 	.byte	0x3
 	.2byte	0xa18
-	.4byte	0x28f
+	.4byte	0x28c
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xc
 	.4byte	0xc7
-	.4byte	0x2b2
+	.4byte	0x2af
 	.uleb128 0xd
-	.4byte	0x85
+	.4byte	0x9a
 	.byte	0xf
 	.byte	0x0
 	.uleb128 0xe
 	.asciz	"DacData"
 	.byte	0x1
 	.byte	0x3
-	.4byte	0x2a2
+	.4byte	0x29f
 	.byte	0x1
 	.byte	0x5
 	.byte	0x3
@@ -388,6 +379,17 @@ _DacWrite:
 	.byte	0x0
 	.byte	0x0
 	.uleb128 0x2
+	.uleb128 0x24
+	.byte	0x0
+	.uleb128 0xb
+	.uleb128 0xb
+	.uleb128 0x3e
+	.uleb128 0xb
+	.uleb128 0x3
+	.uleb128 0x8
+	.byte	0x0
+	.byte	0x0
+	.uleb128 0x3
 	.uleb128 0x16
 	.byte	0x0
 	.uleb128 0x3
@@ -398,17 +400,6 @@ _DacWrite:
 	.uleb128 0xb
 	.uleb128 0x49
 	.uleb128 0x13
-	.byte	0x0
-	.byte	0x0
-	.uleb128 0x3
-	.uleb128 0x24
-	.byte	0x0
-	.uleb128 0xb
-	.uleb128 0xb
-	.uleb128 0x3e
-	.uleb128 0xb
-	.uleb128 0x3
-	.uleb128 0x8
 	.byte	0x0
 	.byte	0x0
 	.uleb128 0x4
@@ -509,8 +500,6 @@ _DacWrite:
 	.uleb128 0xb
 	.uleb128 0x49
 	.uleb128 0x13
-	.uleb128 0x2
-	.uleb128 0xa
 	.byte	0x0
 	.byte	0x0
 	.uleb128 0xa
@@ -577,20 +566,20 @@ _DacWrite:
 	.4byte	0x27
 	.2byte	0x2
 	.4byte	.Ldebug_info0
-	.4byte	0x2c9
+	.4byte	0x2c6
 	.4byte	0x247
 	.asciz	"DacWrite"
-	.4byte	0x2b2
+	.4byte	0x2af
 	.asciz	"DacData"
 	.4byte	0x0
 	.section	.debug_pubtypes,info
 	.4byte	0x3d
 	.2byte	0x2
 	.4byte	.Ldebug_info0
-	.4byte	0x2c9
-	.4byte	0x79
+	.4byte	0x2c6
+	.4byte	0x8e
 	.asciz	"UINT"
-	.4byte	0x95
+	.4byte	0xaa
 	.asciz	"BYTE"
 	.4byte	0xda
 	.asciz	"tagLATBBITS"
@@ -668,7 +657,7 @@ _DacWrite:
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	.LSM3
-	.byte	0x15
+	.byte	0x16
 	.byte	0x0
 	.uleb128 0x5
 	.byte	0x2
@@ -688,11 +677,6 @@ _DacWrite:
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	.LSM7
-	.byte	0x15
-	.byte	0x0
-	.uleb128 0x5
-	.byte	0x2
-	.4byte	.LSM8
 	.byte	0x15
 	.byte	0x0
 	.uleb128 0x5

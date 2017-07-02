@@ -15,95 +15,81 @@ _HardwareInit:
 .LFB0:
 .LSM0:
 	.set ___PA___,0
-	lnk	#0
 .LSM1:
 ; 72 "HardwareInit.c" 1
 	disi #0x3FFF
 .LSM2:
-	mov	_CLKDIVbits,w5
-	mov	#-32,w4
-	and	w5,w4,w4
-	mov	w4,_CLKDIVbits
+	mov	#-32,w5
+	mov	#_CLKDIVbits,w0
+	and	w5,[w0],[w0]
 .LSM3:
-	mov	_PLLFBDbits,w5
 	mov	#-512,w4
-	and	w5,w4,w4
+	mov	_PLLFBDbits,w1
+	and	w4,w1,w4
 	ior	#30,w4
 	mov	w4,_PLLFBDbits
 .LSM4:
-	mov	_CLKDIVbits,w4
-	bclr	w4,#6
-	bclr	w4,#7
-	mov	w4,_CLKDIVbits
+	mov	#-193,w4
+	mov	#_CLKDIVbits,w6
+	and	w4,[w6],[w6]
 .LSM5:
-	mov	_RPINR18bits,w5
 	mov	#-7937,w4
-	and	w5,w4,w5
-	mov	#1792,w4
-	ior	w4,w5,w4
-	mov	w4,_RPINR18bits
+	mov	_RPINR18bits,w7
+	and	w4,w7,w6
+	mov	#1792,w7
+	mov	w7,w0
+	ior	w0,w6,w0
+	mov	w0,_RPINR18bits
 .LSM6:
-	mov	_RPINR18bits,w5
-	mov	#-32,w4
-	and	w5,w4,w4
-	bset	w4,#3
-	mov	w4,_RPINR18bits
+	mov	_RPINR18bits,w1
+	and	w5,w1,w6
+	bset	w6,#3
+	mov	w6,_RPINR18bits
 .LSM7:
-	mov	_RPOR2bits,w5
-	mov	#-7937,w4
-	and	w5,w4,w5
-	mov	#1024,w4
-	ior	w4,w5,w4
-	mov	w4,_RPOR2bits
+	mov	_RPOR2bits,w0
+	and	w4,w0,w6
+	mov	#1024,w0
+	mov	w0,w1
+	ior	w1,w6,w1
+	mov	w1,_RPOR2bits
 .LSM8:
-	mov	_RPOR3bits,w5
-	mov	#-32,w4
-	and	w5,w4,w4
-	ior	#3,w4
-	mov	w4,_RPOR3bits
+	mov	_RPOR3bits,w1
+	and	w5,w1,w6
+	ior	#3,w6
+	mov	w6,_RPOR3bits
 .LSM9:
-	mov	_RPINR19bits,w5
-	mov	#-7937,w4
-	and	w5,w4,w5
-	mov	#6144,w4
-	ior	w4,w5,w4
-	mov	w4,_RPINR19bits
+	mov	_RPINR19bits,w6
+	and	w4,w6,w1
+	mov	#6144,w6
+	ior	w6,w1,w6
+	mov	w6,_RPINR19bits
 .LSM10:
-	mov	_RPINR19bits,w5
-	mov	#-32,w4
-	and	w5,w4,w4
-	ior	#22,w4
-	mov	w4,_RPINR19bits
+	mov	_RPINR19bits,w1
+	and	w5,w1,w6
+	ior	#22,w6
+	mov	w6,_RPINR19bits
 .LSM11:
-	mov	_RPOR12bits,w5
-	mov	#-7937,w4
-	and	w5,w4,w5
-	mov	#1024,w4
-	ior	w4,w5,w4
-	mov	w4,_RPOR12bits
+	mov	_RPOR12bits,w1
+	and	w4,w1,w6
+	ior	w0,w6,w0
+	mov	w0,_RPOR12bits
 .LSM12:
-	mov	_RPOR11bits,w5
-	mov	#-7937,w4
-	and	w5,w4,w5
-	mov	#768,w4
-	ior	w4,w5,w4
-	mov	w4,_RPOR11bits
+	mov	_RPOR11bits,w0
+	and	w4,w0,w6
+	ior	#768,w6
+	mov	w6,_RPOR11bits
 .LSM13:
-	mov	_RPOR5bits,w5
-	mov	#-7937,w4
-	and	w5,w4,w5
-	mov	#1792,w4
-	ior	w4,w5,w4
-	mov	w4,_RPOR5bits
+	mov	_RPOR5bits,w1
+	and	w4,w1,w4
+	ior	w7,w4,w7
+	mov	w7,_RPOR5bits
 .LSM14:
-	mov	_RPOR6bits,w5
-	mov	#-32,w4
-	and	w5,w4,w4
-	bset	w4,#3
-	mov	w4,_RPOR6bits
+	mov	_RPOR6bits,w4
+	and	w5,w4,w5
+	bset	w5,#3
+	mov	w5,_RPOR6bits
 .LSM15:
-	setm	w4
-	mov	w4,_TRISA
+	setm	_TRISA
 .LSM16:
 	mov	#-15969,w4
 	mov	w4,_TRISB
@@ -129,10 +115,9 @@ _HardwareInit:
 .LSM25:
 	bclr.b	_U1MODEbits+1,#3
 .LSM26:
-	mov	_U1MODEbits,w4
-	bclr	w4,#8
-	bclr	w4,#9
-	mov	w4,_U1MODEbits
+	mov	#-769,w4
+	mov	#_U1MODEbits,w5
+	and	w4,[w5],[w5]
 .LSM27:
 	bclr.b	_U1MODEbits,#7
 .LSM28:
@@ -144,10 +129,9 @@ _HardwareInit:
 .LSM31:
 	bset.b	_U1MODEbits,#3
 .LSM32:
-	mov	_U1MODEbits,w4
-	bclr	w4,#1
-	bclr	w4,#2
-	mov	w4,_U1MODEbits
+	mov	#-7,w4
+	mov	#_U1MODEbits,w6
+	and	w4,[w6],[w6]
 .LSM33:
 	bclr.b	_U1MODEbits,#0
 .LSM34:
@@ -162,49 +146,66 @@ _HardwareInit:
 .LSM38:
 	bset.b	_U1STAbits+1,#2
 .LSM39:
-	mov	_U1STAbits,w4
-	bclr	w4,#6
-	bclr	w4,#7
-	mov	w4,_U1STAbits
+	mov	#-193,w4
+	mov	#_U1STAbits,w7
+	and	w4,[w7],[w7]
 .LSM40:
 	mov	#492,w4
 	mov	w4,_AD1PCFGL
 .LSM41:
-	mov	_AD1CON2bits,w4
-	bset	w4,#13
-	bset	w4,#14
+	bset.b	_AD1CON1bits+1,#7
+.LSM42:
+	bclr.b	_AD1CON1bits+1,#5
+.LSM43:
+	bset.b	_AD1CON1bits+1,#2
+.LSM44:
+	mov	#-769,w4
+	mov	#_AD1CON1bits,w0
+	and	w4,[w0],[w0]
+.LSM45:
+	mov	#-225,w4
+	mov	#_AD1CON1bits,w1
+	and	w4,[w1],[w1]
+.LSM46:
+	bset.b	_AD1CON1bits,#2
+.LSM47:
+	mov	#24576,w4
+	mov	_AD1CON2bits,w5
+	ior	w5,w4,w5
+	mov	w5,w4
 	bclr	w4,#15
 	mov	w4,_AD1CON2bits
-.LSM42:
+.LSM48:
+	clr.b	_AD1CON3bits
+.LSM49:
 	bclr.b	_T1CONbits,#1
-.LSM43:
+.LSM50:
 	bclr.b	_T1CONbits,#6
-.LSM44:
+.LSM51:
 	bset.b	_T1CONbits+1,#5
-.LSM45:
+.LSM52:
 	mov	_T1CONbits,w4
 	bclr	w4,#4
 	bset	w4,#5
 	mov	w4,_T1CONbits
-.LSM46:
-	mov	#311,w4
+.LSM53:
+	mov	#624,w4
 	mov	w4,_PR1
-.LSM47:
+.LSM54:
 	mov	_IPC0bits,w4
 	bclr	w4,#12
 	bset	w4,#13
 	bclr	w4,#14
 	mov	w4,_IPC0bits
-.LSM48:
+.LSM55:
 	bclr.b	_IFS0bits,#3
-.LSM49:
+.LSM56:
 	bset.b	_IEC0bits,#3
-.LSM50:
+.LSM57:
 	bset.b	_T1CONbits+1,#7
-.LSM51:
+.LSM58:
 	bclr.b	_INTCON2bits+1,#6
-.LSM52:
-	ulnk	
+.LSM59:
 	return	
 	.set ___PA___,0
 .LFE0:
@@ -237,7 +238,7 @@ _HardwareInit:
 	.section	.text,code
 .Letext0:
 	.section	.debug_info,info
-	.4byte	0x1c9e
+	.4byte	0x2001
 	.2byte	0x2
 	.4byte	.Ldebug_abbrev0
 	.byte	0x4
@@ -250,6 +251,10 @@ _HardwareInit:
 	.4byte	.Letext0
 	.4byte	.Ldebug_line0
 	.uleb128 0x2
+	.byte	0x4
+	.byte	0x7
+	.asciz	"long unsigned int"
+	.uleb128 0x2
 	.byte	0x2
 	.byte	0x7
 	.asciz	"unsigned int"
@@ -257,10 +262,6 @@ _HardwareInit:
 	.byte	0x1
 	.byte	0x8
 	.asciz	"unsigned char"
-	.uleb128 0x2
-	.byte	0x4
-	.byte	0x7
-	.asciz	"long unsigned int"
 	.uleb128 0x2
 	.byte	0x2
 	.byte	0x5
@@ -279,7 +280,7 @@ _HardwareInit:
 	.asciz	"INT0EP"
 	.byte	0x2
 	.2byte	0x163
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xf
@@ -290,7 +291,7 @@ _HardwareInit:
 	.asciz	"INT1EP"
 	.byte	0x2
 	.2byte	0x164
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xe
@@ -301,7 +302,7 @@ _HardwareInit:
 	.asciz	"INT2EP"
 	.byte	0x2
 	.2byte	0x165
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xd
@@ -312,7 +313,7 @@ _HardwareInit:
 	.asciz	"DISI"
 	.byte	0x2
 	.2byte	0x167
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x1
@@ -323,7 +324,7 @@ _HardwareInit:
 	.asciz	"ALTIVT"
 	.byte	0x2
 	.2byte	0x168
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x10
@@ -346,7 +347,7 @@ _HardwareInit:
 	.asciz	"INT0IF"
 	.byte	0x2
 	.2byte	0x16f
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xf
@@ -357,7 +358,7 @@ _HardwareInit:
 	.asciz	"IC1IF"
 	.byte	0x2
 	.2byte	0x170
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xe
@@ -368,7 +369,7 @@ _HardwareInit:
 	.asciz	"OC1IF"
 	.byte	0x2
 	.2byte	0x171
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xd
@@ -379,7 +380,7 @@ _HardwareInit:
 	.asciz	"T1IF"
 	.byte	0x2
 	.2byte	0x172
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xc
@@ -390,7 +391,7 @@ _HardwareInit:
 	.asciz	"DMA0IF"
 	.byte	0x2
 	.2byte	0x173
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xb
@@ -401,7 +402,7 @@ _HardwareInit:
 	.asciz	"IC2IF"
 	.byte	0x2
 	.2byte	0x174
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xa
@@ -412,7 +413,7 @@ _HardwareInit:
 	.asciz	"OC2IF"
 	.byte	0x2
 	.2byte	0x175
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x9
@@ -423,7 +424,7 @@ _HardwareInit:
 	.asciz	"T2IF"
 	.byte	0x2
 	.2byte	0x176
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x8
@@ -434,7 +435,7 @@ _HardwareInit:
 	.asciz	"T3IF"
 	.byte	0x2
 	.2byte	0x177
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x7
@@ -445,7 +446,7 @@ _HardwareInit:
 	.asciz	"SPI1EIF"
 	.byte	0x2
 	.2byte	0x178
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x6
@@ -456,7 +457,7 @@ _HardwareInit:
 	.asciz	"SPI1IF"
 	.byte	0x2
 	.2byte	0x179
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x5
@@ -467,7 +468,7 @@ _HardwareInit:
 	.asciz	"U1RXIF"
 	.byte	0x2
 	.2byte	0x17a
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x4
@@ -478,7 +479,7 @@ _HardwareInit:
 	.asciz	"U1TXIF"
 	.byte	0x2
 	.2byte	0x17b
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x3
@@ -489,7 +490,7 @@ _HardwareInit:
 	.asciz	"AD1IF"
 	.byte	0x2
 	.2byte	0x17c
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x2
@@ -500,7 +501,7 @@ _HardwareInit:
 	.asciz	"DMA1IF"
 	.byte	0x2
 	.2byte	0x17d
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x1
@@ -523,7 +524,7 @@ _HardwareInit:
 	.asciz	"INT0IE"
 	.byte	0x2
 	.2byte	0x1d0
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xf
@@ -534,7 +535,7 @@ _HardwareInit:
 	.asciz	"IC1IE"
 	.byte	0x2
 	.2byte	0x1d1
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xe
@@ -545,7 +546,7 @@ _HardwareInit:
 	.asciz	"OC1IE"
 	.byte	0x2
 	.2byte	0x1d2
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xd
@@ -556,7 +557,7 @@ _HardwareInit:
 	.asciz	"T1IE"
 	.byte	0x2
 	.2byte	0x1d3
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xc
@@ -567,7 +568,7 @@ _HardwareInit:
 	.asciz	"DMA0IE"
 	.byte	0x2
 	.2byte	0x1d4
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xb
@@ -578,7 +579,7 @@ _HardwareInit:
 	.asciz	"IC2IE"
 	.byte	0x2
 	.2byte	0x1d5
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xa
@@ -589,7 +590,7 @@ _HardwareInit:
 	.asciz	"OC2IE"
 	.byte	0x2
 	.2byte	0x1d6
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x9
@@ -600,7 +601,7 @@ _HardwareInit:
 	.asciz	"T2IE"
 	.byte	0x2
 	.2byte	0x1d7
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x8
@@ -611,7 +612,7 @@ _HardwareInit:
 	.asciz	"T3IE"
 	.byte	0x2
 	.2byte	0x1d8
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x7
@@ -622,7 +623,7 @@ _HardwareInit:
 	.asciz	"SPI1EIE"
 	.byte	0x2
 	.2byte	0x1d9
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x6
@@ -633,7 +634,7 @@ _HardwareInit:
 	.asciz	"SPI1IE"
 	.byte	0x2
 	.2byte	0x1da
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x5
@@ -644,7 +645,7 @@ _HardwareInit:
 	.asciz	"U1RXIE"
 	.byte	0x2
 	.2byte	0x1db
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x4
@@ -655,7 +656,7 @@ _HardwareInit:
 	.asciz	"U1TXIE"
 	.byte	0x2
 	.2byte	0x1dc
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x3
@@ -666,7 +667,7 @@ _HardwareInit:
 	.asciz	"AD1IE"
 	.byte	0x2
 	.2byte	0x1dd
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x2
@@ -677,7 +678,7 @@ _HardwareInit:
 	.asciz	"DMA1IE"
 	.byte	0x2
 	.2byte	0x1de
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x1
@@ -699,7 +700,7 @@ _HardwareInit:
 	.asciz	"INT0IP"
 	.byte	0x2
 	.2byte	0x233
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x3
 	.byte	0xd
@@ -710,7 +711,7 @@ _HardwareInit:
 	.asciz	"IC1IP"
 	.byte	0x2
 	.2byte	0x235
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x3
 	.byte	0x9
@@ -721,7 +722,7 @@ _HardwareInit:
 	.asciz	"OC1IP"
 	.byte	0x2
 	.2byte	0x237
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x3
 	.byte	0x5
@@ -732,7 +733,7 @@ _HardwareInit:
 	.asciz	"T1IP"
 	.byte	0x2
 	.2byte	0x239
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x3
 	.byte	0x1
@@ -749,7 +750,7 @@ _HardwareInit:
 	.asciz	"INT0IP0"
 	.byte	0x2
 	.2byte	0x23c
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xf
@@ -760,7 +761,7 @@ _HardwareInit:
 	.asciz	"INT0IP1"
 	.byte	0x2
 	.2byte	0x23d
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xe
@@ -771,7 +772,7 @@ _HardwareInit:
 	.asciz	"INT0IP2"
 	.byte	0x2
 	.2byte	0x23e
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xd
@@ -782,7 +783,7 @@ _HardwareInit:
 	.asciz	"IC1IP0"
 	.byte	0x2
 	.2byte	0x240
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xb
@@ -793,7 +794,7 @@ _HardwareInit:
 	.asciz	"IC1IP1"
 	.byte	0x2
 	.2byte	0x241
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xa
@@ -804,7 +805,7 @@ _HardwareInit:
 	.asciz	"IC1IP2"
 	.byte	0x2
 	.2byte	0x242
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x9
@@ -815,7 +816,7 @@ _HardwareInit:
 	.asciz	"OC1IP0"
 	.byte	0x2
 	.2byte	0x244
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x7
@@ -826,7 +827,7 @@ _HardwareInit:
 	.asciz	"OC1IP1"
 	.byte	0x2
 	.2byte	0x245
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x6
@@ -837,7 +838,7 @@ _HardwareInit:
 	.asciz	"OC1IP2"
 	.byte	0x2
 	.2byte	0x246
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x5
@@ -848,7 +849,7 @@ _HardwareInit:
 	.asciz	"T1IP0"
 	.byte	0x2
 	.2byte	0x248
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x3
@@ -859,7 +860,7 @@ _HardwareInit:
 	.asciz	"T1IP1"
 	.byte	0x2
 	.2byte	0x249
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x2
@@ -870,7 +871,7 @@ _HardwareInit:
 	.asciz	"T1IP2"
 	.byte	0x2
 	.2byte	0x24a
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x1
@@ -914,7 +915,7 @@ _HardwareInit:
 	.asciz	"TCS"
 	.byte	0x2
 	.2byte	0x447
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xe
@@ -925,7 +926,7 @@ _HardwareInit:
 	.asciz	"TSYNC"
 	.byte	0x2
 	.2byte	0x448
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xd
@@ -936,7 +937,7 @@ _HardwareInit:
 	.asciz	"TCKPS"
 	.byte	0x2
 	.2byte	0x44a
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x2
 	.byte	0xa
@@ -947,7 +948,7 @@ _HardwareInit:
 	.asciz	"TGATE"
 	.byte	0x2
 	.2byte	0x44b
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x9
@@ -958,7 +959,7 @@ _HardwareInit:
 	.asciz	"TSIDL"
 	.byte	0x2
 	.2byte	0x44d
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x2
@@ -969,7 +970,7 @@ _HardwareInit:
 	.asciz	"TON"
 	.byte	0x2
 	.2byte	0x44f
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x10
@@ -986,7 +987,7 @@ _HardwareInit:
 	.asciz	"TCKPS0"
 	.byte	0x2
 	.2byte	0x453
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xb
@@ -997,7 +998,7 @@ _HardwareInit:
 	.asciz	"TCKPS1"
 	.byte	0x2
 	.2byte	0x454
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xa
@@ -1041,7 +1042,7 @@ _HardwareInit:
 	.asciz	"STSEL"
 	.byte	0x2
 	.2byte	0x860
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xf
@@ -1052,7 +1053,7 @@ _HardwareInit:
 	.asciz	"PDSEL"
 	.byte	0x2
 	.2byte	0x861
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x2
 	.byte	0xd
@@ -1063,7 +1064,7 @@ _HardwareInit:
 	.asciz	"BRGH"
 	.byte	0x2
 	.2byte	0x862
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xc
@@ -1074,7 +1075,7 @@ _HardwareInit:
 	.asciz	"URXINV"
 	.byte	0x2
 	.2byte	0x863
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xb
@@ -1085,7 +1086,7 @@ _HardwareInit:
 	.asciz	"ABAUD"
 	.byte	0x2
 	.2byte	0x864
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xa
@@ -1096,7 +1097,7 @@ _HardwareInit:
 	.asciz	"LPBACK"
 	.byte	0x2
 	.2byte	0x865
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x9
@@ -1107,7 +1108,7 @@ _HardwareInit:
 	.asciz	"WAKE"
 	.byte	0x2
 	.2byte	0x866
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x8
@@ -1118,7 +1119,7 @@ _HardwareInit:
 	.asciz	"UEN"
 	.byte	0x2
 	.2byte	0x867
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x2
 	.byte	0x6
@@ -1129,7 +1130,7 @@ _HardwareInit:
 	.asciz	"RTSMD"
 	.byte	0x2
 	.2byte	0x869
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x4
@@ -1140,7 +1141,7 @@ _HardwareInit:
 	.asciz	"IREN"
 	.byte	0x2
 	.2byte	0x86a
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x3
@@ -1151,7 +1152,7 @@ _HardwareInit:
 	.asciz	"USIDL"
 	.byte	0x2
 	.2byte	0x86b
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x2
@@ -1162,7 +1163,7 @@ _HardwareInit:
 	.asciz	"UARTEN"
 	.byte	0x2
 	.2byte	0x86d
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x10
@@ -1179,7 +1180,7 @@ _HardwareInit:
 	.asciz	"PDSEL0"
 	.byte	0x2
 	.2byte	0x871
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xe
@@ -1190,7 +1191,7 @@ _HardwareInit:
 	.asciz	"PDSEL1"
 	.byte	0x2
 	.2byte	0x872
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xd
@@ -1201,7 +1202,7 @@ _HardwareInit:
 	.asciz	"UEN0"
 	.byte	0x2
 	.2byte	0x874
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x7
@@ -1212,7 +1213,7 @@ _HardwareInit:
 	.asciz	"UEN1"
 	.byte	0x2
 	.2byte	0x875
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x6
@@ -1256,7 +1257,7 @@ _HardwareInit:
 	.asciz	"URXDA"
 	.byte	0x2
 	.2byte	0x880
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xf
@@ -1267,7 +1268,7 @@ _HardwareInit:
 	.asciz	"OERR"
 	.byte	0x2
 	.2byte	0x881
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xe
@@ -1278,7 +1279,7 @@ _HardwareInit:
 	.asciz	"FERR"
 	.byte	0x2
 	.2byte	0x882
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xd
@@ -1289,7 +1290,7 @@ _HardwareInit:
 	.asciz	"PERR"
 	.byte	0x2
 	.2byte	0x883
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xc
@@ -1300,7 +1301,7 @@ _HardwareInit:
 	.asciz	"RIDLE"
 	.byte	0x2
 	.2byte	0x884
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xb
@@ -1311,7 +1312,7 @@ _HardwareInit:
 	.asciz	"ADDEN"
 	.byte	0x2
 	.2byte	0x885
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xa
@@ -1322,7 +1323,7 @@ _HardwareInit:
 	.asciz	"URXISEL"
 	.byte	0x2
 	.2byte	0x886
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x2
 	.byte	0x8
@@ -1333,7 +1334,7 @@ _HardwareInit:
 	.asciz	"TRMT"
 	.byte	0x2
 	.2byte	0x887
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x7
@@ -1344,7 +1345,7 @@ _HardwareInit:
 	.asciz	"UTXBF"
 	.byte	0x2
 	.2byte	0x888
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x6
@@ -1355,7 +1356,7 @@ _HardwareInit:
 	.asciz	"UTXEN"
 	.byte	0x2
 	.2byte	0x889
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x5
@@ -1366,7 +1367,7 @@ _HardwareInit:
 	.asciz	"UTXBRK"
 	.byte	0x2
 	.2byte	0x88a
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x4
@@ -1377,7 +1378,7 @@ _HardwareInit:
 	.asciz	"UTXISEL0"
 	.byte	0x2
 	.2byte	0x88c
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x2
@@ -1388,7 +1389,7 @@ _HardwareInit:
 	.asciz	"UTXINV"
 	.byte	0x2
 	.2byte	0x88d
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x1
@@ -1399,7 +1400,7 @@ _HardwareInit:
 	.asciz	"UTXISEL1"
 	.byte	0x2
 	.2byte	0x88e
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x10
@@ -1416,7 +1417,7 @@ _HardwareInit:
 	.asciz	"URXISEL0"
 	.byte	0x2
 	.2byte	0x892
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x9
@@ -1427,7 +1428,7 @@ _HardwareInit:
 	.asciz	"URXISEL1"
 	.byte	0x2
 	.2byte	0x893
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x8
@@ -1465,13 +1466,217 @@ _HardwareInit:
 	.uleb128 0x6
 	.byte	0x2
 	.byte	0x2
+	.2byte	0xa80
+	.4byte	0xab7
+	.uleb128 0x4
+	.asciz	"DONE"
+	.byte	0x2
+	.2byte	0xa81
+	.4byte	0x97
+	.byte	0x2
+	.byte	0x1
+	.byte	0xf
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.uleb128 0x4
+	.asciz	"SAMP"
+	.byte	0x2
+	.2byte	0xa82
+	.4byte	0x97
+	.byte	0x2
+	.byte	0x1
+	.byte	0xe
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.uleb128 0x4
+	.asciz	"ASAM"
+	.byte	0x2
+	.2byte	0xa83
+	.4byte	0x97
+	.byte	0x2
+	.byte	0x1
+	.byte	0xd
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.uleb128 0x4
+	.asciz	"SIMSAM"
+	.byte	0x2
+	.2byte	0xa84
+	.4byte	0x97
+	.byte	0x2
+	.byte	0x1
+	.byte	0xc
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.uleb128 0x4
+	.asciz	"SSRC"
+	.byte	0x2
+	.2byte	0xa86
+	.4byte	0x97
+	.byte	0x2
+	.byte	0x3
+	.byte	0x8
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.uleb128 0x4
+	.asciz	"FORM"
+	.byte	0x2
+	.2byte	0xa87
+	.4byte	0x97
+	.byte	0x2
+	.byte	0x2
+	.byte	0x6
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.uleb128 0x4
+	.asciz	"AD12B"
+	.byte	0x2
+	.2byte	0xa88
+	.4byte	0x97
+	.byte	0x2
+	.byte	0x1
+	.byte	0x5
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.uleb128 0x4
+	.asciz	"ADDMABM"
+	.byte	0x2
+	.2byte	0xa8a
+	.4byte	0x97
+	.byte	0x2
+	.byte	0x1
+	.byte	0x3
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.uleb128 0x4
+	.asciz	"ADSIDL"
+	.byte	0x2
+	.2byte	0xa8b
+	.4byte	0x97
+	.byte	0x2
+	.byte	0x1
+	.byte	0x2
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.uleb128 0x4
+	.asciz	"ADON"
+	.byte	0x2
+	.2byte	0xa8d
+	.4byte	0x97
+	.byte	0x2
+	.byte	0x1
+	.byte	0x10
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.byte	0x0
+	.uleb128 0x6
+	.byte	0x2
+	.byte	0x2
+	.2byte	0xa8f
+	.4byte	0xb25
+	.uleb128 0x4
+	.asciz	"SSRC0"
+	.byte	0x2
+	.2byte	0xa91
+	.4byte	0x97
+	.byte	0x2
+	.byte	0x1
+	.byte	0xa
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.uleb128 0x4
+	.asciz	"SSRC1"
+	.byte	0x2
+	.2byte	0xa92
+	.4byte	0x97
+	.byte	0x2
+	.byte	0x1
+	.byte	0x9
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.uleb128 0x4
+	.asciz	"SSRC2"
+	.byte	0x2
+	.2byte	0xa93
+	.4byte	0x97
+	.byte	0x2
+	.byte	0x1
+	.byte	0x8
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.uleb128 0x4
+	.asciz	"FORM0"
+	.byte	0x2
+	.2byte	0xa94
+	.4byte	0x97
+	.byte	0x2
+	.byte	0x1
+	.byte	0x7
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.uleb128 0x4
+	.asciz	"FORM1"
+	.byte	0x2
+	.2byte	0xa95
+	.4byte	0x97
+	.byte	0x2
+	.byte	0x1
+	.byte	0x6
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.byte	0x0
+	.uleb128 0x7
+	.byte	0x2
+	.byte	0x2
+	.2byte	0xa7f
+	.4byte	0xb39
+	.uleb128 0x8
+	.4byte	0x9e7
+	.uleb128 0x8
+	.4byte	0xab7
+	.byte	0x0
+	.uleb128 0x3
+	.asciz	"tagAD1CON1BITS"
+	.byte	0x2
+	.byte	0x2
+	.2byte	0xa7e
+	.4byte	0xb5a
+	.uleb128 0x9
+	.4byte	0xb25
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.byte	0x0
+	.uleb128 0x5
+	.asciz	"AD1CON1BITS"
+	.byte	0x2
+	.2byte	0xa98
+	.4byte	0xb39
+	.uleb128 0x6
+	.byte	0x2
+	.byte	0x2
 	.2byte	0xa9f
-	.4byte	0xa77
+	.4byte	0xbfe
 	.uleb128 0x4
 	.asciz	"ALTS"
 	.byte	0x2
 	.2byte	0xaa0
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xf
@@ -1482,7 +1687,7 @@ _HardwareInit:
 	.asciz	"BUFM"
 	.byte	0x2
 	.2byte	0xaa1
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xe
@@ -1493,7 +1698,7 @@ _HardwareInit:
 	.asciz	"SMPI"
 	.byte	0x2
 	.2byte	0xaa2
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x4
 	.byte	0xa
@@ -1504,7 +1709,7 @@ _HardwareInit:
 	.asciz	"BUFS"
 	.byte	0x2
 	.2byte	0xaa4
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x8
@@ -1515,7 +1720,7 @@ _HardwareInit:
 	.asciz	"CHPS"
 	.byte	0x2
 	.2byte	0xaa5
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x2
 	.byte	0x6
@@ -1526,7 +1731,7 @@ _HardwareInit:
 	.asciz	"CSCNA"
 	.byte	0x2
 	.2byte	0xaa6
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x5
@@ -1537,7 +1742,7 @@ _HardwareInit:
 	.asciz	"VCFG"
 	.byte	0x2
 	.2byte	0xaa8
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x3
 	.byte	0x10
@@ -1549,12 +1754,12 @@ _HardwareInit:
 	.byte	0x2
 	.byte	0x2
 	.2byte	0xaaa
-	.4byte	0xb35
+	.4byte	0xcbc
 	.uleb128 0x4
 	.asciz	"SMPI0"
 	.byte	0x2
 	.2byte	0xaac
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xd
@@ -1565,7 +1770,7 @@ _HardwareInit:
 	.asciz	"SMPI1"
 	.byte	0x2
 	.2byte	0xaad
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xc
@@ -1576,7 +1781,7 @@ _HardwareInit:
 	.asciz	"SMPI2"
 	.byte	0x2
 	.2byte	0xaae
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xb
@@ -1587,7 +1792,7 @@ _HardwareInit:
 	.asciz	"SMPI3"
 	.byte	0x2
 	.2byte	0xaaf
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xa
@@ -1598,7 +1803,7 @@ _HardwareInit:
 	.asciz	"CHPS0"
 	.byte	0x2
 	.2byte	0xab1
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x7
@@ -1609,7 +1814,7 @@ _HardwareInit:
 	.asciz	"CHPS1"
 	.byte	0x2
 	.2byte	0xab2
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x6
@@ -1620,7 +1825,7 @@ _HardwareInit:
 	.asciz	"VCFG0"
 	.byte	0x2
 	.2byte	0xab4
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x2
@@ -1631,7 +1836,7 @@ _HardwareInit:
 	.asciz	"VCFG1"
 	.byte	0x2
 	.2byte	0xab5
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x1
@@ -1642,7 +1847,7 @@ _HardwareInit:
 	.asciz	"VCFG2"
 	.byte	0x2
 	.2byte	0xab6
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x10
@@ -1654,20 +1859,20 @@ _HardwareInit:
 	.byte	0x2
 	.byte	0x2
 	.2byte	0xa9e
-	.4byte	0xb49
+	.4byte	0xcd0
 	.uleb128 0x8
-	.4byte	0x9e7
+	.4byte	0xb6e
 	.uleb128 0x8
-	.4byte	0xa77
+	.4byte	0xbfe
 	.byte	0x0
 	.uleb128 0x3
 	.asciz	"tagAD1CON2BITS"
 	.byte	0x2
 	.byte	0x2
 	.2byte	0xa9d
-	.4byte	0xb6a
+	.4byte	0xcf1
 	.uleb128 0x9
-	.4byte	0xb35
+	.4byte	0xcbc
 	.byte	0x2
 	.byte	0x23
 	.uleb128 0x0
@@ -1676,17 +1881,232 @@ _HardwareInit:
 	.asciz	"AD1CON2BITS"
 	.byte	0x2
 	.2byte	0xab9
-	.4byte	0xb49
+	.4byte	0xcd0
+	.uleb128 0x6
+	.byte	0x2
+	.byte	0x2
+	.2byte	0xac0
+	.4byte	0xd48
+	.uleb128 0x4
+	.asciz	"ADCS"
+	.byte	0x2
+	.2byte	0xac1
+	.4byte	0x97
+	.byte	0x2
+	.byte	0x8
+	.byte	0x8
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.uleb128 0x4
+	.asciz	"SAMC"
+	.byte	0x2
+	.2byte	0xac2
+	.4byte	0x97
+	.byte	0x2
+	.byte	0x5
+	.byte	0x3
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.uleb128 0x4
+	.asciz	"ADRC"
+	.byte	0x2
+	.2byte	0xac4
+	.4byte	0x97
+	.byte	0x2
+	.byte	0x1
+	.byte	0x10
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.byte	0x0
+	.uleb128 0x6
+	.byte	0x2
+	.byte	0x2
+	.2byte	0xac6
+	.4byte	0xe56
+	.uleb128 0x4
+	.asciz	"ADCS0"
+	.byte	0x2
+	.2byte	0xac7
+	.4byte	0x97
+	.byte	0x2
+	.byte	0x1
+	.byte	0xf
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.uleb128 0x4
+	.asciz	"ADCS1"
+	.byte	0x2
+	.2byte	0xac8
+	.4byte	0x97
+	.byte	0x2
+	.byte	0x1
+	.byte	0xe
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.uleb128 0x4
+	.asciz	"ADCS2"
+	.byte	0x2
+	.2byte	0xac9
+	.4byte	0x97
+	.byte	0x2
+	.byte	0x1
+	.byte	0xd
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.uleb128 0x4
+	.asciz	"ADCS3"
+	.byte	0x2
+	.2byte	0xaca
+	.4byte	0x97
+	.byte	0x2
+	.byte	0x1
+	.byte	0xc
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.uleb128 0x4
+	.asciz	"ADCS4"
+	.byte	0x2
+	.2byte	0xacb
+	.4byte	0x97
+	.byte	0x2
+	.byte	0x1
+	.byte	0xb
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.uleb128 0x4
+	.asciz	"ADCS5"
+	.byte	0x2
+	.2byte	0xacc
+	.4byte	0x97
+	.byte	0x2
+	.byte	0x1
+	.byte	0xa
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.uleb128 0x4
+	.asciz	"ADCS6"
+	.byte	0x2
+	.2byte	0xacd
+	.4byte	0x97
+	.byte	0x2
+	.byte	0x1
+	.byte	0x9
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.uleb128 0x4
+	.asciz	"ADCS7"
+	.byte	0x2
+	.2byte	0xace
+	.4byte	0x97
+	.byte	0x2
+	.byte	0x1
+	.byte	0x8
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.uleb128 0x4
+	.asciz	"SAMC0"
+	.byte	0x2
+	.2byte	0xacf
+	.4byte	0x97
+	.byte	0x2
+	.byte	0x1
+	.byte	0x7
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.uleb128 0x4
+	.asciz	"SAMC1"
+	.byte	0x2
+	.2byte	0xad0
+	.4byte	0x97
+	.byte	0x2
+	.byte	0x1
+	.byte	0x6
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.uleb128 0x4
+	.asciz	"SAMC2"
+	.byte	0x2
+	.2byte	0xad1
+	.4byte	0x97
+	.byte	0x2
+	.byte	0x1
+	.byte	0x5
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.uleb128 0x4
+	.asciz	"SAMC3"
+	.byte	0x2
+	.2byte	0xad2
+	.4byte	0x97
+	.byte	0x2
+	.byte	0x1
+	.byte	0x4
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.uleb128 0x4
+	.asciz	"SAMC4"
+	.byte	0x2
+	.2byte	0xad3
+	.4byte	0x97
+	.byte	0x2
+	.byte	0x1
+	.byte	0x3
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.byte	0x0
+	.uleb128 0x7
+	.byte	0x2
+	.byte	0x2
+	.2byte	0xabf
+	.4byte	0xe6a
+	.uleb128 0x8
+	.4byte	0xd05
+	.uleb128 0x8
+	.4byte	0xd48
+	.byte	0x0
+	.uleb128 0x3
+	.asciz	"tagAD1CON3BITS"
+	.byte	0x2
+	.byte	0x2
+	.2byte	0xabe
+	.4byte	0xe8b
+	.uleb128 0x9
+	.4byte	0xe56
+	.byte	0x2
+	.byte	0x23
+	.uleb128 0x0
+	.byte	0x0
+	.uleb128 0x5
+	.asciz	"AD1CON3BITS"
+	.byte	0x2
+	.2byte	0xad6
+	.4byte	0xe6a
 	.uleb128 0x6
 	.byte	0x2
 	.byte	0x2
 	.2byte	0x1777
-	.4byte	0xbb1
+	.4byte	0xed2
 	.uleb128 0x4
 	.asciz	"U1RXR"
 	.byte	0x2
 	.2byte	0x1778
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x5
 	.byte	0xb
@@ -1697,7 +2117,7 @@ _HardwareInit:
 	.asciz	"U1CTSR"
 	.byte	0x2
 	.2byte	0x177a
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x5
 	.byte	0x3
@@ -1709,12 +2129,12 @@ _HardwareInit:
 	.byte	0x2
 	.byte	0x2
 	.2byte	0x177c
-	.4byte	0xc92
+	.4byte	0xfb3
 	.uleb128 0x4
 	.asciz	"U1RXR0"
 	.byte	0x2
 	.2byte	0x177d
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xf
@@ -1725,7 +2145,7 @@ _HardwareInit:
 	.asciz	"U1RXR1"
 	.byte	0x2
 	.2byte	0x177e
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xe
@@ -1736,7 +2156,7 @@ _HardwareInit:
 	.asciz	"U1RXR2"
 	.byte	0x2
 	.2byte	0x177f
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xd
@@ -1747,7 +2167,7 @@ _HardwareInit:
 	.asciz	"U1RXR3"
 	.byte	0x2
 	.2byte	0x1780
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xc
@@ -1758,7 +2178,7 @@ _HardwareInit:
 	.asciz	"U1RXR4"
 	.byte	0x2
 	.2byte	0x1781
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xb
@@ -1769,7 +2189,7 @@ _HardwareInit:
 	.asciz	"U1CTSR0"
 	.byte	0x2
 	.2byte	0x1783
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x7
@@ -1780,7 +2200,7 @@ _HardwareInit:
 	.asciz	"U1CTSR1"
 	.byte	0x2
 	.2byte	0x1784
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x6
@@ -1791,7 +2211,7 @@ _HardwareInit:
 	.asciz	"U1CTSR2"
 	.byte	0x2
 	.2byte	0x1785
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x5
@@ -1802,7 +2222,7 @@ _HardwareInit:
 	.asciz	"U1CTSR3"
 	.byte	0x2
 	.2byte	0x1786
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x4
@@ -1813,7 +2233,7 @@ _HardwareInit:
 	.asciz	"U1CTSR4"
 	.byte	0x2
 	.2byte	0x1787
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x3
@@ -1825,20 +2245,20 @@ _HardwareInit:
 	.byte	0x2
 	.byte	0x2
 	.2byte	0x1776
-	.4byte	0xca6
+	.4byte	0xfc7
 	.uleb128 0x8
-	.4byte	0xb7e
+	.4byte	0xe9f
 	.uleb128 0x8
-	.4byte	0xbb1
+	.4byte	0xed2
 	.byte	0x0
 	.uleb128 0x3
 	.asciz	"tagRPINR18BITS"
 	.byte	0x2
 	.byte	0x2
 	.2byte	0x1775
-	.4byte	0xcc7
+	.4byte	0xfe8
 	.uleb128 0x9
-	.4byte	0xc92
+	.4byte	0xfb3
 	.byte	0x2
 	.byte	0x23
 	.uleb128 0x0
@@ -1847,17 +2267,17 @@ _HardwareInit:
 	.asciz	"RPINR18BITS"
 	.byte	0x2
 	.2byte	0x178a
-	.4byte	0xca6
+	.4byte	0xfc7
 	.uleb128 0x6
 	.byte	0x2
 	.byte	0x2
 	.2byte	0x1791
-	.4byte	0xd0e
+	.4byte	0x102f
 	.uleb128 0x4
 	.asciz	"U2RXR"
 	.byte	0x2
 	.2byte	0x1792
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x5
 	.byte	0xb
@@ -1868,7 +2288,7 @@ _HardwareInit:
 	.asciz	"U2CTSR"
 	.byte	0x2
 	.2byte	0x1794
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x5
 	.byte	0x3
@@ -1880,12 +2300,12 @@ _HardwareInit:
 	.byte	0x2
 	.byte	0x2
 	.2byte	0x1796
-	.4byte	0xdef
+	.4byte	0x1110
 	.uleb128 0x4
 	.asciz	"U2RXR0"
 	.byte	0x2
 	.2byte	0x1797
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xf
@@ -1896,7 +2316,7 @@ _HardwareInit:
 	.asciz	"U2RXR1"
 	.byte	0x2
 	.2byte	0x1798
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xe
@@ -1907,7 +2327,7 @@ _HardwareInit:
 	.asciz	"U2RXR2"
 	.byte	0x2
 	.2byte	0x1799
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xd
@@ -1918,7 +2338,7 @@ _HardwareInit:
 	.asciz	"U2RXR3"
 	.byte	0x2
 	.2byte	0x179a
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xc
@@ -1929,7 +2349,7 @@ _HardwareInit:
 	.asciz	"U2RXR4"
 	.byte	0x2
 	.2byte	0x179b
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xb
@@ -1940,7 +2360,7 @@ _HardwareInit:
 	.asciz	"U2CTSR0"
 	.byte	0x2
 	.2byte	0x179d
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x7
@@ -1951,7 +2371,7 @@ _HardwareInit:
 	.asciz	"U2CTSR1"
 	.byte	0x2
 	.2byte	0x179e
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x6
@@ -1962,7 +2382,7 @@ _HardwareInit:
 	.asciz	"U2CTSR2"
 	.byte	0x2
 	.2byte	0x179f
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x5
@@ -1973,7 +2393,7 @@ _HardwareInit:
 	.asciz	"U2CTSR3"
 	.byte	0x2
 	.2byte	0x17a0
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x4
@@ -1984,7 +2404,7 @@ _HardwareInit:
 	.asciz	"U2CTSR4"
 	.byte	0x2
 	.2byte	0x17a1
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x3
@@ -1996,20 +2416,20 @@ _HardwareInit:
 	.byte	0x2
 	.byte	0x2
 	.2byte	0x1790
-	.4byte	0xe03
+	.4byte	0x1124
 	.uleb128 0x8
-	.4byte	0xcdb
+	.4byte	0xffc
 	.uleb128 0x8
-	.4byte	0xd0e
+	.4byte	0x102f
 	.byte	0x0
 	.uleb128 0x3
 	.asciz	"tagRPINR19BITS"
 	.byte	0x2
 	.byte	0x2
 	.2byte	0x178f
-	.4byte	0xe24
+	.4byte	0x1145
 	.uleb128 0x9
-	.4byte	0xdef
+	.4byte	0x1110
 	.byte	0x2
 	.byte	0x23
 	.uleb128 0x0
@@ -2018,17 +2438,17 @@ _HardwareInit:
 	.asciz	"RPINR19BITS"
 	.byte	0x2
 	.2byte	0x17a4
-	.4byte	0xe03
+	.4byte	0x1124
 	.uleb128 0x6
 	.byte	0x2
 	.byte	0x2
 	.2byte	0x1849
-	.4byte	0xe68
+	.4byte	0x1189
 	.uleb128 0x4
 	.asciz	"RP4R"
 	.byte	0x2
 	.2byte	0x184a
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x5
 	.byte	0xb
@@ -2039,7 +2459,7 @@ _HardwareInit:
 	.asciz	"RP5R"
 	.byte	0x2
 	.2byte	0x184c
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x5
 	.byte	0x3
@@ -2051,12 +2471,12 @@ _HardwareInit:
 	.byte	0x2
 	.byte	0x2
 	.2byte	0x184e
-	.4byte	0xf3a
+	.4byte	0x125b
 	.uleb128 0x4
 	.asciz	"RP4R0"
 	.byte	0x2
 	.2byte	0x184f
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xf
@@ -2067,7 +2487,7 @@ _HardwareInit:
 	.asciz	"RP4R1"
 	.byte	0x2
 	.2byte	0x1850
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xe
@@ -2078,7 +2498,7 @@ _HardwareInit:
 	.asciz	"RP4R2"
 	.byte	0x2
 	.2byte	0x1851
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xd
@@ -2089,7 +2509,7 @@ _HardwareInit:
 	.asciz	"RP4R3"
 	.byte	0x2
 	.2byte	0x1852
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xc
@@ -2100,7 +2520,7 @@ _HardwareInit:
 	.asciz	"RP4R4"
 	.byte	0x2
 	.2byte	0x1853
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xb
@@ -2111,7 +2531,7 @@ _HardwareInit:
 	.asciz	"RP5R0"
 	.byte	0x2
 	.2byte	0x1855
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x7
@@ -2122,7 +2542,7 @@ _HardwareInit:
 	.asciz	"RP5R1"
 	.byte	0x2
 	.2byte	0x1856
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x6
@@ -2133,7 +2553,7 @@ _HardwareInit:
 	.asciz	"RP5R2"
 	.byte	0x2
 	.2byte	0x1857
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x5
@@ -2144,7 +2564,7 @@ _HardwareInit:
 	.asciz	"RP5R3"
 	.byte	0x2
 	.2byte	0x1858
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x4
@@ -2155,7 +2575,7 @@ _HardwareInit:
 	.asciz	"RP5R4"
 	.byte	0x2
 	.2byte	0x1859
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x3
@@ -2167,20 +2587,20 @@ _HardwareInit:
 	.byte	0x2
 	.byte	0x2
 	.2byte	0x1848
-	.4byte	0xf4e
+	.4byte	0x126f
 	.uleb128 0x8
-	.4byte	0xe38
+	.4byte	0x1159
 	.uleb128 0x8
-	.4byte	0xe68
+	.4byte	0x1189
 	.byte	0x0
 	.uleb128 0x3
 	.asciz	"tagRPOR2BITS"
 	.byte	0x2
 	.byte	0x2
 	.2byte	0x1847
-	.4byte	0xf6d
+	.4byte	0x128e
 	.uleb128 0x9
-	.4byte	0xf3a
+	.4byte	0x125b
 	.byte	0x2
 	.byte	0x23
 	.uleb128 0x0
@@ -2189,17 +2609,17 @@ _HardwareInit:
 	.asciz	"RPOR2BITS"
 	.byte	0x2
 	.2byte	0x185c
-	.4byte	0xf4e
+	.4byte	0x126f
 	.uleb128 0x6
 	.byte	0x2
 	.byte	0x2
 	.2byte	0x1863
-	.4byte	0xfaf
+	.4byte	0x12d0
 	.uleb128 0x4
 	.asciz	"RP6R"
 	.byte	0x2
 	.2byte	0x1864
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x5
 	.byte	0xb
@@ -2210,7 +2630,7 @@ _HardwareInit:
 	.asciz	"RP7R"
 	.byte	0x2
 	.2byte	0x1866
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x5
 	.byte	0x3
@@ -2222,12 +2642,12 @@ _HardwareInit:
 	.byte	0x2
 	.byte	0x2
 	.2byte	0x1868
-	.4byte	0x1081
+	.4byte	0x13a2
 	.uleb128 0x4
 	.asciz	"RP6R0"
 	.byte	0x2
 	.2byte	0x1869
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xf
@@ -2238,7 +2658,7 @@ _HardwareInit:
 	.asciz	"RP6R1"
 	.byte	0x2
 	.2byte	0x186a
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xe
@@ -2249,7 +2669,7 @@ _HardwareInit:
 	.asciz	"RP6R2"
 	.byte	0x2
 	.2byte	0x186b
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xd
@@ -2260,7 +2680,7 @@ _HardwareInit:
 	.asciz	"RP6R3"
 	.byte	0x2
 	.2byte	0x186c
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xc
@@ -2271,7 +2691,7 @@ _HardwareInit:
 	.asciz	"RP6R4"
 	.byte	0x2
 	.2byte	0x186d
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xb
@@ -2282,7 +2702,7 @@ _HardwareInit:
 	.asciz	"RP7R0"
 	.byte	0x2
 	.2byte	0x186f
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x7
@@ -2293,7 +2713,7 @@ _HardwareInit:
 	.asciz	"RP7R1"
 	.byte	0x2
 	.2byte	0x1870
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x6
@@ -2304,7 +2724,7 @@ _HardwareInit:
 	.asciz	"RP7R2"
 	.byte	0x2
 	.2byte	0x1871
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x5
@@ -2315,7 +2735,7 @@ _HardwareInit:
 	.asciz	"RP7R3"
 	.byte	0x2
 	.2byte	0x1872
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x4
@@ -2326,7 +2746,7 @@ _HardwareInit:
 	.asciz	"RP7R4"
 	.byte	0x2
 	.2byte	0x1873
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x3
@@ -2338,20 +2758,20 @@ _HardwareInit:
 	.byte	0x2
 	.byte	0x2
 	.2byte	0x1862
-	.4byte	0x1095
+	.4byte	0x13b6
 	.uleb128 0x8
-	.4byte	0xf7f
+	.4byte	0x12a0
 	.uleb128 0x8
-	.4byte	0xfaf
+	.4byte	0x12d0
 	.byte	0x0
 	.uleb128 0x3
 	.asciz	"tagRPOR3BITS"
 	.byte	0x2
 	.byte	0x2
 	.2byte	0x1861
-	.4byte	0x10b4
+	.4byte	0x13d5
 	.uleb128 0x9
-	.4byte	0x1081
+	.4byte	0x13a2
 	.byte	0x2
 	.byte	0x23
 	.uleb128 0x0
@@ -2360,17 +2780,17 @@ _HardwareInit:
 	.asciz	"RPOR3BITS"
 	.byte	0x2
 	.2byte	0x1876
-	.4byte	0x1095
+	.4byte	0x13b6
 	.uleb128 0x6
 	.byte	0x2
 	.byte	0x2
 	.2byte	0x1897
-	.4byte	0x10f8
+	.4byte	0x1419
 	.uleb128 0x4
 	.asciz	"RP10R"
 	.byte	0x2
 	.2byte	0x1898
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x5
 	.byte	0xb
@@ -2381,7 +2801,7 @@ _HardwareInit:
 	.asciz	"RP11R"
 	.byte	0x2
 	.2byte	0x189a
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x5
 	.byte	0x3
@@ -2393,12 +2813,12 @@ _HardwareInit:
 	.byte	0x2
 	.byte	0x2
 	.2byte	0x189c
-	.4byte	0x11d4
+	.4byte	0x14f5
 	.uleb128 0x4
 	.asciz	"RP10R0"
 	.byte	0x2
 	.2byte	0x189d
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xf
@@ -2409,7 +2829,7 @@ _HardwareInit:
 	.asciz	"RP10R1"
 	.byte	0x2
 	.2byte	0x189e
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xe
@@ -2420,7 +2840,7 @@ _HardwareInit:
 	.asciz	"RP10R2"
 	.byte	0x2
 	.2byte	0x189f
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xd
@@ -2431,7 +2851,7 @@ _HardwareInit:
 	.asciz	"RP10R3"
 	.byte	0x2
 	.2byte	0x18a0
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xc
@@ -2442,7 +2862,7 @@ _HardwareInit:
 	.asciz	"RP10R4"
 	.byte	0x2
 	.2byte	0x18a1
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xb
@@ -2453,7 +2873,7 @@ _HardwareInit:
 	.asciz	"RP11R0"
 	.byte	0x2
 	.2byte	0x18a3
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x7
@@ -2464,7 +2884,7 @@ _HardwareInit:
 	.asciz	"RP11R1"
 	.byte	0x2
 	.2byte	0x18a4
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x6
@@ -2475,7 +2895,7 @@ _HardwareInit:
 	.asciz	"RP11R2"
 	.byte	0x2
 	.2byte	0x18a5
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x5
@@ -2486,7 +2906,7 @@ _HardwareInit:
 	.asciz	"RP11R3"
 	.byte	0x2
 	.2byte	0x18a6
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x4
@@ -2497,7 +2917,7 @@ _HardwareInit:
 	.asciz	"RP11R4"
 	.byte	0x2
 	.2byte	0x18a7
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x3
@@ -2509,20 +2929,20 @@ _HardwareInit:
 	.byte	0x2
 	.byte	0x2
 	.2byte	0x1896
-	.4byte	0x11e8
+	.4byte	0x1509
 	.uleb128 0x8
-	.4byte	0x10c6
+	.4byte	0x13e7
 	.uleb128 0x8
-	.4byte	0x10f8
+	.4byte	0x1419
 	.byte	0x0
 	.uleb128 0x3
 	.asciz	"tagRPOR5BITS"
 	.byte	0x2
 	.byte	0x2
 	.2byte	0x1895
-	.4byte	0x1207
+	.4byte	0x1528
 	.uleb128 0x9
-	.4byte	0x11d4
+	.4byte	0x14f5
 	.byte	0x2
 	.byte	0x23
 	.uleb128 0x0
@@ -2531,17 +2951,17 @@ _HardwareInit:
 	.asciz	"RPOR5BITS"
 	.byte	0x2
 	.2byte	0x18aa
-	.4byte	0x11e8
+	.4byte	0x1509
 	.uleb128 0x6
 	.byte	0x2
 	.byte	0x2
 	.2byte	0x18b1
-	.4byte	0x124b
+	.4byte	0x156c
 	.uleb128 0x4
 	.asciz	"RP12R"
 	.byte	0x2
 	.2byte	0x18b2
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x5
 	.byte	0xb
@@ -2552,7 +2972,7 @@ _HardwareInit:
 	.asciz	"RP13R"
 	.byte	0x2
 	.2byte	0x18b4
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x5
 	.byte	0x3
@@ -2564,12 +2984,12 @@ _HardwareInit:
 	.byte	0x2
 	.byte	0x2
 	.2byte	0x18b6
-	.4byte	0x1327
+	.4byte	0x1648
 	.uleb128 0x4
 	.asciz	"RP12R0"
 	.byte	0x2
 	.2byte	0x18b7
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xf
@@ -2580,7 +3000,7 @@ _HardwareInit:
 	.asciz	"RP12R1"
 	.byte	0x2
 	.2byte	0x18b8
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xe
@@ -2591,7 +3011,7 @@ _HardwareInit:
 	.asciz	"RP12R2"
 	.byte	0x2
 	.2byte	0x18b9
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xd
@@ -2602,7 +3022,7 @@ _HardwareInit:
 	.asciz	"RP12R3"
 	.byte	0x2
 	.2byte	0x18ba
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xc
@@ -2613,7 +3033,7 @@ _HardwareInit:
 	.asciz	"RP12R4"
 	.byte	0x2
 	.2byte	0x18bb
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xb
@@ -2624,7 +3044,7 @@ _HardwareInit:
 	.asciz	"RP13R0"
 	.byte	0x2
 	.2byte	0x18bd
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x7
@@ -2635,7 +3055,7 @@ _HardwareInit:
 	.asciz	"RP13R1"
 	.byte	0x2
 	.2byte	0x18be
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x6
@@ -2646,7 +3066,7 @@ _HardwareInit:
 	.asciz	"RP13R2"
 	.byte	0x2
 	.2byte	0x18bf
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x5
@@ -2657,7 +3077,7 @@ _HardwareInit:
 	.asciz	"RP13R3"
 	.byte	0x2
 	.2byte	0x18c0
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x4
@@ -2668,7 +3088,7 @@ _HardwareInit:
 	.asciz	"RP13R4"
 	.byte	0x2
 	.2byte	0x18c1
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x3
@@ -2680,20 +3100,20 @@ _HardwareInit:
 	.byte	0x2
 	.byte	0x2
 	.2byte	0x18b0
-	.4byte	0x133b
+	.4byte	0x165c
 	.uleb128 0x8
-	.4byte	0x1219
+	.4byte	0x153a
 	.uleb128 0x8
-	.4byte	0x124b
+	.4byte	0x156c
 	.byte	0x0
 	.uleb128 0x3
 	.asciz	"tagRPOR6BITS"
 	.byte	0x2
 	.byte	0x2
 	.2byte	0x18af
-	.4byte	0x135a
+	.4byte	0x167b
 	.uleb128 0x9
-	.4byte	0x1327
+	.4byte	0x1648
 	.byte	0x2
 	.byte	0x23
 	.uleb128 0x0
@@ -2702,17 +3122,17 @@ _HardwareInit:
 	.asciz	"RPOR6BITS"
 	.byte	0x2
 	.2byte	0x18c4
-	.4byte	0x133b
+	.4byte	0x165c
 	.uleb128 0x6
 	.byte	0x2
 	.byte	0x2
 	.2byte	0x1933
-	.4byte	0x139e
+	.4byte	0x16bf
 	.uleb128 0x4
 	.asciz	"RP22R"
 	.byte	0x2
 	.2byte	0x1934
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x5
 	.byte	0xb
@@ -2723,7 +3143,7 @@ _HardwareInit:
 	.asciz	"RP23R"
 	.byte	0x2
 	.2byte	0x1936
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x5
 	.byte	0x3
@@ -2735,12 +3155,12 @@ _HardwareInit:
 	.byte	0x2
 	.byte	0x2
 	.2byte	0x1938
-	.4byte	0x147a
+	.4byte	0x179b
 	.uleb128 0x4
 	.asciz	"RP22R0"
 	.byte	0x2
 	.2byte	0x1939
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xf
@@ -2751,7 +3171,7 @@ _HardwareInit:
 	.asciz	"RP22R1"
 	.byte	0x2
 	.2byte	0x193a
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xe
@@ -2762,7 +3182,7 @@ _HardwareInit:
 	.asciz	"RP22R2"
 	.byte	0x2
 	.2byte	0x193b
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xd
@@ -2773,7 +3193,7 @@ _HardwareInit:
 	.asciz	"RP22R3"
 	.byte	0x2
 	.2byte	0x193c
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xc
@@ -2784,7 +3204,7 @@ _HardwareInit:
 	.asciz	"RP22R4"
 	.byte	0x2
 	.2byte	0x193d
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xb
@@ -2795,7 +3215,7 @@ _HardwareInit:
 	.asciz	"RP23R0"
 	.byte	0x2
 	.2byte	0x193f
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x7
@@ -2806,7 +3226,7 @@ _HardwareInit:
 	.asciz	"RP23R1"
 	.byte	0x2
 	.2byte	0x1940
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x6
@@ -2817,7 +3237,7 @@ _HardwareInit:
 	.asciz	"RP23R2"
 	.byte	0x2
 	.2byte	0x1941
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x5
@@ -2828,7 +3248,7 @@ _HardwareInit:
 	.asciz	"RP23R3"
 	.byte	0x2
 	.2byte	0x1942
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x4
@@ -2839,7 +3259,7 @@ _HardwareInit:
 	.asciz	"RP23R4"
 	.byte	0x2
 	.2byte	0x1943
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x3
@@ -2851,20 +3271,20 @@ _HardwareInit:
 	.byte	0x2
 	.byte	0x2
 	.2byte	0x1932
-	.4byte	0x148e
+	.4byte	0x17af
 	.uleb128 0x8
-	.4byte	0x136c
+	.4byte	0x168d
 	.uleb128 0x8
-	.4byte	0x139e
+	.4byte	0x16bf
 	.byte	0x0
 	.uleb128 0x3
 	.asciz	"tagRPOR11BITS"
 	.byte	0x2
 	.byte	0x2
 	.2byte	0x1931
-	.4byte	0x14ae
+	.4byte	0x17cf
 	.uleb128 0x9
-	.4byte	0x147a
+	.4byte	0x179b
 	.byte	0x2
 	.byte	0x23
 	.uleb128 0x0
@@ -2873,17 +3293,17 @@ _HardwareInit:
 	.asciz	"RPOR11BITS"
 	.byte	0x2
 	.2byte	0x1946
-	.4byte	0x148e
+	.4byte	0x17af
 	.uleb128 0x6
 	.byte	0x2
 	.byte	0x2
 	.2byte	0x194d
-	.4byte	0x14f3
+	.4byte	0x1814
 	.uleb128 0x4
 	.asciz	"RP24R"
 	.byte	0x2
 	.2byte	0x194e
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x5
 	.byte	0xb
@@ -2894,7 +3314,7 @@ _HardwareInit:
 	.asciz	"RP25R"
 	.byte	0x2
 	.2byte	0x1950
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x5
 	.byte	0x3
@@ -2906,12 +3326,12 @@ _HardwareInit:
 	.byte	0x2
 	.byte	0x2
 	.2byte	0x1952
-	.4byte	0x15cf
+	.4byte	0x18f0
 	.uleb128 0x4
 	.asciz	"RP24R0"
 	.byte	0x2
 	.2byte	0x1953
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xf
@@ -2922,7 +3342,7 @@ _HardwareInit:
 	.asciz	"RP24R1"
 	.byte	0x2
 	.2byte	0x1954
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xe
@@ -2933,7 +3353,7 @@ _HardwareInit:
 	.asciz	"RP24R2"
 	.byte	0x2
 	.2byte	0x1955
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xd
@@ -2944,7 +3364,7 @@ _HardwareInit:
 	.asciz	"RP24R3"
 	.byte	0x2
 	.2byte	0x1956
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xc
@@ -2955,7 +3375,7 @@ _HardwareInit:
 	.asciz	"RP24R4"
 	.byte	0x2
 	.2byte	0x1957
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xb
@@ -2966,7 +3386,7 @@ _HardwareInit:
 	.asciz	"RP25R0"
 	.byte	0x2
 	.2byte	0x1959
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x7
@@ -2977,7 +3397,7 @@ _HardwareInit:
 	.asciz	"RP25R1"
 	.byte	0x2
 	.2byte	0x195a
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x6
@@ -2988,7 +3408,7 @@ _HardwareInit:
 	.asciz	"RP25R2"
 	.byte	0x2
 	.2byte	0x195b
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x5
@@ -2999,7 +3419,7 @@ _HardwareInit:
 	.asciz	"RP25R3"
 	.byte	0x2
 	.2byte	0x195c
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x4
@@ -3010,7 +3430,7 @@ _HardwareInit:
 	.asciz	"RP25R4"
 	.byte	0x2
 	.2byte	0x195d
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x3
@@ -3022,20 +3442,20 @@ _HardwareInit:
 	.byte	0x2
 	.byte	0x2
 	.2byte	0x194c
-	.4byte	0x15e3
+	.4byte	0x1904
 	.uleb128 0x8
-	.4byte	0x14c1
+	.4byte	0x17e2
 	.uleb128 0x8
-	.4byte	0x14f3
+	.4byte	0x1814
 	.byte	0x0
 	.uleb128 0x3
 	.asciz	"tagRPOR12BITS"
 	.byte	0x2
 	.byte	0x2
 	.2byte	0x194b
-	.4byte	0x1603
+	.4byte	0x1924
 	.uleb128 0x9
-	.4byte	0x15cf
+	.4byte	0x18f0
 	.byte	0x2
 	.byte	0x23
 	.uleb128 0x0
@@ -3044,17 +3464,17 @@ _HardwareInit:
 	.asciz	"RPOR12BITS"
 	.byte	0x2
 	.2byte	0x1960
-	.4byte	0x15e3
+	.4byte	0x1904
 	.uleb128 0x6
 	.byte	0x2
 	.byte	0x2
 	.2byte	0x199d
-	.4byte	0x1699
+	.4byte	0x19ba
 	.uleb128 0x4
 	.asciz	"PLLPRE"
 	.byte	0x2
 	.2byte	0x199e
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x5
 	.byte	0xb
@@ -3065,7 +3485,7 @@ _HardwareInit:
 	.asciz	"PLLPOST"
 	.byte	0x2
 	.2byte	0x19a0
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x2
 	.byte	0x8
@@ -3076,7 +3496,7 @@ _HardwareInit:
 	.asciz	"FRCDIV"
 	.byte	0x2
 	.2byte	0x19a1
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x3
 	.byte	0x5
@@ -3087,7 +3507,7 @@ _HardwareInit:
 	.asciz	"DOZEN"
 	.byte	0x2
 	.2byte	0x19a2
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x4
@@ -3098,7 +3518,7 @@ _HardwareInit:
 	.asciz	"DOZE"
 	.byte	0x2
 	.2byte	0x19a3
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x3
 	.byte	0x1
@@ -3109,7 +3529,7 @@ _HardwareInit:
 	.asciz	"ROI"
 	.byte	0x2
 	.2byte	0x19a4
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x10
@@ -3121,12 +3541,12 @@ _HardwareInit:
 	.byte	0x2
 	.byte	0x2
 	.2byte	0x19a6
-	.4byte	0x17bd
+	.4byte	0x1ade
 	.uleb128 0x4
 	.asciz	"PLLPRE0"
 	.byte	0x2
 	.2byte	0x19a7
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xf
@@ -3137,7 +3557,7 @@ _HardwareInit:
 	.asciz	"PLLPRE1"
 	.byte	0x2
 	.2byte	0x19a8
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xe
@@ -3148,7 +3568,7 @@ _HardwareInit:
 	.asciz	"PLLPRE2"
 	.byte	0x2
 	.2byte	0x19a9
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xd
@@ -3159,7 +3579,7 @@ _HardwareInit:
 	.asciz	"PLLPRE3"
 	.byte	0x2
 	.2byte	0x19aa
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xc
@@ -3170,7 +3590,7 @@ _HardwareInit:
 	.asciz	"PLLPRE4"
 	.byte	0x2
 	.2byte	0x19ab
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xb
@@ -3181,7 +3601,7 @@ _HardwareInit:
 	.asciz	"PLLPOST0"
 	.byte	0x2
 	.2byte	0x19ad
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x9
@@ -3192,7 +3612,7 @@ _HardwareInit:
 	.asciz	"PLLPOST1"
 	.byte	0x2
 	.2byte	0x19ae
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x8
@@ -3203,7 +3623,7 @@ _HardwareInit:
 	.asciz	"FRCDIV0"
 	.byte	0x2
 	.2byte	0x19af
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x7
@@ -3214,7 +3634,7 @@ _HardwareInit:
 	.asciz	"FRCDIV1"
 	.byte	0x2
 	.2byte	0x19b0
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x6
@@ -3225,7 +3645,7 @@ _HardwareInit:
 	.asciz	"FRCDIV2"
 	.byte	0x2
 	.2byte	0x19b1
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x5
@@ -3236,7 +3656,7 @@ _HardwareInit:
 	.asciz	"DOZE0"
 	.byte	0x2
 	.2byte	0x19b3
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x3
@@ -3247,7 +3667,7 @@ _HardwareInit:
 	.asciz	"DOZE1"
 	.byte	0x2
 	.2byte	0x19b4
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x2
@@ -3258,7 +3678,7 @@ _HardwareInit:
 	.asciz	"DOZE2"
 	.byte	0x2
 	.2byte	0x19b5
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x1
@@ -3270,20 +3690,20 @@ _HardwareInit:
 	.byte	0x2
 	.byte	0x2
 	.2byte	0x199c
-	.4byte	0x17d1
+	.4byte	0x1af2
 	.uleb128 0x8
-	.4byte	0x1616
+	.4byte	0x1937
 	.uleb128 0x8
-	.4byte	0x1699
+	.4byte	0x19ba
 	.byte	0x0
 	.uleb128 0x3
 	.asciz	"tagCLKDIVBITS"
 	.byte	0x2
 	.byte	0x2
 	.2byte	0x199b
-	.4byte	0x17f1
+	.4byte	0x1b12
 	.uleb128 0x9
-	.4byte	0x17bd
+	.4byte	0x1ade
 	.byte	0x2
 	.byte	0x23
 	.uleb128 0x0
@@ -3292,17 +3712,17 @@ _HardwareInit:
 	.asciz	"CLKDIVBITS"
 	.byte	0x2
 	.2byte	0x19b8
-	.4byte	0x17d1
+	.4byte	0x1af2
 	.uleb128 0x6
 	.byte	0x2
 	.byte	0x2
 	.2byte	0x19bf
-	.4byte	0x1823
+	.4byte	0x1b44
 	.uleb128 0x4
 	.asciz	"PLLDIV"
 	.byte	0x2
 	.2byte	0x19c0
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x9
 	.byte	0x7
@@ -3314,12 +3734,12 @@ _HardwareInit:
 	.byte	0x2
 	.byte	0x2
 	.2byte	0x19c2
-	.4byte	0x18f3
+	.4byte	0x1c14
 	.uleb128 0x4
 	.asciz	"PLLDIV0"
 	.byte	0x2
 	.2byte	0x19c3
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xf
@@ -3330,7 +3750,7 @@ _HardwareInit:
 	.asciz	"PLLDIV1"
 	.byte	0x2
 	.2byte	0x19c4
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xe
@@ -3341,7 +3761,7 @@ _HardwareInit:
 	.asciz	"PLLDIV2"
 	.byte	0x2
 	.2byte	0x19c5
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xd
@@ -3352,7 +3772,7 @@ _HardwareInit:
 	.asciz	"PLLDIV3"
 	.byte	0x2
 	.2byte	0x19c6
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xc
@@ -3363,7 +3783,7 @@ _HardwareInit:
 	.asciz	"PLLDIV4"
 	.byte	0x2
 	.2byte	0x19c7
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xb
@@ -3374,7 +3794,7 @@ _HardwareInit:
 	.asciz	"PLLDIV5"
 	.byte	0x2
 	.2byte	0x19c8
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0xa
@@ -3385,7 +3805,7 @@ _HardwareInit:
 	.asciz	"PLLDIV6"
 	.byte	0x2
 	.2byte	0x19c9
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x9
@@ -3396,7 +3816,7 @@ _HardwareInit:
 	.asciz	"PLLDIV7"
 	.byte	0x2
 	.2byte	0x19ca
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x8
@@ -3407,7 +3827,7 @@ _HardwareInit:
 	.asciz	"PLLDIV8"
 	.byte	0x2
 	.2byte	0x19cb
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x1
 	.byte	0x7
@@ -3419,20 +3839,20 @@ _HardwareInit:
 	.byte	0x2
 	.byte	0x2
 	.2byte	0x19be
-	.4byte	0x1907
+	.4byte	0x1c28
 	.uleb128 0x8
-	.4byte	0x1804
+	.4byte	0x1b25
 	.uleb128 0x8
-	.4byte	0x1823
+	.4byte	0x1b44
 	.byte	0x0
 	.uleb128 0x3
 	.asciz	"tagPLLFBDBITS"
 	.byte	0x2
 	.byte	0x2
 	.2byte	0x19bd
-	.4byte	0x1927
+	.4byte	0x1c48
 	.uleb128 0x9
-	.4byte	0x18f3
+	.4byte	0x1c14
 	.byte	0x2
 	.byte	0x23
 	.uleb128 0x0
@@ -3441,7 +3861,7 @@ _HardwareInit:
 	.asciz	"PLLFBDBITS"
 	.byte	0x2
 	.2byte	0x19ce
-	.4byte	0x1907
+	.4byte	0x1c28
 	.uleb128 0xa
 	.byte	0x1
 	.asciz	"HardwareInit"
@@ -3451,12 +3871,12 @@ _HardwareInit:
 	.4byte	.LFB0
 	.4byte	.LFE0
 	.byte	0x1
-	.byte	0x5e
+	.byte	0x5f
 	.uleb128 0xb
 	.4byte	.LASF0
 	.byte	0x2
 	.2byte	0x16a
-	.4byte	0x1964
+	.4byte	0x1c85
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xc
@@ -3465,7 +3885,7 @@ _HardwareInit:
 	.4byte	.LASF1
 	.byte	0x2
 	.2byte	0x17f
-	.4byte	0x1977
+	.4byte	0x1c98
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xc
@@ -3474,7 +3894,7 @@ _HardwareInit:
 	.4byte	.LASF2
 	.byte	0x2
 	.2byte	0x1e0
-	.4byte	0x198a
+	.4byte	0x1cab
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xc
@@ -3483,7 +3903,7 @@ _HardwareInit:
 	.4byte	.LASF3
 	.byte	0x2
 	.2byte	0x24e
-	.4byte	0x199d
+	.4byte	0x1cbe
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xc
@@ -3492,16 +3912,16 @@ _HardwareInit:
 	.asciz	"PR1"
 	.byte	0x2
 	.2byte	0x440
-	.4byte	0x19b0
+	.4byte	0x1cd1
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xc
-	.4byte	0x82
+	.4byte	0x97
 	.uleb128 0xb
 	.4byte	.LASF4
 	.byte	0x2
 	.2byte	0x458
-	.4byte	0x19c3
+	.4byte	0x1ce4
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xc
@@ -3510,7 +3930,7 @@ _HardwareInit:
 	.4byte	.LASF5
 	.byte	0x2
 	.2byte	0x879
-	.4byte	0x19d6
+	.4byte	0x1cf7
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xc
@@ -3519,7 +3939,7 @@ _HardwareInit:
 	.4byte	.LASF6
 	.byte	0x2
 	.2byte	0x897
-	.4byte	0x19e9
+	.4byte	0x1d0a
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xc
@@ -3528,330 +3948,362 @@ _HardwareInit:
 	.asciz	"U1BRG"
 	.byte	0x2
 	.2byte	0x8b8
-	.4byte	0x19b0
+	.4byte	0x1cd1
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xd
 	.asciz	"TRISA"
 	.byte	0x2
 	.2byte	0x999
-	.4byte	0x19b0
+	.4byte	0x1cd1
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xd
 	.asciz	"TRISB"
 	.byte	0x2
 	.2byte	0x9d9
-	.4byte	0x19b0
+	.4byte	0x1cd1
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xd
 	.asciz	"ODCB"
 	.byte	0x2
 	.2byte	0xa1b
-	.4byte	0x19b0
+	.4byte	0x1cd1
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xd
 	.asciz	"TRISC"
 	.byte	0x2
 	.2byte	0xa31
-	.4byte	0x19b0
+	.4byte	0x1cd1
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xd
 	.asciz	"ODCC"
 	.byte	0x2
 	.2byte	0xa61
-	.4byte	0x19b0
+	.4byte	0x1cd1
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xb
 	.4byte	.LASF7
 	.byte	0x2
-	.2byte	0xaba
-	.4byte	0x1a5a
+	.2byte	0xa99
+	.4byte	0x1d7b
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xc
-	.4byte	0xb6a
+	.4byte	0xb5a
 	.uleb128 0xb
 	.4byte	.LASF8
 	.byte	0x2
-	.2byte	0xb0e
-	.4byte	0x19b0
+	.2byte	0xaba
+	.4byte	0x1d8e
 	.byte	0x1
 	.byte	0x1
+	.uleb128 0xc
+	.4byte	0xcf1
 	.uleb128 0xb
 	.4byte	.LASF9
 	.byte	0x2
-	.2byte	0x178b
-	.4byte	0x1a7b
+	.2byte	0xad7
+	.4byte	0x1da1
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xc
-	.4byte	0xcc7
+	.4byte	0xe8b
 	.uleb128 0xb
 	.4byte	.LASF10
 	.byte	0x2
-	.2byte	0x17a5
-	.4byte	0x1a8e
+	.2byte	0xb0e
+	.4byte	0x1cd1
 	.byte	0x1
 	.byte	0x1
-	.uleb128 0xc
-	.4byte	0xe24
 	.uleb128 0xb
 	.4byte	.LASF11
 	.byte	0x2
-	.2byte	0x185d
-	.4byte	0x1aa1
+	.2byte	0x178b
+	.4byte	0x1dc2
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xc
-	.4byte	0xf6d
+	.4byte	0xfe8
 	.uleb128 0xb
 	.4byte	.LASF12
 	.byte	0x2
-	.2byte	0x1877
-	.4byte	0x1ab4
+	.2byte	0x17a5
+	.4byte	0x1dd5
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xc
-	.4byte	0x10b4
+	.4byte	0x1145
 	.uleb128 0xb
 	.4byte	.LASF13
 	.byte	0x2
-	.2byte	0x18ab
-	.4byte	0x1ac7
+	.2byte	0x185d
+	.4byte	0x1de8
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xc
-	.4byte	0x1207
+	.4byte	0x128e
 	.uleb128 0xb
 	.4byte	.LASF14
 	.byte	0x2
-	.2byte	0x18c5
-	.4byte	0x1ada
+	.2byte	0x1877
+	.4byte	0x1dfb
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xc
-	.4byte	0x135a
+	.4byte	0x13d5
 	.uleb128 0xb
 	.4byte	.LASF15
 	.byte	0x2
-	.2byte	0x1947
-	.4byte	0x1aed
+	.2byte	0x18ab
+	.4byte	0x1e0e
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xc
-	.4byte	0x14ae
+	.4byte	0x1528
 	.uleb128 0xb
 	.4byte	.LASF16
 	.byte	0x2
-	.2byte	0x1961
-	.4byte	0x1b00
+	.2byte	0x18c5
+	.4byte	0x1e21
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xc
-	.4byte	0x1603
+	.4byte	0x167b
 	.uleb128 0xb
 	.4byte	.LASF17
 	.byte	0x2
-	.2byte	0x19b9
-	.4byte	0x1b13
+	.2byte	0x1947
+	.4byte	0x1e34
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xc
-	.4byte	0x17f1
+	.4byte	0x17cf
 	.uleb128 0xb
 	.4byte	.LASF18
 	.byte	0x2
-	.2byte	0x19cf
-	.4byte	0x1b26
+	.2byte	0x1961
+	.4byte	0x1e47
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xc
-	.4byte	0x1927
+	.4byte	0x1924
+	.uleb128 0xb
+	.4byte	.LASF19
+	.byte	0x2
+	.2byte	0x19b9
+	.4byte	0x1e5a
+	.byte	0x1
+	.byte	0x1
+	.uleb128 0xc
+	.4byte	0x1b12
+	.uleb128 0xb
+	.4byte	.LASF20
+	.byte	0x2
+	.2byte	0x19cf
+	.4byte	0x1e6d
+	.byte	0x1
+	.byte	0x1
+	.uleb128 0xc
+	.4byte	0x1c48
 	.uleb128 0xb
 	.4byte	.LASF0
 	.byte	0x2
 	.2byte	0x16a
-	.4byte	0x1964
+	.4byte	0x1c85
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xb
 	.4byte	.LASF1
 	.byte	0x2
 	.2byte	0x17f
-	.4byte	0x1977
+	.4byte	0x1c98
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xb
 	.4byte	.LASF2
 	.byte	0x2
 	.2byte	0x1e0
-	.4byte	0x198a
+	.4byte	0x1cab
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xb
 	.4byte	.LASF3
 	.byte	0x2
 	.2byte	0x24e
-	.4byte	0x199d
+	.4byte	0x1cbe
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xd
 	.asciz	"PR1"
 	.byte	0x2
 	.2byte	0x440
-	.4byte	0x19b0
+	.4byte	0x1cd1
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xb
 	.4byte	.LASF4
 	.byte	0x2
 	.2byte	0x458
-	.4byte	0x19c3
+	.4byte	0x1ce4
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xb
 	.4byte	.LASF5
 	.byte	0x2
 	.2byte	0x879
-	.4byte	0x19d6
+	.4byte	0x1cf7
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xb
 	.4byte	.LASF6
 	.byte	0x2
 	.2byte	0x897
-	.4byte	0x19e9
+	.4byte	0x1d0a
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xd
 	.asciz	"U1BRG"
 	.byte	0x2
 	.2byte	0x8b8
-	.4byte	0x19b0
+	.4byte	0x1cd1
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xd
 	.asciz	"TRISA"
 	.byte	0x2
 	.2byte	0x999
-	.4byte	0x19b0
+	.4byte	0x1cd1
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xd
 	.asciz	"TRISB"
 	.byte	0x2
 	.2byte	0x9d9
-	.4byte	0x19b0
+	.4byte	0x1cd1
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xd
 	.asciz	"ODCB"
 	.byte	0x2
 	.2byte	0xa1b
-	.4byte	0x19b0
+	.4byte	0x1cd1
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xd
 	.asciz	"TRISC"
 	.byte	0x2
 	.2byte	0xa31
-	.4byte	0x19b0
+	.4byte	0x1cd1
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xd
 	.asciz	"ODCC"
 	.byte	0x2
 	.2byte	0xa61
-	.4byte	0x19b0
+	.4byte	0x1cd1
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xb
 	.4byte	.LASF7
 	.byte	0x2
-	.2byte	0xaba
-	.4byte	0x1a5a
+	.2byte	0xa99
+	.4byte	0x1d7b
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xb
 	.4byte	.LASF8
 	.byte	0x2
-	.2byte	0xb0e
-	.4byte	0x19b0
+	.2byte	0xaba
+	.4byte	0x1d8e
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xb
 	.4byte	.LASF9
 	.byte	0x2
-	.2byte	0x178b
-	.4byte	0x1a7b
+	.2byte	0xad7
+	.4byte	0x1da1
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xb
 	.4byte	.LASF10
 	.byte	0x2
-	.2byte	0x17a5
-	.4byte	0x1a8e
+	.2byte	0xb0e
+	.4byte	0x1cd1
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xb
 	.4byte	.LASF11
 	.byte	0x2
-	.2byte	0x185d
-	.4byte	0x1aa1
+	.2byte	0x178b
+	.4byte	0x1dc2
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xb
 	.4byte	.LASF12
 	.byte	0x2
-	.2byte	0x1877
-	.4byte	0x1ab4
+	.2byte	0x17a5
+	.4byte	0x1dd5
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xb
 	.4byte	.LASF13
 	.byte	0x2
-	.2byte	0x18ab
-	.4byte	0x1ac7
+	.2byte	0x185d
+	.4byte	0x1de8
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xb
 	.4byte	.LASF14
 	.byte	0x2
-	.2byte	0x18c5
-	.4byte	0x1ada
+	.2byte	0x1877
+	.4byte	0x1dfb
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xb
 	.4byte	.LASF15
 	.byte	0x2
-	.2byte	0x1947
-	.4byte	0x1aed
+	.2byte	0x18ab
+	.4byte	0x1e0e
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xb
 	.4byte	.LASF16
 	.byte	0x2
-	.2byte	0x1961
-	.4byte	0x1b00
+	.2byte	0x18c5
+	.4byte	0x1e21
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xb
 	.4byte	.LASF17
 	.byte	0x2
-	.2byte	0x19b9
-	.4byte	0x1b13
+	.2byte	0x1947
+	.4byte	0x1e34
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xb
 	.4byte	.LASF18
 	.byte	0x2
+	.2byte	0x1961
+	.4byte	0x1e47
+	.byte	0x1
+	.byte	0x1
+	.uleb128 0xb
+	.4byte	.LASF19
+	.byte	0x2
+	.2byte	0x19b9
+	.4byte	0x1e5a
+	.byte	0x1
+	.byte	0x1
+	.uleb128 0xb
+	.4byte	.LASF20
+	.byte	0x2
 	.2byte	0x19cf
-	.4byte	0x1b26
+	.4byte	0x1e6d
 	.byte	0x1
 	.byte	0x1
 	.byte	0x0
@@ -4044,15 +4496,15 @@ _HardwareInit:
 	.4byte	0x1f
 	.2byte	0x2
 	.4byte	.Ldebug_info0
-	.4byte	0x1ca2
-	.4byte	0x193a
+	.4byte	0x2005
+	.4byte	0x1c5b
 	.asciz	"HardwareInit"
 	.4byte	0x0
 	.section	.debug_pubtypes,info
-	.4byte	0x250
+	.4byte	0x296
 	.2byte	0x2
 	.4byte	.Ldebug_info0
-	.4byte	0x1ca2
+	.4byte	0x2005
 	.4byte	0xcb
 	.asciz	"tagINTCON2BITS"
 	.4byte	0x14b
@@ -4081,49 +4533,57 @@ _HardwareInit:
 	.asciz	"tagU1STABITS"
 	.4byte	0x9d5
 	.asciz	"U1STABITS"
-	.4byte	0xb49
+	.4byte	0xb39
+	.asciz	"tagAD1CON1BITS"
+	.4byte	0xb5a
+	.asciz	"AD1CON1BITS"
+	.4byte	0xcd0
 	.asciz	"tagAD1CON2BITS"
-	.4byte	0xb6a
+	.4byte	0xcf1
 	.asciz	"AD1CON2BITS"
-	.4byte	0xca6
+	.4byte	0xe6a
+	.asciz	"tagAD1CON3BITS"
+	.4byte	0xe8b
+	.asciz	"AD1CON3BITS"
+	.4byte	0xfc7
 	.asciz	"tagRPINR18BITS"
-	.4byte	0xcc7
+	.4byte	0xfe8
 	.asciz	"RPINR18BITS"
-	.4byte	0xe03
+	.4byte	0x1124
 	.asciz	"tagRPINR19BITS"
-	.4byte	0xe24
+	.4byte	0x1145
 	.asciz	"RPINR19BITS"
-	.4byte	0xf4e
+	.4byte	0x126f
 	.asciz	"tagRPOR2BITS"
-	.4byte	0xf6d
+	.4byte	0x128e
 	.asciz	"RPOR2BITS"
-	.4byte	0x1095
+	.4byte	0x13b6
 	.asciz	"tagRPOR3BITS"
-	.4byte	0x10b4
+	.4byte	0x13d5
 	.asciz	"RPOR3BITS"
-	.4byte	0x11e8
+	.4byte	0x1509
 	.asciz	"tagRPOR5BITS"
-	.4byte	0x1207
+	.4byte	0x1528
 	.asciz	"RPOR5BITS"
-	.4byte	0x133b
+	.4byte	0x165c
 	.asciz	"tagRPOR6BITS"
-	.4byte	0x135a
+	.4byte	0x167b
 	.asciz	"RPOR6BITS"
-	.4byte	0x148e
+	.4byte	0x17af
 	.asciz	"tagRPOR11BITS"
-	.4byte	0x14ae
+	.4byte	0x17cf
 	.asciz	"RPOR11BITS"
-	.4byte	0x15e3
+	.4byte	0x1904
 	.asciz	"tagRPOR12BITS"
-	.4byte	0x1603
+	.4byte	0x1924
 	.asciz	"RPOR12BITS"
-	.4byte	0x17d1
+	.4byte	0x1af2
 	.asciz	"tagCLKDIVBITS"
-	.4byte	0x17f1
+	.4byte	0x1b12
 	.asciz	"CLKDIVBITS"
-	.4byte	0x1907
+	.4byte	0x1c28
 	.asciz	"tagPLLFBDBITS"
-	.4byte	0x1927
+	.4byte	0x1c48
 	.asciz	"PLLFBDBITS"
 	.4byte	0x0
 	.section	.debug_aranges,info
@@ -4388,7 +4848,7 @@ _HardwareInit:
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	.LSM42
-	.byte	0x21
+	.byte	0x15
 	.byte	0x0
 	.uleb128 0x5
 	.byte	0x2
@@ -4403,17 +4863,17 @@ _HardwareInit:
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	.LSM45
-	.byte	0x17
+	.byte	0x15
 	.byte	0x0
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	.LSM46
-	.byte	0x16
+	.byte	0x15
 	.byte	0x0
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	.LSM47
-	.byte	0x17
+	.byte	0x16
 	.byte	0x0
 	.uleb128 0x5
 	.byte	0x2
@@ -4423,21 +4883,56 @@ _HardwareInit:
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	.LSM49
-	.byte	0x15
+	.byte	0x22
 	.byte	0x0
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	.LSM50
-	.byte	0x17
+	.byte	0x15
 	.byte	0x0
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	.LSM51
-	.byte	0x17
+	.byte	0x15
 	.byte	0x0
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	.LSM52
+	.byte	0x17
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM53
+	.byte	0x16
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM54
+	.byte	0x17
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM55
+	.byte	0x15
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM56
+	.byte	0x15
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM57
+	.byte	0x17
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM58
+	.byte	0x17
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM59
 	.byte	0x15
 	.byte	0x0
 	.uleb128 0x5
@@ -4448,29 +4943,31 @@ _HardwareInit:
 	.byte	0x1
 .LELT0:
 	.section	.debug_str,info
-.LASF14:
-	.asciz	"RPOR6bits"
-.LASF11:
-	.asciz	"RPOR2bits"
 .LASF16:
+	.asciz	"RPOR6bits"
+.LASF13:
+	.asciz	"RPOR2bits"
+.LASF7:
+	.asciz	"AD1CON1bits"
+.LASF18:
 	.asciz	"RPOR12bits"
-.LASF9:
+.LASF11:
 	.asciz	"RPINR18bits"
-.LASF17:
+.LASF19:
 	.asciz	"CLKDIVbits"
-.LASF12:
+.LASF14:
 	.asciz	"RPOR3bits"
 .LASF4:
 	.asciz	"T1CONbits"
-.LASF7:
+.LASF8:
 	.asciz	"AD1CON2bits"
-.LASF10:
+.LASF12:
 	.asciz	"RPINR19bits"
 .LASF2:
 	.asciz	"IEC0bits"
-.LASF18:
+.LASF20:
 	.asciz	"PLLFBDbits"
-.LASF8:
+.LASF10:
 	.asciz	"AD1PCFGL"
 .LASF5:
 	.asciz	"U1MODEbits"
@@ -4478,13 +4975,15 @@ _HardwareInit:
 	.asciz	"INTCON2bits"
 .LASF1:
 	.asciz	"IFS0bits"
+.LASF9:
+	.asciz	"AD1CON3bits"
 .LASF6:
 	.asciz	"U1STAbits"
-.LASF13:
+.LASF15:
 	.asciz	"RPOR5bits"
 .LASF3:
 	.asciz	"IPC0bits"
-.LASF15:
+.LASF17:
 	.asciz	"RPOR11bits"
 	.section	.text,code
 

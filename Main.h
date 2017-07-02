@@ -3,6 +3,9 @@
 
 #include <stdbool.h>
 
+#define FCY 40000000
+#include <libpic30.h>
+
 //#define SIMULATION
 typedef unsigned int UINT;
 typedef unsigned char BYTE;

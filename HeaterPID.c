@@ -29,7 +29,6 @@ INT16Q4 TempHistFifoDecim;
 double A;
 BYTE i;
 int DacVal;
-BYTE AdcAverageCnt;
 UINT DacData0Presave;
 
 //________________________________________________________________________________
@@ -41,47 +40,10 @@ void task_HeaterPid_body()
 #ifndef SIMULATION
 		//ReadADC();
 #endif
-		++AdcAverageCnt;
-		if(!(AdcAverageCnt&2))
-		{
-			if(!(AdcAverageCnt&1))
-			{
-				ADCDataTemp0[0]=ADCData[0];
-				ADCDataTemp0[1]=ADCData[1];
-				ADCDataTemp0[2]=ADCData[2];
-				ADCDataTemp0[3]=ADCData[3];
-				return;
-			}
-			else
-			{
-				ADCDataTemp0[0]+=ADCData[0];
-				ADCDataTemp0[1]+=ADCData[1];
-				ADCDataTemp0[2]+=ADCData[2];
-				ADCDataTemp0[3]+=ADCData[3];
-			}
-		}
-		else
-		{
-			if(!(AdcAverageCnt&1))
-			{
-				ADCDataTemp1[0]=ADCData[0];
-				ADCDataTemp1[1]=ADCData[1];
-				ADCDataTemp1[2]=ADCData[2];
-				ADCDataTemp1[3]=ADCData[3];
-				return;
-			}
-			else
-			{
-				ADCDataTemp1[0]+=ADCData[0];
-				ADCDataTemp1[1]+=ADCData[1];
-				ADCDataTemp1[2]+=ADCData[2];
-				ADCDataTemp1[3]+=ADCData[3];
-			}
-		}
-		ADCDataAveraged[0]=(ADCDataTemp0[0]+ADCDataTemp1[0])>>2;
-		ADCDataAveraged[1]=(ADCDataTemp0[1]+ADCDataTemp1[1])>>2;
-		ADCDataAveraged[2]=(ADCDataTemp0[2]+ADCDataTemp1[2])>>2;
-		ADCDataAveraged[3]=(ADCDataTemp0[3]+ADCDataTemp1[3])>>2;
+		ADCDataAveraged[0]=(ADCDataTemp[0][0]+ADCDataTemp[1][0]+ADCDataTemp[2][0]+ADCDataTemp[3][0])>>2;
+		ADCDataAveraged[1]=(ADCDataTemp[0][1]+ADCDataTemp[1][1]+ADCDataTemp[2][1]+ADCDataTemp[3][1])>>2;
+		ADCDataAveraged[2]=(ADCDataTemp[0][2]+ADCDataTemp[1][2]+ADCDataTemp[2][2]+ADCDataTemp[3][2])>>2;
+		ADCDataAveraged[3]=(ADCDataTemp[0][3]+ADCDataTemp[1][3]+ADCDataTemp[2][3]+ADCDataTemp[3][3])>>2;
 		
 		if(!FlagMainOff)
 		{

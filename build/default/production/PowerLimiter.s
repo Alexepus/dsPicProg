@@ -7,28 +7,178 @@
 .Ldebug_line0:
 	.section	.text,code
 .Ltext0:
-	.section	.nbss,bss,near
-	.type	_MaxHeaterISoft,@object
-	.global	_MaxHeaterISoft
+	.section	.text,code
 	.align	2
-_MaxHeaterISoft:	.space	2
-	.type	_MaxHeaterI,@object
-	.global	_MaxHeaterI
-	.align	2
-_MaxHeaterI:	.space	2
-	.type	_MaxHeaterU,@object
-	.global	_MaxHeaterU
-	.align	2
-_MaxHeaterU:	.space	2
-	.type	_MaxHeaterP,@object
-	.global	_MaxHeaterP
-	.align	2
-_MaxHeaterP:	.space	2
-	.type	_HeaterP,@object
-	.global	_HeaterP
-	.align	2
-_HeaterP:	.space	2
+	.global	_Limiter	; export
+	.type	_Limiter,@function
+_Limiter:
+.LFB0:
+.LSM0:
+	.set ___PA___,1
+	lnk	#6
+	mov.d	w8,[w15++]
+.LSM1:
+	mov	_ADCDataAveraged+2,w8
+	mov	_MaxHeaterI,w4
+	sub	w8,w4,[w15]
+	.set ___BP___,50
+	bra	leu,.L2
+.LSM2:
+	mov.b	#1,w4
+	exch	w0,w4
+	mov.b	WREG,_MaxHeaterIGuard
+	exch	w0,w4
+.L2:
+.LSM3:
+	mov	_DacData,w4
+	mov	_DacData0Max,w5
+	sub	w4,w5,[w15]
+	.set ___BP___,50
+	bra	gtu,.L15
+	mov	_MaxHeaterISoft,w9
+.L3:
+.LSM4:
+	mov	#_MaxHeaterISoftCount,w5
+	mov.b	[w5],w5
+	sub.b	w5,#0,[w15]
+	.set ___BP___,50
+	bra	nz,.L17
+.L6:
+.LSM5:
+	mov	w4,[w15-8]
+.LSM6:
+	clr.b	w4
+	mov.b	w4,[w15-10]
+.LSM7:
+	sub	w8,#0,[w15]
+	.set ___BP___,33
+	bra	nz,.L4
+.LSM8:
+	setm	_KHeaterIToRef
+	setm	_KHeaterIToRef+2
+	mov	#65524,w0
+	mov	#65535,w1
+.L8:
+.LSM9:
+	mov	#244,w4
+	mov	_KHeaterIToRef_Medium+2,w6
+	mul.ss	w6,w4,w6
+	mov	_KHeaterIToRef_Medium,w5
+	mul.uu	w5,w4,w4
+	add	w6,w5,w5
+	add	w4,w0,w6
+	addc	w5,w1,w7
+	mov	w6,[w15-10]
+	mov	w7,[w15-8]
+.LSM10:
+	mov	[w15-8],w4
+	mov	w4,_KHeaterIToRef_Medium
+	clr	_KHeaterIToRef_Medium+2
+.LSM11:
+	mul.uu	w9,w4,w4
+	mov	w4,_MulVarB
+	mov	w5,_MulVarB+2
+	mov.b	_MulVarB+1,WREG
+	mov.b	WREG,_DacData0Max
+	mov.b	_MulVarB+2,WREG
+	mov.b	WREG,_DacData0Max+1
+.LSM12:
+	mov	_ADCDataAveraged+4,w4
+	mov	_MaxHeaterU,w5
+	sub	w4,w5,[w15]
+	.set ___BP___,50
+	bra	gtu,.L9
+	mov	#_MaxHeaterUGuard,w6
+	mov.b	[w6],w6
+.L10:
+.LSM13:
+	mov	w8,_MulVarA
+	clr	_MulVarA+2
+	mul.uu	w8,w4,w8
+	mov	w8,_MulVarB
+	mov	w9,_MulVarB+2
+	mov.b	_MulVarB+2,WREG
+	mov.b	WREG,_HeaterP
+	mov.b	_MulVarB+3,WREG
+	mov.b	WREG,_HeaterP+1
+.LSM14:
+	mov	_MaxHeaterP,w4
+	mov	_HeaterP,w5
+	sub	w5,w4,[w15]
+	.set ___BP___,50
+	bra	gtu,.L11
+	mov	#_MaxHeaterPGuard,w5
+	mov.b	[w5],w5
+.L12:
+.LSM15:
+	mov	#_MaxHeaterIGuard,w7
+	ior.b	w6,[w7],w4
+	ior.b	w4,w5,w4
+	.set ___BP___,39
+	bra	z,.L1
+.LSM16:
+	clr	_DacData
+.L1:
+.LSM17:
+	mov.d	[--w15],w8
+	ulnk	
+	return	
+	.set ___PA___,0
+.L11:
+.LSM18:
+	mov.b	#1,w5
+	exch	w0,w5
+	mov.b	WREG,_MaxHeaterPGuard
+	exch	w0,w5
+	bra	.L12
+.L9:
+.LSM19:
+	mov.b	#1,w6
+	exch	w0,w6
+	mov.b	WREG,_MaxHeaterUGuard
+	exch	w0,w6
+	bra	.L10
+.L15:
+.LSM20:
+	mov	_MaxHeaterISoft,w9
+	lsr	w9,w6
+	sub	w8,w6,[w15]
+	.set ___BP___,50
+	bra	leu,.L3
+.LSM21:
+	mov.b	#100,w4
+	mov	w4,w0
+	mov.b	WREG,_MaxHeaterISoftCount
+.LSM22:
+	mov	w5,_DacData
+.LSM23:
+	mov	w5,[w15-8]
+.LSM24:
+	clr.b	w0
+	mov.b	w0,[w15-10]
+.L4:
+.LSM25:
+	mov	w8,w2
+	clr	w3
+	mov	[w15-10],w0
+	mov	[w15-8],w1
+	rcall	___udivsi3
+	mov	w0,_KHeaterIToRef
+	mov	w1,_KHeaterIToRef+2
+	mul.su	w1,#12,w4
+	mul.uu	w0,#12,w0
+	add	w4,w1,w1
+	bra	.L8
+.L17:
+.LSM26:
+	dec.b	w5,w5
+	exch	w0,w5
+	mov.b	WREG,_MaxHeaterISoftCount
+	exch	w0,w5
+	bra	.L6
+.LFE0:
 	.global	_KHeaterIToRef	; export
+	.section	.nbss,bss,near
 	.align	2
 	.type	_KHeaterIToRef,@object
 _KHeaterIToRef:
@@ -46,251 +196,45 @@ _DacData0Max:
 	.word	-1
 	.global	_MaxHeaterISoftCount	; export
 	.section	.nbss,bss,near
+	.align	2
 	.type	_MaxHeaterISoftCount,@object
 _MaxHeaterISoftCount:
 	.skip	1
 	.global	_MaxHeaterIGuard	; export
+	.align	2
 	.type	_MaxHeaterIGuard,@object
 _MaxHeaterIGuard:
 	.skip	1
 	.global	_MaxHeaterUGuard	; export
+	.align	2
 	.type	_MaxHeaterUGuard,@object
 _MaxHeaterUGuard:
 	.skip	1
 	.global	_MaxHeaterPGuard	; export
+	.align	2
 	.type	_MaxHeaterPGuard,@object
 _MaxHeaterPGuard:
 	.skip	1
-	.section	.text,code
+	.type	_MaxHeaterI,@object
+	.global	_MaxHeaterI
 	.align	2
-	.global	_Limiter	; export
-	.type	_Limiter,@function
-_Limiter:
-.LFB0:
-.LSM0:
-	.set ___PA___,1
-	lnk	#6
-.LSM1:
-	mov	_ADCDataAveraged+2,w5
-	mov	_MaxHeaterI,w4
-	sub	w5,w4,[w15]
-	.set ___BP___,0
-	bra	leu,.L2
-.LSM2:
-	mov.b	#1,w4
-	exch	w0,w4
-	mov.b	WREG,_MaxHeaterIGuard
-	exch	w0,w4
-.L2:
-.LSM3:
-	mov	_DacData,w4
-	mov	w4,w5
-	mov	_DacData0Max,w4
-	sub	w5,w4,[w15]
-	.set ___BP___,0
-	bra	leu,.L3
-	mov	_ADCDataAveraged+2,w5
-	mov	_MaxHeaterISoft,w4
-	lsr	w4,w4
-	sub	w5,w4,[w15]
-	.set ___BP___,0
-	bra	leu,.L3
-.LSM4:
-	mov.b	#100,w4
-	exch	w0,w4
-	mov.b	WREG,_MaxHeaterISoftCount
-	exch	w0,w4
-.LSM5:
-	mov	_DacData0Max,w4
-	mov	w4,_DacData
-	bra	.L4
-.L3:
-.LSM6:
-	mov	#_MaxHeaterISoftCount,w4
-	mov.b	[w4],w4
-	sub.b	w4,#0,[w15]
-	.set ___BP___,0
-	bra	z,.L4
-.LSM7:
-	mov	#_MaxHeaterISoftCount,w4
-	mov.b	[w4],w4
-	dec.b	w4,w4
-	exch	w0,w4
-	mov.b	WREG,_MaxHeaterISoftCount
-	exch	w0,w4
-.L4:
-.LSM8:
-	mov	_DacData,w4
-	mov	w4,[w14+2]
-.LSM9:
-	clr.b	w4
-	mov.b	w4,[w14]
-.LSM10:
-	mov	_ADCDataAveraged+2,w4
-	sub	w4,#0,[w15]
-	.set ___BP___,0
-	bra	z,.L5
-.LSM11:
-	mov.d	[w14],w6
-	mov	_ADCDataAveraged+2,w4
-	mov	#0,w5
-	mov.d	w4,w2
-	mov.d	w6,w0
-	rcall	___udivsi3
-	mov.d	w0,w4
-	mov	w4,_KHeaterIToRef
-	mov	w5,_KHeaterIToRef+2
-	bra	.L6
-.L5:
-.LSM12:
-	setm	w4
-	setm	w5
-	mov	w4,_KHeaterIToRef
-	mov	w5,_KHeaterIToRef+2
-.L6:
-.LSM13:
-	mov	_KHeaterIToRef_Medium,w4
-	mov	_KHeaterIToRef_Medium+2,w5
-	mov	#244,w6
-	mul.ss	w5,w6,w6
-	mov	w6,w0
-	mul.su	w4,#0,w6
-	mov	w6,w6
-	add	w0,w6,w0
-	mov	w4,w5
-	mov	#244,w4
-	mul.uu	w5,w4,w6
-	add	w0,w7,w0
-	mov	w0,w7
-	mov	_KHeaterIToRef,w4
-	mov	_KHeaterIToRef+2,w5
-	mul.su	w5,#12,w0
-	mov	w0,w0
-	mul.su	w4,#0,w2
-	mov	w2,w1
-	add	w0,w1,w0
-	mov	w4,w5
-	mov	#12,w4
-	mul.uu	w5,w4,w4
-	add	w0,w5,w0
-	mov	w0,w5
-	add	w4,w6,w4
-	addc	w5,w7,w5
-	mov.d	w4,[w14]
-.LSM14:
-	mov	[w14+2],w4
-	mov	#0,w5
-	mov	w4,_KHeaterIToRef_Medium
-	mov	w5,_KHeaterIToRef_Medium+2
-.LSM15:
-	mov	_MaxHeaterISoft,w4
-	mov	#0,w5
-	mov	w4,_MulVarA
-	mov	w5,_MulVarA+2
-	mov	_MulVarA,w4
-	mov	_MulVarA+2,w5
-	mov.d	w4,w6
-	mov	_KHeaterIToRef_Medium,w4
-	mov	_KHeaterIToRef_Medium+2,w5
-	mul.ss	w7,w4,w0
-	mov	w0,w0
-	mul.ss	w5,w6,w2
-	mov	w2,w1
-	add	w0,w1,w0
-	mov	w6,w6
-	mov	w4,w4
-	mul.uu	w6,w4,w4
-	add	w0,w5,w0
-	mov	w0,w5
-	mov	w4,_MulVarB
-	mov	w5,_MulVarB+2
-	mov	#_DacData0Max,w5
-	mov	#_MulVarB,w4
-	inc	w4,w4
-	mov.b	[w4],w4
-	mov.b	w4,[w5]
-	mov	#_DacData0Max,w4
-	inc	w4,w5
-	mov	#_MulVarB,w4
-	inc2	w4,w4
-	mov.b	[w4],w4
-	mov.b	w4,[w5]
-.LSM16:
-	mov	_ADCDataAveraged+4,w5
-	mov	_MaxHeaterU,w4
-	sub	w5,w4,[w15]
-	.set ___BP___,0
-	bra	leu,.L7
-.LSM17:
-	mov.b	#1,w4
-	mov	w4,w0
-	mov.b	WREG,_MaxHeaterUGuard
-.L7:
-.LSM18:
-	mov	_ADCDataAveraged+2,w4
-	mov	#0,w5
-	mov	w4,_MulVarA
-	mov	w5,_MulVarA+2
-	mov	_ADCDataAveraged+4,w4
-	mul.uu	w4,#1,w6
-	mov	_MulVarA,w4
-	mov	_MulVarA+2,w5
-	mul.ss	w7,w4,w0
-	mov	w0,w0
-	mul.ss	w5,w6,w2
-	mov	w2,w1
-	add	w0,w1,w0
-	mov	w6,w6
-	mov	w4,w4
-	mul.uu	w6,w4,w4
-	add	w0,w5,w0
-	mov	w0,w5
-	mov	w4,_MulVarB
-	mov	w5,_MulVarB+2
-	mov	#_HeaterP,w5
-	mov	#_MulVarB,w4
-	inc2	w4,w4
-	mov.b	[w4],w4
-	mov.b	w4,[w5]
-	mov	#_HeaterP,w4
-	inc	w4,w5
-	mov	#_MulVarB,w4
-	add	w4,#3,w4
-	mov.b	[w4],w4
-	mov.b	w4,[w5]
-.LSM19:
-	mov	_HeaterP,w5
-	mov	_MaxHeaterP,w4
-	sub	w5,w4,[w15]
-	.set ___BP___,0
-	bra	leu,.L8
-.LSM20:
-	mov.b	#1,w4
-	exch	w0,w4
-	mov.b	WREG,_MaxHeaterPGuard
-	exch	w0,w4
-.L8:
-.LSM21:
-	mov	#_MaxHeaterIGuard,w5
-	mov.b	[w5],w5
-	mov	#_MaxHeaterUGuard,w4
-	mov.b	[w4],w4
-	ior.b	w5,w4,w5
-	mov	#_MaxHeaterPGuard,w4
-	mov.b	[w4],w4
-	ior.b	w5,w4,w4
-	sub.b	w4,#0,[w15]
-	.set ___BP___,0
-	bra	z,.L1
-.LSM22:
-	clr	w4
-	mov	w4,_DacData
-.L1:
-.LSM23:
-	ulnk	
-	return	
-	.set ___PA___,0
-.LFE0:
+_MaxHeaterI:	.space	2
+	.type	_MaxHeaterU,@object
+	.global	_MaxHeaterU
+	.align	2
+_MaxHeaterU:	.space	2
+	.type	_MaxHeaterP,@object
+	.global	_MaxHeaterP
+	.align	2
+_MaxHeaterP:	.space	2
+	.type	_MaxHeaterISoft,@object
+	.global	_MaxHeaterISoft
+	.align	2
+_MaxHeaterISoft:	.space	2
+	.type	_HeaterP,@object
+	.global	_HeaterP
+	.align	2
+_HeaterP:	.space	2
 	.section	.debug_frame,info
 .Lframe0:
 	.4byte	.LECIE0-.LSCIE0
@@ -333,66 +277,66 @@ _Limiter:
 	.4byte	.Letext0
 	.4byte	.Ldebug_line0
 	.uleb128 0x2
-	.asciz	"UINT"
-	.byte	0x2
-	.byte	0x7
-	.4byte	0x8e
-	.uleb128 0x3
-	.byte	0x2
-	.byte	0x7
-	.asciz	"unsigned int"
-	.uleb128 0x2
-	.asciz	"BYTE"
-	.byte	0x2
-	.byte	0x8
-	.4byte	0xaa
-	.uleb128 0x3
-	.byte	0x1
-	.byte	0x8
-	.asciz	"unsigned char"
-	.uleb128 0x2
-	.asciz	"ULONG"
-	.byte	0x2
-	.byte	0x9
-	.4byte	0xc8
-	.uleb128 0x3
 	.byte	0x4
 	.byte	0x7
 	.asciz	"long unsigned int"
 	.uleb128 0x3
+	.asciz	"UINT"
+	.byte	0x2
+	.byte	0xa
+	.4byte	0xa3
+	.uleb128 0x2
+	.byte	0x2
+	.byte	0x7
+	.asciz	"unsigned int"
+	.uleb128 0x3
+	.asciz	"BYTE"
+	.byte	0x2
+	.byte	0xb
+	.4byte	0xbf
+	.uleb128 0x2
+	.byte	0x1
+	.byte	0x8
+	.asciz	"unsigned char"
+	.uleb128 0x3
+	.asciz	"ULONG"
+	.byte	0x2
+	.byte	0xc
+	.4byte	0x82
+	.uleb128 0x2
 	.byte	0x2
 	.byte	0x5
 	.asciz	"int"
-	.uleb128 0x3
+	.uleb128 0x2
 	.byte	0x4
 	.byte	0x5
 	.asciz	"long int"
 	.uleb128 0x4
 	.byte	0x6
 	.byte	0x2
-	.byte	0x1a
+	.byte	0x1d
 	.4byte	0x128
 	.uleb128 0x5
 	.asciz	"HByte"
 	.byte	0x2
-	.byte	0x1c
-	.4byte	0x9e
+	.byte	0x1f
+	.4byte	0xb3
 	.byte	0x2
 	.byte	0x23
 	.uleb128 0x0
 	.uleb128 0x5
 	.asciz	"MInt"
 	.byte	0x2
-	.byte	0x1d
-	.4byte	0x82
+	.byte	0x20
+	.4byte	0x97
 	.byte	0x2
 	.byte	0x23
 	.uleb128 0x2
 	.uleb128 0x5
 	.asciz	"LByte"
 	.byte	0x2
-	.byte	0x1e
-	.4byte	0x9e
+	.byte	0x21
+	.4byte	0xb3
 	.byte	0x2
 	.byte	0x23
 	.uleb128 0x4
@@ -400,47 +344,47 @@ _Limiter:
 	.uleb128 0x6
 	.byte	0x6
 	.byte	0x2
-	.byte	0x15
+	.byte	0x18
 	.4byte	0x16c
 	.uleb128 0x7
 	.asciz	"AsUlong"
 	.byte	0x2
-	.byte	0x17
-	.4byte	0xbb
+	.byte	0x1a
+	.4byte	0xd0
 	.uleb128 0x7
 	.asciz	"AsUint"
 	.byte	0x2
-	.byte	0x18
+	.byte	0x1b
 	.4byte	0x16c
 	.uleb128 0x7
 	.asciz	"AsByte"
 	.byte	0x2
-	.byte	0x19
+	.byte	0x1c
 	.4byte	0x17c
 	.uleb128 0x7
 	.asciz	"AsStruct"
 	.byte	0x2
-	.byte	0x1f
+	.byte	0x22
 	.4byte	0xf0
 	.byte	0x0
 	.uleb128 0x8
-	.4byte	0x82
+	.4byte	0x97
 	.4byte	0x17c
 	.uleb128 0x9
-	.4byte	0x8e
+	.4byte	0xa3
 	.byte	0x1
 	.byte	0x0
 	.uleb128 0x8
-	.4byte	0x9e
+	.4byte	0xb3
 	.4byte	0x18c
 	.uleb128 0x9
-	.4byte	0x8e
+	.4byte	0xa3
 	.byte	0x3
 	.byte	0x0
-	.uleb128 0x2
+	.uleb128 0x3
 	.asciz	"ULONG_UNION"
 	.byte	0x2
-	.byte	0x20
+	.byte	0x23
 	.4byte	0x128
 	.uleb128 0xa
 	.byte	0x1
@@ -451,7 +395,7 @@ _Limiter:
 	.4byte	.LFB0
 	.4byte	.LFE0
 	.byte	0x1
-	.byte	0x5e
+	.byte	0x5f
 	.4byte	0x1c9
 	.uleb128 0xb
 	.asciz	"Tmp"
@@ -459,14 +403,14 @@ _Limiter:
 	.byte	0x15
 	.4byte	0x18c
 	.byte	0x2
-	.byte	0x7e
-	.sleb128 0
+	.byte	0x91
+	.sleb128 -10
 	.byte	0x0
 	.uleb128 0x8
 	.4byte	0xdd
 	.4byte	0x1d9
 	.uleb128 0x9
-	.4byte	0x8e
+	.4byte	0xa3
 	.byte	0xf
 	.byte	0x0
 	.uleb128 0xc
@@ -477,10 +421,10 @@ _Limiter:
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0x8
-	.4byte	0x82
+	.4byte	0x97
 	.4byte	0x1fa
 	.uleb128 0x9
-	.4byte	0x8e
+	.4byte	0xa3
 	.byte	0x7
 	.byte	0x0
 	.uleb128 0xd
@@ -508,84 +452,84 @@ _Limiter:
 	.4byte	.LASF1
 	.byte	0x6
 	.byte	0x1
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xd
 	.4byte	.LASF2
 	.byte	0x6
 	.byte	0x2
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xd
 	.4byte	.LASF3
 	.byte	0x6
 	.byte	0x3
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xd
 	.4byte	.LASF4
 	.byte	0x6
 	.byte	0x4
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xd
 	.4byte	.LASF5
 	.byte	0x6
 	.byte	0x5
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xd
 	.4byte	.LASF6
 	.byte	0x6
 	.byte	0x7
-	.4byte	0x9e
+	.4byte	0xb3
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xd
 	.4byte	.LASF7
 	.byte	0x6
 	.byte	0x8
-	.4byte	0x9e
+	.4byte	0xb3
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xd
 	.4byte	.LASF8
 	.byte	0x6
 	.byte	0x9
-	.4byte	0x9e
+	.4byte	0xb3
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xd
 	.4byte	.LASF9
 	.byte	0x6
 	.byte	0xa
-	.4byte	0x9e
+	.4byte	0xb3
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xc
 	.asciz	"HeaterP"
 	.byte	0x1
 	.byte	0x9
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xd
 	.4byte	.LASF10
 	.byte	0x1
 	.byte	0xa
-	.4byte	0xbb
+	.4byte	0xd0
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xd
 	.4byte	.LASF11
 	.byte	0x1
 	.byte	0xb
-	.4byte	0xbb
+	.4byte	0xd0
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xc
@@ -620,7 +564,7 @@ _Limiter:
 	.4byte	.LASF1
 	.byte	0x1
 	.byte	0x6
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x1
 	.byte	0x5
 	.byte	0x3
@@ -629,7 +573,7 @@ _Limiter:
 	.4byte	.LASF2
 	.byte	0x1
 	.byte	0x7
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x1
 	.byte	0x5
 	.byte	0x3
@@ -638,7 +582,7 @@ _Limiter:
 	.4byte	.LASF3
 	.byte	0x1
 	.byte	0x8
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x1
 	.byte	0x5
 	.byte	0x3
@@ -647,7 +591,7 @@ _Limiter:
 	.4byte	.LASF4
 	.byte	0x1
 	.byte	0x4
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x1
 	.byte	0x5
 	.byte	0x3
@@ -656,7 +600,7 @@ _Limiter:
 	.4byte	.LASF5
 	.byte	0x1
 	.byte	0xc
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x1
 	.byte	0x5
 	.byte	0x3
@@ -665,7 +609,7 @@ _Limiter:
 	.4byte	.LASF6
 	.byte	0x1
 	.byte	0xf
-	.4byte	0x9e
+	.4byte	0xb3
 	.byte	0x1
 	.byte	0x5
 	.byte	0x3
@@ -674,7 +618,7 @@ _Limiter:
 	.4byte	.LASF7
 	.byte	0x1
 	.byte	0x10
-	.4byte	0x9e
+	.4byte	0xb3
 	.byte	0x1
 	.byte	0x5
 	.byte	0x3
@@ -683,7 +627,7 @@ _Limiter:
 	.4byte	.LASF8
 	.byte	0x1
 	.byte	0x11
-	.4byte	0x9e
+	.4byte	0xb3
 	.byte	0x1
 	.byte	0x5
 	.byte	0x3
@@ -692,7 +636,7 @@ _Limiter:
 	.4byte	.LASF9
 	.byte	0x1
 	.byte	0xe
-	.4byte	0x9e
+	.4byte	0xb3
 	.byte	0x1
 	.byte	0x5
 	.byte	0x3
@@ -701,7 +645,7 @@ _Limiter:
 	.asciz	"HeaterP"
 	.byte	0x1
 	.byte	0x9
-	.4byte	0x82
+	.4byte	0x97
 	.byte	0x1
 	.byte	0x5
 	.byte	0x3
@@ -710,7 +654,7 @@ _Limiter:
 	.4byte	.LASF10
 	.byte	0x1
 	.byte	0xa
-	.4byte	0xbb
+	.4byte	0xd0
 	.byte	0x1
 	.byte	0x5
 	.byte	0x3
@@ -719,7 +663,7 @@ _Limiter:
 	.4byte	.LASF11
 	.byte	0x1
 	.byte	0xb
-	.4byte	0xbb
+	.4byte	0xd0
 	.byte	0x1
 	.byte	0x5
 	.byte	0x3
@@ -746,6 +690,17 @@ _Limiter:
 	.byte	0x0
 	.byte	0x0
 	.uleb128 0x2
+	.uleb128 0x24
+	.byte	0x0
+	.uleb128 0xb
+	.uleb128 0xb
+	.uleb128 0x3e
+	.uleb128 0xb
+	.uleb128 0x3
+	.uleb128 0x8
+	.byte	0x0
+	.byte	0x0
+	.uleb128 0x3
 	.uleb128 0x16
 	.byte	0x0
 	.uleb128 0x3
@@ -756,17 +711,6 @@ _Limiter:
 	.uleb128 0xb
 	.uleb128 0x49
 	.uleb128 0x13
-	.byte	0x0
-	.byte	0x0
-	.uleb128 0x3
-	.uleb128 0x24
-	.byte	0x0
-	.uleb128 0xb
-	.uleb128 0xb
-	.uleb128 0x3e
-	.uleb128 0xb
-	.uleb128 0x3
-	.uleb128 0x8
 	.byte	0x0
 	.byte	0x0
 	.uleb128 0x4
@@ -985,11 +929,11 @@ _Limiter:
 	.2byte	0x2
 	.4byte	.Ldebug_info0
 	.4byte	0x3e6
-	.4byte	0x82
+	.4byte	0x97
 	.asciz	"UINT"
-	.4byte	0x9e
+	.4byte	0xb3
 	.asciz	"BYTE"
-	.4byte	0xbb
+	.4byte	0xd0
 	.asciz	"ULONG"
 	.4byte	0x18c
 	.asciz	"ULONG_UNION"
@@ -1082,22 +1026,22 @@ _Limiter:
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	.LSM4
-	.byte	0x16
+	.byte	0x1b
 	.byte	0x0
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	.LSM5
-	.byte	0x15
-	.byte	0x0
-	.uleb128 0x5
-	.byte	0x2
-	.4byte	.LSM6
 	.byte	0x18
 	.byte	0x0
 	.uleb128 0x5
 	.byte	0x2
-	.4byte	.LSM7
+	.4byte	.LSM6
 	.byte	0x15
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM7
+	.byte	0x16
 	.byte	0x0
 	.uleb128 0x5
 	.byte	0x2
@@ -1107,7 +1051,7 @@ _Limiter:
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	.LSM9
-	.byte	0x15
+	.byte	0x16
 	.byte	0x0
 	.uleb128 0x5
 	.byte	0x2
@@ -1127,47 +1071,49 @@ _Limiter:
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	.LSM13
-	.byte	0x16
+	.byte	0x19
 	.byte	0x0
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	.LSM14
-	.byte	0x16
+	.byte	0x15
 	.byte	0x0
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	.LSM15
-	.byte	0x15
+	.byte	0x19
 	.byte	0x0
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	.LSM16
-	.byte	0x16
-	.byte	0x0
-	.uleb128 0x5
-	.byte	0x2
-	.4byte	.LSM17
-	.byte	0x16
-	.byte	0x0
-	.uleb128 0x5
-	.byte	0x2
-	.4byte	.LSM18
-	.byte	0x17
-	.byte	0x0
-	.uleb128 0x5
-	.byte	0x2
-	.4byte	.LSM19
 	.byte	0x15
 	.byte	0x0
 	.uleb128 0x5
 	.byte	0x2
+	.4byte	.LSM17
+	.byte	0x15
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM18
+	.byte	0xf
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM19
+	.byte	0xe
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
 	.4byte	.LSM20
-	.byte	0x16
+	.byte	0x3
+	.sleb128 -26
+	.byte	0x1
 	.byte	0x0
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	.LSM21
-	.byte	0x17
+	.byte	0x16
 	.byte	0x0
 	.uleb128 0x5
 	.byte	0x2
@@ -1177,7 +1123,22 @@ _Limiter:
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	.LSM23
+	.byte	0x1c
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM24
 	.byte	0x15
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM25
+	.byte	0x17
+	.byte	0x0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	.LSM26
+	.byte	0xd
 	.byte	0x0
 	.uleb128 0x5
 	.byte	0x2

@@ -1,7 +1,7 @@
 #include "Main.h"
+
 UINT ADCData[8];
-UINT ADCDataTemp0[8];
-UINT ADCDataTemp1[8];
+UINT ADCDataTemp[4][8];
 UINT ADCDataAveraged[8];
 
 #define CONVERT_CHANNEL(ChannelN,NextChannel, StartNext) {\
@@ -24,8 +24,21 @@ UINT ADCDataAveraged[8];
 // Считать встроенный АЦП 12 бит
 UINT inline ReadADC(void)
 {
-    AD1CON1bits.SAMP = 1;
+    AD1CON1bits.SAMP = 0; // End  sanping, start conversion
     while(!AD1CON1bits.DONE);
     return ADC1BUF0;
+}
+
+UINT inline ReadAdc4Times()
+{
+    UINT adcTemp;
+    adcTemp = ReadADC();
+    __delay_us(1); // min sample time: 352 ns (14 CPU cycles)
+    adcTemp += ReadADC();
+    __delay_us(1);
+    adcTemp += ReadADC();
+    __delay_us(1);
+    adcTemp += ReadADC();    
+    return adcTemp;
 }
 

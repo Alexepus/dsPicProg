@@ -47,9 +47,9 @@
 
 
 //-- system frequency
-#define SYS_FREQ           40000000UL
+#define SYS_FREQ           80000000UL
 
-//-- peripheral bus frequency
+//-- peripheral bus frequency, instructions frequency
 #define PB_FREQ            (SYS_FREQ / 2)
 
 //-- kernel ticks (system timer) frequency
@@ -143,7 +143,16 @@ void HardwareInit(void)
     
     //Конфигурирование АЦП
     AD1PCFGL = 0x01EC; // Все порты, кроме AN4 (вход), AN1 (VRef-), AN0 (VRef+) - цифровые
+    AD1CON1bits.ADON = 1; //ADC on/off
+    AD1CON1bits.ADSIDL = 0; //idle on /off
+    AD1CON1bits.AD12B = 1; //12-bit, 1-channel ADC operation
+    AD1CON1bits.FORM = 0b00; //output format 00=int
+    AD1CON1bits.SSRC = 0b000; // 000 = Clearing sample bit ends sampling and starts conversion
+    AD1CON1bits.ASAM = 1; //1 = Sampling begins immediately after last conversion. SAMP bit is auto-set
+    
     AD1CON2bits.VCFG = 0b011; //Converter Voltage Reference Configuration bits: External VREF+, External VREF-
+    AD1CON3bits.ADCS = 0; // 0 = Clock derived from system clock;
+    
     ////Конфигурирование SPI
     //SSPSTAT=0xC0;//SMP:1 CKE:1 D/C:0 D/C:0 D/C:0 D/C:0 D/C:0 BF:0
     //SSPCON1=0x30;//WCOL:0 SSPOV:0 SSPEN:1 CKP:1 SSPM3..SSPM0:0000 (SPI Master, Fosc/4)

@@ -7,14 +7,10 @@ bool volatile SchedulledTask2 = false;
 bool volatile SchedulledTask3 = false;
 bool volatile SchedulledTask4 = false;
 
-void SleepOps(UINT ops)
-{
-    UINT i;
-    for(i = 0; i < ops; ++i);
-}
 
 void __attribute__((interrupt, no_auto_psv)) _T1Interrupt(void)
 {
+    IFS0bits.T1IF = 0;
     switch(SchedullerCount)
     {
         case 0:

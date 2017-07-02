@@ -15,30 +15,19 @@ _SelectChannel:
 .LFB0:
 .LSM0:
 	.set ___PA___,1
-	lnk	#4
-	mov	w0,[w14+2]
 .LSM1:
 	bclr.b	_LATBbits+1,#2
 .LSM2:
 	bclr.b	_LATBbits+1,#1
 .LSM3:
-	mov	#_LATC,w4
-	mov	w4,[w14]
+	and	w0,#7,w0
+	sl	w0,#3,w0
+	mov	#-57,w4
+	mov	_LATC,w5
+	and	w4,w5,w4
+	ior	w0,w4,w0
+	mov	w0,_LATC
 .LSM4:
-	mov	[w14+2],w4
-	mov.b	w4,w4
-	and.b	w4,#7,w4
-	mov	[w14],w5
-	ze	w4,w4
-	and	w4,#7,w4
-	sl	w4,#3,w4
-	mov	[w5],w7
-	mov	#-57,w6
-	and	w7,w6,w6
-	ior	w4,w6,w4
-	mov	w4,[w5]
-.LSM5:
-	ulnk	
 	return	
 	.set ___PA___,0
 .LFE0:
@@ -71,7 +60,7 @@ _SelectChannel:
 	.section	.text,code
 .Letext0:
 	.section	.debug_info,info
-	.4byte	0x300
+	.4byte	0x2fc
 	.2byte	0x2
 	.4byte	.Ldebug_abbrev0
 	.byte	0x4
@@ -84,6 +73,10 @@ _SelectChannel:
 	.4byte	.Letext0
 	.4byte	.Ldebug_line0
 	.uleb128 0x2
+	.byte	0x4
+	.byte	0x7
+	.asciz	"long unsigned int"
+	.uleb128 0x2
 	.byte	0x2
 	.byte	0x7
 	.asciz	"unsigned int"
@@ -91,10 +84,6 @@ _SelectChannel:
 	.byte	0x1
 	.byte	0x8
 	.asciz	"unsigned char"
-	.uleb128 0x2
-	.byte	0x4
-	.byte	0x7
-	.asciz	"long unsigned int"
 	.uleb128 0x2
 	.byte	0x2
 	.byte	0x5
@@ -113,7 +102,7 @@ _SelectChannel:
 	.asciz	"LATB0"
 	.byte	0x2
 	.2byte	0xa07
-	.4byte	0x80
+	.4byte	0x95
 	.byte	0x2
 	.byte	0x1
 	.byte	0xf
@@ -124,7 +113,7 @@ _SelectChannel:
 	.asciz	"LATB1"
 	.byte	0x2
 	.2byte	0xa08
-	.4byte	0x80
+	.4byte	0x95
 	.byte	0x2
 	.byte	0x1
 	.byte	0xe
@@ -135,7 +124,7 @@ _SelectChannel:
 	.asciz	"LATB2"
 	.byte	0x2
 	.2byte	0xa09
-	.4byte	0x80
+	.4byte	0x95
 	.byte	0x2
 	.byte	0x1
 	.byte	0xd
@@ -146,7 +135,7 @@ _SelectChannel:
 	.asciz	"LATB3"
 	.byte	0x2
 	.2byte	0xa0a
-	.4byte	0x80
+	.4byte	0x95
 	.byte	0x2
 	.byte	0x1
 	.byte	0xc
@@ -157,7 +146,7 @@ _SelectChannel:
 	.asciz	"LATB4"
 	.byte	0x2
 	.2byte	0xa0b
-	.4byte	0x80
+	.4byte	0x95
 	.byte	0x2
 	.byte	0x1
 	.byte	0xb
@@ -168,7 +157,7 @@ _SelectChannel:
 	.asciz	"LATB5"
 	.byte	0x2
 	.2byte	0xa0c
-	.4byte	0x80
+	.4byte	0x95
 	.byte	0x2
 	.byte	0x1
 	.byte	0xa
@@ -179,7 +168,7 @@ _SelectChannel:
 	.asciz	"LATB6"
 	.byte	0x2
 	.2byte	0xa0d
-	.4byte	0x80
+	.4byte	0x95
 	.byte	0x2
 	.byte	0x1
 	.byte	0x9
@@ -190,7 +179,7 @@ _SelectChannel:
 	.asciz	"LATB7"
 	.byte	0x2
 	.2byte	0xa0e
-	.4byte	0x80
+	.4byte	0x95
 	.byte	0x2
 	.byte	0x1
 	.byte	0x8
@@ -201,7 +190,7 @@ _SelectChannel:
 	.asciz	"LATB8"
 	.byte	0x2
 	.2byte	0xa0f
-	.4byte	0x80
+	.4byte	0x95
 	.byte	0x2
 	.byte	0x1
 	.byte	0x7
@@ -212,7 +201,7 @@ _SelectChannel:
 	.asciz	"LATB9"
 	.byte	0x2
 	.2byte	0xa10
-	.4byte	0x80
+	.4byte	0x95
 	.byte	0x2
 	.byte	0x1
 	.byte	0x6
@@ -223,7 +212,7 @@ _SelectChannel:
 	.asciz	"LATB10"
 	.byte	0x2
 	.2byte	0xa11
-	.4byte	0x80
+	.4byte	0x95
 	.byte	0x2
 	.byte	0x1
 	.byte	0x5
@@ -234,7 +223,7 @@ _SelectChannel:
 	.asciz	"LATB11"
 	.byte	0x2
 	.2byte	0xa12
-	.4byte	0x80
+	.4byte	0x95
 	.byte	0x2
 	.byte	0x1
 	.byte	0x4
@@ -245,7 +234,7 @@ _SelectChannel:
 	.asciz	"LATB12"
 	.byte	0x2
 	.2byte	0xa13
-	.4byte	0x80
+	.4byte	0x95
 	.byte	0x2
 	.byte	0x1
 	.byte	0x3
@@ -256,7 +245,7 @@ _SelectChannel:
 	.asciz	"LATB13"
 	.byte	0x2
 	.2byte	0xa14
-	.4byte	0x80
+	.4byte	0x95
 	.byte	0x2
 	.byte	0x1
 	.byte	0x2
@@ -267,7 +256,7 @@ _SelectChannel:
 	.asciz	"LATB14"
 	.byte	0x2
 	.2byte	0xa15
-	.4byte	0x80
+	.4byte	0x95
 	.byte	0x2
 	.byte	0x1
 	.byte	0x1
@@ -278,7 +267,7 @@ _SelectChannel:
 	.asciz	"LATB15"
 	.byte	0x2
 	.2byte	0xa16
-	.4byte	0x80
+	.4byte	0x95
 	.byte	0x2
 	.byte	0x1
 	.byte	0x10
@@ -300,7 +289,7 @@ _SelectChannel:
 	.asciz	"AnalogAddress"
 	.byte	0x1
 	.byte	0xa
-	.4byte	0x80
+	.4byte	0x95
 	.byte	0x2
 	.byte	0x3
 	.byte	0xa
@@ -322,24 +311,20 @@ _SelectChannel:
 	.4byte	.LFB0
 	.4byte	.LFE0
 	.byte	0x1
-	.byte	0x5e
-	.4byte	0x2b9
+	.byte	0x5f
+	.4byte	0x2b5
 	.uleb128 0xa
 	.asciz	"channelNumber"
 	.byte	0x1
 	.byte	0xf
-	.4byte	0x80
-	.byte	0x2
-	.byte	0x7e
-	.sleb128 2
+	.4byte	0x95
+	.byte	0x1
+	.byte	0x50
 	.uleb128 0xb
 	.asciz	"LATCbits2"
 	.byte	0x1
 	.byte	0x14
-	.4byte	0x2b9
-	.byte	0x2
-	.byte	0x7e
-	.sleb128 0
+	.4byte	0x2b5
 	.byte	0x0
 	.uleb128 0xc
 	.byte	0x2
@@ -348,7 +333,7 @@ _SelectChannel:
 	.4byte	.LASF0
 	.byte	0x2
 	.2byte	0xa18
-	.4byte	0x2cd
+	.4byte	0x2c9
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xe
@@ -357,23 +342,23 @@ _SelectChannel:
 	.asciz	"LATC"
 	.byte	0x2
 	.2byte	0xa51
-	.4byte	0x2e1
+	.4byte	0x2dd
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xe
-	.4byte	0x80
+	.4byte	0x95
 	.uleb128 0xd
 	.4byte	.LASF0
 	.byte	0x2
 	.2byte	0xa18
-	.4byte	0x2cd
+	.4byte	0x2c9
 	.byte	0x1
 	.byte	0x1
 	.uleb128 0xf
 	.asciz	"LATC"
 	.byte	0x2
 	.2byte	0xa51
-	.4byte	0x2e1
+	.4byte	0x2dd
 	.byte	0x1
 	.byte	0x1
 	.byte	0x0
@@ -553,8 +538,6 @@ _SelectChannel:
 	.uleb128 0xb
 	.uleb128 0x49
 	.uleb128 0x13
-	.uleb128 0x2
-	.uleb128 0xa
 	.byte	0x0
 	.byte	0x0
 	.uleb128 0xc
@@ -612,7 +595,7 @@ _SelectChannel:
 	.4byte	0x20
 	.2byte	0x2
 	.4byte	.Ldebug_info0
-	.4byte	0x304
+	.4byte	0x300
 	.4byte	0x26b
 	.asciz	"SelectChannel"
 	.4byte	0x0
@@ -620,7 +603,7 @@ _SelectChannel:
 	.4byte	0x39
 	.2byte	0x2
 	.4byte	.Ldebug_info0
-	.4byte	0x304
+	.4byte	0x300
 	.4byte	0xc9
 	.asciz	"tagLATBBITS"
 	.4byte	0x225
@@ -695,16 +678,11 @@ _SelectChannel:
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	.LSM3
-	.byte	0x15
+	.byte	0x16
 	.byte	0x0
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	.LSM4
-	.byte	0x15
-	.byte	0x0
-	.uleb128 0x5
-	.byte	0x2
-	.4byte	.LSM5
 	.byte	0x15
 	.byte	0x0
 	.uleb128 0x5
