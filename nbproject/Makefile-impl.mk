@@ -27,11 +27,11 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 PROJECTNAME=dsPicProg
 
 # Active Configuration
-DEFAULTCONF=default
+DEFAULTCONF=ICD_Debug
 CONF=${DEFAULTCONF}
 
 # All Configurations
-ALLCONFS=default 
+ALLCONFS=Simulator ICD_3 ICD_Debug 
 
 
 # build
@@ -45,13 +45,17 @@ ALLCONFS=default
 
 # clobber
 .clobber-impl: .clobber-pre .depcheck-impl
-	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=default clean
+	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=Simulator clean
+	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=ICD_3 clean
+	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=ICD_Debug clean
 
 
 
 # all
 .all-impl: .all-pre .depcheck-impl
-	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=default build
+	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=Simulator build
+	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=ICD_3 build
+	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=ICD_Debug build
 
 
 
