@@ -26,6 +26,7 @@
 #define RESET_MAGIC_NUM 0x55	// Контрольное число команды сброса контроллера
 
 #define ANSWER_OK 					0xA0
+#define ANSWER_DEBUG_INFO			0xA1
 #define ANSWER_FAILED				0xAF
 #define ANSWER_UNKNOWN_COMMAND 		0xE0
 #define ANSWER_ERROR_COMMAND_FORMAT 	0xE1
@@ -44,6 +45,8 @@ void ReportRcProtocolError(void);
 void ReportStartUp(void);
 void ProcessUart1Msg(void);
 UINT ExtractRcMessage(void);
+void ReportDebugInfo1(BYTE info0);
+void ReportDebugInfo2(BYTE info0, BYTE info1);
 
 extern FIFO TxFifo;
 extern FIFO RcFifo;

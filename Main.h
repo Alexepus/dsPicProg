@@ -14,6 +14,13 @@ typedef int INT16Q4;
 typedef int INT16Q8;
 typedef int INT16Q16;
 typedef long INT32Q20;
+
+typedef struct 
+{
+	BYTE LByte;
+	BYTE HByte;
+}UIntBytes;
+
 typedef struct 
 {
 	BYTE HByte;
@@ -40,6 +47,7 @@ typedef union
 #define AnalogOutputEnable LATBbits.LATB9
 // Выбор чипа ЦАП для передачи данных (активный уровень - низкий)
 #define CS_DAC LATBbits.LATB13
+#define LED0  LATCbits.LATC1
 
 #include "UART.h"
 #include "p33FJ64MC804.h"

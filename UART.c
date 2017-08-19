@@ -24,7 +24,9 @@ void __attribute__((interrupt, no_auto_psv)) _U1RXInterrupt(void)
         RcFifo.Buffer[RcFifo.NIn]=DataByte;
         RcFifo.NIn = NewIndex;
         if(DataByte == UART_STOP)
+        {
             IsUartRcMsg = true;	
+        }
         if(U1STAbits.OERR) // Receive Buffer Overrun Error
         {
             U1STAbits.OERR = 0;
@@ -37,9 +39,11 @@ void __attribute__((interrupt, no_auto_psv)) _U1RXInterrupt(void)
 //Обработчик окончания передачи байта (TXREG->Transmit Shift Reg.)
 void __attribute__((interrupt, no_auto_psv)) _U1TXInterrupt(void)
 {
+    IFS0bits.U1TXIF = 0;
 	if(TxFifo.NOut == TxFifo.NIn) //Буфер пуст
 	{	
 		IEC0bits.U1TXIE = 0;
+        LED0 = 0;
 		return;
 	}
 	U1TXREG = TxFifo.Buffer[TxFifo.NOut];
@@ -96,13 +100,14 @@ void UartStartTx(void)
 	//Здесь U1TXIE==0, а значит, что прерывание само в буфер отправки ничего
 	//не запишет 
 	//Передача первого байта первого ожидающего сообщения,
-	//если буфер отправки пуст (а последний байт еще может быть
+	//если буфер отправки хотя бы частично пуст (а последний байт еще может быть
 	//в процессе отправки)
-	if(IFS0bits.U1TXIF)
+	if(!U1STAbits.UTXBF) // UTXBF: 0 = Transmit buffer is not full; at least one more data word can be written
 	{
 		U1TXREG = UART_START;	
 		TxFifo.NOut = (TxFifo.NOut+1)&0b01111111;
 	}
+    LED0 = 1;
 	IEC0bits.U1TXIE=1;
 }
 

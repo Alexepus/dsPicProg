@@ -8,11 +8,21 @@ extern bool volatile SchedulledTask4;
 
 int main (void) 
 {
+    int i;
     //-- init hardware
     HardwareInit();
-
+    
+    for(i = 1; i<11; ++i)
+    {
+        LED0 = i&1;    
+        __delay_ms(200);
+    }
+    
+    ReportStartUp();
+        
     while(1)
     {
+        IEC0bits.U1RXIE = 1; //UART1 Receiver Interrupt Enable bit
         if(IsUartRcMsg)
         {
             IsUartRcMsg = false;

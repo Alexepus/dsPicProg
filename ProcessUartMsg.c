@@ -32,11 +32,10 @@ void ProcessUart1Msg()
 		}
 		case CMD_LOAD_DAC: //Загрузка значения в ЦАП
 		{							//Формат:Номер канала, DataL, DataH
-			BYTE *pSrc, *pDest;
-			pSrc=&RcBuf.Data[1];
-			pDest=(BYTE*)(DacData+ *pSrc++);
-			*pDest++=*pSrc++;			
-			*pDest--=*pSrc;
+			UIntBytes* pDest;
+			pDest=(UIntBytes*)(&DacData[RcBuf.Data[1]]);
+			pDest->LByte=RcBuf.Data[2];			
+			pDest->HByte=RcBuf.Data[3];	
 			//LoadDac(RcBuf.Data[1],*(UINT*)pDest);
 			TxBuf.Data[0]=CMD_LOAD_DAC;
 			TxBuf.Length=1;
@@ -407,5 +406,22 @@ void ReportStartUp(void)
 	//POR=1;
 	//BOR=1;
 	//STKFUL=0; STKUNF=0;
+}
+
+void ReportDebugInfo1(BYTE info0)
+{
+    TxBuf.Data[0]=ANSWER_DEBUG_INFO;
+    TxBuf.Data[1]=info0;	
+	TxBuf.Length=2;
+	UartStartTx();
+}
+
+void ReportDebugInfo2(BYTE info0, BYTE info1)
+{
+    TxBuf.Data[0]=ANSWER_DEBUG_INFO;
+    TxBuf.Data[1]=info0;	
+	TxBuf.Data[2]=info1;
+	TxBuf.Length=3;
+	UartStartTx();
 }
 

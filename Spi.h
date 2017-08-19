@@ -11,6 +11,9 @@ void SpiConfig();
 //Синхронная отправка байта (ждет возможности начала отправки)
 void inline SpiSend(BYTE val);
 
+//Синхронная отправка байта (ждет возможности начала отправки)
+void inline SpiSend16(UINT val);
+
 //Синхронный прием байта (ждет получения)
 BYTE inline SpiReceive();
 

@@ -80,8 +80,24 @@ void HardwareInit(void)
     PLLFBDbits.PLLDIV = 0x1E;
     
     //  N2 = 2 => PLLPOST<1:0> = 0
-    CLKDIVbits.PLLPOST = 0;
+    CLKDIVbits.PLLPOST = 0;    
     
+    //Инициализация портов
+    //Задание направлений портов
+    TRISA=0xFFFF;
+    TRISB=0b1100000110011111; //RB15(U):1 14(U):1 13(CS_DAC):0 12(SCK_DAC):0 11(SDO_DAC):0 10(AIE):0 9(AOE):0 8(U1RX):1
+                               //RB7(U1CTS):1 6(U1TX):0 5(U1RTS):0 4(U):1 3(U):1 2(ADC):1 1(PGC):1 0(PGD):1
+    TRISC=0b0000000101000101; //RC15-10(Unimpl):0 9(!U2RTS):0 8(!U2CTS):1 
+                               //RC7(U2TX):0 6(U2RX):1 5(A2):0 4(A1):0 3(A0):0 2(U):1 1(LED):0 0(U):1
+
+    //Задание выходов с открытым стоком
+    ODCB=0b0000011000000000; //RB10(AIE):1 9(AOE):1 
+    ODCC=0b0000000000111000; //RC5(A2):1 4(A1):1 3(A0):1
+
+    //Конфигурирование прерываний
+    IEC0bits.U1RXIE = 1; //UART1 Receiver Interrupt Enable bit
+    IEC0bits.U1TXIE = 0; //UART1 Transmitter Interrupt Enable bit
+
     //  Настройка входов-выходов периферии
     //  UART1:
     RPINR18bits.U1CTSR = 7;  // UART1 Clear to Send (!U1CTS): RP7 (pin 43)
@@ -96,28 +112,10 @@ void HardwareInit(void)
     RPOR11bits.RP23R = 0b00011; // UART2 Transmit (U2TX): RP23 (pin 3)
     
     //  SPI1: 
+    RPINR20bits.SCK1R = 12;     // SCK1 input RP12 (pin 10)
+    RPINR20bits.SDI1R = 15;     // SDI input RP15 (pin 15)  DUMMY!
     RPOR5bits.RP11R = 0b00111;  // SPI1 Data Output (SDO1): RP11 (pin 9) 
-    RPOR6bits.RP12R = 0b01000;  // SPI1 Clock Output (SCK1): RP12 (pin 10)     
-    
-    //Инициализация портов
-    //Задание направлений портов
-    TRISA=0xFFFF;
-    TRISB=0b1100000110011111; //RB15(U):1 14(U):1 13(CS_DAC):0 12(SCK_DAC):0 11(SDO_DAC):0 10(AIE):0 9(AOE):0 8(U1RX):1
-                               //RB7(U1CTS):1 6(U1TX):0 5(U1RTS):0 4(U):1 3(U):1 2(ADC):1 1(PGC):1 0(PGD):1
-    TRISC=0b0000000101000111; //RC15-10(Unimpl):0 9(!U2RTS):0 8(!U2CTS):1 
-                               //RC7(U2TX):0 6(U2RX):1 5(A2):0 4(A1):0 3(A0):0 2(U):1 1(U):1 0(U):1
-
-    //Задание выходов с открытым стоком
-    ODCB=0b0000011000000000; //RB10(AIE):1 9(AOE):1 
-    ODCC=0b0000000000111000; //RC5(A2):1 4(A1):1 3(A0):1
-
-    //Конфигурирование прерываний
-    IEC0bits.U1RXIE = 1; //UART1 Receiver Interrupt Enable bit
-    IEC0bits.U1TXIE = 1; //UART1 Transmitter Interrupt Enable bit
-    //INTCON=0xC0;//GIE:1 PEIE:1 TMR0IE:0 INT0IE:0 RBIE:0 TMR0IF:0 INT0IF:0 RBIF:0
-    //PIE1=0x22;//PSPIE:0 ADIE:0 RCIE:1 TXIE:0 SSPIE:0 CCP1IE:0 TMR2IE:1 TMR1IE:0
-    //PIE2=0x00;//N/A:0 CMIE:0 N/A:0 EEIE:0 BCLIE:0 LVDIE:0 TMR3IE:0 ECCP1IE:0
-    //PIE3=0x00;//CAN
+    RPOR6bits.RP12R = 0b01000;  // SPI1 Clock Output (SCK1): RP12 (pin 10) 
 
     //Конфигурирование UART1
     U1MODEbits.UARTEN = 1; //UARTx is enabled
@@ -135,12 +133,13 @@ void HardwareInit(void)
 
     U1BRG = 42;//173=>57471 (-0.22%) 86=>114942 (-0.22%) 42=>232558 (+0.94%) Formula: U1BRG = 40000000/(16*Baud)-1
 
-    U1STAbits.UTXISEL1 = 0;//01: Interrupt is generated when the last transmission is over, transmit buffer is empty 
-    U1STAbits.UTXISEL0 = 1;//(i.e., the last character has been shifted out of the Transmit Shift Register) and all the transmit operations are completed
+    U1STAbits.UTXISEL1 = 1;//10 = Interrupt is generated when a character is transferred to the Transmit Shift Register (TSR) and
+                           //the transmit buffer becomes empty
+    U1STAbits.UTXISEL0 = 0;
     U1STAbits.UTXINV = 0;  //UxTX Idle state is ‘1’
     U1STAbits.UTXEN = 1;    //UARTx transmitter is enabled; UxTX pin is controlled by UARTx
     U1STAbits.URXISEL = 0b00;//Interrupt flag bit is set when a character is received
-    
+        
     //Конфигурирование АЦП
     AD1PCFGL = 0x01EC; // Все порты, кроме AN4 (вход), AN1 (VRef-), AN0 (VRef+) - цифровые
     AD1CON1bits.ADON = 1; //ADC on/off
@@ -153,15 +152,19 @@ void HardwareInit(void)
     AD1CON2bits.VCFG = 0b011; //Converter Voltage Reference Configuration bits: External VREF+, External VREF-
     AD1CON3bits.ADCS = 0; // 0 = Clock derived from system clock;
     
-    ////Конфигурирование SPI
-    //SSPSTAT=0xC0;//SMP:1 CKE:1 D/C:0 D/C:0 D/C:0 D/C:0 D/C:0 BF:0
-    //SSPCON1=0x30;//WCOL:0 SSPOV:0 SSPEN:1 CKP:1 SSPM3..SSPM0:0000 (SPI Master, Fosc/4)
-    //
-    ////Начальные состояния выводов
-    //ADC_CS=1;
-    //ADC_Conv=1;
-    //DAC_CS=1;
-    //DAC_LD=0;
+    ////Конфигурирование SPI   
+    SPI1CON1bits.MODE16 = 1; // 1 = Communication is word-wide (16 bits)
+    SPI1CON1bits.SSEN = 0; // 0 = /SSx pin not used by module. Pin controlled by port function
+    SPI1CON1bits.CKP = 0; // Clock Polarity Select bit: 0 = Idle state for clock is a low level; active state is a high level; 1 = Idle state for clock is a high level; active state is a low level
+    SPI1CON1bits.CKE = 1; //SPIx Clock Edge Select bit: 1 = Serial output data changes on transition from active clock state to Idle clock state
+    SPI1CON1bits.MSTEN = 1; // 1 = Master mode
+    
+    SPI1CON1bits.SPRE = 0b111; // Secondary prescale 1:1
+    SPI1CON1bits.PPRE = 0b10; // 10 = Primary prescale 4:1; 00 = Primary prescale 64:1
+    SPI1STATbits.SPIEN = 1; // 1 = Enables module and configures SCKx, SDOx, SDIx and SSx as serial port pins
+
+    //Начальные состояния выводов
+	CS_DAC=1;
     
     //Конфигурирование таймеров
     //-- set up timer1

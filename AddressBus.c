@@ -14,9 +14,9 @@ typedef struct {
 // Âûáîð êàíàëà ÖÀÏ è ÀÖÏ
 void SelectChannel(unsigned channelNumber)
 {
-
     AnalogInputEnable = 0;
     AnalogOutputEnable = 0;
+    __asm("nop");
     LATCBITS2 *LATCbits2 = (LATCBITS2 *)(&LATC);
     LATCbits2->AnalogAddress = channelNumber;
 }

@@ -1,3 +1,3 @@
-extern int DacData[16];
+extern int DacData[8];
 void DacWrite(UINT val);
 void ConfigDac(void);

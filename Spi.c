@@ -17,6 +17,14 @@ void inline SpiSend(BYTE val)
     SPI1BUF=val;
 }
 
+//Синхронная отправка байта (ждет возможности начала отправки)
+void inline SpiSend16(UINT val)
+{	
+    UINT dummy;
+    dummy = SPI1BUF;
+    SPI1BUF=val;
+}
+
 //Синхронный прием байта (ждет получения)
 BYTE inline SpiReceive()
 {
@@ -27,5 +35,6 @@ BYTE inline SpiReceive()
 //Ожидание окончания отправки
 void inline SpiWaitTransmitEnd()
 {
-    while(SpiRcBufFull);
+    //__delay_us(2)
+    while(!SpiRcBufFull);
 }
