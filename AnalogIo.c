@@ -3,7 +3,6 @@ UINT adcCount;
 
 void ReadWriteAnalog(UINT channel){
     SelectChannel(channel);
-    adcCount = (adcCount + 1) & 3;
     AnalogInputEnable = 1;
     DacWrite(DacData[channel]);
     __delay_us(8); // Аналоговый выход до ключей: 4 мкс - время установления ЦАП при 50 пФ + 3,3 мкс - время установления ОУ. 
@@ -24,6 +23,7 @@ void ReadAnalog(UINT channel)
 void ReadWriteAnalogAll()
 {
     int channel;
+    adcCount = (adcCount + 1) & 3;
     for(channel = 0; channel < 8; ++channel)
     {
         ReadWriteAnalog(channel);

@@ -148,9 +148,12 @@ void HardwareInit(void)
     AD1CON1bits.FORM = 0b00; //output format 00=int
     AD1CON1bits.SSRC = 0b000; // 000 = Clearing sample bit ends sampling and starts conversion
     AD1CON1bits.ASAM = 1; //1 = Sampling begins immediately after last conversion. SAMP bit is auto-set
-    
     AD1CON2bits.VCFG = 0b011; //Converter Voltage Reference Configuration bits: External VREF+, External VREF-
     AD1CON3bits.ADCS = 0; // 0 = Clock derived from system clock;
+    AD1CHS0bits.CH0NB = 0; //0 = Channel 0 negative input is VREF
+    AD1CHS0bits.CH0SB = 0b00100;//00101 = Channel 0 positive input is AN4   
+    AD1CHS0bits.CH0NA = 0; //0 = Channel 0 negative input is VREF
+    AD1CHS0bits.CH0SA = 0b00100;//00101 = Channel 0 positive input is AN4   
     
     ////Конфигурирование SPI   
     SPI1CON1bits.MODE16 = 1; // 1 = Communication is word-wide (16 bits)

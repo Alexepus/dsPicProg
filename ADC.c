@@ -24,7 +24,7 @@ UINT ADCDataAveraged[8];
 // Считать встроенный АЦП 12 бит
 UINT inline ReadADC(void)
 {
-    AD1CON1bits.SAMP = 0; // End  sanping, start conversion
+    AD1CON1bits.SAMP = 0; // End  samping, start conversion
     while(!AD1CON1bits.DONE);
     return ADC1BUF0;
 }
