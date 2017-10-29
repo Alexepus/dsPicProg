@@ -11,7 +11,7 @@ INT16Q4 TableT[32]={0xFCE0};
 INT16Q8 TableInvDV[32];
 INT16Q4 FFTableTemp[4];
 INT16Q4 FFTableOut[4];
-INT16Q16 AdcTcTomVCoef=Q16(0.01);
+INT16Q16 AdcTcTomVCoef=Q16(0.00305194409); // 50mV/3FFF
 BYTE DifShift=5;
 bool TableVLoaded=0,TdTLoaded=0; 
 BYTE TableDT=0x2A;
@@ -36,7 +36,7 @@ UINT DacData0Presave;
 void task_HeaterPid_body()
 {	
 	static INT16Q4 Temp1;
-		
+	//static int	debug=0;
 #ifndef SIMULATION
 		//ReadADC();
 #endif
@@ -84,8 +84,10 @@ void task_HeaterPid_body()
 			//*** Temp1=AdcTcTomVCoef*ADC8x14Data[0]
 			MulIShift8(ADCDataAveraged[0], AdcTcTomVCoef, Temp1);
 			TMeas=CalcTByV(Temp1);
+            
 			Vp=TRef-TMeas;
-			
+            //if(++debug%100==0)
+			//ReportDebugInfo2((BYTE)(TMeas>>8), (BYTE)TMeas);
 			TempHistFifoDecimCnt=(TempHistFifoDecimCnt+1)&0x3;
 			if(TempHistFifoDecimCnt==0)
 			{
@@ -130,8 +132,8 @@ void task_HeaterPid_body()
 				VoutAcc=(int)0x8000;
 			Vout=VoutAcc;
 			DacVal=Vout;
-			if(DacVal>0x3FFF)
-				DacVal=0x3FFF;
+			if(DacVal>0x7FFF)
+				DacVal=0x7FFF;
 			if(DacVal<0)
 				DacVal=0;
 			if(!ManualHeaterControl)

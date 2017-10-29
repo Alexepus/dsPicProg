@@ -5,6 +5,9 @@ extern FIFO TxFifo;
 MessageBuffer RcBuf;
 MessageBuffer TxBuf;
 volatile bool IsUartRcMsg;
+int CommandByteCount;
+BYTE CommandByte0;
+BYTE CommandByte1;
 
 //________________________________________________________________________________
 //Обработчик приема байта
@@ -23,14 +26,30 @@ void __attribute__((interrupt, no_auto_psv)) _U1RXInterrupt(void)
         DataByte = U1RXREG;
         RcFifo.Buffer[RcFifo.NIn]=DataByte;
         RcFifo.NIn = NewIndex;
-        if(DataByte == UART_STOP)
-        {
-            IsUartRcMsg = true;	
-        }
+        
         if(U1STAbits.OERR) // Receive Buffer Overrun Error
         {
             U1STAbits.OERR = 0;
             ReportFifoRxOverflow();
+        }
+        
+        if(DataByte == UART_STOP)
+        {
+            if(CommandByte0 == CMD_RESET && CommandByte1 == RESET_MAGIC_NUM && CommandByteCount == 2)
+                 __asm__("RESET");
+            IsUartRcMsg = true;	
+            return;
+        }
+        
+        if(DataByte == UART_START)
+            CommandByteCount = 0;	
+        else
+        {
+            if(CommandByteCount == 0)
+                CommandByte0 = DataByte;
+            else if(CommandByteCount == 1)
+                CommandByte1 = DataByte;
+            ++CommandByteCount;
         }
     }    
 }
