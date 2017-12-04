@@ -171,6 +171,7 @@ void ProcessUart1Msg()
 			*((BYTE*)&DeltaT+1)=*pSrc++;
 			*((BYTE*)&DeltaT+2)=*pSrc++;
 			*((BYTE*)&DeltaT+3)=*pSrc;
+            DeltaT = DeltaT >> 1;
 			FlagMainOff=0;
 			TxBuf.Data[0]=CMD_START_TEMP_CHANGE;
 			TxBuf.Length=1;
