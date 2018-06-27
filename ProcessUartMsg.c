@@ -156,8 +156,16 @@ void ProcessUart1Msg()
 			*pDest++=*(BYTE*)&ADCDataAveraged[2];
 			*pDest++=*((BYTE*)&ADCDataAveraged[2]+1);
 			*pDest++=*(BYTE*)&TRef;
-			*pDest=*((BYTE*)&TRef+1);
-			TxBuf.Length=9;
+			*pDest++=*((BYTE*)&TRef+1);
+			*pDest++=*(BYTE*)&DacData[1];
+			*pDest++=*((BYTE*)&DacData[1]+1);
+			*pDest++=*(BYTE*)&DacData[2];
+			*pDest++=*((BYTE*)&DacData[2]+1);
+			*pDest++=*(BYTE*)&ADCDataAveraged[4];
+			*pDest++=*((BYTE*)&ADCDataAveraged[4]+1);
+			*pDest++=*(BYTE*)&ADCDataAveraged[5];
+			*pDest=*((BYTE*)&ADCDataAveraged[5]+1);             
+			TxBuf.Length=17;
 			UartStartTx();			
 			break;		
 		}
