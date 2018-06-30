@@ -305,6 +305,14 @@ void ProcessUart1Msg()
 			UartStartTx();		
 			break;		
 		}
+        case CMD_SET_MANUAL_LEAKERS_MODE: //Команда включения ручного режима по натекателям
+		{
+			FlagManualLeakerMode = RcBuf.Data[1] == 0? false : true;
+			TxBuf.Data[0] = CMD_SET_MANUAL_LEAKERS_MODE;
+			TxBuf.Length = 1;
+			UartStartTx();
+			break;
+		}
 		case CMD_READ_MEMORY_VAL: //Запрос числа по определенному адресу
 		{							//Формат:AddressH, AddressL
 			if(RcBuf.Length==3)

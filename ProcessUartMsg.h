@@ -16,6 +16,7 @@
 #define CMD_SET_MANUAL_HEATER_MODE	((BYTE)0x0F)
 #define CMD_LOAD_PROTECTION_VALS	((BYTE)0x10) // Команда установки величин максимального тока/напряжения/мощности
 #define CMD_RESET_PROTECTION	((BYTE)0x11) // Команда сброса защиты по току/напряжению/мощности
+#define CMD_SET_MANUAL_LEAKERS_MODE	((BYTE)0x12) //Команда включения ручного режима по натекателям
 
 #define CMD_READ_MEMORY_VAL 	((BYTE)0xF0)
 #define CMD_WRITE_MEMORY_VAL 	((BYTE)0xF1)

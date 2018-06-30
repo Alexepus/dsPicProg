@@ -1,4 +1,5 @@
 #include "Main.h"
+bool FlagManualLeakerMode = false;
 
 void task_LeakerPid_body(void)
 {
